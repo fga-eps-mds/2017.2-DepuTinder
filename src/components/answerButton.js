@@ -2,8 +2,10 @@ import React from 'react';
 
 const AnswerButton = () => {
   return (
-    <div>
-      <a className="waves-effect waves-light btn">button</a>
+    <div className="answerButton">
+      <div>
+        <a className="waves-effect waves-light btn grey darken-3">button</a>
+      </div>
     </div>
   );
 };

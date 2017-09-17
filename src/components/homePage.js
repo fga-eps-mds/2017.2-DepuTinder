@@ -8,13 +8,11 @@ const HomePage = () => {
       <div>
         <NavBar />
       </div>
-
-      <div className="row s4 m4 l4">
-        <div className="col s4 m4 l4">
+      <div>
+        <center>
           <AnswerButton />
-        </div>
+        </center>
       </div>
-
     </div>
   );
 };

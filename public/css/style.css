@@ -19,6 +19,11 @@
   width: 100vw;
 }
 
-#navbar {
-  
+.answerButton {
+  display: block;
+  margin: 0 auto;
+  position: absolute;
+  width: 100%;
+  top: 90%;
+  color: red;
 }

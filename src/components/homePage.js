@@ -1,8 +1,19 @@
 import React from 'react';
+import NavBar from './navBar';
+import AnswerButton from './answerButton';
 
 const HomePage = () => {
   return (
-    <div>Home Page!</div>
+    <div>
+      <div>
+        <NavBar />
+      </div>
+      <div>
+        <center>
+          <AnswerButton />
+        </center>
+      </div>
+    </div>
   );
 };
 

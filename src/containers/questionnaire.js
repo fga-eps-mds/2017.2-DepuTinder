@@ -1,50 +1,25 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import FetchQuestionData from '../actions/fetchQuestionData';
+import { FetchQuestionData } from '../actions/fetchQuestionData';
+import Question from './question';
 
 class Questionnaire extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { answeredQuestion: [],
-      t: [],
-      i: 0,
-      obj: {} };
+    this.state = { questions: [] };
   }
 
-  bora() {
-    if(this.props.answeredQuestions === undefined){
-      t = this.state.answeredQuestion;
-    } else {
-      t = this.props.answeredQuestions;
+  isEmpty() {
+    if (this.props.questionData.questions === undefined) {
+      this.props.getDataForQuestion();
     }
   }
 
   render() {
-    const u = [];
+    this.isEmpty();
     return (
-      <div>
-        <center>
-          <a
-            className="waves-effect waves-light btn-large"
-            onClick={() => this.bora()}
-          >
-          Bora!
-          </a>\
-          <a
-            className="waves-effect waves-light btn-large"
-            onClick={() => FetchQuestionData(u, this.obj)}
-          >
-          Buscar CEP!
-          </a>
-          <a
-            className="waves-effect waves-light btn-large"
-            onClick={() => { this.i += 1; }}
-          >
-          add i
-          </a>
-        </center>
-      </div>
+      <Question />
     );
   }
 }
@@ -52,7 +27,16 @@ class Questionnaire extends Component {
 function mapStateToProps(state) {
   return {
     answeredQuestions: state.answeredQuestions,
+    questionData: state.questionData,
   };
 }
 
-export default connect(mapStateToProps, { FetchQuestionData })(Questionnaire);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getDataForQuestion() {
+      dispatch(FetchQuestionData());
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Questionnaire);

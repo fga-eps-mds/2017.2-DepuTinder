@@ -19,7 +19,7 @@
   width: 100vw;
 }
 
-.mainButton {
+.mainButtonS {
   display: block;
   margin: 0 auto;
   position: absolute;
@@ -32,10 +32,8 @@
   font-size: 120%;
   display: block;
   text-align: center;
-  padding-left: 150px;
-  padding-right: 150px;
   margin: 0 auto;
-  position: absolute;
-  top: 50vh;
+  /*position: absolute;*/
+  /*top: 50vh;*/
   color: #424242;
 }

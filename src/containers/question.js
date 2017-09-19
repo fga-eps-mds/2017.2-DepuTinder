@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import FetchQuestionData from '../actions/fetchQuestionData';
+import { FetchAnswerQuestion } from '../actions/fetchAnswerQuestion';
 
 class Question extends Component {
 
@@ -18,11 +18,16 @@ class Question extends Component {
             <span className="card-title grey-text text-darken-3"><b>Titulo da proposição</b><i className="material-icons activator right">help</i></span>
             <p className="align-left">Sub-Titulo da proposição</p>
             <ul>
-              <li><a className="waves-effect waves-light btn grey darken-3">Sou a favor</a></li>
+              <li><a className="waves-effect waves-light btn grey darken-3" onClick={() => this.props.sendAnswer({ answer: 'SIM' })}>
+                Sou a favor
+                </a>
+              </li>
               <br />
-              <li><a className="waves-effect waves-light btn grey darken-3">Sou contra</a></li>
+              <li><a className="waves-effect waves-light btn grey darken-3" onClick={() => this.props.sendAnswer({ answer: 'NÃO' })}>
+                Sou contra</a></li>
               <br />
-              <li><a className="waves-effect waves-light btn grey darken-3">Me abstenho</a></li>
+              <li><a className="waves-effect waves-light btn grey darken-3" onClick={() => this.props.sendAnswer({ answer: 'ME ABSTENHO' })}>
+                Me abstenho</a></li>
             </ul>
           </center>
         </div>
@@ -42,4 +47,12 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, { FetchQuestionData })(Question);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    sendAnswer(answer) {
+      dispatch(FetchAnswerQuestion(answer));
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Question);

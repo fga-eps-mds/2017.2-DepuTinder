@@ -21,7 +21,7 @@ const HomePage = () => {
             </li>
             <br />
             <br />
-            <li><MainButton /></li>
+            <li><MainButton text="Responder questionário" /></li>
           </ul>
         </center>
       </div>

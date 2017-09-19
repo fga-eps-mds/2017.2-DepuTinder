@@ -1,9 +1,5 @@
 const initialState = {
   answeredQuestions: [
-    {
-      id: 0,
-      nome: 'Calebe',
-    },
   ],
 };
 

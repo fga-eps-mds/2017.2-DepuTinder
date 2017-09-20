@@ -11,15 +11,34 @@ class Questionnaire extends Component {
   }
 
   isEmpty() {
+    let a = 0;
+
     if (this.props.questionData.questions === undefined) {
       this.props.getDataForQuestion();
+    } else {
+      while (a < 10) {
+        this.state.questions[a] = this.props.questionData.questions[a];
+        a += 1;
+      }
     }
   }
 
   render() {
     this.isEmpty();
+    let a = 6;
     return (
-      <Question />
+      <div>
+        { this.props.questionData.questions === undefined ?
+          <div className="progress">
+            <div className="indeterminate" />
+          </div>
+       : <Question id={this.props.questionData.questions[a].questionID}
+         title={this.props.questionData.questions[a].questionTitle}
+         subTitle={this.props.questionData.questions[a].questionSubTitle}
+         questionDescription={this.props.questionData.questions[a].questionDescription}
+       />
+       }
+      </div>
     );
   }
 }

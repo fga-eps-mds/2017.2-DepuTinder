@@ -1,5 +1,6 @@
 import React from 'react';
 import { browserHistory } from 'react-router';
+import PropTypes from 'prop-types';
 
 const MainButton = (props) => {
   return (
@@ -9,6 +10,14 @@ const MainButton = (props) => {
       </div>
     </div>
   );
+};
+
+MainButton.propTypes = {
+  text: PropTypes.string
+};
+
+MainButton.defaultProps = {
+  text: 'Stranger'
 };
 
 export default MainButton;

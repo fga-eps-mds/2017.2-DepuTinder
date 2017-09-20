@@ -13,11 +13,11 @@ const MainButton = (props) => {
 };
 
 MainButton.propTypes = {
-  text: PropTypes.string
+  text: PropTypes.string,
 };
 
 MainButton.defaultProps = {
-  text: 'Stranger'
+  text: 'Stranger',
 };
 
 export default MainButton;

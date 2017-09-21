@@ -9,11 +9,40 @@ class Question extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      isClickedYes: false,
+      isClickedNo: false,
+      isClickedAbstain: false,
     };
   }
 
-  verifyAnswerInAnsweredQuestions(answer) {
+  checkClick(isClicked) {
+    if (isClicked) {
+      return 'waves-effect waves-light btn green darken-3';
+    } else {
+      return 'waves-effect waves-light btn grey darken-3';
+    }
+  }
+
+  verifyButton(flag) {
+    if (flag === 1) {
+      this.setState({ isClickedYes: true });
+      this.setState({ isClickedNo: false });
+      this.setState({ isClickedAbstain: false });
+    } else if (flag === 2) {
+      this.setState({ isClickedYes: false });
+      this.setState({ isClickedNo: true });
+      this.setState({ isClickedAbstain: false });
+    } else {
+      this.setState({ isClickedYes: false });
+      this.setState({ isClickedNo: false });
+      this.setState({ isClickedAbstain: true });
+    }
+  }
+
+  verifyAnswerInAnsweredQuestions(answer, flag) {
     const answeredQuestions = this.props.answeredQuestions;
+
+    this.verifyButton(flag);
 
     if (answeredQuestions !== undefined) {
       for (let i = 0; i < answeredQuestions.length; i += 1) {
@@ -22,7 +51,6 @@ class Question extends Component {
         }
       }
     }
-
     this.props.sendAnswer(answer);
   }
 
@@ -38,15 +66,15 @@ class Question extends Component {
             <span className="card-title grey-text text-darken-3"><b>{ question[ID].questionTitle }</b><i className="material-icons activator right">help</i></span>
             <p className="align-left">{ question[ID].questionSubTitle }</p>
             <ul>
-              <li><a className="waves-effect waves-light btn grey darken-3" onClick={() => this.verifyAnswerInAnsweredQuestions({ actionID, answer: 'SIM' })}>
+              <li><a className={this.checkClick(this.state.isClickedYes)} onClick={() => this.verifyAnswerInAnsweredQuestions({ actionID, answer: 'SIM' }, 1)}>
                 Sou a favor
                 </a>
               </li>
               <br />
-              <li><a className="waves-effect waves-light btn grey darken-3" onClick={() => this.verifyAnswerInAnsweredQuestions({ actionID, answer: 'NÃO' })}>
+              <li><a className={this.checkClick(this.state.isClickedNo)} onClick={() => this.verifyAnswerInAnsweredQuestions({ actionID, answer: 'NÃO' }, 2)}>
                 Sou contra</a></li>
               <br />
-              <li><a className="waves-effect waves-light btn grey darken-3" onClick={() => this.verifyAnswerInAnsweredQuestions({ actionID, answer: 'ME ABSTENHO' })}>
+              <li><a className={this.checkClick(this.state.isClickedAbstain)} onClick={() => this.verifyAnswerInAnsweredQuestions({ actionID, answer: 'ME ABSTENHO' }, 3)}>
                 Me abstenho</a></li>
             </ul>
           </center>

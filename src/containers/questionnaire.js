@@ -9,7 +9,8 @@ class Questionnaire extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { a: 0, b: ['dasd', '12323'] };
+    this.state = {
+    };
   }
 
   isEmpty() {

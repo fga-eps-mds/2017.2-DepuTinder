@@ -1,5 +1,4 @@
 import React from 'react';
-import NavBar from './navBar';
 import MainButton from './mainButton';
 
 const HomePage = () => {

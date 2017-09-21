@@ -12,6 +12,20 @@ class Question extends Component {
     };
   }
 
+  verifyAnswerInAnsweredQuestions(answer) {
+    const answeredQuestions = this.props.answeredQuestions;
+
+    if (answeredQuestions !== undefined) {
+      for (let i = 0; i < answeredQuestions.length; i += 1) {
+        if (answeredQuestions[i].actionID === answer.actionID) {
+          return;
+        }
+      }
+    }
+
+    this.props.sendAnswer(answer);
+  }
+
   renderCard() {
     const ID = this.props.actualQuestionID;
     const question = this.props.questionData.questions;
@@ -24,15 +38,15 @@ class Question extends Component {
             <span className="card-title grey-text text-darken-3"><b>{ question[ID].questionTitle }</b><i className="material-icons activator right">help</i></span>
             <p className="align-left">{ question[ID].questionSubTitle }</p>
             <ul>
-              <li><a className="waves-effect waves-light btn grey darken-3" onClick={() => this.props.sendAnswer({ actionID, answer: 'SIM' })}>
+              <li><a className="waves-effect waves-light btn grey darken-3" onClick={() => this.verifyAnswerInAnsweredQuestions({ actionID, answer: 'SIM' })}>
                 Sou a favor
                 </a>
               </li>
               <br />
-              <li><a className="waves-effect waves-light btn grey darken-3" onClick={() => this.props.sendAnswer({ actionID, answer: 'NÃO' })}>
+              <li><a className="waves-effect waves-light btn grey darken-3" onClick={() => this.verifyAnswerInAnsweredQuestions({ actionID, answer: 'NÃO' })}>
                 Sou contra</a></li>
               <br />
-              <li><a className="waves-effect waves-light btn grey darken-3" onClick={() => this.props.sendAnswer({ actionID, answer: 'ME ABSTENHO' })}>
+              <li><a className="waves-effect waves-light btn grey darken-3" onClick={() => this.verifyAnswerInAnsweredQuestions({ actionID, answer: 'ME ABSTENHO' })}>
                 Me abstenho</a></li>
             </ul>
           </center>
@@ -63,6 +77,7 @@ Question.propTypes = {
   actualQuestionID: PropTypes.number,
   questionData: PropTypes.object,
   sendAnswer: PropTypes.func,
+  answeredQuestions: PropTypes.array,
 };
 
 Question.defaultProps = {
@@ -74,6 +89,7 @@ Question.defaultProps = {
     questionDescription: 'Question Description',
   },
   sendAnswer() {},
+  answeredQuestions: [],
 };
 
 function mapStateToProps(state) {

@@ -17,7 +17,7 @@ MainButton.propTypes = {
 };
 
 MainButton.defaultProps = {
-  text: 'Stranger',
+  text: 'Responder Questionário',
 };
 
 export default MainButton;

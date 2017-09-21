@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { FetchAnswerQuestion } from '../actions/fetchAnswerQuestion';
 import { FetchQuestionData } from '../actions/fetchQuestionData';
@@ -54,6 +55,28 @@ class Question extends Component {
       </div>
     );
   }
+}
+
+Question.propTypes = {
+  actualQuestionID: PropTypes.number,
+  questionData: PropTypes.object,
+  sendAnswer: PropTypes.func,
+};
+
+Question.defaultProps = {
+  actualQuestionID: 0,
+  questionData: {
+    questionID: 0,
+    questionTitle: 'Question Title',
+    questionSubTitle: 'Question SubTitle',
+    questionDescription: 'Question Description',
+  },
+};
+
+getDefaultProps: function() {
+    return {
+        sendAnswer: function() {}
+    };
 }
 
 function mapStateToProps(state) {

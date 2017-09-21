@@ -73,13 +73,8 @@ Question.defaultProps = {
     questionSubTitle: 'Question SubTitle',
     questionDescription: 'Question Description',
   },
+  sendAnswer() {},
 };
-
-getDefaultProps: function() {
-  return {
-    sendAnswer: function() {}
-  };
-}
 
 function mapStateToProps(state) {
   return {

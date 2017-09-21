@@ -15,6 +15,7 @@ class Question extends Component {
   renderCard() {
     const ID = this.props.actualQuestionID;
     const question = this.props.questionData.questions;
+    const actionID = question[ID].questionID;
     return (
       <div className="card" id="question-card">
         <div className="card-content yellow acent-3">
@@ -23,15 +24,15 @@ class Question extends Component {
             <span className="card-title grey-text text-darken-3"><b>{ question[ID].questionTitle }</b><i className="material-icons activator right">help</i></span>
             <p className="align-left">{ question[ID].questionSubTitle }</p>
             <ul>
-              <li><a className="waves-effect waves-light btn grey darken-3" onClick={() => this.props.sendAnswer({ ID, answer: 'SIM' })}>
+              <li><a className="waves-effect waves-light btn grey darken-3" onClick={() => this.props.sendAnswer({ actionID, answer: 'SIM' })}>
                 Sou a favor
                 </a>
               </li>
               <br />
-              <li><a className="waves-effect waves-light btn grey darken-3" onClick={() => this.props.sendAnswer({ ID, answer: 'NÃO' })}>
+              <li><a className="waves-effect waves-light btn grey darken-3" onClick={() => this.props.sendAnswer({ actionID, answer: 'NÃO' })}>
                 Sou contra</a></li>
               <br />
-              <li><a className="waves-effect waves-light btn grey darken-3" onClick={() => this.props.sendAnswer({ ID, answer: 'ME ABSTENHO' })}>
+              <li><a className="waves-effect waves-light btn grey darken-3" onClick={() => this.props.sendAnswer({ actionID, answer: 'ME ABSTENHO' })}>
                 Me abstenho</a></li>
             </ul>
           </center>
@@ -57,6 +58,7 @@ class Question extends Component {
   }
 }
 
+
 Question.propTypes = {
   actualQuestionID: PropTypes.number,
   questionData: PropTypes.object,
@@ -74,9 +76,9 @@ Question.defaultProps = {
 };
 
 getDefaultProps: function() {
-    return {
-        sendAnswer: function() {}
-    };
+  return {
+    sendAnswer: function() {}
+  };
 }
 
 function mapStateToProps(state) {

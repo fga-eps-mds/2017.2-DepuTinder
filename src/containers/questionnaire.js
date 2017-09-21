@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { FetchQuestionData } from '../actions/fetchQuestionData';
 import { SaveActualQuestionID } from '../actions/saveActualQuestionID';
@@ -71,6 +72,25 @@ class Questionnaire extends Component {
     );
   }
 }
+
+Questionnaire.propTypes = {
+  questionData: PropTypes.object,
+  getDataForQuestion: PropTypes.func,
+  actualQuestionID: PropTypes.number,
+  sendID: PropTypes.func,
+};
+
+Questionnaire.defaultProps = {
+  questionData: {
+    questionID: 0,
+    questionTitle: 'Question Title',
+    questionSubTitle: 'Question SubTitle',
+    questionDescription: 'Question Description',
+  },
+  getDataForQuestion() {},
+  actualQuestionID: 0,
+  sendID() {},
+};
 
 function mapStateToProps(state) {
   return {

@@ -11,7 +11,9 @@ import initialState from './reducers/initialState';
 const store = createStore(reducers, initialState, applyMiddleware(promise));
 
 ReactDOM.render(
-  <Provider store={store}>
-    <Router history={browserHistory} routes={routes} />
-  </Provider>
+  <div>
+    <Provider store={store}>
+      <Router history={browserHistory} routes={routes} />
+    </Provider>
+  </div>
 , document.getElementById('container'));

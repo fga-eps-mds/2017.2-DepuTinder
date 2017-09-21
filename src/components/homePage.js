@@ -6,9 +6,6 @@ const HomePage = () => {
   return (
     <div>
       <div>
-        <NavBar />
-      </div>
-      <div>
         <center>
           <ul className="homePageItems">
             <li>

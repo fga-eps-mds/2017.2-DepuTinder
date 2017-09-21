@@ -1,8 +1,12 @@
 import { combineReducers } from 'redux';
-import answeredQuestionsReducer from './answeredQuestionsReducer';
+import answeredQuestionReducer from './answeredQuestionReducer';
+import questionDataReducer from './questionDataReducer';
+import actualQuestionIDReducer from './actualQuestionIDReducer';
 
 const rootReducer = combineReducers({
-  answeredQuestions: answeredQuestionsReducer,
+  answeredQuestions: answeredQuestionReducer,
+  questionData: questionDataReducer,
+  actualQuestionID: actualQuestionIDReducer,
 });
 
 export default rootReducer;

@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { FetchAnswerQuestion } from '../actions/fetchAnswerQuestion';
+import { SaveAnswerQuestion } from '../actions/saveAnswerQuestion';
 import { FetchQuestionData } from '../actions/fetchQuestionData';
+import { SaveActualQuestionID } from '../actions/saveActualQuestionID';
 
 class Question extends Component {
 
@@ -15,43 +16,12 @@ class Question extends Component {
     };
   }
 
-  checkClick(isClicked) {
-    if (isClicked) {
-      return 'waves-effect waves-light btn green darken-3';
-    } else {
-      return 'waves-effect waves-light btn grey darken-3';
+  verifyAnswerInAnsweredQuestions(questions, answer) {
+    this.props.sendAnswer(questions, answer);
+
+    if (this.props.actualQuestionID < 9) {
+      this.props.sendID(this.props.actualQuestionID + 1);
     }
-  }
-
-  verifyButton(flag) {
-    if (flag === 1) {
-      this.setState({ isClickedYes: true });
-      this.setState({ isClickedNo: false });
-      this.setState({ isClickedAbstain: false });
-    } else if (flag === 2) {
-      this.setState({ isClickedYes: false });
-      this.setState({ isClickedNo: true });
-      this.setState({ isClickedAbstain: false });
-    } else {
-      this.setState({ isClickedYes: false });
-      this.setState({ isClickedNo: false });
-      this.setState({ isClickedAbstain: true });
-    }
-  }
-
-  verifyAnswerInAnsweredQuestions(answer, flag) {
-    const answeredQuestions = this.props.answeredQuestions;
-
-    this.verifyButton(flag);
-
-    if (answeredQuestions !== undefined) {
-      for (let i = 0; i < answeredQuestions.length; i += 1) {
-        if (answeredQuestions[i].actionID === answer.actionID) {
-          return;
-        }
-      }
-    }
-    this.props.sendAnswer(answer);
   }
 
   renderCard() {
@@ -66,15 +36,15 @@ class Question extends Component {
             <span className="card-title grey-text text-darken-3"><b>{ question[ID].questionTitle }</b><i className="material-icons activator right">help</i></span>
             <p className="align-left">{ question[ID].questionSubTitle }</p>
             <ul>
-              <li><a className={this.checkClick(this.state.isClickedYes)} onClick={() => this.verifyAnswerInAnsweredQuestions({ actionID, answer: 'SIM' }, 1)}>
+              <li><a className="waves-effect waves-light btn grey darken-3" onClick={() => this.verifyAnswerInAnsweredQuestions(this.props.answeredQuestions, { answerID: actionID, answer: 'SIM' })}>
                 Sou a favor
                 </a>
               </li>
               <br />
-              <li><a className={this.checkClick(this.state.isClickedNo)} onClick={() => this.verifyAnswerInAnsweredQuestions({ actionID, answer: 'NÃO' }, 2)}>
+              <li><a className="waves-effect waves-light btn grey darken-3" onClick={() => this.verifyAnswerInAnsweredQuestions(this.props.answeredQuestions, { answerID: actionID, answer: 'NÃO' })}>
                 Sou contra</a></li>
               <br />
-              <li><a className={this.checkClick(this.state.isClickedAbstain)} onClick={() => this.verifyAnswerInAnsweredQuestions({ actionID, answer: 'ME ABSTENHO' }, 3)}>
+              <li><a className="waves-effect waves-light btn grey darken-3" onClick={() => this.verifyAnswerInAnsweredQuestions(this.props.answeredQuestions, { answerID: actionID, answer: 'ME ABSTENHO' })}>
                 Me abstenho</a></li>
             </ul>
           </center>
@@ -106,6 +76,7 @@ Question.propTypes = {
   questionData: PropTypes.object,
   sendAnswer: PropTypes.func,
   answeredQuestions: PropTypes.array,
+  sendID: PropTypes.func,
 };
 
 Question.defaultProps = {
@@ -118,6 +89,7 @@ Question.defaultProps = {
   },
   sendAnswer() {},
   answeredQuestions: [],
+  sendID() {},
 };
 
 function mapStateToProps(state) {
@@ -133,8 +105,11 @@ const mapDispatchToProps = (dispatch) => {
     getDataForQuestion() {
       dispatch(FetchQuestionData());
     },
-    sendAnswer(answer) {
-      dispatch(FetchAnswerQuestion(answer));
+    sendAnswer(question, answer) {
+      dispatch(SaveAnswerQuestion(question, answer));
+    },
+    sendID(ID) {
+      dispatch(SaveActualQuestionID(ID));
     },
   };
 };

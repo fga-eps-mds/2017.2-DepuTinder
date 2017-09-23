@@ -9,7 +9,8 @@ class Questionnaire extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { a: 0, b: ['dasd', '12323'] };
+    this.state = {
+    };
   }
 
   isEmpty() {
@@ -57,17 +58,31 @@ class Questionnaire extends Component {
     );
   }
 
+  sendButton() {
+    if (this.props.answeredQuestions.length >= 9) {
+      return 'btn waves-effect waves-light';
+    }
+    return 'btn waves-effect waves-light disabled';
+  }
+
   render() {
     this.isEmpty();
     return (
       <div>
         <center>{this.pages()}</center>
-        { this.props.questionData.questions === undefined ?
+        { (this.props.questionData.questions === undefined ?
           <div className="progress">
             <div className="indeterminate" />
           </div>
-       : <Question />
-       }
+       : <div>
+         <Question />
+         <center>
+           <button className={this.sendButton()}>Enviar questionário
+             <i className="material-icons right">send</i>
+           </button>
+         </center>
+       </div>
+        )}
       </div>
     );
   }
@@ -78,6 +93,7 @@ Questionnaire.propTypes = {
   getDataForQuestion: PropTypes.func,
   actualQuestionID: PropTypes.number,
   sendID: PropTypes.func,
+  answeredQuestions: PropTypes.array,
 };
 
 Questionnaire.defaultProps = {
@@ -90,6 +106,7 @@ Questionnaire.defaultProps = {
   getDataForQuestion() {},
   actualQuestionID: 0,
   sendID() {},
+  answeredQuestions: [],
 };
 
 function mapStateToProps(state) {

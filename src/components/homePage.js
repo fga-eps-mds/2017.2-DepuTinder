@@ -6,6 +6,7 @@ const HomePage = () => {
     <div>
       <div>
         <center>
+          <i className="large material-icons">people</i>
           <ul className="homePageItems">
             <li>
               <p id="paragraph_home_page">

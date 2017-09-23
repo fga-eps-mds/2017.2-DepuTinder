@@ -27,16 +27,16 @@ class Question extends Component {
   }
 
   render() {
-    const ID = this.props.actualQuestionID;
+    const questionID = this.props.actualQuestionID;
     const question = this.props.questionData.questions;
-    const actionID = question[ID].questionID;
+    const actionID = question[questionID].questionID;
     return (
       <div className="card" id="question-card">
         <div className="card-content yellow accent-3">
           <center>
-            <h3 className="grey-text text-darken-3"><b>Votação { question[ID].questionID }</b></h3>
-            <span className="card-title grey-text text-darken-3"><b>{ question[ID].questionTitle }</b><i className="material-icons activator right">help</i></span>
-            <p className="align-left">{ question[ID].questionSubTitle }</p>
+            <h3 className="grey-text text-darken-3"><b>Votação { question[questionID].questionID }</b></h3>
+            <span className="card-title grey-text text-darken-3"><b>{ question[questionID].questionTitle }</b><i className="material-icons activator right">help</i></span>
+            <p className="align-left">{ question[questionID].questionSubTitle }</p>
             <ul>
               <li><a className="waves-effect waves-light btn grey darken-3" onClick={() => this.verifyAnswerInAnsweredQuestions(this.props.answeredQuestions, actionID, 'SIM')}>
                 Sou a favor
@@ -52,8 +52,8 @@ class Question extends Component {
           </center>
         </div>
         <div className="card-reveal">
-          <span className="card-title grey-text text-darken-4">{ question[ID].questionTitle }<i className="material-icons right">close</i></span>
-          <p>{ question[ID].questionDescription }</p>
+          <span className="card-title grey-text text-darken-4">{ question[questionID].questionTitle }<i className="material-icons right">close</i></span>
+          <p>{ question[questionID].questionDescription }</p>
           <a className="proposition-link" href="">Saiba mais(link para a descrição)</a>
         </div>
       </div>
@@ -98,8 +98,8 @@ const mapDispatchToProps = (dispatch) => {
     sendAnswer(question, answer) {
       dispatch(SaveAnswerQuestion(question, answer));
     },
-    sendID(ID) {
-      dispatch(SaveActualQuestionID(ID));
+    sendID(questionID) {
+      dispatch(SaveActualQuestionID(questionID));
     },
   };
 };

@@ -122,8 +122,8 @@ const mapDispatchToProps = (dispatch) => {
     getDataForQuestion() {
       dispatch(FetchQuestionData());
     },
-    sendID(ID) {
-      dispatch(SaveActualQuestionID(ID));
+    sendID(questionID) {
+      dispatch(SaveActualQuestionID(questionID));
     },
   };
 };

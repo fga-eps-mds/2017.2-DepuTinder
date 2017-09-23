@@ -9,13 +9,12 @@ export const SaveAnswerQuestion = (answeredQuestions, newAnswer) => {
       newAnsweredQuestions[i].answer = newAnswer.answer;
       return {
         type: SAVE_ANSWER_QUESTION,
-        payload: answeredQuestions,
+        payload: newAnsweredQuestions,
       };
     }
   }
 
   answeredQuestions.push(newAnswer);
-
   return {
     type: SAVE_ANSWER_QUESTION,
     payload: answeredQuestions,

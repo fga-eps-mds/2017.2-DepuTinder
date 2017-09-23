@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { FetchQuestionData } from '../actions/fetchQuestionData';
 import { SaveActualQuestionID } from '../actions/saveActualQuestionID';
+import { browserHistory } from 'react-router';
 import Question from './question';
 
 class Questionnaire extends Component {
@@ -77,7 +78,7 @@ class Questionnaire extends Component {
        : <div>
          <Question />
          <center>
-           <button className={this.sendButton()}>Enviar questionário
+           <button className={this.sendButton()} onClick={() => browserHistory.push('/listAnswers')}>Enviar questionário
              <i className="material-icons right">send</i>
            </button>
          </center>

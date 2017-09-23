@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { FetchAnswerQuestion } from '../actions/fetchAnswerQuestion';
 import { FetchQuestionData } from '../actions/fetchQuestionData';
+import { SaveAnswerQuestion } from '../actions/saveAnswerQuestion';
 
 class ListAnsweredQuestions extends Component {
 
@@ -12,36 +12,20 @@ class ListAnsweredQuestions extends Component {
     };
   }
 
-  isEmpty() {
-    if (this.props.questionData.questions === undefined) {
-      this.props.getDataForQuestion();
-    }
-  }
-
   listQuestion() {
-    const ID = this.props.actualQuestionID;
-    const question = this.props.questionData.questions;
-    return (
-      <li>
-        <div>
-          question[ID].questionTitle
-        </div>
-      </li>
-    );
+    return this.props.answeredQuestions.map((answerID, answer) => {
+      return (
+        <li className="list-group-item"> {answer}</li>
+      );
+    });
   }
 
   render() {
-    this.isEmpty();
+    console.log(this.props.answeredQuestions);
     return (
       <div>
         <ul>
-          {
-            this.props.questionData.questions === undefined ?
-              <div className="progress">
-                <div className="indeterminate" />
-              </div>
-            : this.listQuestion()
-          }
+          { this.listQuestion() }
         </ul>
       </div>
     );
@@ -49,7 +33,6 @@ class ListAnsweredQuestions extends Component {
 }
 
 ListAnsweredQuestions.propTypes = {
-  actualQuestionID: PropTypes.number,
   questionData: PropTypes.object,
 };
 
@@ -63,15 +46,22 @@ ListAnsweredQuestions.defaultProps = {
   },
 };
 
+function mapStateToProps(state) {
+  return {
+    questionData: state.questionData,
+    answeredQuestions: state.answeredQuestions,
+  };
+}
+
 const mapDispatchToProps = (dispatch) => {
   return {
     getDataForQuestion() {
-      dispatch(FetchQuestionData());
+      dispatch(FetchQuestionData);
     },
-    getAnswer(answer) {
-      dispatch(FetchAnswerQuestion(answer));
+    sendAnswer(answeredQuestions, answer) {
+      dispatch(SaveAnswerQuestion(answeredQuestions, answer));
     },
   };
 };
 
-export default connect(null, mapDispatchToProps)(ListAnsweredQuestions);
+export default connect(mapStateToProps, mapDispatchToProps)(ListAnsweredQuestions);

@@ -9,23 +9,27 @@ class Question extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-    };
+    this.state = { answeredQuestions: [] };
   }
 
-  verifyAnswerInAnsweredQuestions(questions, answer) {
+  verifyAnswerInAnsweredQuestions(questions, answerID, answerValue) {
+    const MAX_INDEX_QUESTION_ARRAY = 9;
+    const NEXT_QUESTION = 1;
+    const answer = {
+      answerID,
+      answer: answerValue,
+    };
     this.props.sendAnswer(questions, answer);
-
-    if (this.props.actualQuestionID < 9) {
-      this.props.sendID(this.props.actualQuestionID + 1);
+    if (this.props.actualQuestionID < MAX_INDEX_QUESTION_ARRAY) {
+      this.props.sendID(this.props.actualQuestionID + NEXT_QUESTION);
     }
+    this.render();
   }
 
   render() {
     const ID = this.props.actualQuestionID;
     const question = this.props.questionData.questions;
     const actionID = question[ID].questionID;
-
     return (
       <div className="card" id="question-card">
         <div className="card-content yellow accent-3">
@@ -34,15 +38,15 @@ class Question extends Component {
             <span className="card-title grey-text text-darken-3"><b>{ question[ID].questionTitle }</b><i className="material-icons activator right">help</i></span>
             <p className="align-left">{ question[ID].questionSubTitle }</p>
             <ul>
-              <li><a className="waves-effect waves-light btn grey darken-3" onClick={() => this.verifyAnswerInAnsweredQuestions(this.props.answeredQuestions, { answerID: actionID, answer: 'SIM' })}>
+              <li><a className="waves-effect waves-light btn grey darken-3" onClick={() => this.verifyAnswerInAnsweredQuestions(this.props.answeredQuestions, actionID, 'SIM')}>
                 Sou a favor
                 </a>
               </li>
               <br />
-              <li><a className="waves-effect waves-light btn grey darken-3" onClick={() => this.verifyAnswerInAnsweredQuestions(this.props.answeredQuestions, { answerID: actionID, answer: 'NÃO' })}>
+              <li><a className="waves-effect waves-light btn grey darken-3" onClick={() => this.verifyAnswerInAnsweredQuestions(this.props.answeredQuestions, actionID, 'NÃO')}>
                 Sou contra</a></li>
               <br />
-              <li><a className="waves-effect waves-light btn grey darken-3" onClick={() => this.verifyAnswerInAnsweredQuestions(this.props.answeredQuestions, { answerID: actionID, answer: 'ME ABSTENHO' })}>
+              <li><a className="waves-effect waves-light btn grey darken-3" onClick={() => this.verifyAnswerInAnsweredQuestions(this.props.answeredQuestions, actionID, 'ME ABSTENHO')}>
                 Me abstenho</a></li>
             </ul>
           </center>

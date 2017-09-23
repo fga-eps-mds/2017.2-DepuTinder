@@ -13,7 +13,7 @@ class RankingResultPanel extends Component {
         <a className="candidate-icon"><i className="large material-icons black-text">person</i></a>
         <span id="result-card-text">X Combinações</span>
         <span id="card-percentage">X%</span>
-        <a className="secondary-content"><i className="material-icons">grade</i></a>
+        <a className="waves-effect waves-light btn grey darken-3">Ver lista</a>
       </div>
     );
   }

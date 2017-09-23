@@ -6,7 +6,7 @@ import Questionnaire from './containers/questionnaire';
 export default (
   <Route>
     <Route exact path="/" component={App}>
-      <Route exact path="/answerQuestionnaire" component={Questionnaire} />
+      <Route exact path="/answer" component={Questionnaire} />
     </Route>
   </Route>
 );

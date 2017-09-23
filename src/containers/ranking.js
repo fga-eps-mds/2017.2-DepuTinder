@@ -10,6 +10,7 @@ class Rankging extends Component {
   }
 
   render() {
+    console.log(this.props.answeredQuestions);
     return (
       <div>
         <h1 className="center">Resultado</h1>

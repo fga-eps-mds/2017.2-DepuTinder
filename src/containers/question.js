@@ -58,7 +58,6 @@ class Question extends Component {
   }
 }
 
-
 Question.propTypes = {
   actualQuestionID: PropTypes.number,
   questionData: PropTypes.object,

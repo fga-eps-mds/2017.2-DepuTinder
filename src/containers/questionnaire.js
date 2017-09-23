@@ -34,7 +34,6 @@ class Questionnaire extends Component {
   }
 
   pages() {
-    console.log(this.props.answeredQuestions);
     return (
       <ul className="pagination">
         <li

@@ -14,7 +14,7 @@
 }
 
 .testSample {
-  background-color: #ffea00;
+  background-color: #ffd600;
   height: 100vh;
   width: 100vw;
 }
@@ -31,4 +31,5 @@
 
 #question-card {
   top: 20%;
+  margin: 30px;
 }

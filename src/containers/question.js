@@ -10,9 +10,6 @@ class Question extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isClickedYes: false,
-      isClickedNo: false,
-      isClickedAbstain: false,
     };
   }
 
@@ -24,13 +21,14 @@ class Question extends Component {
     }
   }
 
-  renderCard() {
+  render() {
     const ID = this.props.actualQuestionID;
     const question = this.props.questionData.questions;
     const actionID = question[ID].questionID;
+
     return (
       <div className="card" id="question-card">
-        <div className="card-content yellow acent-3">
+        <div className="card-content yellow accent-3">
           <center>
             <h3 className="grey-text text-darken-3"><b>Votação { question[ID].questionID }</b></h3>
             <span className="card-title grey-text text-darken-3"><b>{ question[ID].questionTitle }</b><i className="material-icons activator right">help</i></span>
@@ -54,17 +52,6 @@ class Question extends Component {
           <p>{ question[ID].questionDescription }</p>
           <a className="proposition-link" href="">Saiba mais(link para a descrição)</a>
         </div>
-      </div>
-    );
-  }
-
-  render() {
-    return (
-      <div>
-        { this.props.questionData.questions === undefined ?
-          <h1>assad</h1>
-          : this.renderCard()
-        }
       </div>
     );
   }

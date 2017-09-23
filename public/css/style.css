@@ -35,8 +35,23 @@
 
 #result-card-text {
   font-size: 250%;
+  vertical-align: 50%;
+  position:relative;
+  top:50%;
+  left:25%;
+  transform:translate(-50%,-50%);
 }
 
-#card-percentage {
+#card-percentage{
   font-size: 250%;
+  position:relative;
+  top:70%;
+  left:30%;
+  transform:translate(-50%,-90%);
+}
+#btnLista{
+  position:relative;
+  top:70%;
+  left:45%;
+  transform:translate(-50%,-30%);
 }

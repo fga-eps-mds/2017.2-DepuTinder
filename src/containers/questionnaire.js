@@ -34,6 +34,7 @@ class Questionnaire extends Component {
   }
 
   pages() {
+    console.log(this.props.answeredQuestions);
     return (
       <ul className="pagination">
         <li
@@ -59,7 +60,7 @@ class Questionnaire extends Component {
   }
 
   sendButton() {
-    if (this.props.answeredQuestions.length === 9) {
+    if (this.props.answeredQuestions.length >= 9) {
       return 'btn waves-effect waves-light';
     }
     return 'btn waves-effect waves-light disabled';

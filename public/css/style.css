@@ -5,6 +5,10 @@
  *
  * Made By MaterializeCSS.com
  */
+ :root{
+   --main-yellow: #ffea00;
+   --main-grey: #424242;
+ }
 
 .icon-block {
   padding: 0 15px;
@@ -14,9 +18,39 @@
 }
 
 .testSample {
-  background-color: #ffea00;
+  background-color: #ffd600;
   height: 100vh;
   width: 100vw;
+}
+
+.collapsible-body {
+  background-color: white;
+}
+
+#listAnswedQuestions-title {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 150%;
+  text-align: center;
+  background-color: var(--main-grey);
+  color: var(--main-yellow);
+}
+
+
+#listAnswedQuestions-subtitle {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 125%;
+  text-align: center;
+  background-color: var(--main-grey);
+  color: var(--main-yellow);
+}
+
+
+#listAnswedQuestions-desc {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 100%;
+  text-align: center;
+  background-color: var(--main-grey);
+  color: var(--main-yellow);
 }
 
 #paragraph_home_page {
@@ -26,11 +60,12 @@
   text-align: center;
   margin: 30px;
   margin-top: 100px;
-  color: #424242;
+  color: var(--main-grey);
 }
 
 #question-card {
   top: 20%;
+  margin: 30px;
 }
 
 #result-card-text {

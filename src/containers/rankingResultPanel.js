@@ -10,11 +10,12 @@ class RankingResultPanel extends Component {
   render() {
     return (
       <li>
-        <div className="collapsible-header"><i className="material-icons black-text">person</i>Combinações com X%</div>
+        <div className="collapsible-header"><i className="material-icons black-text">person</i>Combinações com { this.props.percentage }%</div>
         <div className="collapsible-body"><span>Candidato 1</span></div>
       </li>
     );
   }
+
 }
 
 export default RankingResultPanel;

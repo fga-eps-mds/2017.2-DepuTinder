@@ -13,6 +13,7 @@ class ListAnsweredQuestions extends Component {
   }
 
   listAnswer() {
+    console.log(this.props.answeredQuestions);
     return this.props.answeredQuestions.map((answered) => {
       return (
         <li key={answered.answerID} className="list-group-item"> {answered.answer}</li>
@@ -32,14 +33,14 @@ class ListAnsweredQuestions extends Component {
 }
 
 ListAnsweredQuestions.propTypes = {
-  answeredQuestions: PropTypes.object,
+  answeredQuestions: PropTypes.arrayOf(PropTypes.object),
 };
 
 ListAnsweredQuestions.defaultProps = {
-  answeredQuestions: {
-    answerID: 'null',
+  answeredQuestions: [{
+    answerID: 0,
     answer: 'answer',
-  },
+  }],
 };
 
 function mapStateToProps(state) {

@@ -23,14 +23,14 @@ class Questionnaire extends Component {
     if (this.props.actualQuestionID < 9) {
       return this.props.actualQuestionID + 1;
     }
-    return this.props.actualQuestionID;
+    return 0;
   }
 
   prevNumber() {
     if (this.props.actualQuestionID > 0) {
       return this.props.actualQuestionID - 1;
     }
-    return this.props.actualQuestionID;
+    return 9;
   }
 
   pages() {

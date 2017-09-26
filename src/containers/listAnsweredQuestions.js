@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 
 class ListAnsweredQuestions extends Component {
 
+
   constructor(props) {
     super(props);
     this.state = {
@@ -13,36 +14,40 @@ class ListAnsweredQuestions extends Component {
   listQuestionsAndAnswers() {
     const questions = this.props.questionData.questions;
     const answers = this.props.answeredQuestions;
-    for (let i = 0; i < 10; i += 1) {
+    const NUMBER_OF_QUESTIONS = 10;
+    const questionsAndAnswers = [{}];
+
+    let i = 0;
+    while (i < NUMBER_OF_QUESTIONS) {
       if (questions[i].questionID === answers[i].answerID) {
-        return (
-          <ul className="collapsible" data-collapsible="accordion">
-            <li>
-              <div className="collapsible-header">
-                <i className="material-icons">filter_drama</i>
-                  Votação {questions[i].questionID} {questions[i].questionTitle}
-              </div>
-              <div className="collapsible-body">
-                <span>{questions[i].questionSubTitle}</span>
-              </div>
-              <div className="collapsible-header">
-                <span>{answers[i].answer}</span>
-              </div>
-            </li>
-          </ul>
-        );
+        const questionAndAnswer = {
+          questionID: questions[i].questionID,
+          questionTitle: questions[i].questionTitle,
+          questionSubTitle: questions[i].questionSubTitle,
+          questionDescription: questions[i].questionDescription,
+          answer: answers[i].answer,
+        };
+        questionsAndAnswers[i] = (questionAndAnswer);
       }
+      i += 1;
     }
-    return 0;
+
+    return (
+      <li>
+        <div className="collapsible-header"><i className="material-icons">filter_drama</i>First</div>
+        <div className="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+      </li>
+    );
   }
 
   render() {
     return (
-      <div>
-        <ul>
-          { this.listQuestionsAndAnswers() }
-        </ul>
-      </div>
+      <ul className="collapsible yellow" data-collapsible="accordion">
+        <li>
+          <div className="collapsible-header active"><i className="material-icons">filter_drama</i>First</div>
+          <div className="collapsible-body yellow"><span>Lorem ipsum dolor sit amet.</span></div>
+        </li>
+      </ul>
     );
   }
 }
@@ -68,6 +73,7 @@ ListAnsweredQuestions.defaultProps = {
     questionID: 0,
     questionTitle: 'Question Title',
     questionSubTitle: 'Question SubTitle',
+    questionDescription: 'Question Description',
     questionAnswer: 'Answer',
   }],
 };

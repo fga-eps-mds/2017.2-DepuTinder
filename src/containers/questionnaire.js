@@ -23,14 +23,14 @@ class Questionnaire extends Component {
     if (this.props.actualQuestionID < 9) {
       return this.props.actualQuestionID + 1;
     }
-    return this.props.actualQuestionID;
+    return 0;
   }
 
   prevNumber() {
     if (this.props.actualQuestionID > 0) {
       return this.props.actualQuestionID - 1;
     }
-    return this.props.actualQuestionID;
+    return 9;
   }
 
   pages() {
@@ -59,7 +59,7 @@ class Questionnaire extends Component {
   }
 
   sendButton() {
-    if (this.props.answeredQuestions.length >= 9) {
+    if (this.props.answeredQuestions.length === 10) {
       return 'btn waves-effect waves-light';
     }
     return 'btn waves-effect waves-light disabled';
@@ -122,8 +122,8 @@ const mapDispatchToProps = (dispatch) => {
     getDataForQuestion() {
       dispatch(FetchQuestionData());
     },
-    sendID(ID) {
-      dispatch(SaveActualQuestionID(ID));
+    sendID(questionID) {
+      dispatch(SaveActualQuestionID(questionID));
     },
   };
 };

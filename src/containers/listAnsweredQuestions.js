@@ -13,10 +13,17 @@ class ListAnsweredQuestions extends Component {
   }
 
   listAnswer() {
-    console.log(this.props.answeredQuestions);
     return this.props.answeredQuestions.map((answered) => {
       return (
         <li key={answered.answerID} className="list-group-item"> {answered.answer}</li>
+      );
+    });
+  }
+
+  listQuestion() {
+    return this.props.questionData.questions.map((questions) => {
+      return (
+        <li key={questions.questionID} className="list-group-item"> {questions.questionTitle}</li>
       );
     });
   }
@@ -26,6 +33,7 @@ class ListAnsweredQuestions extends Component {
       <div>
         <ul>
           { this.listAnswer() }
+          { this.listQuestion() }
         </ul>
       </div>
     );
@@ -34,6 +42,7 @@ class ListAnsweredQuestions extends Component {
 
 ListAnsweredQuestions.propTypes = {
   answeredQuestions: PropTypes.arrayOf(PropTypes.object),
+  questionData: PropTypes.object,
 };
 
 ListAnsweredQuestions.defaultProps = {
@@ -41,6 +50,12 @@ ListAnsweredQuestions.defaultProps = {
     answerID: 0,
     answer: 'answer',
   }],
+  questionData: {
+    questionID: 0,
+    questionTitle: 'Question Title',
+    questionSubTitle: 'Question SubTitle',
+    questionDescription: 'Question Description',
+  },
 };
 
 function mapStateToProps(state) {

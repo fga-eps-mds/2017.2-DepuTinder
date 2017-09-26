@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { FetchQuestionData } from '../actions/fetchQuestionData';
-import { SaveAnswerQuestion } from '../actions/saveAnswerQuestion';
 
 class ListAnsweredQuestions extends Component {
 
@@ -12,28 +10,37 @@ class ListAnsweredQuestions extends Component {
     };
   }
 
-  listAnswer() {
-    return this.props.answeredQuestions.map((answered) => {
-      return (
-        <li key={answered.answerID} className="list-group-item"> {answered.answer}</li>
-      );
-    });
-  }
-
-  listQuestion() {
-    return this.props.questionData.questions.map((questions) => {
-      return (
-        <li key={questions.questionID} className="list-group-item"> {questions.questionTitle}</li>
-      );
-    });
+  listQuestionsAndAnswers() {
+    const questions = this.props.questionData.questions;
+    const answers = this.props.answeredQuestions;
+    for (let i = 0; i < 10; i += 1) {
+      if (questions[i].questionID === answers[i].answerID) {
+        return (
+          <ul className="collapsible" data-collapsible="accordion">
+            <li>
+              <div className="collapsible-header">
+                <i className="material-icons">filter_drama</i>
+                  Votação {questions[i].questionID} {questions[i].questionTitle}
+              </div>
+              <div className="collapsible-body">
+                <span>{questions[i].questionSubTitle}</span>
+              </div>
+              <div className="collapsible-header">
+                <span>{answers[i].answer}</span>
+              </div>
+            </li>
+          </ul>
+        );
+      }
+    }
+    return 0;
   }
 
   render() {
     return (
       <div>
         <ul>
-          { this.listAnswer() }
-          { this.listQuestion() }
+          { this.listQuestionsAndAnswers() }
         </ul>
       </div>
     );
@@ -43,6 +50,7 @@ class ListAnsweredQuestions extends Component {
 ListAnsweredQuestions.propTypes = {
   answeredQuestions: PropTypes.arrayOf(PropTypes.object),
   questionData: PropTypes.object,
+  questionsAndAnswers: PropTypes.arrayOf(PropTypes.object),
 };
 
 ListAnsweredQuestions.defaultProps = {
@@ -56,6 +64,12 @@ ListAnsweredQuestions.defaultProps = {
     questionSubTitle: 'Question SubTitle',
     questionDescription: 'Question Description',
   },
+  questionsAndAnswers: [{
+    questionID: 0,
+    questionTitle: 'Question Title',
+    questionSubTitle: 'Question SubTitle',
+    questionAnswer: 'Answer',
+  }],
 };
 
 function mapStateToProps(state) {
@@ -65,15 +79,4 @@ function mapStateToProps(state) {
   };
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    getDataForQuestion() {
-      dispatch(FetchQuestionData);
-    },
-    sendAnswer(answeredQuestions, answer) {
-      dispatch(SaveAnswerQuestion(answeredQuestions, answer));
-    },
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(ListAnsweredQuestions);
+export default connect(mapStateToProps)(ListAnsweredQuestions);

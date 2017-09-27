@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { browserHistory } from 'react-router';
 import { connect } from 'react-redux';
-import { FetchQuestionData } from '../actions/fetchQuestionData';
+import { FetchPropositionData } from '../actions/fetchPropositionData';
 import { SaveActualQuestionID } from '../actions/saveActualQuestionID';
 import Question from './question';
 
@@ -121,7 +121,7 @@ function mapStateToProps(state) {
 const mapDispatchToProps = (dispatch) => {
   return {
     getDataForQuestion() {
-      dispatch(FetchQuestionData());
+      dispatch(FetchPropositionData());
     },
     sendID(questionID) {
       dispatch(SaveActualQuestionID(questionID));

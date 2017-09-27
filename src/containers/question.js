@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { SaveAnswerQuestion } from '../actions/saveAnswerQuestion';
-import { FetchQuestionData } from '../actions/fetchQuestionData';
+import { FetchPropositionData } from '../actions/fetchPropositionData';
 import { SaveActualQuestionID } from '../actions/saveActualQuestionID';
 
 class Question extends Component {
@@ -149,7 +149,7 @@ function mapStateToProps(state) {
 const mapDispatchToProps = (dispatch) => {
   return {
     getDataForQuestion() {
-      dispatch(FetchQuestionData());
+      dispatch(FetchPropositionData());
     },
     sendAnswer(question, answer) {
       dispatch(SaveAnswerQuestion(question, answer));

@@ -15,17 +15,17 @@ class ListAnsweredQuestions extends Component {
     const answeredQuestions = this.props.answeredQuestions.sort((a, b) => {
       return a.answerID > b.answerID;
     });
-    const proposition = this.props.proposition.questions;
+    const proposition = this.props.proposition.propositions;
     const questionID = this.props.questionID;
     return (
       <li>
         <div className="collapsible-header">
           <i className="material-icons green-text">verified_user</i>
-          Votação {Number(questionID) + 1}: {proposition[questionID].questionTitle}
+          Votação {Number(questionID) + 1}: {proposition[questionID].propositionTitle}
           : { answeredQuestions[questionID].answer }
         </div>
         <div className="collapsible-body">
-          <span>{proposition[questionID].questionDescription}</span>
+          <span>{proposition[questionID].propositionDescription}</span>
         </div>
       </li>
     );

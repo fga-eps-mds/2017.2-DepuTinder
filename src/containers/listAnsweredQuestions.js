@@ -15,11 +15,18 @@ class ListAnsweredQuestions extends Component {
     const answeredQuestions = this.props.answeredQuestions.sort();
     const questionData = this.props.questionData.questions;
     const questionID = this.props.questionID;
+    console.log(answeredQuestions.sort());
+    console.log(questionData);
     return (
       <li>
-        <div className="collapsible-header"><i className="material-icons black-text">person</i>Votação {questionID}: {questionData[questionID].questionTitle}</div>
-        <div className="collapsible-body"><span>{ questionData[questionID].questionDescription }</span></div>
-        <div className="collapsible-body"><span>{ answeredQuestions[questionID].answer }</span></div>
+        <div className="collapsible-header">
+          <i className="material-icons green-text">verified_user</i>
+          Votação {questionID}: {questionData[questionID].questionTitle}
+          : { answeredQuestions[questionID].answer }
+        </div>
+        <div className="collapsible-body">
+          <span>{questionData[questionID].questionDescription}</span>
+        </div>
       </li>
     );
   }

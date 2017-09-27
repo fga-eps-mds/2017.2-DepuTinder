@@ -2,7 +2,7 @@ import React from 'react';
 import { Route } from 'react-router-dom';
 import App from './components/app';
 import Questionnaire from './containers/questionnaire';
-import AnsweredQuestionsPanel from './containers/answeredQuestionsPanel';
+import AnsweredQuestionsPanel from './components/answeredQuestionsPanel';
 
 export default (
   <Route>

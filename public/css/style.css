@@ -59,7 +59,6 @@
   display: block;
   text-align: center;
   margin: 30px;
-  margin-top: 100px;
   color: var(--main-grey);
 }
 
@@ -90,3 +89,9 @@
   left:45%;
   transform:translate(-50%,-30%);
 }
+
+#listAnswers {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 80%;
+  margin: 3%;
+  top: 20%;

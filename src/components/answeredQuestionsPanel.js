@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { browserHistory } from 'react-router';
 import ListAnsweredQuestions from '../containers/listAnsweredQuestions';
 
 class AnsweredQuestionsPanel extends Component {
@@ -28,14 +29,19 @@ class AnsweredQuestionsPanel extends Component {
         <div className="row">
           <div className="col s6 m6 l6">
             <center>
-              <a className="waves-effect waves-light btn">
-                <i className="material-icons right">edit</i>Editar
+              <a
+                className="waves-effect waves-light btn"
+                onClick={() => browserHistory.push('/responder')}
+              ><i className="material-icons right">edit</i>Editar
               </a>
             </center>
           </div>
           <div className="col s6 m6 l6">
             <center>
-              <a className="waves-effect waves-light btn">
+              <a
+                className="waves-effect waves-light btn"
+                onClick={() => browserHistory.push('ranking')}
+              >
                 <i className="material-icons right">send</i>Submeter
               </a>
             </center>

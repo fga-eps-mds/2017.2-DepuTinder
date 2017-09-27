@@ -78,7 +78,7 @@ class Questionnaire extends Component {
        : <div>
          <Question />
          <center>
-           <button className={this.sendButton()} onClick={() => browserHistory.push('/listAnswers')}>Enviar questionário
+           <button className={this.sendButton()} onClick={() => browserHistory.push('/listar_respostas')}>Enviar questionário
              <i className="material-icons right">send</i>
            </button>
          </center>

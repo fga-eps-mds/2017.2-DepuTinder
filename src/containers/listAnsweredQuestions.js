@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { FetchQuestionData } from '../actions/fetchQuestionData';
-import { SaveAnswerQuestion } from '../actions/saveAnswerQuestion';
 
 class ListAnsweredQuestions extends Component {
+
 
   constructor(props) {
     super(props);
@@ -12,52 +11,53 @@ class ListAnsweredQuestions extends Component {
     };
   }
 
-  listAnswer() {
-    return this.props.answeredQuestions.map((answered) => {
-      return (
-        <li key={answered.answerID} className="list-group-item"> {answered.answer}</li>
-      );
-    });
-  }
-
   render() {
+    const answeredQuestions = this.props.answeredQuestions.sort((a, b) => {
+      return a.answerID > b.answerID;
+    });
+    const questionData = this.props.questionData.questions;
+    const questionID = this.props.questionID;
     return (
-      <div>
-        <ul>
-          { this.listAnswer() }
-        </ul>
-      </div>
+      <li>
+        <div className="collapsible-header">
+          <i className="material-icons green-text">verified_user</i>
+          Votação {Number(questionID) + 1}: {questionData[questionID].questionTitle}
+          : { answeredQuestions[questionID].answer }
+        </div>
+        <div className="collapsible-body">
+          <span>{questionData[questionID].questionDescription}</span>
+        </div>
+      </li>
     );
   }
 }
 
 ListAnsweredQuestions.propTypes = {
-  answeredQuestions: PropTypes.object,
+  answeredQuestions: PropTypes.arrayOf(PropTypes.object),
+  questionData: PropTypes.object,
+  questionID: PropTypes.string,
 };
 
 ListAnsweredQuestions.defaultProps = {
-  answeredQuestions: {
-    answerID: 'null',
+  answeredQuestions: [{
+    answerID: 0,
     answer: 'answer',
+  }],
+  questionData: {
+    questionID: 0,
+    questionTitle: 'Question Title',
+    questionSubTitle: 'Question SubTitle',
+    questionDescription: 'Question Description',
   },
+  questionID: '0',
 };
+
 
 function mapStateToProps(state) {
   return {
-    questionData: state.questionData,
     answeredQuestions: state.answeredQuestions,
+    questionData: state.questionData,
   };
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    getDataForQuestion() {
-      dispatch(FetchQuestionData);
-    },
-    sendAnswer(answeredQuestions, answer) {
-      dispatch(SaveAnswerQuestion(answeredQuestions, answer));
-    },
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(ListAnsweredQuestions);
+export default connect(mapStateToProps)(ListAnsweredQuestions);

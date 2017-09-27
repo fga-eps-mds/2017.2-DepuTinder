@@ -15,7 +15,7 @@ class Questionnaire extends Component {
   }
 
   isEmpty() {
-    if (this.props.proposition.questions === undefined) {
+    if (this.props.proposition.propositions === undefined) {
       this.props.getDataForQuestion();
     }
   }
@@ -71,7 +71,7 @@ class Questionnaire extends Component {
     return (
       <div>
         <center>{this.pages()}</center>
-        { (this.props.proposition.questions === undefined ?
+        { (this.props.proposition.propositions === undefined ?
           <div className="progress">
             <div className="indeterminate" />
           </div>

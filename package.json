@@ -7,7 +7,7 @@
   "scripts": {
     "start": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js",
     "compile": "node ./node_modules/webpack/bin/webpack.js",
-    "test": "mocha --compilers js:babel-core/register --require ./test/test_helper.js --recursive ./test",
+    "test": "nyc --reporter=html --reporter=text mocha  --compilers js:babel-core/register --require ./test/test_helper.js --recursive ./test",
     "test:watch": "npm run test -- --watch"
   },
   "author": "",
@@ -47,6 +47,7 @@
     "lodash": "^4.17.4",
     "material-ui": "^0.18.7",
     "node-sass": "^4.0.0",
+    "nyc": "^11.2.1",
     "prop-types": "^15.5.10",
     "react": "^15.6.1",
     "react-dom": "^15.4.0",

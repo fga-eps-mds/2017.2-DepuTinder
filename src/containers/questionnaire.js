@@ -15,7 +15,7 @@ class Questionnaire extends Component {
   }
 
   isEmpty() {
-    if (this.props.questionData.questions === undefined) {
+    if (this.props.proposition.questions === undefined) {
       this.props.getDataForQuestion();
     }
   }
@@ -71,7 +71,7 @@ class Questionnaire extends Component {
     return (
       <div>
         <center>{this.pages()}</center>
-        { (this.props.questionData.questions === undefined ?
+        { (this.props.proposition.questions === undefined ?
           <div className="progress">
             <div className="indeterminate" />
           </div>
@@ -90,7 +90,7 @@ class Questionnaire extends Component {
 }
 
 Questionnaire.propTypes = {
-  questionData: PropTypes.object,
+  proposition: PropTypes.object,
   getDataForQuestion: PropTypes.func,
   actualQuestionID: PropTypes.number,
   sendID: PropTypes.func,
@@ -98,7 +98,7 @@ Questionnaire.propTypes = {
 };
 
 Questionnaire.defaultProps = {
-  questionData: {
+  proposition: {
     questionID: 0,
     questionTitle: 'Question Title',
     questionSubTitle: 'Question SubTitle',
@@ -113,7 +113,7 @@ Questionnaire.defaultProps = {
 function mapStateToProps(state) {
   return {
     answeredQuestions: state.answeredQuestions,
-    questionData: state.questionData,
+    proposition: state.proposition,
     actualQuestionID: state.actualQuestionID,
   };
 }

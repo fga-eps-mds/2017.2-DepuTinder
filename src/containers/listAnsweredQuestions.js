@@ -44,7 +44,7 @@ ListAnsweredQuestions.defaultProps = {
 
 function mapStateToProps(state) {
   return {
-    questionData: state.questionData,
+    proposition: state.proposition,
     answeredQuestions: state.answeredQuestions,
   };
 }

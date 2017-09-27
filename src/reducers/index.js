@@ -6,7 +6,7 @@ import rankingDataReducer from './rankingDataReducer';
 
 const rootReducer = combineReducers({
   answeredQuestions: answeredQuestionReducer,
-  questionData: questionDataReducer,
+  proposition: questionDataReducer,
   actualQuestionID: actualQuestionIDReducer,
   rankingData: rankingDataReducer,
 });

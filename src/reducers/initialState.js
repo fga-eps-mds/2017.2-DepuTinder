@@ -1,7 +1,7 @@
 const initialState = {
   answeredQuestions: [
   ],
-  questionData: {
+  proposition: {
   },
   actualQuestionID: 0,
 };

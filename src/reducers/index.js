@@ -1,12 +1,12 @@
 import { combineReducers } from 'redux';
 import answeredQuestionReducer from './answeredQuestionReducer';
-import questionDataReducer from './questionDataReducer';
+import propositionDataReducer from './propositionDataReducer';
 import actualQuestionIDReducer from './actualQuestionIDReducer';
 import rankingDataReducer from './rankingDataReducer';
 
 const rootReducer = combineReducers({
   answeredQuestions: answeredQuestionReducer,
-  questionData: questionDataReducer,
+  proposition: propositionDataReducer,
   actualQuestionID: actualQuestionIDReducer,
   rankingData: rankingDataReducer,
 });

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { SaveAnswerQuestion } from '../actions/saveAnswerQuestion';
-import { FetchQuestionData } from '../actions/fetchQuestionData';
+import { FetchPropositionData } from '../actions/fetchPropositionData';
 import { SaveActualQuestionID } from '../actions/saveActualQuestionID';
 
 class Question extends Component {
@@ -83,7 +83,7 @@ class Question extends Component {
 
   render() {
     const questionID = this.props.actualQuestionID;
-    const question = this.props.questionData.questions;
+    const question = this.props.proposition.questions;
     const actionID = question[questionID].questionID;
 
     return (
@@ -119,7 +119,7 @@ class Question extends Component {
 
 Question.propTypes = {
   actualQuestionID: PropTypes.number,
-  questionData: PropTypes.object,
+  proposition: PropTypes.object,
   sendAnswer: PropTypes.func,
   answeredQuestions: PropTypes.array,
   sendID: PropTypes.func,
@@ -127,7 +127,7 @@ Question.propTypes = {
 
 Question.defaultProps = {
   actualQuestionID: 0,
-  questionData: {
+  proposition: {
     questionID: 0,
     questionTitle: 'Question Title',
     questionSubTitle: 'Question SubTitle',
@@ -141,7 +141,7 @@ Question.defaultProps = {
 function mapStateToProps(state) {
   return {
     answeredQuestions: state.answeredQuestions,
-    questionData: state.questionData,
+    proposition: state.proposition,
     actualQuestionID: state.actualQuestionID,
   };
 }
@@ -149,7 +149,7 @@ function mapStateToProps(state) {
 const mapDispatchToProps = (dispatch) => {
   return {
     getDataForQuestion() {
-      dispatch(FetchQuestionData());
+      dispatch(FetchPropositionData());
     },
     sendAnswer(question, answer) {
       dispatch(SaveAnswerQuestion(question, answer));

@@ -51,13 +51,13 @@ class Question extends Component {
   tick() {
     const answered = this.props.answeredQuestions;
 
-    for (let i = 0; i < answered.length; i += 1) {
-      i = this.changeStatusOfButton(i, answered);
+    for (let answeredQuestionID = 0; answeredQuestionID < answered.length; answeredQuestionID += 1) {
+      answeredQuestionID = this.changeStatusOfButton(answeredQuestionID, answered);
     }
   }
 
-  changeStatusOfButton(ID, answered) {
-    const answeredID = ID;
+  changeStatusOfButton(answeredQuestionID, answered) {
+    const answeredID = answeredQuestionID;
     if (answered[answeredID].answerID === (this.props.actualQuestionID + 1)) {
       if (answered[answeredID].answer === 'SIM') {
         this.setState({ answerYes: true });

@@ -10,14 +10,15 @@ class RankingResultPanel extends Component {
   }
 
   render() {
+    const groupID = Number(this.props.groupID);
     return (
       <div>
         <ul className="collection with-header">
           <li className="collection-header"><h4>Match de { this.props.percentage }%</h4></li>
           {
-            this.props.rankingData[this.props.groupID].candidates.map((candidate, i) => {
+            this.props.rankingData[groupID].candidates.map((candidate, i) => {
               return (
-                <li className="collection-item" id={i}>{ candidate }</li>
+                <li className="collection-item" key={i}>{ candidate }</li>
               );
             })
           }
@@ -36,8 +37,8 @@ function mapStateToProps(state) {
 
 RankingResultPanel.propTypes = {
   rankingData: PropTypes.array,
-  percentage: PropTypes.integer,
-  groupID: PropTypes.integer,
+  percentage: PropTypes.string,
+  groupID: PropTypes.string,
 };
 
 RankingResultPanel.defaultProps = {

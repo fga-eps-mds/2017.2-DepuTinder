@@ -30,7 +30,7 @@ class AnsweredQuestionsPanel extends Component {
           <div className="col s6 m6 l6">
             <center>
               <a
-                className="waves-effect waves-light btn"
+                className="waves-effect waves-light btn black"
                 onClick={() => browserHistory.push('/responder')}
               ><i className="material-icons right">edit</i>Editar
               </a>
@@ -39,7 +39,7 @@ class AnsweredQuestionsPanel extends Component {
           <div className="col s6 m6 l6">
             <center>
               <a
-                className="waves-effect waves-light btn"
+                className="waves-effect waves-light btn black"
                 onClick={() => browserHistory.push('ranking')}
               >
                 <i className="material-icons right">send</i>Submeter

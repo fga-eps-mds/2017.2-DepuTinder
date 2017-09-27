@@ -6,7 +6,7 @@ const MainButton = (props) => {
   return (
     <div className="mainButton">
       <a onClick={() => browserHistory.push('/responder')}
-      className="waves-effect waves-light btn grey darken-3 yellow-text text-accent-3">{props.text}
+      className="waves-effect waves-light btn black yellow-text text-accent-3">{props.text}
       </a>
     </div>
   );

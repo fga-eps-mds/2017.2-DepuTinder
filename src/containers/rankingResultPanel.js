@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { FetchRankingData } from '../actions/fetchRankingData';
 
 class RankingResultPanel extends Component {
@@ -17,7 +18,6 @@ class RankingResultPanel extends Component {
 
   render() {
     this.resultArrayIsEmpty();
-    console.log(this.rankingData);
     if (this.props.rankingData.length === 0) {
       return <div className="collapsible-header"><span>Carregando...</span></div>;
     }
@@ -44,6 +44,20 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(FetchRankingData());
     },
   };
+};
+
+RankingResultPanel.propTypes = {
+  rankingData: PropTypes.array,
+  groupID: PropTypes.number,
+  getResults: PropTypes.func,
+  percentage: PropTypes.number,
+};
+
+RankingResultPanel.defaultProps = {
+  rankingData: [],
+  groupID: -1,
+  getResults() {},
+  percentage: -1,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(RankingResultPanel);

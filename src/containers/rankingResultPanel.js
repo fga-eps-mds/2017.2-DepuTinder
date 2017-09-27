@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { FetchRankingData } from '../actions/fetchRankingData';
 
 class RankingResultPanel extends Component {
 
@@ -10,30 +9,26 @@ class RankingResultPanel extends Component {
     this.state = {};
   }
 
-  resultArrayIsEmpty() {
-    if (this.props.rankingData.length === 0) {
-      this.props.getResults();
-    }
+  renderCandidates() {
+    return this.props.rankingData[this.props.groupID].candidates.map((candidate) => {
+      return (
+        <div key={candidate.name} className="collapsible-body">
+          <span>{candidate.name}</span>
+        </div>
+      );
+    });
   }
 
   render() {
-    this.resultArrayIsEmpty();
-    if (this.props.rankingData.length === 0) {
-      return <div className="collapsible-header yellow accent-3"><span className="center">Carregando...</span></div>;
-    }
     return (
       <li>
-        <div className="collapsible-header yellow accent-3 center"><i className="material-icons black-text">people</i>Combinações com { this.props.percentage }%</div>
-        { this.props.rankingData[this.props.groupID].candidates.map((rankingData) => {
-          return (
-            <div className="collapsible-body grey darken-3 yellow-text">
-              <center>
-                <i className="material-icons black-text">person</i>
-                <span>{rankingData.name}</span>
-              </center>
-            </div>
-          );
-        }) }
+        <div className="collapsible-header">
+          <i className="material-icons black-text">person</i>Combinações com { this.props.percentage }%
+        </div>
+        <div className="collapsible-body">
+          <span>Tulião</span>
+        </div>
+        {this.renderCandidates()}
       </li>
     );
   }
@@ -45,18 +40,10 @@ function mapStateToProps(state) {
   };
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    getResults() {
-      dispatch(FetchRankingData());
-    },
-  };
-};
 
 RankingResultPanel.propTypes = {
   rankingData: PropTypes.array,
   groupID: PropTypes.string,
-  getResults: PropTypes.func,
   percentage: PropTypes.string,
 };
 
@@ -67,4 +54,4 @@ RankingResultPanel.defaultProps = {
   percentage: -1,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(RankingResultPanel);
+export default connect(mapStateToProps)(RankingResultPanel);

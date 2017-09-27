@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export const FETCH_RANKING_DATA = 'FETCH_RANKING_DATA';
 
-const API = 'https://api.myjson.com/bins/1845fd';
+const API = 'https://api.myjson.com/bins/1bfkt5';
 const HOST = API;
 
 export const FetchRankingData = () => {

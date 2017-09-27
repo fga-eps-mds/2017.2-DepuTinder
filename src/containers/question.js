@@ -11,7 +11,7 @@ class Question extends Component {
     if (answer) {
       return 'waves-effect waves-light btn green darken-3';
     } else {
-      return 'waves-effect waves-light btn grey darken-3';
+      return 'waves-effect waves-light btn black';
     }
   }
 

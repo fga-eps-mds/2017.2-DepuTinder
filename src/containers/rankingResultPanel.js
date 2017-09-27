@@ -9,27 +9,21 @@ class RankingResultPanel extends Component {
     this.state = {};
   }
 
-  renderCandidates() {
-    return this.props.rankingData[this.props.groupID].candidates.map((candidate) => {
-      return (
-        <div key={candidate.name} className="collapsible-body">
-          <span>{candidate.name}</span>
-        </div>
-      );
-    });
-  }
-
   render() {
+    const groupID = Number(this.props.groupID);
     return (
-      <li>
-        <div className="collapsible-header">
-          <i className="material-icons black-text">person</i>Combinações com { this.props.percentage }%
-        </div>
-        <div className="collapsible-body">
-          <span>Tulião</span>
-        </div>
-        {this.renderCandidates()}
-      </li>
+      <div>
+        <ul className="collection with-header">
+          <li className="collection-header"><h4>Match de { this.props.percentage }%</h4></li>
+          {
+            this.props.rankingData[groupID].candidates.map((candidate, i) => {
+              return (
+                <li className="collection-item" key={i}>{ candidate }</li>
+              );
+            })
+          }
+        </ul>
+      </div>
     );
   }
 }
@@ -43,15 +37,15 @@ function mapStateToProps(state) {
 
 RankingResultPanel.propTypes = {
   rankingData: PropTypes.array,
-  groupID: PropTypes.string,
   percentage: PropTypes.string,
+  groupID: PropTypes.string,
 };
 
 RankingResultPanel.defaultProps = {
   rankingData: [],
-  groupID: -1,
+  groupID: 0,
   getResults() {},
-  percentage: -1,
+  percentage: 0,
 };
 
 export default connect(mapStateToProps)(RankingResultPanel);

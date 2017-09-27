@@ -11,7 +11,7 @@ class Rankging extends Component {
 
   render() {
     return (
-      <div>
+      <div className="ranking-background">
         <h1 className="center">Resultado</h1>
         <ul className="collapsible" data-collapsible="accordion">
           <RankingResultPanel percentage="90" groupID="9" />

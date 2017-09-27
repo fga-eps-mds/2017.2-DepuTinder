@@ -48,9 +48,9 @@ const mapDispatchToProps = (dispatch) => {
 
 RankingResultPanel.propTypes = {
   rankingData: PropTypes.array,
-  groupID: PropTypes.number,
+  groupID: PropTypes.string,
   getResults: PropTypes.func,
-  percentage: PropTypes.number,
+  percentage: PropTypes.string,
 };
 
 RankingResultPanel.defaultProps = {

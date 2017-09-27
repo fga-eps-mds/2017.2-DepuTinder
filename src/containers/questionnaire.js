@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { browserHistory } from 'react-router';
 import { connect } from 'react-redux';
-import { FetchQuestionData } from '../actions/fetchQuestionData';
+import { FetchPropositionData } from '../actions/fetchPropositionData';
 import { SaveActualQuestionID } from '../actions/saveActualQuestionID';
 import Question from './question';
 
@@ -15,7 +15,7 @@ class Questionnaire extends Component {
   }
 
   isEmpty() {
-    if (this.props.questionData.questions === undefined) {
+    if (this.props.proposition.propositions === undefined) {
       this.props.getDataForQuestion();
     }
   }
@@ -71,14 +71,14 @@ class Questionnaire extends Component {
     return (
       <div>
         <center>{this.pages()}</center>
-        { (this.props.questionData.questions === undefined ?
+        { (this.props.proposition.propositions === undefined ?
           <div className="progress">
             <div className="indeterminate" />
           </div>
        : <div>
          <Question />
          <center>
-           <button className={this.sendButton()} onClick={() => browserHistory.push('/listAnswers')}>Enviar questionário
+           <button className={this.sendButton()} onClick={() => browserHistory.push('/listar_respostas')}>Enviar questionário
              <i className="material-icons right">send</i>
            </button>
          </center>
@@ -90,7 +90,7 @@ class Questionnaire extends Component {
 }
 
 Questionnaire.propTypes = {
-  questionData: PropTypes.object,
+  proposition: PropTypes.object,
   getDataForQuestion: PropTypes.func,
   actualQuestionID: PropTypes.number,
   sendID: PropTypes.func,
@@ -98,7 +98,7 @@ Questionnaire.propTypes = {
 };
 
 Questionnaire.defaultProps = {
-  questionData: {
+  proposition: {
     questionID: 0,
     questionTitle: 'Question Title',
     questionSubTitle: 'Question SubTitle',
@@ -113,7 +113,7 @@ Questionnaire.defaultProps = {
 function mapStateToProps(state) {
   return {
     answeredQuestions: state.answeredQuestions,
-    questionData: state.questionData,
+    proposition: state.proposition,
     actualQuestionID: state.actualQuestionID,
   };
 }
@@ -121,7 +121,7 @@ function mapStateToProps(state) {
 const mapDispatchToProps = (dispatch) => {
   return {
     getDataForQuestion() {
-      dispatch(FetchQuestionData());
+      dispatch(FetchPropositionData());
     },
     sendID(questionID) {
       dispatch(SaveActualQuestionID(questionID));

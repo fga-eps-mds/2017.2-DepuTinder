@@ -59,7 +59,6 @@
   display: block;
   text-align: center;
   margin: 30px;
-  margin-top: 100px;
   color: var(--main-grey);
 }
 
@@ -67,3 +66,32 @@
   top: 20%;
   margin: 30px;
 }
+
+#result-card-text {
+  font-size: 250%;
+  vertical-align: 50%;
+  position:relative;
+  top:50%;
+  left:25%;
+  transform:translate(-50%,-50%);
+}
+
+#card-percentage{
+  font-size: 250%;
+  position:relative;
+  top:70%;
+  left:30%;
+  transform:translate(-50%,-90%);
+}
+#btnLista{
+  position:relative;
+  top:70%;
+  left:45%;
+  transform:translate(-50%,-30%);
+}
+
+#listAnswers {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 80%;
+  margin: 3%;
+  top: 20%;

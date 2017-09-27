@@ -2,10 +2,18 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { SaveAnswerQuestion } from '../actions/saveAnswerQuestion';
-import { FetchQuestionData } from '../actions/fetchQuestionData';
+import { FetchPropositionData } from '../actions/fetchPropositionData';
 import { SaveActualQuestionID } from '../actions/saveActualQuestionID';
 
 class Question extends Component {
+
+  static setButton(answer) {
+    if (answer) {
+      return 'waves-effect waves-light btn green darken-3';
+    } else {
+      return 'waves-effect waves-light btn grey darken-3';
+    }
+  }
 
   constructor(props) {
     super(props);
@@ -21,14 +29,6 @@ class Question extends Component {
 
   componentWillUnmount() {
     clearInterval(this.timerID);
-  }
-
-  setButton(answer) {
-    if (answer) {
-      return 'waves-effect waves-light btn green darken-3';
-    } else {
-      return 'waves-effect waves-light btn grey darken-3';
-    }
   }
 
   verifyAnswerInAnsweredQuestions(questions, answerID, answerValue) {
@@ -83,34 +83,34 @@ class Question extends Component {
 
   render() {
     const questionID = this.props.actualQuestionID;
-    const question = this.props.questionData.questions;
-    const actionID = question[questionID].questionID;
+    const propositions = this.props.proposition.propositions;
+    const actionID = propositions[questionID].propositionID;
 
     return (
       <div className="card" id="question-card">
         <div className="card-content yellow accent-3">
           <center>
-            <h3 className="grey-text text-darken-3"><b>Votação { question[questionID].questionID }</b></h3>
-            <span className="card-title grey-text text-darken-3"><b>{ question[questionID].questionTitle }</b><i className="material-icons activator right">help</i></span>
-            <p className="align-left">{ question[questionID].questionSubTitle }</p>
+            <h3 className="grey-text text-darken-3"><b>Votação { propositions[questionID].propositionID }</b></h3>
+            <span className="card-title grey-text text-darken-3"><b>{ propositions[questionID].propositionTitle }</b><i className="material-icons activator right">help</i></span>
+            <p className="align-left">{ propositions[questionID].propositionSubTitle }</p>
             <ul>
-              <li><a className={this.setButton(this.state.answerYes)} onClick={() => this.verifyAnswerInAnsweredQuestions(this.props.answeredQuestions, actionID, 'SIM')}>
+              <li><a className={Question.setButton(this.state.answerYes)} onClick={() => this.verifyAnswerInAnsweredQuestions(this.props.answeredQuestions, actionID, 'SIM')}>
                 Sou a favor
                 </a>
               </li>
               <br />
-              <li><a className={this.setButton(this.state.answerNo)} onClick={() => this.verifyAnswerInAnsweredQuestions(this.props.answeredQuestions, actionID, 'NÃO')}>
+              <li><a className={Question.setButton(this.state.answerNo)} onClick={() => this.verifyAnswerInAnsweredQuestions(this.props.answeredQuestions, actionID, 'NÃO')}>
                 Sou contra</a></li>
               <br />
-              <li><a className={this.setButton(this.state.answerAbstain)} onClick={() => this.verifyAnswerInAnsweredQuestions(this.props.answeredQuestions, actionID, 'ME ABSTENHO')}>
+              <li><a className={Question.setButton(this.state.answerAbstain)} onClick={() => this.verifyAnswerInAnsweredQuestions(this.props.answeredQuestions, actionID, 'ME ABSTENHO')}>
                 Me abstenho</a></li>
             </ul>
           </center>
         </div>
         <div className="card-reveal">
-          <span className="card-title grey-text text-darken-4">{ question[questionID].questionTitle }<i className="material-icons right">close</i></span>
-          <p>{ question[questionID].questionDescription }</p>
-          <a className="proposition-link" href="">Saiba mais(link para a descrição)</a>
+          <span className="card-title grey-text text-darken-4">{ propositions[questionID].propositionTitle }<i className="material-icons right">close</i></span>
+          <p>{ propositions[questionID].propositionDescription }</p>
+          <div className="proposition-author">{ propositions[questionID].propositionAuthor }</div>
         </div>
       </div>
     );
@@ -119,7 +119,7 @@ class Question extends Component {
 
 Question.propTypes = {
   actualQuestionID: PropTypes.number,
-  questionData: PropTypes.object,
+  proposition: PropTypes.object,
   sendAnswer: PropTypes.func,
   answeredQuestions: PropTypes.array,
   sendID: PropTypes.func,
@@ -127,11 +127,12 @@ Question.propTypes = {
 
 Question.defaultProps = {
   actualQuestionID: 0,
-  questionData: {
-    questionID: 0,
-    questionTitle: 'Question Title',
-    questionSubTitle: 'Question SubTitle',
-    questionDescription: 'Question Description',
+  proposition: {
+    propositionID: 0,
+    propositionTitle: 'Proposition Title',
+    propositionSubTitle: 'Proposition SubTitle',
+    propositionDescription: 'Proposition Description',
+    propositionAuthor: 'Proposition Author',
   },
   sendAnswer() {},
   answeredQuestions: [],
@@ -141,7 +142,7 @@ Question.defaultProps = {
 function mapStateToProps(state) {
   return {
     answeredQuestions: state.answeredQuestions,
-    questionData: state.questionData,
+    proposition: state.proposition,
     actualQuestionID: state.actualQuestionID,
   };
 }
@@ -149,7 +150,7 @@ function mapStateToProps(state) {
 const mapDispatchToProps = (dispatch) => {
   return {
     getDataForQuestion() {
-      dispatch(FetchQuestionData());
+      dispatch(FetchPropositionData());
     },
     sendAnswer(question, answer) {
       dispatch(SaveAnswerQuestion(question, answer));

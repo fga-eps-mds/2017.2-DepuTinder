@@ -1,7 +1,8 @@
 sudo: required
-language: node_js
 node_js:
   - "7"
+before_script:
+  - "npm install"
 script:
-  - "npm run-script compile"
   - "npm test"
+  - "npm run-script test-coverage"

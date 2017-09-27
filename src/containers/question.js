@@ -91,6 +91,7 @@ class Question extends Component {
         <div className="card-content yellow accent-3">
           <center>
             <h3 className="grey-text text-darken-3"><b>Votação { propositions[questionID].propositionID }</b></h3>
+            <i className="material-icons activator right">help</i>
             <div className="card-title grey-text text-darken-3" id="question-text">
               <p>{ propositions[questionID].propositionTitle }</p>
             </div>

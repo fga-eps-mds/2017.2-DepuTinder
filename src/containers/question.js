@@ -91,8 +91,9 @@ class Question extends Component {
         <div className="card-content yellow accent-3">
           <center>
             <h3 className="grey-text text-darken-3"><b>Votação { propositions[questionID].propositionID }</b></h3>
-            <span className="card-title grey-text text-darken-3"><b>{ propositions[questionID].propositionTitle }</b><i className="material-icons activator right">help</i></span>
-            <p className="align-left">{ propositions[questionID].propositionSubTitle }</p>
+            <div className="card-title grey-text text-darken-3" id="question-text">
+              <p>{ propositions[questionID].propositionTitle }</p>
+            </div>
             <ul>
               <li><a className={Question.setButton(this.state.answerYes)} onClick={() => this.verifyAnswerInAnsweredQuestions(this.props.answeredQuestions, actionID, 'SIM')}>
                 Sou a favor

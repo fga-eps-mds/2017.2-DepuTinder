@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { browserHistory } from 'react-router';
 import { connect } from 'react-redux';
 import { FetchQuestionData } from '../actions/fetchQuestionData';
 import { SaveActualQuestionID } from '../actions/saveActualQuestionID';
-import { browserHistory } from 'react-router';
 import Question from './question';
 
 class Questionnaire extends Component {

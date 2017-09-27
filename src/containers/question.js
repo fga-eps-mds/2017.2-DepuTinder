@@ -94,15 +94,15 @@ class Question extends Component {
             <span className="card-title grey-text text-darken-3"><b>{ propositions[questionID].propositionTitle }</b><i className="material-icons activator right">help</i></span>
             <p className="align-left">{ propositions[questionID].propositionSubTitle }</p>
             <ul>
-              <li><a className={this.setButton(this.state.answerYes)} onClick={() => this.verifyAnswerInAnsweredQuestions(this.props.answeredQuestions, actionID, 'SIM')}>
+              <li><a className={Question.setButton(this.state.answerYes)} onClick={() => this.verifyAnswerInAnsweredQuestions(this.props.answeredQuestions, actionID, 'SIM')}>
                 Sou a favor
                 </a>
               </li>
               <br />
-              <li><a className={this.setButton(this.state.answerNo)} onClick={() => this.verifyAnswerInAnsweredQuestions(this.props.answeredQuestions, actionID, 'NÃO')}>
+              <li><a className={Question.setButton(this.state.answerNo)} onClick={() => this.verifyAnswerInAnsweredQuestions(this.props.answeredQuestions, actionID, 'NÃO')}>
                 Sou contra</a></li>
               <br />
-              <li><a className={this.setButton(this.state.answerAbstain)} onClick={() => this.verifyAnswerInAnsweredQuestions(this.props.answeredQuestions, actionID, 'ME ABSTENHO')}>
+              <li><a className={Question.setButton(this.state.answerAbstain)} onClick={() => this.verifyAnswerInAnsweredQuestions(this.props.answeredQuestions, actionID, 'ME ABSTENHO')}>
                 Me abstenho</a></li>
             </ul>
           </center>

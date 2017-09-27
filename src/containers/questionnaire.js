@@ -15,7 +15,7 @@ class Questionnaire extends Component {
   }
 
   componentWillMount() {
-      this.props.getDataForQuestion();
+    this.props.getDataForQuestion();
   }
 
 
@@ -66,7 +66,6 @@ class Questionnaire extends Component {
   }
 
   render() {
-    console.log(this.props);
     return (
       <div>
         <center>{this.pages()}</center>

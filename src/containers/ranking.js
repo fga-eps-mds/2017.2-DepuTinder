@@ -5,17 +5,7 @@ import RankingResultPanel from './rankingResultPanel';
 import { FetchRankingData } from '../actions/fetchRankingData';
 
 class Ranking extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-    };
-  }
-
-  componentWillMount() {
-    this.props.getResults();
-  }
-
-  renderRankingPanel() {
+  static renderRankingPanel() {
     return (
       <ul className="collapsible collapsible-accordion" data-collapsible="accordion">
         <RankingResultPanel percentage="90" groupID="9" />
@@ -30,6 +20,16 @@ class Ranking extends Component {
         <RankingResultPanel percentage="0" groupID="0" />
       </ul>
     );
+  }
+
+  constructor(props) {
+    super(props);
+    this.state = {
+    };
+  }
+
+  componentWillMount() {
+    this.props.getResults();
   }
 
   render() {

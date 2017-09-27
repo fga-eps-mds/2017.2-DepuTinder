@@ -5,16 +5,6 @@ import RankingResultPanel from './rankingResultPanel';
 import { FetchRankingData } from '../actions/fetchRankingData';
 
 class Ranking extends Component {
-  static renderRankingPanel() {
-    return (
-      <div>
-        <RankingResultPanel percentage="90" groupID="0" />
-        <RankingResultPanel percentage="80" groupID="1" />
-        <RankingResultPanel percentage="70" groupID="2" />
-        <RankingResultPanel percentage="60" groupID="3" />
-      </div>
-    );
-  }
 
   constructor(props) {
     super(props);
@@ -24,6 +14,17 @@ class Ranking extends Component {
 
   componentWillMount() {
     this.props.getResults();
+  }
+  
+  renderRankingPanel() {
+    return (
+      <div>
+        <RankingResultPanel percentage="90" groupID="0" />
+        <RankingResultPanel percentage="80" groupID="1" />
+        <RankingResultPanel percentage="70" groupID="2" />
+        <RankingResultPanel percentage="60" groupID="3" />
+      </div>
+    );
   }
 
   render() {

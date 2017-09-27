@@ -14,11 +14,10 @@ class Questionnaire extends Component {
     };
   }
 
-  isEmpty() {
-    if (this.props.proposition.propositions === undefined) {
-      this.props.getDataForQuestion();
-    }
+  componentWillMount() {
+    this.props.getDataForQuestion();
   }
+
 
   proxNumber() {
     if (this.props.actualQuestionID < 9) {
@@ -67,7 +66,6 @@ class Questionnaire extends Component {
   }
 
   render() {
-    this.isEmpty();
     return (
       <div>
         <center>{this.pages()}</center>

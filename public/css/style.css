@@ -98,3 +98,15 @@
   font-size: 80%;
   margin: 3%;
   top: 20%;
+}
+
+#question-text {
+  height: 10vh;
+  width: 50vw;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+#question-text p {
+  line-height: normal;
+}

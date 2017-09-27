@@ -1,7 +1,4 @@
 sudo: required
-env:
-  global:
-    - CC_TEST_REPORTER_ID=79e53709e6f55fb3fecff3ed117aab37a63378ee60100ec62827b5955e093517
 node_js:
   - "7"
 before_script:
@@ -9,5 +6,4 @@ before_script:
   - "npm run-script compile"
 script:
   - "npm test"
-after_script:
-    - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
+  - "npm run-script test-coverage"

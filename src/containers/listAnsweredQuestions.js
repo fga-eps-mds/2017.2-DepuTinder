@@ -11,43 +11,16 @@ class ListAnsweredQuestions extends Component {
     };
   }
 
-  listQuestionsAndAnswers() {
-    const questions = this.props.questionData.questions;
-    const answers = this.props.answeredQuestions;
-    const NUMBER_OF_QUESTIONS = 10;
-    const questionsAndAnswers = [{}];
-
-    let i = 0;
-    while (i < NUMBER_OF_QUESTIONS) {
-      if (questions[i].questionID === answers[i].answerID) {
-        const questionAndAnswer = {
-          questionID: questions[i].questionID,
-          questionTitle: questions[i].questionTitle,
-          questionSubTitle: questions[i].questionSubTitle,
-          questionDescription: questions[i].questionDescription,
-          answer: answers[i].answer,
-        };
-        questionsAndAnswers[i] = (questionAndAnswer);
-      }
-      i += 1;
-    }
-
+  render() {
+    const answeredQuestions = this.props.answeredQuestions.sort();
+    const questionData = this.props.questionData.questions;
+    const questionID = this.props.questionID;
     return (
       <li>
-        <div className="collapsible-header"><i className="material-icons">filter_drama</i>First</div>
-        <div className="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+        <div className="collapsible-header"><i className="material-icons black-text">person</i>Votação {questionID}: {questionData[questionID].questionTitle}</div>
+        <div className="collapsible-body"><span>{ questionData[questionID].questionDescription }</span></div>
+        <div className="collapsible-body"><span>{ answeredQuestions[questionID].answer }</span></div>
       </li>
-    );
-  }
-
-  render() {
-    return (
-      <ul className="collapsible yellow" data-collapsible="accordion">
-        <li>
-          <div className="collapsible-header active"><i className="material-icons">filter_drama</i>First</div>
-          <div className="collapsible-body yellow"><span>Lorem ipsum dolor sit amet.</span></div>
-        </li>
-      </ul>
     );
   }
 }
@@ -55,7 +28,7 @@ class ListAnsweredQuestions extends Component {
 ListAnsweredQuestions.propTypes = {
   answeredQuestions: PropTypes.arrayOf(PropTypes.object),
   questionData: PropTypes.object,
-  questionsAndAnswers: PropTypes.arrayOf(PropTypes.object),
+  questionID: PropTypes.string,
 };
 
 ListAnsweredQuestions.defaultProps = {
@@ -69,19 +42,14 @@ ListAnsweredQuestions.defaultProps = {
     questionSubTitle: 'Question SubTitle',
     questionDescription: 'Question Description',
   },
-  questionsAndAnswers: [{
-    questionID: 0,
-    questionTitle: 'Question Title',
-    questionSubTitle: 'Question SubTitle',
-    questionDescription: 'Question Description',
-    questionAnswer: 'Answer',
-  }],
+  questionID: '0',
 };
+
 
 function mapStateToProps(state) {
   return {
-    questionData: state.questionData,
     answeredQuestions: state.answeredQuestions,
+    questionData: state.questionData,
   };
 }
 

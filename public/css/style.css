@@ -5,10 +5,108 @@
  *
  * Made By MaterializeCSS.com
  */
+ :root{
+   --main-yellow: #ffea00;
+   --background-color: #ffd600;
+   --main-grey: #424242;
+ }
 
 .icon-block {
   padding: 0 15px;
 }
 .icon-block .material-icons {
 	font-size: inherit;
+}
+
+.testSample {
+  background-color: var(--background-color);
+  height: 100vh;
+  width: 100vw;
+  overflow: scroll;
+}
+
+.collapsible-body {
+  background-color: white;
+}
+
+#listAnswedQuestions-title {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 150%;
+  text-align: center;
+  background-color: var(--main-grey);
+  color: var(--main-yellow);
+}
+
+
+#listAnswedQuestions-subtitle {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 125%;
+  text-align: center;
+  background-color: var(--main-grey);
+  color: var(--main-yellow);
+}
+
+
+#listAnswedQuestions-desc {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 100%;
+  text-align: center;
+  background-color: var(--main-grey);
+  color: var(--main-yellow);
+}
+
+#paragraph_home_page {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 120%;
+  display: block;
+  text-align: center;
+  margin: 30px;
+  color: var(--main-grey);
+}
+
+#question-card {
+  font-size: 80%;
+  top: 20%;
+  margin: 30px;
+}
+
+#result-card-text {
+  font-size: 250%;
+  vertical-align: 50%;
+  position:relative;
+  top:50%;
+  left:25%;
+  transform:translate(-50%,-50%);
+}
+
+#card-percentage{
+  font-size: 250%;
+  position:relative;
+  top:70%;
+  left:30%;
+  transform:translate(-50%,-90%);
+}
+#btnLista{
+  position:relative;
+  top:70%;
+  left:45%;
+  transform:translate(-50%,-30%);
+}
+
+#listAnswers {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 80%;
+  margin: 3%;
+  top: 20%;
+}
+
+#question-text {
+  height: 10vh;
+  width: 50vw;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+#question-text p {
+  line-height: normal;
 }

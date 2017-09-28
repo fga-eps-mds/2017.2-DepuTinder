@@ -1,0 +1,130 @@
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { browserHistory } from 'react-router';
+import { connect } from 'react-redux';
+import { FetchPropositionData } from '../actions/fetchPropositionData';
+import { SaveActualQuestionID } from '../actions/saveActualQuestionID';
+import Question from './question';
+
+class Questionnaire extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+    };
+  }
+
+  componentWillMount() {
+    this.props.getDataForQuestion();
+  }
+
+
+  proxNumber() {
+    if (this.props.actualQuestionID < 9) {
+      return this.props.actualQuestionID + 1;
+    }
+    return 0;
+  }
+
+  prevNumber() {
+    if (this.props.actualQuestionID > 0) {
+      return this.props.actualQuestionID - 1;
+    }
+    return 9;
+  }
+
+  pages() {
+    return (
+      <ul className="pagination">
+        <li
+          className="disabled"
+          onClick={() => this.props.sendID(this.prevNumber())}
+        ><i className="material-icons">chevron_left</i></li>
+        <li className="waves-effect btn black" onClick={() => this.props.sendID(0)}>1</li>
+        <li className="waves-effect btn black" onClick={() => this.props.sendID(1)}>2</li>
+        <li className="waves-effect btn black" onClick={() => this.props.sendID(2)}>3</li>
+        <li className="waves-effect btn black" onClick={() => this.props.sendID(3)}>4</li>
+        <li className="waves-effect btn black" onClick={() => this.props.sendID(4)}>5</li>
+        <li className="waves-effect btn black" onClick={() => this.props.sendID(5)}>6</li>
+        <li className="waves-effect btn black" onClick={() => this.props.sendID(6)}>7</li>
+        <li className="waves-effect btn black" onClick={() => this.props.sendID(7)}>8</li>
+        <li className="waves-effect btn black" onClick={() => this.props.sendID(8)}>9</li>
+        <li className="waves-effect btn black" onClick={() => this.props.sendID(9)}>10</li>
+        <li
+          className="waves-effect"
+          onClick={() => this.props.sendID(this.proxNumber())}
+        ><i className="material-icons">chevron_right</i></li>
+      </ul>
+    );
+  }
+
+  sendButton() {
+    if (this.props.answeredQuestions.length === 10) {
+      return 'btn waves-effect black waves-light';
+    }
+    return 'btn waves-effect waves-light disabled';
+  }
+
+  render() {
+    return (
+      <div>
+        <center>{this.pages()}</center>
+        { (this.props.proposition.propositions === undefined ?
+          <div className="progress">
+            <div className="indeterminate" />
+          </div>
+       : <div>
+         <Question />
+         <center>
+           <button className={this.sendButton()} onClick={() => browserHistory.push('/listar_respostas')}>Enviar questionário
+             <i className="material-icons right">send</i>
+           </button>
+         </center>
+       </div>
+        )}
+      </div>
+    );
+  }
+}
+
+Questionnaire.propTypes = {
+  proposition: PropTypes.object,
+  getDataForQuestion: PropTypes.func,
+  actualQuestionID: PropTypes.number,
+  sendID: PropTypes.func,
+  answeredQuestions: PropTypes.array,
+};
+
+Questionnaire.defaultProps = {
+  proposition: {
+    questionID: 0,
+    questionTitle: 'Question Title',
+    questionSubTitle: 'Question SubTitle',
+    questionDescription: 'Question Description',
+  },
+  getDataForQuestion() {},
+  actualQuestionID: 0,
+  sendID() {},
+  answeredQuestions: [],
+};
+
+function mapStateToProps(state) {
+  return {
+    answeredQuestions: state.answeredQuestions,
+    proposition: state.proposition,
+    actualQuestionID: state.actualQuestionID,
+  };
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getDataForQuestion() {
+      dispatch(FetchPropositionData());
+    },
+    sendID(questionID) {
+      dispatch(SaveActualQuestionID(questionID));
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Questionnaire);

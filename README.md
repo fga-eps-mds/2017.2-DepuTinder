@@ -40,4 +40,4 @@ npm test
 
 ### Documentação do projeto
 
-<p align="justify">&emsp;&emsp;O projeto meRepresenta está inteiramente documento, de acordo com a metodologia tradicional do RUP, e pode ser encontrada no seguinte endereço [Wiki](https://github.com/fga-gpp-mds/2017.2-DepuTinder/wiki)</p>
+<p align="justify">&emsp;&emsp;O projeto meRepresenta está inteiramente documento, de acordo com a metodologia tradicional do RUP, e pode ser encontrada no seguinte endereço: [Wiki](https://github.com/fga-gpp-mds/2017.2-DepuTinder/wiki)</p>

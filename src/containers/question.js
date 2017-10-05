@@ -51,7 +51,8 @@ class Question extends Component {
   tick() {
     const answered = this.props.answeredQuestions;
 
-    for (let answeredQuestionID = 0; answeredQuestionID < answered.length; answeredQuestionID += 1) {
+    for (let answeredQuestionID = 0; answeredQuestionID < answered.length;
+      answeredQuestionID += 1) {
       answeredQuestionID = this.changeStatusOfButton(answeredQuestionID, answered);
     }
   }

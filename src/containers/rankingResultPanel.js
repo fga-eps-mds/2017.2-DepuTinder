@@ -12,7 +12,7 @@ class RankingResultPanel extends Component {
   render() {
     const groupID = Number(this.props.groupID);
     return (
-      <div>
+      <div className="result-row">
         <ul className="collection with-header">
           <li className="collection-header"><h4>Match de { this.props.percentage }%</h4></li>
           {

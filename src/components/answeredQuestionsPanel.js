@@ -12,7 +12,7 @@ class AnsweredQuestionsPanel extends Component {
 
   render() {
     return (
-      <div>
+      <div className="answerPanel">
         <h3 className="center">Respostas</h3>
         <ul id="listAnswers" className="collapsible" data-collapsible="accordion">
           <ListAnsweredQuestions questionID="0" />

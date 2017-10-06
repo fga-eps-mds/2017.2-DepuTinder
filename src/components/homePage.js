@@ -5,7 +5,7 @@ const HomePage = () => {
   return (
     <div className="HomePage">
       <center>
-        <i className="large material-icons">people</i>
+        <i className="large material-icons" id="peopleIcon">people</i>
         <ul className="homePageItems">
           <li>
             <p id="paragraph_home_page">

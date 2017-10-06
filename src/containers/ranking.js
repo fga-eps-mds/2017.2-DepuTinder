@@ -28,7 +28,7 @@ class Ranking extends Component {
   render() {
     if (this.props.rankingData.length === 4) {
       return (
-        <div>
+        <div className="ranking-body">
           <h1 className="center">Resultado</h1>
           {Ranking.renderRankingPanel()}
         </div>

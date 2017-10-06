@@ -16,9 +16,9 @@ class RankingResultPanel extends Component {
         <ul className="collection with-header">
           <li className="collection-header"><h4>Match de { this.props.percentage }%</h4></li>
           {
-            this.props.rankingData[groupID].candidates.map((candidate, i) => {
+            this.props.rankingData[groupID].candidates.map((candidate) => {
               return (
-                <li className="collection-item" key={i}>{ candidate }</li>
+                <li className="collection-item" key={candidate.id}>{ candidate }</li>
               );
             })
           }

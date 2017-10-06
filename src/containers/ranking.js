@@ -8,7 +8,7 @@ class Ranking extends Component {
 
   static renderRankingPanel() {
     return (
-      <div>
+      <div className="rankingMatches">
         <RankingResultPanel percentage="90" groupID="0" />
         <RankingResultPanel percentage="80" groupID="1" />
         <RankingResultPanel percentage="70" groupID="2" />
@@ -28,15 +28,15 @@ class Ranking extends Component {
   render() {
     if (this.props.rankingData.length === 4) {
       return (
-        <div className="ranking-body">
-          <h1 className="center">Resultado</h1>
+        <div className="rankingBody">
+          <h1 className="center" id="rankingTitle">Resultado</h1>
           {Ranking.renderRankingPanel()}
         </div>
       );
     } else {
       return (
-        <div>
-          <h1 className="center">Resultado</h1>
+        <div className="rankingBodyLoading">
+          <h1 className="center" id="rankingTitleLoading">Resultado</h1>
         </div>
       );
     }

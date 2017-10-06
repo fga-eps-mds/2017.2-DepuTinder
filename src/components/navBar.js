@@ -3,9 +3,9 @@ import { browserHistory } from 'react-router';
 
 const NavBar = () => {
   return (
-    <div>
+    <div className="navBar">
       <nav>
-        <div id="navBar" className="nav-wrapper grey darken-3">
+        <div className="nav-wrapper grey darken-3">
           <a
             onClick={() => browserHistory.push('/')}
             className="brand-logo center yellow-text text-accent-3"

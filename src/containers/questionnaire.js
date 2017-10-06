@@ -67,7 +67,7 @@ class Questionnaire extends Component {
 
   render() {
     return (
-      <div>
+      <div className="questionnaire-body">
         <center>{this.pages()}</center>
         { (this.props.proposition.propositions === undefined ?
           <div className="progress">

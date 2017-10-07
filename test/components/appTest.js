@@ -7,6 +7,6 @@ describe('App', () => {
     component = renderComponent(App);
   });
   it('shows NavBar', () => {
-    expect(component.find('#navBar')).to.exist;
+    expect(component.find('.navBar')).to.exist;
   });
 });

@@ -12,8 +12,8 @@ class AnsweredQuestionsPanel extends Component {
 
   render() {
     return (
-      <div>
-        <h3 className="center">Respostas</h3>
+      <div className="answerPanel">
+        <h3 className="center" id="answerPanelTitle">Respostas</h3>
         <ul id="listAnswers" className="collapsible" data-collapsible="accordion">
           <ListAnsweredQuestions questionID="0" />
           <ListAnsweredQuestions questionID="1" />
@@ -26,23 +26,25 @@ class AnsweredQuestionsPanel extends Component {
           <ListAnsweredQuestions questionID="8" />
           <ListAnsweredQuestions questionID="9" />
         </ul>
-        <div className="row">
-          <div className="col s6 m6 l6">
+        <div className="row" id="answerListButtonsRow">
+          <div className="col s6 m6 l6" id="editButtonColumn">
             <center>
               <a
                 className="waves-effect waves-light btn black"
+                id="editButton"
                 onClick={() => browserHistory.push('/responder')}
-              ><i className="material-icons right">edit</i>Editar
+              ><i className="material-icons right" id="editButtonIcon">edit</i>Editar
               </a>
             </center>
           </div>
-          <div className="col s6 m6 l6">
+          <div className="col s6 m6 l6" id="sendButtonColumn">
             <center>
               <a
                 className="waves-effect waves-light btn black"
+                id="sendtButton"
                 onClick={() => browserHistory.push('ranking')}
               >
-                <i className="material-icons right">send</i>Submeter
+                <i className="material-icons right" id="sendButtonIcon">send</i>Submeter
               </a>
             </center>
           </div>

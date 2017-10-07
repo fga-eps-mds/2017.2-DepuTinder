@@ -12,13 +12,15 @@ class RankingResultPanel extends Component {
   render() {
     const groupID = Number(this.props.groupID);
     return (
-      <div>
-        <ul className="collection with-header">
-          <li className="collection-header"><h4>Match de { this.props.percentage }%</h4></li>
+      <div className={`group${groupID}`}>
+        <ul className="collection with-header" id={`resultRow${groupID}`}>
+          <li className="collection-header" id={`collectionHeader${groupID}`}>
+            <h4 id={`collectionHeaderText${groupID}`}>Match de { this.props.percentage }%</h4>
+          </li>
           {
-            this.props.rankingData[groupID].candidates.map((candidate, i) => {
+            this.props.rankingData[groupID].candidates.map((candidate) => {
               return (
-                <li className="collection-item" key={i}>{ candidate }</li>
+                <li className="collection-item" id={`collectionItem${groupID}`} key={candidate.id}>{ candidate }</li>
               );
             })
           }

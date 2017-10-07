@@ -64,7 +64,7 @@
   color: var(--main-grey);
 }
 
-#question-card {
+#questionCard {
   font-size: 80%;
   top: 20%;
   margin: 30px;
@@ -100,13 +100,13 @@
   top: 20%;
 }
 
-#question-text {
+#questionText {
   height: 10vh;
   width: 50vw;
   font-size: 14px;
   font-weight: bold;
 }
 
-#question-text p {
+#questionText p {
   line-height: normal;
 }

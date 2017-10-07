@@ -35,25 +35,25 @@ class Questionnaire extends Component {
 
   pages() {
     return (
-      <ul className="pagination">
+      <ul className="pagination" id="questionnairePagination">
         <li
           className="disabled"
           onClick={() => this.props.sendID(this.prevNumber())}
-        ><i className="material-icons">chevron_left</i></li>
-        <li className="waves-effect btn black" onClick={() => this.props.sendID(0)}>1</li>
-        <li className="waves-effect btn black" onClick={() => this.props.sendID(1)}>2</li>
-        <li className="waves-effect btn black" onClick={() => this.props.sendID(2)}>3</li>
-        <li className="waves-effect btn black" onClick={() => this.props.sendID(3)}>4</li>
-        <li className="waves-effect btn black" onClick={() => this.props.sendID(4)}>5</li>
-        <li className="waves-effect btn black" onClick={() => this.props.sendID(5)}>6</li>
-        <li className="waves-effect btn black" onClick={() => this.props.sendID(6)}>7</li>
-        <li className="waves-effect btn black" onClick={() => this.props.sendID(7)}>8</li>
-        <li className="waves-effect btn black" onClick={() => this.props.sendID(8)}>9</li>
-        <li className="waves-effect btn black" onClick={() => this.props.sendID(9)}>10</li>
+        ><i className="material-icons" id="questionnairePaginationIconRight">chevron_left</i></li>
+        <li className="waves-effect btn black" id="questionnairePaginationButton1" onClick={() => this.props.sendID(0)}>1</li>
+        <li className="waves-effect btn black" id="questionnairePaginationButton2" onClick={() => this.props.sendID(1)}>2</li>
+        <li className="waves-effect btn black" id="questionnairePaginationButton3" onClick={() => this.props.sendID(2)}>3</li>
+        <li className="waves-effect btn black" id="questionnairePaginationButton4" onClick={() => this.props.sendID(3)}>4</li>
+        <li className="waves-effect btn black" id="questionnairePaginationButton5" onClick={() => this.props.sendID(4)}>5</li>
+        <li className="waves-effect btn black" id="questionnairePaginationButton6" onClick={() => this.props.sendID(5)}>6</li>
+        <li className="waves-effect btn black" id="questionnairePaginationButton7" onClick={() => this.props.sendID(6)}>7</li>
+        <li className="waves-effect btn black" id="questionnairePaginationButton8" onClick={() => this.props.sendID(7)}>8</li>
+        <li className="waves-effect btn black" id="questionnairePaginationButton9" onClick={() => this.props.sendID(8)}>9</li>
+        <li className="waves-effect btn black" id="questionnairePaginationButton10" onClick={() => this.props.sendID(9)}>10</li>
         <li
           className="waves-effect"
           onClick={() => this.props.sendID(this.proxNumber())}
-        ><i className="material-icons">chevron_right</i></li>
+        ><i className="material-icons" id="questionnairePaginationIconRight">chevron_right</i></li>
       </ul>
     );
   }
@@ -67,17 +67,17 @@ class Questionnaire extends Component {
 
   render() {
     return (
-      <div>
+      <div className="questionnaireBody">
         <center>{this.pages()}</center>
         { (this.props.proposition.propositions === undefined ?
           <div className="progress">
             <div className="indeterminate" />
           </div>
-       : <div>
+       : <div className="questionBody">
          <Question />
          <center>
-           <button className={this.sendButton()} onClick={() => browserHistory.push('/listar_respostas')}>Enviar questionário
-             <i className="material-icons right">send</i>
+           <button id="questionnaireSendButton"className={this.sendButton()} onClick={() => browserHistory.push('/listar_respostas')}>Enviar questionário
+             <i className="material-icons right" id="sendIcon">send</i>
            </button>
          </center>
        </div>

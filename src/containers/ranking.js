@@ -9,10 +9,7 @@ class Ranking extends Component {
   static renderRankingPanel() {
     return (
       <div className="rankingMatches">
-        <RankingResultPanel percentage="90" groupID="0" />
-        <RankingResultPanel percentage="80" groupID="1" />
-        <RankingResultPanel percentage="70" groupID="2" />
-        <RankingResultPanel percentage="60" groupID="3" />
+        <RankingResultPanel />
       </div>
     );
   }

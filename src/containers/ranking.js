@@ -26,7 +26,8 @@ class Ranking extends Component {
   }
 
   render() {
-    if (this.props.rankingData.length !== 0) {
+    const EMPTY = 0;
+    if (this.props.rankingData.length !== EMPTY) {
       return (
         <div className="rankingBody">
           <h1 className="center" id="rankingTitle">Resultado</h1>

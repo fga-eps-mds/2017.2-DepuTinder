@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { Accordion, AccordionItem } from 'react-sanfona';
 
 class RankingResultPanel extends Component {
 
@@ -10,22 +11,30 @@ class RankingResultPanel extends Component {
   }
 
   render() {
-    const groupID = Number(this.props.groupID);
+    const rankingData = this.props.rankingData;
     return (
-      <div className={`group${groupID}`}>
-        <ul className="collection with-header" id={`resultRow${groupID}`}>
-          <li className="collection-header" id={`collectionHeader${groupID}`}>
-            <h4 id={`collectionHeaderText${groupID}`}>Match de { this.props.percentage }%</h4>
-          </li>
-          {
-            this.props.rankingData[groupID].candidates.map((candidate) => {
-              return (
-                <li className="collection-item" id={`collectionItem${groupID}`} key={candidate.id}>{ candidate }</li>
-              );
-            })
-          }
-        </ul>
-      </div>
+      <Accordion className="accordion">{
+        rankingData.map((ranking) => {
+          const matchRanking = ranking.groupID;
+          return (
+            <AccordionItem
+              title={`Match ${matchRanking}%`}
+              slug={ranking.groupID}
+              key={ranking.groupID}
+              className="react-sanfona-item-expanded"
+            >
+              {ranking.candidates.map((candidate) => {
+                return (
+                  <div>
+                    <h1>{ candidate }</h1>
+                  </div>
+                );
+              })}
+            </AccordionItem>
+          );
+        })
+      }
+      </Accordion>
     );
   }
 }
@@ -39,15 +48,11 @@ function mapStateToProps(state) {
 
 RankingResultPanel.propTypes = {
   rankingData: PropTypes.array,
-  percentage: PropTypes.string,
-  groupID: PropTypes.string,
 };
 
 RankingResultPanel.defaultProps = {
   rankingData: [],
-  groupID: 0,
   getResults() {},
-  percentage: 0,
 };
 
 export default connect(mapStateToProps)(RankingResultPanel);

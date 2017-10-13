@@ -112,9 +112,32 @@
 }
 
 .accordion {
-  height: 10vh;
-  width: 100vw;
+  width: 65vw;
+  margin: auto;
+  border-radius: 20px;
+  background-color: #9e9e9e;
+  color: white;
+}
+
+.accordionBody {
+  background-color: #9e9e9e;
+  color: white;
+  border-radius: 20px;
+  border-bottom: solid;
+}
+
+.accordionTitle{
   text-align: center;
+  background-color: #424242;
+  color: white;
+  border-bottom: solid;
+  padding: 20px;
+  border-radius: 20px;
+}
+
+#test {
+  text-align: center;
+  font-size: 39px;
 }
 
 .rankingBodyLoading {

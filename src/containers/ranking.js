@@ -17,12 +17,26 @@ class Ranking extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-    };
+    this.state = { countToProgressBar: 0 };
   }
 
   componentWillMount() {
     this.props.getResults();
+  }
+
+  componentDidMount() {
+    this.timerID = setInterval(
+      () => this.tick(),
+      500,
+    );
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.timerID);
+  }
+
+  tick() {
+    this.setState({ countToProgressBar: this.state.countToProgressBar + 1 });
   }
 
   render() {
@@ -32,6 +46,12 @@ class Ranking extends Component {
         <div className="rankingBody">
           <h1 className="center" id="rankingTitle">Resultado</h1>
           {Ranking.renderRankingPanel()}
+        </div>
+      );
+    } else if (this.state.countToProgressBar < 10) {
+      return (
+        <div className="progress">
+          <div className="indeterminate" />
         </div>
       );
     } else {

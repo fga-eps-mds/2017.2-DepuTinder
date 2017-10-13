@@ -15,9 +15,14 @@ class RankingResultPanel extends Component {
     return (
       <Accordion className="accordion">{
         rankingData.map((ranking) => {
-          const matchRanking = (100 - ranking.groupID * 10);
+          const matchRanking = ranking.groupID;
           return (
-            <AccordionItem title={`Match ${matchRanking}%`} slug={ranking.groupID} key={ranking.groupID} className="react-sanfona-item-expanded">
+            <AccordionItem
+              title={`Match ${matchRanking}%`}
+              slug={ranking.groupID}
+              key={ranking.groupID}
+              className="react-sanfona-item-expanded"
+            >
               {ranking.candidates.map((candidate) => {
                 return (
                   <div>
@@ -28,7 +33,7 @@ class RankingResultPanel extends Component {
             </AccordionItem>
           );
         })
-        }
+      }
       </Accordion>
     );
   }

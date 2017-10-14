@@ -13,20 +13,26 @@ class RankingResultPanel extends Component {
   render() {
     const rankingData = this.props.rankingData;
     return (
-      <Accordion className="accordion">{
+      <Accordion
+        className="react-sanfona"
+        activeItems={[]}
+      >{
         rankingData.map((ranking) => {
           const matchRanking = ranking.groupID;
           return (
             <AccordionItem
               title={`Match ${matchRanking}%`}
-              slug={ranking.groupID}
-              key={ranking.groupID}
-              className="react-sanfona-item-expanded"
+              slug={ranking.id}
+              key={ranking.id}
+              className="react-sanfona-item-body accordion"
+              expandedClassName="accordionBody"
+              titleClassName="accordionTitle"
             >
               {ranking.candidates.map((candidate) => {
                 return (
-                  <div>
-                    <h1>{ candidate }</h1>
+                  <div key={candidate.id} id="test">
+                    <i className="material-icons small">person</i>
+                    { candidate }
                   </div>
                 );
               })}

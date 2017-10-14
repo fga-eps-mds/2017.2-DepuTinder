@@ -6,4 +6,7 @@ describe('RankingResultPanel', () => {
   beforeEach(() => {
     component = renderComponent(RankingResultPanel);
   });
+  it('shows rankingResultPanel', () => {
+    expect(component).to.have.class('react-sanfona');
+  });
 });

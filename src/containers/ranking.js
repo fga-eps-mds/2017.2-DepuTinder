@@ -6,7 +6,6 @@ import RankingResultPanel from './rankingResultPanel';
 import { FetchRankingData } from '../actions/fetchRankingData';
 
 class Ranking extends Component {
-
   static renderRankingPanel() {
     return (
       <div className="rankingMatches">
@@ -17,21 +16,42 @@ class Ranking extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-    };
+    this.state = { countToProgressBar: 0 };
   }
 
   componentWillMount() {
     this.props.getResults();
   }
 
+  componentDidMount() {
+    this.timerID = setInterval(
+      () => this.tick(),
+      500,
+    );
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.timerID);
+  }
+
+  tick() {
+    this.setState({ countToProgressBar: this.state.countToProgressBar + 1 });
+  }
+
   render() {
+    const SECONDSWAITING = 10;
     const EMPTY = 0;
     if (this.props.rankingData.length !== EMPTY) {
       return (
         <div className="rankingBody">
           <h1 className="center" id="rankingTitle">Resultado</h1>
           {Ranking.renderRankingPanel()}
+        </div>
+      );
+    } else if (this.state.countToProgressBar < SECONDSWAITING) {
+      return (
+        <div className="progress">
+          <div className="indeterminate" />
         </div>
       );
     } else {

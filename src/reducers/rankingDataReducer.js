@@ -1,9 +1,9 @@
 import { FETCH_RANKING_DATA } from '../actions/fetchRankingData';
 
-export default function (state = {}, action) {
+export default function (state = [], action) {
   switch (action.type) {
     case FETCH_RANKING_DATA:
-      return action.payload.data;
+      return action.payload.data.rankingInfo;
     default:
       return state;
   }

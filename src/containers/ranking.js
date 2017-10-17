@@ -73,12 +73,12 @@ class Ranking extends Component {
 
 Ranking.propTypes = {
   getResults: PropTypes.func,
-  rankingData: PropTypes.object,
+  rankingData: PropTypes.array,
 };
 
 Ranking.defaultProps = {
   getResults() {},
-  rankingData: {},
+  rankingData: [],
 };
 
 function mapStateToProps(state) {

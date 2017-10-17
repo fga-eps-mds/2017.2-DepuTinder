@@ -11,7 +11,7 @@ class RankingResultPanel extends Component {
   }
 
   render() {
-    const rankingData = this.props.rankingData.data;
+    const rankingData = this.props.rankingData;
     return (
       <Accordion
         className="react-sanfona"
@@ -55,11 +55,11 @@ function mapStateToProps(state) {
 
 
 RankingResultPanel.propTypes = {
-  rankingData: PropTypes.object,
+  rankingData: PropTypes.array,
 };
 
 RankingResultPanel.defaultProps = {
-  rankingData: {},
+  rankingData: [],
   getResults() {},
 };
 

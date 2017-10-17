@@ -39,16 +39,15 @@ class Ranking extends Component {
   }
 
   render() {
-    const SECONDSWAITING = 10;
-    const EMPTY = 0;
-    if (this.props.rankingData.length !== EMPTY) {
+    const SECONDS_WAITING = 10;
+    if (Object.keys(this.props.rankingData).length !== 0) {
       return (
         <div className="rankingBody">
           <h1 className="center" id="rankingTitle">Resultado</h1>
           {Ranking.renderRankingPanel()}
         </div>
       );
-    } else if (this.state.countToProgressBar < SECONDSWAITING) {
+    } else if (this.state.countToProgressBar < SECONDS_WAITING) {
       return (
         <div className="progress">
           <div className="indeterminate" />
@@ -74,12 +73,12 @@ class Ranking extends Component {
 
 Ranking.propTypes = {
   getResults: PropTypes.func,
-  rankingData: PropTypes.array,
+  rankingData: PropTypes.object,
 };
 
 Ranking.defaultProps = {
   getResults() {},
-  rankingData: [],
+  rankingData: {},
 };
 
 function mapStateToProps(state) {

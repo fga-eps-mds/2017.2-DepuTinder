@@ -11,7 +11,7 @@ class RankingResultPanel extends Component {
   }
 
   render() {
-    const rankingData = this.props.rankingData;
+    const rankingData = this.props.rankingData.data;
     return (
       <Accordion
         className="react-sanfona"
@@ -22,15 +22,17 @@ class RankingResultPanel extends Component {
           return (
             <AccordionItem
               title={`Match ${matchRanking}%`}
-              slug={ranking.id}
-              key={ranking.id}
+              key={matchRanking}
               className="react-sanfona-item-body accordion"
               expandedClassName="accordionBody"
               titleClassName="accordionTitle"
             >
               {ranking.candidates.map((candidate) => {
                 return (
-                  <div key={candidate.id} id="test">
+                  <div
+                    key={candidate}
+                    id="test"
+                  >
                     <i className="material-icons small">person</i>
                     { candidate }
                   </div>
@@ -39,7 +41,7 @@ class RankingResultPanel extends Component {
             </AccordionItem>
           );
         })
-      }
+       }
       </Accordion>
     );
   }
@@ -53,11 +55,11 @@ function mapStateToProps(state) {
 
 
 RankingResultPanel.propTypes = {
-  rankingData: PropTypes.array,
+  rankingData: PropTypes.object,
 };
 
 RankingResultPanel.defaultProps = {
-  rankingData: [],
+  rankingData: {},
   getResults() {},
 };
 

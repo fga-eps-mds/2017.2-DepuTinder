@@ -22,15 +22,17 @@ class RankingResultPanel extends Component {
           return (
             <AccordionItem
               title={`Match ${matchRanking}%`}
-              slug={ranking.id}
-              key={ranking.id}
+              key={matchRanking}
               className="react-sanfona-item-body accordion"
               expandedClassName="accordionBody"
               titleClassName="accordionTitle"
             >
               {ranking.candidates.map((candidate) => {
                 return (
-                  <div key={candidate.id} id="test">
+                  <div
+                    key={candidate}
+                    id="test"
+                  >
                     <i className="material-icons small">person</i>
                     { candidate }
                   </div>
@@ -39,7 +41,7 @@ class RankingResultPanel extends Component {
             </AccordionItem>
           );
         })
-      }
+       }
       </Accordion>
     );
   }

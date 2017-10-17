@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export const FETCH_RANKING_DATA = 'FETCH_RANKING_DATA';
 
-const API = 'https://api.myjson.com/bins/qzpg9';
+const API = 'http://localhost:8000/ranking/';
 const HOST = API;
 
 export const FetchRankingData = () => {

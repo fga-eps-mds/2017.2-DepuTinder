@@ -40,7 +40,8 @@ class Ranking extends Component {
 
   render() {
     const SECONDS_WAITING = 10;
-    if (Object.keys(this.props.rankingData).length !== 0) {
+    const EMPTY = 0;
+    if (Object.keys(this.props.rankingData).length !== EMPTY) {
       return (
         <div className="rankingBody">
           <h1 className="center" id="rankingTitle">Resultado</h1>
@@ -53,21 +54,20 @@ class Ranking extends Component {
           <div className="indeterminate" />
         </div>
       );
-    } else {
-      return (
-        <div className="rankingBodyLoading">
-          <h2 className="center" id="rankingTitleLoading">
-            Você não respondeu ao questionário, por favor responda.
-          </h2>
-          <a
-            onClick={() => browserHistory.push('/responder')}
-            className="waves-effect waves-light btn black yellow-text text-accent-3"
-            id="mainButton"
-          >Responder Questionário
-          </a>
-        </div>
-      );
     }
+    return (
+      <div className="rankingBodyLoading">
+        <h2 className="center" id="rankingTitleLoading">
+          Você não respondeu ao questionário, por favor responda.
+        </h2>
+        <a
+          onClick={() => browserHistory.push('/responder')}
+          className="waves-effect waves-light btn black yellow-text text-accent-3"
+          id="mainButton"
+        >Responder Questionário
+        </a>
+      </div>
+    );
   }
 }
 

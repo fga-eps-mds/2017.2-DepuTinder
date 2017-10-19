@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchParlamentariansData } from '../../actions/fetchParlamentariansData';
-
+import SearchResult from './searchResult';
 
 class SearchParlamentary extends Component {
 
@@ -13,7 +13,7 @@ class SearchParlamentary extends Component {
   }
 
   componentWillMount() {
-    this.props.fetchParlamentariansData();
+  //  this.props.fetchParlamentariansData();
   }
 
   handleChange(searchParams) {
@@ -51,6 +51,7 @@ class SearchParlamentary extends Component {
           </div>
         </div>
         <div className="row" />
+        <SearchResult name={this.state.searchResult} />
       </div>
     );
   }

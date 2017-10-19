@@ -4,6 +4,7 @@ import propositionDataReducer from './propositionDataReducer';
 import actualQuestionIDReducer from './actualQuestionIDReducer';
 import rankingDataReducer from './rankingDataReducer';
 import parlamentariansDataReducer from './parlamentariansDataReducer';
+import parlamentariansNameDataReducer from './parlamentariansNameDataReducer';
 
 const rootReducer = combineReducers({
   answeredQuestions: answeredQuestionReducer,
@@ -11,6 +12,7 @@ const rootReducer = combineReducers({
   actualQuestionID: actualQuestionIDReducer,
   rankingData: rankingDataReducer,
   parlamentariansData: parlamentariansDataReducer,
+  parlamentariansNames: parlamentariansNameDataReducer,
 });
 
 export default rootReducer;

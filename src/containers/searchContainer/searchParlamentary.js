@@ -8,15 +8,26 @@ class SearchParlamentary extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { searchParams: '' };
+    this.state = { searchParams: '', searchResult: [] };
+    this.searchAlgorithm = this.searchAlgorithm.bind(this);
   }
 
   componentWillMount() {
-  //  this.props.fetchParlamentariansData();
+    this.props.fetchParlamentariansData();
   }
 
   handleChange(searchParams) {
     this.setState({ searchParams });
+    this.searchAlgorithm();
+  }
+
+  searchAlgorithm() {
+    const input = this.state.searchParams;
+    const regex = new RegExp(`${input}.+$`, 'i');
+    const parlamentaryResult = this.props.parlamentariansNames.filter((e) => {
+      return e.search(regex) !== -1;
+    });
+    this.setState({ searchResult: parlamentaryResult });
   }
 
   render() {
@@ -47,15 +58,17 @@ class SearchParlamentary extends Component {
 
 SearchParlamentary.propTypes = {
   fetchParlamentariansData: PropTypes.func,
+  parlamentariansNames: PropTypes.array,
 };
 
 SearchParlamentary.defaultProps = {
   fetchParlamentariansData() {},
+  parlamentariansNames: ['Não Encontrado'],
 };
 
 function mapStateToProps(state) {
   return {
-    parlamentariansData: state.parlamentariansData,
+    parlamentariansNames: state.parlamentariansNames,
   };
 }
 

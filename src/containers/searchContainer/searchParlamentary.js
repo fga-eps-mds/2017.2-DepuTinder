@@ -27,7 +27,10 @@ class SearchParlamentary extends Component {
     const parlamentaryResult = this.props.parlamentariansNames.filter((e) => {
       return e.search(regex) !== -1;
     });
-    this.setState({ searchResult: parlamentaryResult });
+    if (parlamentaryResult.length >= 0) {
+      const resultArray = parlamentaryResult.slice(0, 5);
+      this.setState({ searchResult: resultArray });
+    }
   }
 
   render() {

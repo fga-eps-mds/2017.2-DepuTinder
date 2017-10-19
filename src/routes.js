@@ -5,6 +5,7 @@ import Questionnaire from './containers/questionnaire';
 import AnsweredQuestionsPanel from './components/answeredQuestionsPanel';
 import Ranking from './containers/ranking';
 import SearchParlamentary from './containers/searchContainer/searchParlamentary';
+import ShowParlamentary from './containers/showParlamentary';
 
 export default (
   <Route>
@@ -13,6 +14,7 @@ export default (
       <Route exact path="/listar_respostas" component={AnsweredQuestionsPanel} />
       <Route exact path="/ranking" component={Ranking} />
       <Route exact path="/search" component={SearchParlamentary} />
+      <Route exact path="/showParlamentary" component={ShowParlamentary} />
     </Route>
   </Route>
 );

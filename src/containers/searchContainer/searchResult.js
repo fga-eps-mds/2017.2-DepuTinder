@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { browserHistory } from 'react-router';
+import { selectParlamentary } from '../../actions/selectParlamentary';
 
 class SearchResult extends Component {
 
-  static selectDeputy(deputy) {
-    return deputy;
+
+  selectedParlamentary(deputy) {
+    this.props.selectParlamentary(deputy);
+    browserHistory.push('/showParlamentary');
   }
 
   renderNames() {
@@ -16,7 +20,7 @@ class SearchResult extends Component {
         <li
           className="collection-item"
           key={deputy[ID]}
-          onClick={() => SearchResult.selectDeputy(deputy)}
+          onClick={() => this.selectedParlamentary(deputy)}
         >
           <div>
             <i className="material-icons">
@@ -53,12 +57,12 @@ function mapStateToProps(state) {
   };
 }
 
-/*const SearchResult = (props) => {
-  return (
-    <ul className="collection">
-      {renderNames(props)}
-    </ul>
-  );
-};*/
+const mapDispatchToProps = (dispatch) => {
+  return {
+    selectParlamentary(deputy) {
+      dispatch(selectParlamentary(deputy));
+    },
+  };
+};
 
-export default connect(mapStateToProps, null)(SearchResult);
+export default connect(mapStateToProps, mapDispatchToProps)(SearchResult);

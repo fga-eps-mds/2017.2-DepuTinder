@@ -8,20 +8,36 @@ class SearchParlamentary extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = { searchParams: '' };
   }
 
   componentWillMount() {
-    this.props.fetchParlamentariansData();
+  //  this.props.fetchParlamentariansData();
+  }
+
+  handleChange(searchParams) {
+    this.setState({ searchParams });
   }
 
   render() {
     return (
       <div>
         <div className="row">
-          <div className="col s3" />
-          <div className="col s6" />
-          <div className="col s3" />
+          <div className="col s3">
+            <br />
+          </div>
+          <div className="col s6">
+            <input
+              id="searchParams"
+              type="search"
+              className="validate"
+              value={this.state.searchParams}
+              onChange={event => this.handleChange(event.target.value)}
+            />
+          </div>
+          <div className="col s3">
+            <br />
+          </div>
         </div>
         <div className="row" />
       </div>

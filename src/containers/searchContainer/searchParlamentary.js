@@ -1,0 +1,85 @@
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { fetchParlamentariansData } from '../../actions/fetchParlamentariansData';
+import SearchResult from './searchResult';
+
+class SearchParlamentary extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = { searchParams: '', searchResult: [] };
+    this.searchAlgorithm = this.searchAlgorithm.bind(this);
+  }
+
+  componentWillMount() {
+    this.props.fetchParlamentariansData();
+  }
+
+  handleChange(searchParams) {
+    this.setState({ searchParams });
+    this.searchAlgorithm();
+  }
+
+  searchAlgorithm() {
+    const input = this.state.searchParams;
+    const regex = new RegExp(`${input}.+$`, 'i');
+    const parlamentaryResult = this.props.parlamentariansNames.filter((e) => {
+      return e.search(regex) !== -1;
+    });
+    this.setState({ searchResult: parlamentaryResult });
+  }
+
+  render() {
+    return (
+      <div>
+        <div className="row">
+          <div className="col s3">
+            <br />
+          </div>
+          <div className="col s6">
+            <input
+              id="searchParams"
+              type="search"
+              className="validate"
+              value={this.state.searchParams}
+              onChange={event => this.handleChange(event.target.value)}
+            />
+          </div>
+          <div className="col s3">
+            <br />
+          </div>
+        </div>
+        <div className="row" />
+        <SearchResult searchResult={this.state.searchResult} />
+      </div>
+    );
+  }
+}
+
+SearchParlamentary.propTypes = {
+  fetchParlamentariansData: PropTypes.func,
+  parlamentariansNames: PropTypes.array,
+};
+
+SearchParlamentary.defaultProps = {
+  fetchParlamentariansData() {},
+  parlamentariansNames: ['Não Encontrado'],
+};
+
+function mapStateToProps(state) {
+  return {
+    parlamentariansNames: state.parlamentariansNames,
+  };
+}
+
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchParlamentariansData() {
+      dispatch(fetchParlamentariansData());
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(SearchParlamentary);

@@ -25,7 +25,7 @@ class SearchParlamentary extends Component {
     const input = this.state.searchParams;
     const regex = new RegExp(`${input}.+$`, 'i');
     const parlamentaryResult = this.props.parlamentariansNames.filter((e) => {
-      return e.search(regex) !== -1;
+      return e[0].search(regex) !== -1;
     });
     if (parlamentaryResult.length >= 0) {
       const resultArray = parlamentaryResult.slice(0, 5);
@@ -34,6 +34,7 @@ class SearchParlamentary extends Component {
   }
 
   render() {
+    console.log(this.props.parlamentariansNames);
     return (
       <div>
         <div className="row">

@@ -1,15 +1,27 @@
 import React from 'react';
 
+
+function selectDeputy(deputy) {
+  return deputy;
+}
+
+
 function renderNames(props) {
-  return props.searchResult.map((name) => {
+  return props.searchResult.map((deputy) => {
+    const NAME = 0;
+    const ID = 1; // Position of ID
     return (
-      <li className="collection-item" key={name}>
+      <li
+        className="collection-item"
+        key={deputy[ID]}
+        onClick={() => selectDeputy(deputy)}
+      >
         <div>
           <i className="material-icons">
             account_circle
           </i>
           <br />
-          {name}
+          {deputy[NAME]}
         </div>
       </li>
     );

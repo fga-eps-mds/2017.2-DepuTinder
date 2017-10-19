@@ -13,7 +13,7 @@ class SearchParlamentary extends Component {
   }
 
   componentWillMount() {
-  //  this.props.fetchParlamentariansData();
+    this.props.fetchParlamentariansData();
   }
 
   handleChange(searchParams) {
@@ -51,7 +51,7 @@ class SearchParlamentary extends Component {
           </div>
         </div>
         <div className="row" />
-        <SearchResult name={this.state.searchResult} />
+        <SearchResult searchResult={this.state.searchResult} />
       </div>
     );
   }

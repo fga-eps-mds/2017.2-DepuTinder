@@ -1,10 +1,19 @@
 import React from 'react';
 
+function renderNames(props) {
+  return props.searchResult.map((name) => {
+    return (
+      <div key={name}>
+        {name}
+      </div>
+    );
+  });
+}
 
 const SearchResult = (props) => {
   return (
     <div>
-      {props.name[0]}
+      {renderNames(props)}
     </div>
   );
 };

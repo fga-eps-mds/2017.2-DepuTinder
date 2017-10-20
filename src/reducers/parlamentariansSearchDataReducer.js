@@ -5,13 +5,13 @@ export default function (state = [], action) {
     case FETCH_PARLAMENTARIANS_DATA:
       return action.payload.data.map((parlamentary) => {
         return [
-          parlamentary.fields.parlamentaryName,
+          parlamentary.parlamentaryName,
           {
             'fields': {
-              name: parlamentary.fields.parlamentaryName,
-              photoPath: parlamentary.fields.parlamentaryPhotoPath,
-              uf: parlamentary.fields.parlamentaryUF,
-              party: parlamentary.fields.parlamentaryPoliticalParty,
+              name: parlamentary.parlamentaryName,
+              photoPath: parlamentary.parlamentaryPhotoPath,
+              uf: parlamentary.parlamentaryUF,
+              party: parlamentary.parlamentaryPoliticalParty,
             },
           },
         ];

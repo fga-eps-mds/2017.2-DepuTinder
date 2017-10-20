@@ -17,6 +17,7 @@ class SearchResult extends Component {
     return this.props.searchResult.map((data) => {
       return (
         <li
+          id="deputy-item"
           className="collection-item"
           key={data[deputy].fields.name}
           onClick={() => this.selectedParlamentary(data[deputy])}
@@ -35,7 +36,7 @@ class SearchResult extends Component {
 
   render() {
     return (
-      <ul className="colllection">
+      <ul className="collection">
         {this.renderNames()}
       </ul>
     );

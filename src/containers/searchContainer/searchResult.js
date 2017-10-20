@@ -13,21 +13,20 @@ class SearchResult extends Component {
   }
 
   renderNames() {
-    return this.props.searchResult.map((deputy) => {
-      const NAME = 0;
-      const ID = 1; // Position of ID
+    const deputy = 1;
+    return this.props.searchResult.map((data) => {
       return (
         <li
           className="collection-item"
-          key={deputy[ID]}
-          onClick={() => this.selectedParlamentary(deputy)}
+          key={data[deputy].fields.name}
+          onClick={() => this.selectedParlamentary(data[deputy])}
         >
           <div>
             <i className="material-icons">
               account_circle
             </i>
             <br />
-            {deputy[NAME]}
+            {data[deputy].fields.name}
           </div>
         </li>
       );
@@ -35,6 +34,7 @@ class SearchResult extends Component {
   }
 
   render() {
+    console.log(this.props.searchResult);
     return (
       <ul className="colllection">
         {this.renderNames()}

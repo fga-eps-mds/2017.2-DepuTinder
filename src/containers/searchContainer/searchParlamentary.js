@@ -24,8 +24,9 @@ class SearchParlamentary extends Component {
   searchAlgorithm() {
     const input = this.state.searchParams;
     const regex = new RegExp(`${input}.+$`, 'i');
-    const parlamentaryResult = this.props.parlamentariansNames.filter((e) => {
-      return e[0].search(regex) !== -1;
+    const name = 0;
+    const parlamentaryResult = this.props.parlamentariansSearch.filter((parlamentary) => {
+      return parlamentary[name].search(regex) !== -1;
     });
     if (parlamentaryResult.length >= 0) {
       const resultArray = parlamentaryResult.slice(0, 5);
@@ -34,7 +35,6 @@ class SearchParlamentary extends Component {
   }
 
   render() {
-    console.log(this.props.parlamentariansNames);
     return (
       <div>
         <div className="row">
@@ -63,17 +63,17 @@ class SearchParlamentary extends Component {
 
 SearchParlamentary.propTypes = {
   fetchParlamentariansData: PropTypes.func,
-  parlamentariansNames: PropTypes.array,
+  parlamentariansSearch: PropTypes.array,
 };
 
 SearchParlamentary.defaultProps = {
   fetchParlamentariansData() {},
-  parlamentariansNames: ['Não Encontrado'],
+  parlamentariansSearch: ['Não Encontrado'],
 };
 
 function mapStateToProps(state) {
   return {
-    parlamentariansNames: state.parlamentariansNames,
+    parlamentariansSearch: state.parlamentariansSearch,
   };
 }
 

@@ -34,7 +34,6 @@ class SearchResult extends Component {
   }
 
   render() {
-    console.log(this.props.searchResult);
     return (
       <ul className="colllection">
         {this.renderNames()}
@@ -45,10 +44,12 @@ class SearchResult extends Component {
 
 SearchResult.defaultProps = {
   searchResult: ['Não encontrado'],
+  selectParlamentary() {},
 };
 
 SearchResult.propTypes = {
   searchResult: PropTypes.array,
+  selectParlamentary: PropTypes.func,
 };
 
 function mapStateToProps(state) {

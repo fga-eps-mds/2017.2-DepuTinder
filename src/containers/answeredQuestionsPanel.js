@@ -1,8 +1,18 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { browserHistory } from 'react-router';
+import { connect } from 'react-redux';
+import axios from 'axios';
 import ListAnsweredQuestions from '../containers/listAnsweredQuestions';
 
 class AnsweredQuestionsPanel extends Component {
+
+  static sendAnsweredQuestions(answeredQuestions) {
+    const HOST = 'http://localhost:8000/sendAnsweredQuestions/';
+    const data = answeredQuestions;
+    axios.put(HOST, data);
+    browserHistory.push('ranking');
+  }
 
   constructor(props) {
     super(props);
@@ -11,6 +21,7 @@ class AnsweredQuestionsPanel extends Component {
   }
 
   render() {
+    const answeredQuestions = this.props.answeredQuestions;
     return (
       <div className="answerPanel">
         <h3 className="center" id="answerPanelTitle">Respostas</h3>
@@ -42,7 +53,7 @@ class AnsweredQuestionsPanel extends Component {
               <a
                 className="waves-effect waves-light btn black"
                 id="sendtButton"
-                onClick={() => browserHistory.push('ranking')}
+                onClick={() => AnsweredQuestionsPanel.sendAnsweredQuestions(answeredQuestions)}
               >
                 <i className="material-icons right" id="sendButtonIcon">send</i>Submeter
               </a>
@@ -54,4 +65,19 @@ class AnsweredQuestionsPanel extends Component {
   }
 }
 
-export default AnsweredQuestionsPanel;
+
+function mapStateToProps(state) {
+  return {
+    answeredQuestions: state.answeredQuestions,
+  };
+}
+
+AnsweredQuestionsPanel.propTypes = {
+  answeredQuestions: PropTypes.array,
+};
+
+AnsweredQuestionsPanel.defaultProps = {
+  answeredQuestions: [],
+};
+
+export default connect(mapStateToProps)(AnsweredQuestionsPanel);

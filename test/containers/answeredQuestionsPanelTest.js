@@ -1,5 +1,5 @@
 import { renderComponent, expect } from '../test_helper';
-import AnsweredQuestionsPanel from '../../src/components/answeredQuestionsPanel';
+import AnsweredQuestionsPanel from '../../src/containers/answeredQuestionsPanel';
 
 describe('AnsweredQuestionsPanel', () => {
   let component;

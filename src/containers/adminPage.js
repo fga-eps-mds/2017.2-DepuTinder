@@ -10,7 +10,10 @@ class AdminPage extends Component {
   render() {
     return (
       <div>
-        <a className="waves-effect waves-light btn black yellow-text text-accent-3">Criar Questão
+        <a
+          className="waves-effect waves-light btn black yellow-text text-accent-3"
+          id="elaborateQuestionButton"
+        >Criar Questão
         </a>
       </div>
     );

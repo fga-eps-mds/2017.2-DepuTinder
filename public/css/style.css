@@ -145,3 +145,9 @@
   width: 100vw;
   text-align: center;
 }
+
+#elaborateQuestionButton{
+  top:50%;
+  left:50%;
+  transform:translate(-50%,90%);
+}

@@ -16,6 +16,28 @@ class AdminQuestion extends Component {
         ><br />
         Criar Questão
         </div>
+        <div className="row">
+          <div className="col s3">
+            <br />
+          </div>
+          <div className="input-field inline col s6">
+            <input
+              id="questionTitle"
+              type="title"
+              className="validate"
+            />
+            <label
+              htmlFor="questionTitle"
+              data-error="wrong"
+              data-success="right"
+            >
+              Título
+            </label>
+          </div>
+          <div className="col s3">
+            <br />
+          </div>
+        </div>
         <div>
           <a
             onClick={() => browserHistory.push('/admin')}

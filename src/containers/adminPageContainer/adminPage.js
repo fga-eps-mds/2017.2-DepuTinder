@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { browserHistory } from 'react-router';
 
 class AdminPage extends Component {
 
@@ -12,6 +13,7 @@ class AdminPage extends Component {
       <div>
         <div>
           <a
+            onClick={() => browserHistory.push('/criarQuestao')}
             className="waves-effect waves-light btn black yellow-text text-accent-3"
             id="elaborateQuestionButton"
           >Criar Questão

@@ -42,13 +42,27 @@ class AdminQuestion extends Component {
             </div>
           </form>
         </div>
-        <div>
-          <a
-            onClick={() => browserHistory.push('/admin')}
-            className="waves-effect waves-light btn black yellow-text text-accent-3"
-            id="backButton"
-          >Voltar
-          </a>
+        <div className="row" id="adminQuestionButtonsRow">
+          <div className="col s6 m6 l6" id="backButtonCollumn">
+            <center>
+              <a
+                className="waves-effect waves-light btn black yellow-text text-accent-3"
+                id="backButton"
+                onClick={() => browserHistory.push('/admin')}
+              >Voltar
+              </a>
+            </center>
+          </div>
+          <div className="col s6 m6 l6" id="propositionButtonCollumn">
+            <center>
+              <a
+                className="waves-effect waves-light btn black yellow-text text-accent-3"
+                id="propositionButton"
+                onClick={() => browserHistory.push('/admin')}
+              >Proposições
+              </a>
+            </center>
+          </div>
         </div>
       </div>
     );

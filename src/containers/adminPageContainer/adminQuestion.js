@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { browserHistory } from 'react-router';
 
 class AdminQuestion extends Component {
 
@@ -9,7 +10,14 @@ class AdminQuestion extends Component {
 
   render() {
     return (
-      <div>AdminQuestion</div>
+      <div>
+        <a
+          onClick={() => browserHistory.push('/admin')}
+          className="waves-effect waves-light btn black yellow-text text-accent-3"
+          id="backButton"
+        >Voltar
+        </a>
+      </div>
     );
   }
 }

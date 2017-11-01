@@ -21,17 +21,15 @@ class AdminQuestion extends Component {
             <br />
           </div>
           <div className="input-field inline col s6">
-            <input
-              id="questionTitle"
-              type="title"
-              className="validate"
-            />
-            <label
-              htmlFor="questionTitle"
-              data-error="wrong"
-              data-success="right"
-            >
+            <input id="questionTitle" type="title" className="validate" />
+            <label htmlFor="questionTitle" data-error="wrong" data-success="right">
               Título
+            </label>
+          </div>
+          <div className="input-field inline col s6">
+            <input id="questionSubTitle" type="subtitle" className="validate" />
+            <label htmlFor="questionSubTitle" data-error="wrong" data-success="right">
+              Subtítulo
             </label>
           </div>
           <div className="col s3">

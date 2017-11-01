@@ -32,6 +32,16 @@ class AdminQuestion extends Component {
               Subtítulo
             </label>
           </div>
+          <div className="row">
+            <form className="col s12">
+              <div className="row">
+                <div className="input-field col s12">
+                  <textarea id="questionDescription" className="materialize-textarea" />
+                  <label htmlFor="questionDescription">Descrição</label>
+                </div>
+              </div>
+            </form>
+          </div>
           <div className="col s3">
             <br />
           </div>

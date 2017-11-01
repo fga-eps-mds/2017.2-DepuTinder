@@ -17,34 +17,30 @@ class AdminQuestion extends Component {
         Criar Questão
         </div>
         <div className="row">
-          <div className="col s3">
-            <br />
-          </div>
-          <div className="input-field inline col s6">
-            <input id="questionTitle" type="title" className="validate" />
-            <label htmlFor="questionTitle" data-error="wrong" data-success="right">
-              Título
-            </label>
-          </div>
-          <div className="input-field inline col s6">
-            <input id="questionSubTitle" type="subtitle" className="validate" />
-            <label htmlFor="questionSubTitle" data-error="wrong" data-success="right">
-              Subtítulo
-            </label>
-          </div>
-          <div className="row">
-            <form className="col s12">
-              <div className="row">
-                <div className="input-field col s12">
-                  <textarea id="questionDescription" className="materialize-textarea" />
-                  <label htmlFor="questionDescription">Descrição</label>
-                </div>
+          <form className="col s12">
+            <div className="row">
+              <div className="input-field col s12">
+                <textarea id="questionTitle" className="materialize-textarea" />
+                <label htmlFor="questionTitle">Título</label>
               </div>
-            </form>
-          </div>
-          <div className="col s3">
-            <br />
-          </div>
+            </div>
+          </form>
+          <form className="col s12">
+            <div className="row">
+              <div className="input-field col s12">
+                <textarea id="questionSubTitle" className="materialize-textarea" />
+                <label htmlFor="questionSubTitle">Subtítulo</label>
+              </div>
+            </div>
+          </form>
+          <form className="col s12">
+            <div className="row">
+              <div className="input-field col s12">
+                <textarea id="questionDescription" className="materialize-textarea" />
+                <label htmlFor="questionDescription">Descrição</label>
+              </div>
+            </div>
+          </form>
         </div>
         <div>
           <a

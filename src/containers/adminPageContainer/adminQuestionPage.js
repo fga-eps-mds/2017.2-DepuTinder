@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { browserHistory } from 'react-router';
 
-class AdminQuestion extends Component {
+class AdminQuestionPage extends Component {
 
   constructor(props) {
     super(props);
@@ -49,7 +49,8 @@ class AdminQuestion extends Component {
                 className="waves-effect waves-light btn black yellow-text text-accent-3"
                 id="backButton"
                 onClick={() => browserHistory.push('/admin')}
-              >Voltar
+              >
+                <i className="material-icons left" id="backButtonIcon">arrow_back</i>Voltar
               </a>
             </center>
           </div>
@@ -58,7 +59,7 @@ class AdminQuestion extends Component {
               <a
                 className="waves-effect waves-light btn black yellow-text text-accent-3"
                 id="propositionButton"
-                onClick={() => browserHistory.push('/admin')}
+                onClick={() => browserHistory.push('/lista_de_proposicoes')}
               >Proposições
               </a>
             </center>
@@ -69,4 +70,4 @@ class AdminQuestion extends Component {
   }
 }
 
-export default AdminQuestion;
+export default AdminQuestionPage;

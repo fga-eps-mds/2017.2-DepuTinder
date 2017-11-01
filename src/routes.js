@@ -7,7 +7,8 @@ import Ranking from './containers/ranking';
 import SearchParlamentary from './containers/searchContainer/searchParlamentary';
 import ShowParlamentary from './containers/showParlamentary';
 import AdminPage from './containers/adminPageContainer/adminPage';
-import AdminQuestion from './containers/adminPageContainer/adminQuestion';
+import AdminQuestionPage from './containers/adminPageContainer/adminQuestionPage';
+import AdminPropositionPage from './containers/adminPageContainer/adminPropositionPage';
 
 export default (
   <Route>
@@ -18,7 +19,8 @@ export default (
       <Route exact path="/search" component={SearchParlamentary} />
       <Route exact path="/showParlamentary" component={ShowParlamentary} />
       <Route exact path="/admin" component={AdminPage} />
-      <Route exact path="/criarQuestao" component={AdminQuestion} />
+      <Route exact path="/criarQuestao" component={AdminQuestionPage} />
+      <Route exact path="/lista_de_proposicoes" component={AdminPropositionPage} />
     </Route>
   </Route>
 );

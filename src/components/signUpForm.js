@@ -4,42 +4,45 @@ class SignUpForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: '',
+      userName: '',
     };
 
-    this.onChange = this.onChange.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
 
-  onChange(e) {
-    this.setState({ [e.target.name]: e.target.value });
+  handleChange(event) {
+    this.setState({ [event.target.name]: event.target.value });
   }
 
-  onSubmit(e) {
-    e.preventDefault();
+  handleSubmit(event) {
+    event.preventDefault();
   }
 
   render() {
     return (
-      <form onSubmit={this.onSubmit}>
+      <form onSubmit={this.handleSubmit} id="userSignUpForm">
 
-        <div className="form-group">
-          <label htmlFor="userName">Username</label>
-
+        <div className="form-group" id="inputGroup">
+          <label htmlFor="userName" id="nameLabel">Nome:</label>
           <input
-            value={this.state.username}
-            onChange={this.onChange}
+            id="userNameInput"
+            value={this.state.userName}
+            onChange={this.handleChange}
             type="text"
-            name="username"
+            name="userName"
             className="form-control"
           />
         </div>
 
-        <div className="form-group">
-          <button className="btn btn-primary btn-lg">
-        Sign Up
-      </button>
+        <div className="form-group" id="buttonGroup">
+          <button
+            className="btn btn-primary btn-lg"
+            id="signUpButton"
+          >
+            Sign Up
+          </button>
         </div>
 
       </form>

@@ -11,12 +11,19 @@ class AdminQuestion extends Component {
   render() {
     return (
       <div>
-        <a
-          onClick={() => browserHistory.push('/admin')}
-          className="waves-effect waves-light btn black yellow-text text-accent-3"
-          id="backButton"
-        >Voltar
-        </a>
+        <div
+          id="titleAdminQuestion"
+        ><br />
+        Criar Questão
+        </div>
+        <div>
+          <a
+            onClick={() => browserHistory.push('/admin')}
+            className="waves-effect waves-light btn black yellow-text text-accent-3"
+            id="backButton"
+          >Voltar
+          </a>
+        </div>
       </div>
     );
   }

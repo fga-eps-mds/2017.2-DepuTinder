@@ -149,17 +149,29 @@
 #elaborateQuestionButton{
   top:50%;
   left:50%;
+  position:relative;
   transform:translate(-50%,90%);
 }
 
 #elaborateQuestionnaireButton{
   top:50%;
   left:50%;
+  position:relative;
   transform:translate(-50%,150%);
 }
 
 #backButton{
   bottom:50%;
   left:50%;
-  transform:translate(-50%,150%);
+  position:relative;
+  margin-bottom: auto;
+  bottom: 5px;
+  transform:translate(-50%,1100%);
+}
+
+#titleAdminQuestion{
+  font-family: "Courier New", Courier, monospace;
+  font-size: 175%;
+  text-align: center;
+  color: var(--main-grey);
 }

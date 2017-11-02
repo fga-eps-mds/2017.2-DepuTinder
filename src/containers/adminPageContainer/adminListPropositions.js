@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import FetchPropositionData from '../../actions/fetchPropositionData';
 
 class AdminListPropositions extends Component {
 
@@ -9,7 +10,12 @@ class AdminListPropositions extends Component {
     this.state = {};
   }
 
+  componentWillMount() {
+    this.props.getResults();
+  }
+
   render() {
+    console.log(this.props.proposition);
     console.log(this.props.proposition.propositions);
     return (
       <div>
@@ -36,11 +42,14 @@ function mapStateToProps(state) {
   };
 }
 
+
 AdminListPropositions.propTypes = {
+  getResults: PropTypes.func,
   proposition: PropTypes.object,
 };
 
 AdminListPropositions.defaultProps = {
+  getResults() {},
   proposition: {
     propositionID: 0,
     propositionTitle: 'Proposition Title',
@@ -50,5 +59,12 @@ AdminListPropositions.defaultProps = {
   },
 };
 
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getResults() {
+      dispatch(FetchPropositionData());
+    },
+  };
+};
 
-export default connect(mapStateToProps)(AdminListPropositions);
+export default connect(mapStateToProps, mapDispatchToProps)(AdminListPropositions);

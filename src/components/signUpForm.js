@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import FormInput from './formInput';
 
 class SignUpForm extends Component {
+  static handleSubmit(event) {
+    event.preventDefault();
+  }
+
   constructor(props) {
     super(props);
     this.state = {
@@ -11,15 +15,10 @@ class SignUpForm extends Component {
       userConfirmedPassword: '',
     };
     this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange(event) {
     this.setState({ [event.target.name]: event.target.value });
-  }
-
-  handleSubmit(event) {
-    event.preventDefault();
   }
 
   show() {

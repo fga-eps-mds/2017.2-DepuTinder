@@ -21,6 +21,7 @@ class AdminPage extends Component {
         </div>
         <div>
           <a
+            onClick={() => browserHistory.push('/criarQuestionario')}
             className="waves-effect waves-light btn black yellow-text text-accent-3"
             id="elaborateQuestionnaireButton"
           >Criar Questionário

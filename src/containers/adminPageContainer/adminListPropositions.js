@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import FetchPropositionData from '../../actions/fetchPropositionData';
 
 class AdminListPropositions extends Component {
 
@@ -10,28 +9,10 @@ class AdminListPropositions extends Component {
     this.state = {};
   }
 
-  componentWillMount() {
-    this.props.getResults();
-  }
 
   render() {
-    console.log(this.props.proposition);
-    console.log(this.props.proposition.propositions);
     return (
-      <div>
-        <ul id="slide-out" className="side-nav">
-          <li><div className="user-view">
-            <a href="#!name"><span className="white-text name">John Doe</span></a>
-            <a href="#!email"><span className="white-text email">jdandturk@gmail.com</span></a>
-          </div></li>
-          <li><a href="#!"><i className="material-icons">cloud</i>First Link With Icon</a></li>
-          <li><a href="#!">Second Link</a></li>
-          <li><div className="divider" /></li>
-          <li><a className="subheader">Subheader</a></li>
-          <li><a className="waves-effect" href="#!">Third Link With Waves</a></li>
-        </ul>
-        <button href="#" data-activates="slide-out" className="button-collapse waves-effect waves-light btn black yellow-text text-accent-3"><i className="material-icons">menu</i></button>
-      </div>
+      <div>ListPropositions</div>
     );
   }
 }
@@ -44,7 +25,6 @@ function mapStateToProps(state) {
 
 
 AdminListPropositions.propTypes = {
-  getResults: PropTypes.func,
   proposition: PropTypes.object,
 };
 
@@ -59,12 +39,5 @@ AdminListPropositions.defaultProps = {
   },
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    getResults() {
-      dispatch(FetchPropositionData());
-    },
-  };
-};
 
-export default connect(mapStateToProps, mapDispatchToProps)(AdminListPropositions);
+export default connect(mapStateToProps)(AdminListPropositions);

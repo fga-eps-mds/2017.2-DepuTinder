@@ -17,34 +17,49 @@ class AdminQuestionnairePage extends Component {
         Criar Questionário
         </div>
         <br />
-        <div className="row">
+        <div className="row" id="AdminQuestionnaireCardsRow">
           <div className="col s12 m6">
-            <div className="card-content white accent-3">
-              esse é o painel das questões atuais
+            <center>
+              <div className="card white">
+                <div className="card-content black-text">
+                  <span className="card-title">Questões Disponíveis</span>
+                </div>
+              </div>
+            </center>
+          </div>
+          <div className="row">
+            <div className="col s12 m6">
+              <center>
+                <div className="card white">
+                  <div className="card-content black-text">
+                    <span className="card-title">Question Atual</span>
+                  </div>
+                </div>
+              </center>
             </div>
           </div>
-        </div>
-        <div className="row" id="adminQuestionnaireButtonsRow">
-          <div className="col s6 m6 l6" id="backButtonCollumn">
-            <center>
-              <a
-                className="waves-effect waves-light btn black yellow-text text-accent-3"
-                id="backButton"
-                onClick={() => browserHistory.push('/admin')}
-              >
-                <i className="material-icons left" id="backButtonIcon">arrow_back</i>Voltar
+          <div className="row" id="adminQuestionnaireButtonsRow">
+            <div className="col s6 m6 l6" id="backButtonCollumn">
+              <center>
+                <a
+                  className="waves-effect waves-light btn black yellow-text text-accent-3"
+                  id="backButton"
+                  onClick={() => browserHistory.push('/admin')}
+                >
+                  <i className="material-icons left" id="backButtonIcon">arrow_back</i>Voltar
+                </a>
+              </center>
+            </div>
+            <div className="col s6 m6 l6" id="sendButtonCollumn">
+              <center>
+                <a
+                  className="waves-effect waves-light btn black yellow-text text-accent-3"
+                  id="propositionButton"
+                >
+                  <i className="material-icons right" id="sendButtonIcon">send</i>Enviar
               </a>
-            </center>
-          </div>
-          <div className="col s6 m6 l6" id="sendButtonCollumn">
-            <center>
-              <a
-                className="waves-effect waves-light btn black yellow-text text-accent-3"
-                id="propositionButton"
-              >
-                <i className="material-icons right" id="sendButtonIcon">send</i>Enviar
-              </a>
-            </center>
+              </center>
+            </div>
           </div>
         </div>
       </div>

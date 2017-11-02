@@ -7,11 +7,6 @@ class FormInput extends Component {
     this.state = {
       inputText: '',
     };
-    this.handleChange = this.handleChange.bind(this);
-  }
-
-  handleChange(event) {
-    this.setState({ inputText: event.target.value });
   }
 
   render() {
@@ -19,10 +14,11 @@ class FormInput extends Component {
       <div className="input-field" id={this.props.inputDivID}>
         <input
           id={this.props.inputID}
-          value={this.state.inputText}
-          onChange={this.handleChange}
+          value={this.props.value}
+          onChange={this.props.handleChange}
           type={this.props.type}
           className="validate"
+          name={this.props.name}
         />
         <label htmlFor={this.props.inputID} data-error="Campo Inválido">{this.props.inputID}</label>
       </div>
@@ -34,12 +30,18 @@ FormInput.propTypes = {
   inputDivID: PropTypes.string,
   inputID: PropTypes.string,
   type: PropTypes.string,
+  name: PropTypes.string,
+  value: PropTypes.string,
+  handleChange: PropTypes.func,
 };
 
 FormInput.defaultProps = {
   inputDivID: 'inputDivID',
   inputID: 'inputID',
   type: 'text',
+  name: 'name',
+  value: '',
+  handleChange() {},
 };
 
 

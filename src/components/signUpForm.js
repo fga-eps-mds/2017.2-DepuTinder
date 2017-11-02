@@ -10,12 +10,23 @@ class SignUpForm extends Component {
       userPassword: '',
       userConfirmedPassword: '',
     };
-
+    this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleChange(event) {
+    this.setState({ [event.target.name]: event.target.value });
   }
 
   handleSubmit(event) {
     event.preventDefault();
+  }
+
+  show() {
+    console.log(this.state.userName);
+    console.log(this.state.userEmail);
+    console.log(this.state.userPassword);
+    console.log(this.state.userConfirmedPassword);
   }
 
   render() {
@@ -30,10 +41,38 @@ class SignUpForm extends Component {
             marginTop: 50,
           }}
         >
-          <FormInput inputDivID="nameInputDiv" inputID="Nome" type="text" />
-          <FormInput inputDivID="emailInputDiv" inputID="Email" type="email" />
-          <FormInput inputDivID="passwordInputDiv" inputID="Senha" type="password" />
-          <FormInput inputDivID="passwordConfirmInputDiv" inputID="Confirmar Senha" type="password" />
+
+          <FormInput
+            inputDivID="nameInputDiv"
+            inputID="Nome"
+            type="text"
+            name="userName"
+            value={this.state.userName}
+            handleChange={this.handleChange}
+          />
+          <FormInput
+            inputDivID="emailInputDiv"
+            inputID="Email" type="email"
+            name="userEmail"
+            value={this.state.userEmail}
+            handleChange={this.handleChange}
+          />
+          <FormInput
+            inputDivID="passwordInputDiv"
+            inputID="Senha"
+            type="password"
+            name="userPassword"
+            value={this.state.userPassword}
+            handleChange={this.handleChange}
+          />
+          <FormInput
+            inputDivID="passwordConfirmInputDiv"
+            inputID="Confirmar Senha"
+            type="password"
+            name="userConfirmedPassword"
+            value={this.state.userConfirmedPassword}
+            handleChange={this.handleChange}
+          />
 
           <div className="form-group" id="buttonGroup">
             <center>
@@ -41,6 +80,7 @@ class SignUpForm extends Component {
                 className="btn btn-primary btn-lg"
                 style={{ width: 150, backgroundColor: 'black', marginTop: 30 }}
                 id="signUpButton"
+                onClick={this.show}
               >
                 Criar conta
               </button>

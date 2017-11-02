@@ -29,3 +29,18 @@ class FormInput extends Component {
     );
   }
 }
+
+FormInput.propTypes = {
+  inputDivID: PropTypes.string,
+  inputID: PropTypes.string,
+  type: PropTypes.string,
+};
+
+FormInput.defaultProps = {
+  inputDivID: 'inputDivID',
+  inputID: 'inputID',
+  type: 'text',
+};
+
+
+export default FormInput;

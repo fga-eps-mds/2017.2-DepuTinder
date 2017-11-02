@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import FetchPropositionData from '../../actions/fetchPropositionData';
+import { FetchPropositionData } from '../../actions/fetchPropositionData';
 
 class AdminListPropositions extends Component {
 
@@ -15,9 +15,21 @@ class AdminListPropositions extends Component {
   }
 
   render() {
+    const SECONDS_WAITING = 10;
+    const EMPTY = 0;
+    console.log(this.props.proposition);
     console.log(this.props.proposition.propositions);
+    if (Object.keys(this.props.proposition).length !== EMPTY) {
+      return (
+        <div>Lista de Propositions</div>
+      );
+    } else {
+      return (
+        <div>Loading...</div>
+      );
+    }
     return (
-      <div>ListPropositions</div>
+      <div>Conteudo Pagina</div>
     );
   }
 }

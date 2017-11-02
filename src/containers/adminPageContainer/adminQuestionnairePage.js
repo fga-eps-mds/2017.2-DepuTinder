@@ -32,7 +32,7 @@ class AdminQuestionnairePage extends Component {
               <center>
                 <div className="card white">
                   <div className="card-content black-text">
-                    <span className="card-title">Question Atual</span>
+                    <span className="card-title">Questionário Atual</span>
                   </div>
                 </div>
               </center>

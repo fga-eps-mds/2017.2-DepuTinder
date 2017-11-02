@@ -28,7 +28,7 @@ class AdminQuestionnairePage extends Component {
               className="waves-effect waves-light btn black yellow-text text-accent-3"
               id="propositionButton"
             >
-              <i className="material-icons right" id="sendButtonIcon">send</i>Submeter
+              <i className="material-icons right" id="sendButtonIcon">send</i>Enviar
             </a>
           </center>
         </div>

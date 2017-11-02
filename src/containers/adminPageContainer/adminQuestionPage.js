@@ -71,16 +71,6 @@ class AdminQuestionPage extends Component {
               </a>
             </center>
           </div>
-          <div className="col s6 m6 l6" id="propositionButtonCollumn">
-            <center>
-              <a
-                className="waves-effect waves-light btn black yellow-text text-accent-3"
-                id="propositionButton"
-                onClick={() => browserHistory.push('/lista_de_proposicoes')}
-              >Proposições
-              </a>
-            </center>
-          </div>
         </div>
       </div>
     );

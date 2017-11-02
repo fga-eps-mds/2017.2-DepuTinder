@@ -1,19 +1,17 @@
 import React, { Component } from 'react';
+import FormInput from './formInput';
 
 class SignUpForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
       userName: '',
+      userEmail: '',
+      userPassword: '',
+      userConfirmedPassword: '',
     };
 
-    this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-
-  handleChange(event) {
-    this.setState({ [event.target.name]: event.target.value });
   }
 
   handleSubmit(event) {
@@ -24,17 +22,10 @@ class SignUpForm extends Component {
     return (
       <form onSubmit={this.handleSubmit} id="userSignUpForm">
 
-        <div className="form-group" id="inputGroup">
-          <label htmlFor="userName" id="nameLabel">Nome:</label>
-          <input
-            id="userNameInput"
-            value={this.state.userName}
-            onChange={this.handleChange}
-            type="text"
-            name="userName"
-            className="form-control"
-          />
-        </div>
+        <FormInput inputDivID="nameInputDiv" inputID="Nome" type="text" />
+        <FormInput inputDivID="emailInputDiv" inputID="Email" type="email" />
+        <FormInput inputDivID="passwordInputDiv" inputID="Senha" type="password" />
+        <FormInput inputDivID="passwordConfirmInputDiv" inputID="Confirmar Senha" type="password" />
 
         <div className="form-group" id="buttonGroup">
           <button

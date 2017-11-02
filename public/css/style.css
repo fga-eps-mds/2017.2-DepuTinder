@@ -145,3 +145,14 @@
   width: 100vw;
   text-align: center;
 }
+
+#titleAdminQuestion{
+  font-family: "Courier New", Courier, monospace;
+  font-size: 175%;
+  text-align: center;
+  color: var(--main-grey);
+}
+
+#cardQuestionAdmin{
+    transform:translate(50%,0%);
+}

@@ -15,10 +15,7 @@ class AdminListPropositions extends Component {
   }
 
   render() {
-    const SECONDS_WAITING = 10;
     const EMPTY = 0;
-    console.log(this.props.proposition);
-    console.log(this.props.proposition.propositions);
     if (Object.keys(this.props.proposition).length !== EMPTY) {
       return (
         <div>Lista de Propositions</div>
@@ -28,9 +25,6 @@ class AdminListPropositions extends Component {
         <div>Loading...</div>
       );
     }
-    return (
-      <div>Conteudo Pagina</div>
-    );
   }
 }
 

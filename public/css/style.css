@@ -166,3 +166,7 @@
   text-align: center;
   color: var(--main-grey);
 }
+
+#cardQuestionAdmin{
+    transform:translate(50%,0%);
+}

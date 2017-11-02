@@ -25,7 +25,6 @@ class AdminPropositionPage extends Component {
 }
 
 AdminPropositionPage.propTypes = {
-  proposition: PropTypes.object,
   fetchPropositionData: PropTypes.func,
 };
 

@@ -16,31 +16,34 @@ class AdminQuestionPage extends Component {
         ><br />
         Criar Questão
         </div>
+        <br />
         <div className="row">
-          <form className="col s12">
-            <div className="row">
-              <div className="input-field col s12">
-                <textarea id="questionTitle" className="materialize-textarea" />
-                <label htmlFor="questionTitle">Título</label>
-              </div>
+          <div className="col s12 m6 center">
+            <div className="card-panel" id="cardQuestionAdmin">
+              <form>
+                <div className="container">
+                  <div className="row">
+                    <div className="input-field col s12">
+                      <input id="questionTitle" type="text" data-length="50" />
+                      <label htmlFor="questionTitle">Titulo</label>
+                    </div>
+                  </div>
+                  <div className="row">
+                    <div className="input-field col s12">
+                      <input id="questionSubTitle" type="text" data-length="50" />
+                      <label htmlFor="questionSubTitle">SubTitulo</label>
+                    </div>
+                  </div>
+                  <div className="row">
+                    <div className="input-field col s12">
+                      <textarea id="adminQuestionButtonsRow" className="materialize-textarea" data-length="120" />
+                      <label htmlFor="adminQuestionButtonsRow">Descrição</label>
+                    </div>
+                  </div>
+                </div>
+              </form>
             </div>
-          </form>
-          <form className="col s12">
-            <div className="row">
-              <div className="input-field col s12">
-                <textarea id="questionSubTitle" className="materialize-textarea" />
-                <label htmlFor="questionSubTitle">Subtítulo</label>
-              </div>
-            </div>
-          </form>
-          <form className="col s12">
-            <div className="row">
-              <div className="input-field col s12">
-                <textarea id="questionDescription" className="materialize-textarea" />
-                <label htmlFor="questionDescription">Descrição</label>
-              </div>
-            </div>
-          </form>
+          </div>
         </div>
         <div className="row" id="adminQuestionButtonsRow">
           <div className="col s6 m6 l6" id="backButtonCollumn">

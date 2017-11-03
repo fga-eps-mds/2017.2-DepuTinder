@@ -66,7 +66,8 @@ class Questionnaire extends Component {
   }
 
   render() {
-    if (this.props.propositions.length === 0) {
+    const EMPTY = 0;
+    if (this.props.propositions.length === EMPTY) {
       return (
         <div className="questionnaireBody">
           <center>{this.pages()}</center>

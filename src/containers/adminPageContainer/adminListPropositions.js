@@ -14,15 +14,42 @@ class AdminListPropositions extends Component {
     this.props.getResults();
   }
 
+  renderPropositions() {
+    return this.props.proposition.propositions.map((data) => {
+      return (
+        <div className="row">
+          <div className="col s12 m12">
+            <div className="card black darken-1">
+              <div className="card-content yellow-text">
+                <div>{data.propositionID}</div>
+                <div>{data.propositionTitle}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    });
+  }
+
   render() {
     const EMPTY = 0;
     if (Object.keys(this.props.proposition).length !== EMPTY) {
       return (
-        <div>Lista de Propositions</div>
+        <div>{this.renderPropositions()}</div>
       );
     } else {
       return (
-        <div>Loading...</div>
+        <div className="preloader-wrapper active">
+          <div className="spinner-layer spinner-blue-only">
+            <div className="circle-clipper left">
+              <div className="circle" />
+            </div><div className="gap-patch">
+              <div className="circle" />
+            </div><div className="circle-clipper right">
+              <div className="circle" />
+            </div>
+          </div>
+        </div>
       );
     }
   }

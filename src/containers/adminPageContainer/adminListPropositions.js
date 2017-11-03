@@ -15,7 +15,6 @@ class AdminListPropositions extends Component {
   }
 
   renderPropositions() {
-    const proposition = 1;
     return this.props.proposition.propositions.map((data) => {
       return (
         <div>

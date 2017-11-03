@@ -7,6 +7,10 @@ describe('AdminQuestionPage', () => {
     component = renderComponent(AdminQuestionPage);
   });
 
+  it('shows admin question page', () => {
+    expect(component).to.have.class('adminQuestionPage');
+  });
+
   it('renders the input title', () => {
     expect(component.find('#inputTitle')).to.exist;
   });

@@ -82,7 +82,7 @@ class AdminQuestionPage extends Component {
           </div>
           <div>
             <center>
-              <ul id="slide-out" className="side-nav" >
+              <ul id="slide-out" className="side-nav yellow-text" >
                 {AdminQuestionPage.renderPropositionsList()}
               </ul>
               <button href="#" data-activates="slide-out" className="button-collapse waves-effect waves-light btn black yellow-text text-accent-3">Proposições</button>

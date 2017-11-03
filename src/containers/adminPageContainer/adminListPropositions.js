@@ -17,8 +17,15 @@ class AdminListPropositions extends Component {
   renderPropositions() {
     return this.props.proposition.propositions.map((data) => {
       return (
-        <div>
-          {data.propositionTitle}
+        <div className="row">
+          <div className="col s12 m12">
+            <div className="card black darken-1">
+              <div className="card-content yellow-text">
+                <div>{data.propositionID}</div>
+                <div>{data.propositionTitle}</div>
+              </div>
+            </div>
+          </div>
         </div>
       );
     });
@@ -27,8 +34,6 @@ class AdminListPropositions extends Component {
   render() {
     const EMPTY = 0;
     if (Object.keys(this.props.proposition).length !== EMPTY) {
-      console.log(this.props.proposition);
-      console.log(this.props.proposition);
       return (
         <div>{this.renderPropositions()}</div>
       );

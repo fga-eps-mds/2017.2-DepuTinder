@@ -145,3 +145,13 @@
   width: 100vw;
   text-align: center;
 }
+
+#userSignUpForm {
+  margin: 5%;
+  background-color: #ffffff;
+}
+
+#signUpButton {
+  width: 150;
+  background-color: black;
+}

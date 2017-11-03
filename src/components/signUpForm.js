@@ -77,7 +77,6 @@ class SignUpForm extends Component {
             <center>
               <button
                 className="btn btn-primary btn-lg"
-                style={{ width: 150, backgroundColor: 'black', marginTop: 30 }}
                 id="signUpButton"
                 onClick={this.show}
               >

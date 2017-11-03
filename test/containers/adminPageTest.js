@@ -7,8 +7,12 @@ describe('AdminPage', () => {
     component = renderComponent(AdminPage);
   });
 
-  it('shows admin page', () => {
-    expect(component).to.have.class('AdminPage');
+  it('renders a button', () => {
+    expect(component.find('#questionButtonCollumn')).to.exist;
+  });
+
+  it('renders a button', () => {
+    expect(component.find('#questionnaireButtonCollumn')).to.exist;
   });
 
 });

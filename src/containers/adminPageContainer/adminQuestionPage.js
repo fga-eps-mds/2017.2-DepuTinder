@@ -71,6 +71,12 @@ class AdminQuestionPage extends Component {
               </a>
             </center>
           </div>
+          <div>
+            <center>
+              <ul id="slide-out" className="side-nav" />
+              <button href="#" data-activates="slide-out" className="button-collapse waves-effect waves-light btn black yellow-text text-accent-3">Proposições</button>
+            </center>
+          </div>
         </div>
       </div>
     );

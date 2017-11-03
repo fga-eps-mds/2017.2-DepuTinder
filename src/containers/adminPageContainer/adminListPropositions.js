@@ -14,15 +14,38 @@ class AdminListPropositions extends Component {
     this.props.getResults();
   }
 
+  renderPropositions() {
+    const proposition = 1;
+    return this.props.proposition.propositions.map((data) => {
+      return (
+        <div>
+          {data.propositionTitle}
+        </div>
+      );
+    });
+  }
+
   render() {
     const EMPTY = 0;
     if (Object.keys(this.props.proposition).length !== EMPTY) {
+      console.log(this.props.proposition);
+      console.log(this.props.proposition);
       return (
-        <div>Lista de Propositions</div>
+        <div>{this.renderPropositions()}</div>
       );
     } else {
       return (
-        <div>Loading...</div>
+        <div className="preloader-wrapper active">
+          <div className="spinner-layer spinner-blue-only">
+            <div className="circle-clipper left">
+              <div className="circle" />
+            </div><div className="gap-patch">
+              <div className="circle" />
+            </div><div className="circle-clipper right">
+              <div className="circle" />
+            </div>
+          </div>
+        </div>
       );
     }
   }

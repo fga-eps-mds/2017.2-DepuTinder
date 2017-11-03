@@ -7,6 +7,7 @@ import Ranking from './containers/ranking';
 import SearchParlamentary from './containers/searchContainer/searchParlamentary';
 import ShowParlamentary from './containers/showParlamentary';
 import SignUpForm from './components/signUpForm';
+import SignUpForm2 from './components/signUpForm2';
 
 export default (
   <Route>
@@ -17,6 +18,7 @@ export default (
       <Route exact path="/search" component={SearchParlamentary} />
       <Route exact path="/showParlamentary" component={ShowParlamentary} />
       <Route exact path="/signUpForm" component={SignUpForm} />
+      <Route exact path="/signUpForm2" component={SignUpForm2} />
     </Route>
   </Route>
 );

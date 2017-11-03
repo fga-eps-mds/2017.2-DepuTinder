@@ -4,21 +4,31 @@ import FormInput from './formInput';
 class SignUpForm extends Component {
   static handleSubmit(event) {
     event.preventDefault();
+    console.log(event);
   }
 
   constructor(props) {
     super(props);
     this.state = {
-      userName: '',
-      userEmail: '',
-      userPassword: '',
-      userConfirmedPassword: '',
+      userName: 'name',
+      userEmail: 'email@email',
+      userPassword: '12345',
+      userConfirmedPassword: '12345',
     };
     this.handleChange = this.handleChange.bind(this);
   }
 
   handleChange(event) {
+    this.validateForm();
     this.setState({ [event.target.name]: event.target.value });
+  }
+
+  validateForm() {
+    if (this.state.userPassword === this.state.userConfirmedPassword) {
+      console.log('password match');
+    } else {
+      console.log('password wrong');
+    }
   }
 
   show() {
@@ -31,16 +41,7 @@ class SignUpForm extends Component {
   render() {
     return (
       <form onSubmit={this.handleSubmit} id="userSignUpForm">
-        <div
-          className="container"
-          style={{
-            flexDirection: 'row',
-            alignItems: 'center',
-            justifyContent: 'center',
-            marginTop: 50,
-          }}
-        >
-
+        <div className="container" style={{ marginTop: 50 }}>
           <FormInput
             inputDivID="nameInputDiv"
             inputID="Nome"
@@ -77,9 +78,7 @@ class SignUpForm extends Component {
             <center>
               <button
                 className="btn btn-primary btn-lg"
-                style={{ width: 150, backgroundColor: 'black', marginTop: 30 }}
-                id="signUpButton"
-                onClick={this.show}
+                style={{ backgroundColor: 'black', marginTop: 30 }}
               >
                 Criar conta
               </button>

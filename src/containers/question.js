@@ -84,8 +84,8 @@ class Question extends Component {
 
   render() {
     const questionID = this.props.actualQuestionID;
-    const propositions = this.props.proposition.propositions;
-    const actionID = propositions[questionID].propositionID;
+    const propositions = this.props.propositions;
+    const actionID = questionID;
 
     return (
       <div className="card" id="questionCard">
@@ -131,7 +131,7 @@ class Question extends Component {
 
 Question.propTypes = {
   actualQuestionID: PropTypes.number,
-  proposition: PropTypes.object,
+  propositions: PropTypes.array,
   sendAnswer: PropTypes.func,
   answeredQuestions: PropTypes.array,
   sendID: PropTypes.func,
@@ -139,13 +139,7 @@ Question.propTypes = {
 
 Question.defaultProps = {
   actualQuestionID: 0,
-  proposition: {
-    propositionID: 0,
-    propositionTitle: 'Proposition Title',
-    propositionSubTitle: 'Proposition SubTitle',
-    propositionDescription: 'Proposition Description',
-    propositionAuthor: 'Proposition Author',
-  },
+  propositions: [],
   sendAnswer() {},
   answeredQuestions: [],
   sendID() {},
@@ -154,7 +148,7 @@ Question.defaultProps = {
 function mapStateToProps(state) {
   return {
     answeredQuestions: state.answeredQuestions,
-    proposition: state.proposition,
+    propositions: state.propositions,
     actualQuestionID: state.actualQuestionID,
   };
 }

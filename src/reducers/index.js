@@ -10,7 +10,7 @@ import selectedParlamentary from './selectedParlamentary';
 
 const rootReducer = combineReducers({
   answeredQuestions: answeredQuestionReducer,
-  proposition: propositionDataReducer,
+  propositions: propositionDataReducer,
   actualQuestionID: actualQuestionIDReducer,
   rankingData: rankingDataReducer,
   parlamentariansData: parlamentariansDataReducer,

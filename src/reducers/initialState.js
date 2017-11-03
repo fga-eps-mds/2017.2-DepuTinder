@@ -1,8 +1,8 @@
 const initialState = {
   answeredQuestions: [
   ],
-  proposition: {
-  },
+  propositions: [
+  ],
   actualQuestionID: 0,
 };
 

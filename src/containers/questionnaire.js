@@ -66,29 +66,35 @@ class Questionnaire extends Component {
   }
 
   render() {
-    return (
-      <div className="questionnaireBody">
-        <center>{this.pages()}</center>
-        { (this.props.proposition.propositions === undefined ?
+    console.log(this.props.answeredQuestions)
+    if (this.props.propositions.length === 0) {
+      return (
+        <div className="questionnaireBody">
+          <center>{this.pages()}</center>
           <div className="progress">
             <div className="indeterminate" />
           </div>
-       : <div className="questionBody">
-         <Question />
-         <center>
-           <button id="questionnaireSendButton"className={this.sendButton()} onClick={() => browserHistory.push('/listar_respostas')}>Enviar questionário
-             <i className="material-icons right" id="sendIcon">send</i>
-           </button>
-         </center>
-       </div>
-        )}
-      </div>
-    );
+        </div>
+      );
+    } else {
+      return (
+        <div className="questionnaireBody">
+          <div className="questionBody">
+            <Question />
+            <center>
+              <button id="questionnaireSendButton"className={this.sendButton()} onClick={() => browserHistory.push('/listar_respostas')}>Enviar questionário
+               <i className="material-icons right" id="sendIcon">send</i>
+              </button>
+            </center>
+          </div>
+        </div>
+      );
+    }
   }
 }
 
 Questionnaire.propTypes = {
-  proposition: PropTypes.object,
+  propositions: PropTypes.array,
   getDataForQuestion: PropTypes.func,
   actualQuestionID: PropTypes.number,
   sendID: PropTypes.func,
@@ -96,12 +102,7 @@ Questionnaire.propTypes = {
 };
 
 Questionnaire.defaultProps = {
-  proposition: {
-    questionID: 0,
-    questionTitle: 'Question Title',
-    questionSubTitle: 'Question SubTitle',
-    questionDescription: 'Question Description',
-  },
+  propositions: [],
   getDataForQuestion() {},
   actualQuestionID: 0,
   sendID() {},
@@ -111,7 +112,7 @@ Questionnaire.defaultProps = {
 function mapStateToProps(state) {
   return {
     answeredQuestions: state.answeredQuestions,
-    proposition: state.proposition,
+    propositions: state.propositions,
     actualQuestionID: state.actualQuestionID,
   };
 }

@@ -31,11 +31,11 @@ class Question extends Component {
     clearInterval(this.timerID);
   }
 
-  verifyAnswerInAnsweredQuestions(questions, answerID, answerValue) {
+  verifyAnswerInAnsweredQuestions(questions, answerID, answerValue, propositionID) {
     const MAX_INDEX_QUESTION_ARRAY = 9;
     const NEXT_QUESTION = 1;
     const answer = {
-      answerID,
+      answerID: propositionID,
       answer: answerValue,
     };
 
@@ -59,12 +59,14 @@ class Question extends Component {
 
   changeStatusOfButton(answeredQuestionID, answered) {
     const answeredID = answeredQuestionID;
+    const YES = 1;
+    const NO = -1;
     if (answered[answeredID].answerID === (this.props.actualQuestionID + 1)) {
-      if (answered[answeredID].answer === 'SIM') {
+      if (answered[answeredID].answer === YES) {
         this.setState({ answerYes: true });
         this.setState({ answerNo: false });
         this.setState({ answerAbstain: false });
-      } else if (answered[answeredID].answer === 'NÃO') {
+      } else if (answered[answeredID].answer === NO) {
         this.setState({ answerYes: false });
         this.setState({ answerNo: true });
         this.setState({ answerAbstain: false });
@@ -85,7 +87,11 @@ class Question extends Component {
   render() {
     const questionID = this.props.actualQuestionID;
     const propositions = this.props.propositions;
+    const propositionID = this.props.propositions[questionID].id;
     const actionID = questionID;
+    const YES = 1;
+    const NO = -1;
+    const ABSTAIN = 0;
 
     return (
       <div className="card" id="questionCard">
@@ -100,19 +106,19 @@ class Question extends Component {
             </div>
             <ul id="questionButtonsPanel">
               <li id="questionButtonsPanelFirstButton">
-                <a id="yesButton" className={Question.setButton(this.state.answerYes)} onClick={() => this.verifyAnswerInAnsweredQuestions(this.props.answeredQuestions, actionID, 'SIM')}>
+                <a id="yesButton" className={Question.setButton(this.state.answerYes)} onClick={() => this.verifyAnswerInAnsweredQuestions(this.props.answeredQuestions, actionID, YES, propositionID)}>
                 Sou a favor
                 </a>
               </li>
               <br />
               <li id="questionButtonsPanelSecondButton">
-                <a id="noButton" className={Question.setButton(this.state.answerNo)} onClick={() => this.verifyAnswerInAnsweredQuestions(this.props.answeredQuestions, actionID, 'NÃO')}>
+                <a id="noButton" className={Question.setButton(this.state.answerNo)} onClick={() => this.verifyAnswerInAnsweredQuestions(this.props.answeredQuestions, actionID, NO, propositionID)}>
                 Sou contra
                 </a>
               </li>
               <br />
               <li id="questionButtonsPanelThirdButton">
-                <a id="abstainButton" className={Question.setButton(this.state.answerAbstain)} onClick={() => this.verifyAnswerInAnsweredQuestions(this.props.answeredQuestions, actionID, 'ME ABSTENHO')}>
+                <a id="abstainButton" className={Question.setButton(this.state.answerAbstain)} onClick={() => this.verifyAnswerInAnsweredQuestions(this.props.answeredQuestions, actionID, ABSTAIN, propositionID)}>
                 Me abstenho
                 </a>
               </li>

@@ -66,7 +66,6 @@ class Questionnaire extends Component {
   }
 
   render() {
-    console.log(this.props.answeredQuestions)
     if (this.props.propositions.length === 0) {
       return (
         <div className="questionnaireBody">

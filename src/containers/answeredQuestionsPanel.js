@@ -11,7 +11,7 @@ class AnsweredQuestionsPanel extends Component {
     const HOST = 'http://localhost:8000/sendAnsweredQuestions/';
     const data = answeredQuestions;
     axios.put(HOST, data);
-    browserHistory.push('ranking');
+    //browserHistory.push('ranking');
   }
 
   constructor(props) {

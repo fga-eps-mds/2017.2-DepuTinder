@@ -19,7 +19,7 @@ class AdminQuestionPage extends Component {
 
   render() {
     return (
-      <div>
+      <div className="adminQuestionPage">
         <div
           id="titleAdminQuestion"
         ><br />
@@ -35,21 +35,21 @@ class AdminQuestionPage extends Component {
                   <form>
                     <div className="container">
                       <div className="row">
-                        <div className="input-field col s12">
+                        <div className="input-field col s12" id="inputTitle">
                           <input id="questionTitle" type="text" data-length="50" />
                           <label htmlFor="questionTitle">Titulo</label>
                         </div>
                       </div>
                       <div className="row">
-                        <div className="input-field col s12">
+                        <div className="input-field col s12" id="inputSubtitle">
                           <input id="questionSubTitle" type="text" data-length="50" />
                           <label htmlFor="questionSubTitle">SubTitulo</label>
                         </div>
                       </div>
                       <div className="row">
-                        <div className="input-field col s12">
-                          <textarea id="adminQuestionButtonsRow" className="materialize-textarea" data-length="120" />
-                          <label htmlFor="adminQuestionButtonsRow">Descrição</label>
+                        <div className="input-field col s12" id="inputDescription">
+                          <textarea id="questionDescription" className="materialize-textarea" data-length="120" />
+                          <label htmlFor="questionDescription">Descrição</label>
                         </div>
                       </div>
                     </div>

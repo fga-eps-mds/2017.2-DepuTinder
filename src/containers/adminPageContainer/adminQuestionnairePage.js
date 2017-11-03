@@ -10,7 +10,7 @@ class AdminQuestionnairePage extends Component {
 
   render() {
     return (
-      <div>
+      <div className="adminQuestionnairePage">
         <div
           id="titleAdminQuestion"
         ><br />

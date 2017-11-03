@@ -15,14 +15,15 @@ class AdminListPropositions extends Component {
   }
 
   renderPropositions() {
-    return this.props.proposition.propositions.map((data) => {
+    return this.props.proposition.map((data) => {
       return (
         <div className="row">
           <div className="col s12 m12">
             <div className="card black darken-1">
               <div className="card-content yellow-text">
-                <div>{data.propositionID}</div>
-                <div>{data.propositionTitle}</div>
+                <div>{data.id}</div>
+                <div>Título: {data.propositionTitle}</div>
+                <div>Descrição: {data.propositionDescription}</div>
               </div>
             </div>
           </div>
@@ -64,18 +65,15 @@ function mapStateToProps(state) {
 
 AdminListPropositions.propTypes = {
   getResults: PropTypes.func,
-  proposition: PropTypes.object,
+  proposition: PropTypes.oneOfType([
+    PropTypes.array,
+    PropTypes.object,
+  ]),
 };
 
 AdminListPropositions.defaultProps = {
   getResults() {},
-  proposition: {
-    propositionID: 0,
-    propositionTitle: 'Proposition Title',
-    propositionSubTitle: 'Proposition SubTitle',
-    propositionDescription: 'Proposition Description',
-    propositionAuthor: 'Proposition Author',
-  },
+  proposition: ([]),
 };
 
 const mapDispatchToProps = (dispatch) => {

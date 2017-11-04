@@ -10,6 +10,7 @@ import AdminPage from './containers/adminPageContainer/adminPage';
 import AdminQuestionPage from './containers/adminPageContainer/adminQuestionPage';
 import AdminQuestionnairePage from './containers/adminPageContainer/adminQuestionnairePage';
 import AdminListPropositions from './containers/adminPageContainer/adminListPropositions';
+import SignUpForm from './containers/signUpForm';
 
 export default (
   <Route>
@@ -23,6 +24,7 @@ export default (
       <Route exact path="/criarQuestao" component={AdminQuestionPage} />
       <Route exact path="/criarQuestionario" component={AdminQuestionnairePage} />
       <Route exact path="/listarProposicoes" component={AdminListPropositions} />
+      <Route exact path="/signUpForm" component={SignUpForm} />
     </Route>
   </Route>
 );

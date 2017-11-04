@@ -25,29 +25,29 @@ class SignUpForm extends Component {
         saveUser(values.name, values.email, values.password))}
       >
         <div style={{ margin: 50 }}>
-          <div className="input-field form-group">
+          <div className="input-field form-group" id="nameInputDiv">
             <label>Nome</label>
             <input type="text" className="form-control" {...name} />
           </div>
 
-          <div className="input-field form-group">
+          <div className="input-field form-group" id="emailInputDiv">
               <label>Email</label>
             <input type="text" className="form-control" {...email} />
           </div>
 
-          <div className="input-field form-group">
+          <div className="input-field form-group" id="passwordInputDiv">
             <label>Senha</label>
             <input type="password" className="form-control" {...password} />
           </div>
 
-          <div className="input-field form-group">
+          <div className="input-field form-group" id="passwordConfirmInputDiv">
             <label>Confirmar Senha</label>
             <input type="password" className="form-control" {...passwordConfirm} />
           </div>
           <center>
             <button
               style={{ backgroundColor: 'black', marginTop: 30 }}
-              className="btn btn-primary"
+              className="btn btn-primary" id="signUpButton"
             >
               Criar Conta
               </button>

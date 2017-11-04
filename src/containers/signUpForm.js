@@ -1,27 +1,30 @@
 import React, { Component } from 'react';
 import { reduxForm } from 'redux-form';
-import { saveUser } from '../actions/saveUser'
+import saveUser from '../actions/saveUser';
 
 // npm install --save redux-form@4.1.3
 
-class SignUpForm2 extends Component {
+class SignUpForm extends Component {
+  handleSubmit(event) {
+    event.preventDefault();
+  }
+
+  test = () => {
+    console.log('test');
+  }
+
   render() {
     const {
       fields: { name, email, password, passwordConfirm },
-      handleSubmit
+      handleSubmit,
     } = this.props;
 
     return (
       <form
-        onSubmit={handleSubmit}
-        style={{ margin: 30 }}
+        onSubmit={handleSubmit((values) =>
+        saveUser(values.name, values.email, values.password))}
       >
-        <div>
-          <center>
-            <h5
-
-            >Cadastro de novo usuário</h5>
-          </center>
+        <div style={{ margin: 50 }}>
           <div className="input-field form-group">
             <label>Nome</label>
             <input type="text" className="form-control" {...name} />
@@ -34,17 +37,16 @@ class SignUpForm2 extends Component {
 
           <div className="input-field form-group">
             <label>Senha</label>
-            <input type="text" className="form-control" {...password} />
+            <input type="password" className="form-control" {...password} />
           </div>
 
           <div className="input-field form-group">
             <label>Confirmar Senha</label>
-            <input type="text" className="form-control" {...passwordConfirm} />
+            <input type="password" className="form-control" {...passwordConfirm} />
           </div>
           <center>
             <button
               style={{ backgroundColor: 'black', marginTop: 30 }}
-              type="submit"
               className="btn btn-primary"
             >
               Criar Conta
@@ -59,4 +61,4 @@ class SignUpForm2 extends Component {
 export default reduxForm({
   form: 'NewSignUpForm',
   fields: ['name', 'email', 'password', 'passwordConfirm'],
-}, null, saveUser)(SignUpForm2);
+}, null, { saveUser })(SignUpForm);

@@ -1,5 +1,5 @@
 import { renderComponent, expect } from '../test_helper';
-import SignUpForm from '../../src/components/signUpForm';
+import SignUpForm from '../../src/containers/signUpForm';
 
 describe('SignUpForm', () => {
 let component;

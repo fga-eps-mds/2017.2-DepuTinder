@@ -6,6 +6,10 @@ import AnsweredQuestionsPanel from './containers/answeredQuestionsPanel';
 import Ranking from './containers/ranking';
 import SearchParlamentary from './containers/searchContainer/searchParlamentary';
 import ShowParlamentary from './containers/showParlamentary';
+import AdminPage from './containers/adminPageContainer/adminPage';
+import AdminQuestionPage from './containers/adminPageContainer/adminQuestionPage';
+import AdminQuestionnairePage from './containers/adminPageContainer/adminQuestionnairePage';
+import AdminListPropositions from './containers/adminPageContainer/adminListPropositions';
 import SignUpForm from './containers/signUpForm';
 
 export default (
@@ -16,6 +20,10 @@ export default (
       <Route exact path="/ranking" component={Ranking} />
       <Route exact path="/search" component={SearchParlamentary} />
       <Route exact path="/showParlamentary" component={ShowParlamentary} />
+      <Route exact path="/admin" component={AdminPage} />
+      <Route exact path="/criarQuestao" component={AdminQuestionPage} />
+      <Route exact path="/criarQuestionario" component={AdminQuestionnairePage} />
+      <Route exact path="/listarProposicoes" component={AdminListPropositions} />
       <Route exact path="/signUpForm" component={SignUpForm} />
     </Route>
   </Route>

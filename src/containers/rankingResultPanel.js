@@ -2,12 +2,19 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Accordion, AccordionItem } from 'react-sanfona';
+import { browserHistory } from 'react-router';
+import { selectParlamentary } from '../actions/selectParlamentary';
 
 class RankingResultPanel extends Component {
 
   constructor(props) {
     super(props);
     this.state = {};
+  }
+
+  showParlamentaryPage(parlamentary) {
+    this.props.selectParlamentary(parlamentary);
+    browserHistory.push('/showParlamentary');
   }
 
   render() {
@@ -30,11 +37,12 @@ class RankingResultPanel extends Component {
               {ranking.candidates.map((candidate) => {
                 return (
                   <div
-                    key={candidate}
+                    key={candidate.fields.name}
                     id="test"
+                    onClick={() => this.showParlamentaryPage(candidate)}
                   >
                     <i className="material-icons small">person</i>
-                    { candidate }
+                    { candidate.fields.name }
                   </div>
                 );
               })}
@@ -56,11 +64,22 @@ function mapStateToProps(state) {
 
 RankingResultPanel.propTypes = {
   rankingData: PropTypes.array,
+  selectParlamentary: PropTypes.func,
 };
 
 RankingResultPanel.defaultProps = {
   rankingData: [],
   getResults() {},
+  selectParlamentary() {},
 };
 
-export default connect(mapStateToProps)(RankingResultPanel);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    selectParlamentary(deputy) {
+      dispatch(selectParlamentary(deputy));
+    },
+  };
+};
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(RankingResultPanel);

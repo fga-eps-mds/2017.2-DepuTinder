@@ -146,6 +146,22 @@
   text-align: center;
 }
 
+#titleAdminQuestion{
+  font-family: "Courier New", Courier, monospace;
+  font-size: 175%;
+  text-align: center;
+  color: var(--main-grey);
+}
+
+#cardQuestionAdmin{
+    transform:translate(50%,0%);
+}
+
+#slide-out{
+  background-color: var(--main-yellow);
+  color: var(--main-yellow);
+}
+
 #userSignUpForm {
   margin: 5%;
   background-color: #ffffff;
@@ -154,4 +170,3 @@
 #signUpButton {
   width: 150;
   background-color: black;
-}

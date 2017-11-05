@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { Accordion, AccordionItem } from 'react-sanfona';
+import { browserHistory } from 'react-router';
+import { selectParlamentary } from '../actions/selectParlamentary';
 
 class RankingResultPanel extends Component {
 
@@ -9,21 +12,45 @@ class RankingResultPanel extends Component {
     this.state = {};
   }
 
+  showParlamentaryPage(parlamentary) {
+    this.props.selectParlamentary(parlamentary);
+    browserHistory.push('/showParlamentary');
+  }
+
   render() {
-    const groupID = Number(this.props.groupID);
+    const rankingData = this.props.rankingData;
     return (
-      <div>
-        <ul className="collection with-header">
-          <li className="collection-header"><h4>Match de { this.props.percentage }%</h4></li>
-          {
-            this.props.rankingData[groupID].candidates.map((candidate, i) => {
-              return (
-                <li className="collection-item" key={i}>{ candidate }</li>
-              );
-            })
-          }
-        </ul>
-      </div>
+      <Accordion
+        className="react-sanfona"
+        activeItems={[]}
+      >{
+        rankingData.map((ranking) => {
+          const matchRanking = ranking.groupID;
+          return (
+            <AccordionItem
+              title={`Match ${matchRanking}%`}
+              key={matchRanking}
+              className="react-sanfona-item-body accordion"
+              expandedClassName="accordionBody"
+              titleClassName="accordionTitle"
+            >
+              {ranking.candidates.map((candidate) => {
+                return (
+                  <div
+                    key={candidate.fields.name}
+                    id="test"
+                    onClick={() => this.showParlamentaryPage(candidate)}
+                  >
+                    <i className="material-icons small">person</i>
+                    { candidate.fields.name }
+                  </div>
+                );
+              })}
+            </AccordionItem>
+          );
+        })
+       }
+      </Accordion>
     );
   }
 }
@@ -37,15 +64,22 @@ function mapStateToProps(state) {
 
 RankingResultPanel.propTypes = {
   rankingData: PropTypes.array,
-  percentage: PropTypes.string,
-  groupID: PropTypes.string,
+  selectParlamentary: PropTypes.func,
 };
 
 RankingResultPanel.defaultProps = {
   rankingData: [],
-  groupID: 0,
   getResults() {},
-  percentage: 0,
+  selectParlamentary() {},
 };
 
-export default connect(mapStateToProps)(RankingResultPanel);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    selectParlamentary(deputy) {
+      dispatch(selectParlamentary(deputy));
+    },
+  };
+};
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(RankingResultPanel);

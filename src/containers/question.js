@@ -31,11 +31,11 @@ class Question extends Component {
     clearInterval(this.timerID);
   }
 
-  verifyAnswerInAnsweredQuestions(questions, answerID, answerValue) {
+  verifyAnswerInAnsweredQuestions(questions, answerID, answerValue, propositionID) {
     const MAX_INDEX_QUESTION_ARRAY = 9;
     const NEXT_QUESTION = 1;
     const answer = {
-      answerID,
+      answerID: propositionID,
       answer: answerValue,
     };
 
@@ -51,19 +51,22 @@ class Question extends Component {
   tick() {
     const answered = this.props.answeredQuestions;
 
-    for (let answeredQuestionID = 0; answeredQuestionID < answered.length; answeredQuestionID += 1) {
+    for (let answeredQuestionID = 0; answeredQuestionID < answered.length;
+      answeredQuestionID += 1) {
       answeredQuestionID = this.changeStatusOfButton(answeredQuestionID, answered);
     }
   }
 
   changeStatusOfButton(answeredQuestionID, answered) {
     const answeredID = answeredQuestionID;
+    const YES = 1;
+    const NO = -1;
     if (answered[answeredID].answerID === (this.props.actualQuestionID + 1)) {
-      if (answered[answeredID].answer === 'SIM') {
+      if (answered[answeredID].answer === YES) {
         this.setState({ answerYes: true });
         this.setState({ answerNo: false });
         this.setState({ answerAbstain: false });
-      } else if (answered[answeredID].answer === 'NÃO') {
+      } else if (answered[answeredID].answer === NO) {
         this.setState({ answerYes: false });
         this.setState({ answerNo: true });
         this.setState({ answerAbstain: false });
@@ -83,36 +86,49 @@ class Question extends Component {
 
   render() {
     const questionID = this.props.actualQuestionID;
-    const propositions = this.props.proposition.propositions;
-    const actionID = propositions[questionID].propositionID;
+    const propositions = this.props.propositions;
+    const propositionID = this.props.propositions[questionID].id;
+    const actionID = questionID;
+    const YES = 1;
+    const NO = -1;
+    const ABSTAIN = 0;
 
     return (
-      <div className="card" id="question-card">
-        <div className="card-content yellow accent-3">
+      <div className="card" id="questionCard">
+        <div className="card-content yellow accent-3" id="questionCardContent">
           <center>
-            <h3 className="grey-text text-darken-3"><b>Votação { propositions[questionID].propositionID }</b></h3>
-            <i className="material-icons activator right">help</i>
-            <div className="card-title grey-text text-darken-3" id="question-text">
+            <h3 className="grey-text text-darken-3" id="cardTitle">
+              <b>Votação { propositions[questionID].propositionID }</b>
+            </h3>
+            <i className="material-icons activator right" id="cardHelpIcon">help</i>
+            <div className="card-title grey-text text-darken-3" id="questionText">
               <p>{ propositions[questionID].propositionTitle }</p>
             </div>
-            <ul>
-              <li><a className={Question.setButton(this.state.answerYes)} onClick={() => this.verifyAnswerInAnsweredQuestions(this.props.answeredQuestions, actionID, 'SIM')}>
+            <ul id="questionButtonsPanel">
+              <li id="questionButtonsPanelFirstButton">
+                <a id="yesButton" className={Question.setButton(this.state.answerYes)} onClick={() => this.verifyAnswerInAnsweredQuestions(this.props.answeredQuestions, actionID, YES, propositionID)}>
                 Sou a favor
                 </a>
               </li>
               <br />
-              <li><a className={Question.setButton(this.state.answerNo)} onClick={() => this.verifyAnswerInAnsweredQuestions(this.props.answeredQuestions, actionID, 'NÃO')}>
-                Sou contra</a></li>
+              <li id="questionButtonsPanelSecondButton">
+                <a id="noButton" className={Question.setButton(this.state.answerNo)} onClick={() => this.verifyAnswerInAnsweredQuestions(this.props.answeredQuestions, actionID, NO, propositionID)}>
+                Sou contra
+                </a>
+              </li>
               <br />
-              <li><a className={Question.setButton(this.state.answerAbstain)} onClick={() => this.verifyAnswerInAnsweredQuestions(this.props.answeredQuestions, actionID, 'ME ABSTENHO')}>
-                Me abstenho</a></li>
+              <li id="questionButtonsPanelThirdButton">
+                <a id="abstainButton" className={Question.setButton(this.state.answerAbstain)} onClick={() => this.verifyAnswerInAnsweredQuestions(this.props.answeredQuestions, actionID, ABSTAIN, propositionID)}>
+                Me abstenho
+                </a>
+              </li>
             </ul>
           </center>
         </div>
-        <div className="card-reveal">
-          <span className="card-title grey-text text-darken-4">{ propositions[questionID].propositionTitle }<i className="material-icons right">close</i></span>
-          <p>{ propositions[questionID].propositionDescription }</p>
-          <div className="proposition-author">{ propositions[questionID].propositionAuthor }</div>
+        <div className="card-reveal" id="cardReveal">
+          <span id="cardRevealPropositionTitle" className="card-title grey-text text-darken-4">{ propositions[questionID].propositionTitle }<i className="material-icons right">close</i></span>
+          <p id="cardRevealPropositionParagraph">{ propositions[questionID].propositionDescription }</p>
+          <div className="propositionAuthor">{ propositions[questionID].propositionAuthor }</div>
         </div>
       </div>
     );
@@ -121,7 +137,7 @@ class Question extends Component {
 
 Question.propTypes = {
   actualQuestionID: PropTypes.number,
-  proposition: PropTypes.object,
+  propositions: PropTypes.array,
   sendAnswer: PropTypes.func,
   answeredQuestions: PropTypes.array,
   sendID: PropTypes.func,
@@ -129,13 +145,7 @@ Question.propTypes = {
 
 Question.defaultProps = {
   actualQuestionID: 0,
-  proposition: {
-    propositionID: 0,
-    propositionTitle: 'Proposition Title',
-    propositionSubTitle: 'Proposition SubTitle',
-    propositionDescription: 'Proposition Description',
-    propositionAuthor: 'Proposition Author',
-  },
+  propositions: [],
   sendAnswer() {},
   answeredQuestions: [],
   sendID() {},
@@ -144,7 +154,7 @@ Question.defaultProps = {
 function mapStateToProps(state) {
   return {
     answeredQuestions: state.answeredQuestions,
-    proposition: state.proposition,
+    propositions: state.propositions,
     actualQuestionID: state.actualQuestionID,
   };
 }

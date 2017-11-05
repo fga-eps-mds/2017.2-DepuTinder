@@ -2,10 +2,16 @@ engines:
   eslint:
     enabled: true
 
+duplication:
+    enabled: true
+    config:
+      languages:
+      - javascript
+
 ratings:
    paths:
    - "**.js"
 
 exclude_paths:
    - "public/"
-   - "test/test_helper.js"
+   - "test/"

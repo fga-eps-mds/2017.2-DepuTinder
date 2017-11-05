@@ -1,45 +1,73 @@
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { browserHistory } from 'react-router';
 import RankingResultPanel from './rankingResultPanel';
 import { FetchRankingData } from '../actions/fetchRankingData';
 
 class Ranking extends Component {
-
   static renderRankingPanel() {
     return (
-      <div>
-        <RankingResultPanel percentage="90" groupID="0" />
-        <RankingResultPanel percentage="80" groupID="1" />
-        <RankingResultPanel percentage="70" groupID="2" />
-        <RankingResultPanel percentage="60" groupID="3" />
+      <div className="rankingMatches">
+        <RankingResultPanel />
       </div>
     );
   }
+
   constructor(props) {
     super(props);
-    this.state = {
-    };
+    this.state = { countToProgressBar: 0 };
   }
 
   componentWillMount() {
     this.props.getResults();
   }
+
+  componentDidMount() {
+    this.timerID = setInterval(
+      () => this.tick(),
+      500,
+    );
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.timerID);
+  }
+
+  tick() {
+    this.setState({ countToProgressBar: this.state.countToProgressBar + 1 });
+  }
+
   render() {
-    if (this.props.rankingData.length === 4) {
+    const SECONDS_WAITING = 10;
+    const EMPTY = 0;
+    if (Object.keys(this.props.rankingData).length !== EMPTY) {
       return (
-        <div>
-          <h1 className="center">Resultado</h1>
+        <div className="rankingBody">
+          <h1 className="center" id="rankingTitle">Resultado</h1>
           {Ranking.renderRankingPanel()}
         </div>
       );
-    } else {
+    } else if (this.state.countToProgressBar < SECONDS_WAITING) {
       return (
-        <div>
-          <h1 className="center">Resultado</h1>
+        <div className="progress">
+          <div className="indeterminate" />
         </div>
       );
     }
+    return (
+      <div className="rankingBodyLoading">
+        <h2 className="center" id="rankingTitleLoading">
+          Você não respondeu ao questionário, por favor responda.
+        </h2>
+        <a
+          onClick={() => browserHistory.push('/responder')}
+          className="waves-effect waves-light btn black yellow-text text-accent-3"
+          id="mainButton"
+        >Responder Questionário
+        </a>
+      </div>
+    );
   }
 }
 

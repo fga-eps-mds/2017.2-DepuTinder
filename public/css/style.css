@@ -64,7 +64,7 @@
   color: var(--main-grey);
 }
 
-#question-card {
+#questionCard {
   font-size: 80%;
   top: 20%;
   margin: 30px;
@@ -100,13 +100,64 @@
   top: 20%;
 }
 
-#question-text {
+#questionText {
   height: 10vh;
   width: 50vw;
   font-size: 14px;
   font-weight: bold;
 }
 
-#question-text p {
+#questionText p {
   line-height: normal;
+}
+
+.accordion {
+  width: 65vw;
+  margin: auto;
+  border-radius: 20px;
+  background-color: #9e9e9e;
+  color: white;
+}
+
+.accordionBody {
+  background-color: #9e9e9e;
+  color: white;
+  border-radius: 20px;
+  border-bottom: solid;
+}
+
+.accordionTitle{
+  text-align: center;
+  background-color: #424242;
+  color: white;
+  border-bottom: solid;
+  padding: 20px;
+  border-radius: 20px;
+}
+
+#test {
+  text-align: center;
+  font-size: 39px;
+}
+
+.rankingBodyLoading {
+  height: 10vh;
+  width: 100vw;
+  text-align: center;
+}
+
+#titleAdminQuestion{
+  font-family: "Courier New", Courier, monospace;
+  font-size: 175%;
+  text-align: center;
+  color: var(--main-grey);
+}
+
+#cardQuestionAdmin{
+    transform:translate(50%,0%);
+}
+
+#slide-out{
+  background-color: var(--main-yellow);
+  color: var(--main-yellow);
 }

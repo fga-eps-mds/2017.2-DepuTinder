@@ -15,17 +15,19 @@ class ListAnsweredQuestions extends Component {
     const answeredQuestions = this.props.answeredQuestions.sort((a, b) => {
       return a.answerID > b.answerID;
     });
-    const propositions = this.props.propositions.propositions;
+    const propositions = this.props.propositions;
     const questionID = this.props.questionID;
     return (
-      <li>
-        <div className="collapsible-header">
-          <i className="material-icons green-text">verified_user</i>
+      <li id={`answeredQuestionRow${questionID}`}>
+        <div className="collapsible-header" id={`answeredQuestionCollapsibleHeader${questionID}`}>
+          <i className="material-icons green-text" id={`collapsibleRowIcon${questionID}`}>verified_user</i>
           Votação {Number(questionID) + 1}: {propositions[questionID].propositionTitle}
           : { answeredQuestions[questionID].answer }
         </div>
-        <div className="collapsible-body">
-          <span>{propositions[questionID].propositionDescription}</span>
+        <div className="collapsible-body" id={`answeredQuestionCollapsibleBody${questionID}`}>
+          <span id={`answeredQuestionCollapsibleBodySpan${questionID}`}>
+            {propositions[questionID].propositionDescription}
+          </span>
         </div>
       </li>
     );
@@ -34,7 +36,7 @@ class ListAnsweredQuestions extends Component {
 
 ListAnsweredQuestions.propTypes = {
   answeredQuestions: PropTypes.arrayOf(PropTypes.object),
-  propositions: PropTypes.object,
+  propositions: PropTypes.array,
   questionID: PropTypes.string,
 };
 
@@ -56,7 +58,7 @@ ListAnsweredQuestions.defaultProps = {
 function mapStateToProps(state) {
   return {
     answeredQuestions: state.answeredQuestions,
-    propositions: state.proposition,
+    propositions: state.propositions,
   };
 }
 

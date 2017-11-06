@@ -1,8 +1,15 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import axios from 'axios';
 
 class SignIn extends Component {
+
+  static sendLoginData(email, password) {
+    const data = { userEmail: email, userPassword: password };
+    const HOST = 'http://localhost:8000/login/';
+    axios.post(HOST, data);
+  }
 
   constructor(props) {
     super(props);
@@ -65,7 +72,7 @@ class SignIn extends Component {
               <a
                 className="waves-effect waves-light btn black yellow-text text-accent-3"
                 id="loginButton"
-                onClick={() => <h1>a</h1>}
+                onClick={() => SignIn.sendLoginData(this.state.email, this.state.password)}
               >Login
               </a>
             </center>

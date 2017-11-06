@@ -7,12 +7,10 @@ export default function (state = [], action) {
         return [
           parlamentary.parlamentaryName,
           {
-            'fields': {
-              name: parlamentary.parlamentaryName,
-              photoPath: parlamentary.parlamentaryPhotoPath,
-              uf: parlamentary.parlamentaryUF,
-              party: parlamentary.parlamentaryPoliticalParty,
-            },
+            parlamentaryName: parlamentary.parlamentaryName,
+            parlamentaryPhotoPath: parlamentary.parlamentaryPhotoPath,
+            parlamentaryUf: parlamentary.parlamentaryUF,
+            parlamentaryPoliticalParty: parlamentary.parlamentaryPoliticalParty,
           },
         ];
       });

@@ -6,7 +6,17 @@ class SignIn extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = { email: '', password: '' };
+  }
+
+  handleEmailChange(email) {
+    this.setState({ email });
+    console.log(email);
+  }
+
+  handlePasswordChange(password) {
+    this.setState({ password });
+    console.log(password);
   }
 
   render() {
@@ -27,13 +37,19 @@ class SignIn extends Component {
                   <div className="container">
                     <div className="row">
                       <div className="input-field col s12" id="inputEmail">
-                        <input id="userEmail" type="text" data-length="50" />
+                        <input
+                          id="userEmail" type="text" data-length="50"
+                          onChange={event => this.handleEmailChange(event.target.value)}
+                        />
                         <label htmlFor="userEmail">E-mail</label>
                       </div>
                     </div>
                     <div className="row">
                       <div className="input-field col s12" id="inputPassword">
-                        <input id="userPassword" type="password" data-length="50" />
+                        <input
+                          id="userPassword" type="password" data-length="50"
+                          onChange={event => this.handlePasswordChange(event.target.value)}
+                        />
                         <label htmlFor="userPassword">Senha</label>
                       </div>
                     </div>

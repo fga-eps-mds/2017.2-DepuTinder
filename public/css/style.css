@@ -157,6 +157,17 @@
     transform:translate(50%,0%);
 }
 
+#titleLogIn{
+  font-family: "Courier New", Courier, monospace;
+  font-size: 175%;
+  text-align: center;
+  color: var(--main-grey);
+}
+
+#cardLogIn{
+  transform:translate(50%,0%);
+}
+
 #slide-out{
   background-color: var(--main-yellow);
   color: var(--main-yellow);

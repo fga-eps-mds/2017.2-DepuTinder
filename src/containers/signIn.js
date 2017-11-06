@@ -6,9 +6,15 @@ import axios from 'axios';
 class SignIn extends Component {
 
   static sendLoginData(email, password) {
-    const data = { userEmail: email, userPassword: password };
+    const data = { params: { userEmail: email, userPassword: password } };
     const HOST = 'http://localhost:8000/login/';
-    axios.post(HOST, data);
+    axios.get(HOST, data)
+    .then((response) => {
+      const userData = response.data;
+      console.log(userData);
+    }).catch((error) => {
+      console.log(error);
+    });
   }
 
   constructor(props) {
@@ -18,12 +24,10 @@ class SignIn extends Component {
 
   handleEmailChange(email) {
     this.setState({ email });
-    console.log(email);
   }
 
   handlePasswordChange(password) {
     this.setState({ password });
-    console.log(password);
   }
 
   render() {

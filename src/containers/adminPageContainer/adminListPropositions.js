@@ -15,7 +15,7 @@ class AdminListPropositions extends Component {
   }
 
   renderPropositions() {
-    return this.props.proposition.map((data) => {
+    return this.props.propositions.map((data) => {
       return (
         <div className="row">
           <div className="col s12 m12">
@@ -34,7 +34,7 @@ class AdminListPropositions extends Component {
 
   render() {
     const EMPTY = 0;
-    if (Object.keys(this.props.proposition).length !== EMPTY) {
+    if (Object.keys(this.props.propositions).length !== EMPTY) {
       return (
         <div>{this.renderPropositions()}</div>
       );
@@ -58,14 +58,14 @@ class AdminListPropositions extends Component {
 
 function mapStateToProps(state) {
   return {
-    proposition: state.proposition,
+    propositions: state.propositions,
   };
 }
 
 
 AdminListPropositions.propTypes = {
   getResults: PropTypes.func,
-  proposition: PropTypes.oneOfType([
+  propositions: PropTypes.oneOfType([
     PropTypes.array,
     PropTypes.object,
   ]),
@@ -73,7 +73,7 @@ AdminListPropositions.propTypes = {
 
 AdminListPropositions.defaultProps = {
   getResults() {},
-  proposition: ([]),
+  propositions: ([]),
 };
 
 const mapDispatchToProps = (dispatch) => {

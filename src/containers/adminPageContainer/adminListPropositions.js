@@ -17,14 +17,12 @@ class AdminListPropositions extends Component {
   renderPropositions() {
     return this.props.propositions.map((data) => {
       return (
-        <div className="row">
+        <div className="row" key={data.propositionTitle}>
           <div className="col s12 m12">
-            <div className="card black darken-1">
-              <div className="card-content yellow-text">
-                <div>{data.id}</div>
-                <div>Título: {data.propositionTitle}</div>
-                <div>Descrição: {data.propositionDescription}</div>
-              </div>
+            <div className="card-content yellow-text card black darken-1">
+              <div>{data.id}</div>
+              <div>Título: {data.propositionTitle}</div>
+              <div>Descrição: {data.propositionDescription}</div>
             </div>
           </div>
         </div>

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { browserHistory } from 'react-router';
 import AdminListPropositions from './adminListPropositions';
 import AdminFormQuestion from './adminFormQuestion';
+import AdminRevealCardQuestion from './adminRevealCardQuestion';
 
 class AdminQuestionPage extends Component {
 
@@ -31,16 +32,8 @@ class AdminQuestionPage extends Component {
           <div className="col s6 m6 l6">
             <center>
               <div className="card" id="cardQuestionAdmin">
-                <AdminFormQuestion />e
-                <div className="card-reveal" id="cardReveal">
-                  <span id="cardRevealPropositionTitle" className="card-title grey-text text-darken-4"><i className="material-icons right">close</i></span>
-                  <p id="cardRevealPropositionParagraph">DÚVIDAS</p>
-                  <div className="propositionAuthor">
-                    <br /> 1)O que deve ser escrito nos campos?<br />
-                    <br /> 2)Como selecionar uma proposicao?<br />
-                    <br /> 2)Como salvar uma questao?<br />
-                  </div>
-                </div>
+                <AdminFormQuestion />
+                <AdminRevealCardQuestion />
               </div>
             </center>
           </div>

@@ -1,10 +1,35 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 class AdminFormQuestion extends Component {
 
+  static sendQuestionData(questionTitle, questionSubtitle, questionDescription) {
+    const data = { params: { questionTitle, questionSubtitle, questionDescription } };
+    const HOST = 'http://localhost:8000/question/';
+    axios.get(HOST, data)
+    .then((response) => {
+      const questionData = response.data;
+      console.log(questionData);
+    }).catch((error) => {
+      console.log(error);
+    });
+  }
+
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = { questionTitle: '', questionSubtitle: '', questionDescription: '' };
+  }
+
+  handleTitleChange(questionTitle) {
+    this.setState(questionTitle);
+  }
+
+  handleSubtitleChange(questionSubtitle) {
+    this.setState(questionSubtitle);
+  }
+
+  handleDescriptionChange(questionDescription) {
+    this.setState(questionDescription);
   }
 
   render() {
@@ -16,24 +41,50 @@ class AdminFormQuestion extends Component {
             <div className="container">
               <div className="row">
                 <div className="input-field col s12" id="inputTitle">
-                  <input id="questionTitle" type="text" data-length="50" />
+                  <input
+                    id="questionTitle" type="text" data-length="50"
+                    onChange={event => this.handleTitleChange(event.target.value)}
+                  />
                   <label htmlFor="questionTitle">Titulo</label>
                 </div>
               </div>
               <div className="row">
                 <div className="input-field col s12" id="inputSubtitle">
-                  <input id="questionSubTitle" type="text" data-length="50" />
+                  <input
+                    id="questionSubTitle" type="text" data-length="50"
+                    onChange={event => this.handleSubtitleChange(event.target.value)}
+                  />
                   <label htmlFor="questionSubTitle">SubTitulo</label>
                 </div>
               </div>
               <div className="row">
                 <div className="input-field col s12" id="inputDescription">
-                  <textarea id="questionDescription" className="materialize-textarea" data-length="120" />
+                  <textarea
+                    id="questionDescription" className="materialize-textarea" data-length="120"
+                    onChange={event => this.handleDescriptionChange(event.target.value)}
+                  />
                   <label htmlFor="questionDescription">Descrição</label>
                 </div>
               </div>
             </div>
           </form>
+        </div>
+        <div className="row" id="adminQuestionButtonsRow">
+          <div className="col s6 m6 l6" id="sendButtonCollumn">
+            <center>
+              <a
+                className="waves-effect waves-light btn black yellow-text text-accent-3"
+                id="sendButton"
+                onClick={() => AdminFormQuestion.sendQuestionData(
+                  this.state.questionTitle,
+                  this.state.questionSubtitle,
+                  this.state.questionDescription,
+                )}
+              >
+                <i className="material-icons right" id="sendButtonIcon">send</i>Enviar
+              </a>
+            </center>
+          </div>
         </div>
       </div>
     );

@@ -34,7 +34,9 @@ class AdminListPropositions extends Component {
     const EMPTY = 0;
     if (Object.keys(this.props.propositions).length !== EMPTY) {
       return (
-        <div>{this.renderPropositions()}</div>
+        <div>
+          {this.renderPropositions()}
+        </div>
       );
     } else {
       return (

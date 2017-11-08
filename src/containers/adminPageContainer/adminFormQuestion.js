@@ -4,33 +4,37 @@ class AdminFormQuestion extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { questionTitle: '', questionSubtitle: '', questionDescription: '' };
+    this.state = { title: '', subtitle: '', description: '' };
+
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleTitleChange(questionTitle) {
-    this.setState(questionTitle);
+  handleChange(event) {
+    this.setState({ title: event.target.value });
   }
 
-  handleSubtitleChange(questionSubtitle) {
-    this.setState(questionSubtitle);
-  }
-
-  handleDescriptionChange(questionDescription) {
-    this.setState(questionDescription);
+  handleSubmit(event) {
+    console.log(this.state.title);
+    event.preventDefault();
   }
 
   render() {
+    console.log(this.state.title);
     return (
       <div>
         <div className="card-content white accent-3">
           <i className="material-icons activator right" id="cardHelpIcon">help</i>
-          <form>
+          <form onSubmit={this.handleSubmit}>
             <div className="container">
               <div className="row">
                 <div className="input-field col s12" id="inputTitle">
                   <input
-                    id="questionTitle" type="text" data-length="50"
-                    onChange={event => this.handleTitleChange(event.target.value)}
+                    id="questionTitle"
+                    type="text"
+                    value={this.state.title}
+                    onChange={this.handleChange}
+                    data-length="50"
                   />
                   <label htmlFor="questionTitle">Titulo</label>
                 </div>

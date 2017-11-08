@@ -1,19 +1,6 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 
 class AdminFormQuestion extends Component {
-
-  static sendQuestionData(questionTitle, questionSubtitle, questionDescription) {
-    const data = { params: { questionTitle, questionSubtitle, questionDescription } };
-    const HOST = 'http://localhost:8000/question/';
-    axios.get(HOST, data)
-    .then((response) => {
-      const questionData = response.data;
-      console.log(questionData);
-    }).catch((error) => {
-      console.log(error);
-    });
-  }
 
   constructor(props) {
     super(props);
@@ -75,11 +62,6 @@ class AdminFormQuestion extends Component {
               <a
                 className="waves-effect waves-light btn black yellow-text text-accent-3"
                 id="sendButton"
-                onClick={() => AdminFormQuestion.sendQuestionData(
-                  this.state.questionTitle,
-                  this.state.questionSubtitle,
-                  this.state.questionDescription,
-                )}
               >
                 <i className="material-icons right" id="sendButtonIcon">send</i>Enviar
               </a>

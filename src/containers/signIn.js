@@ -2,24 +2,26 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import axios from 'axios';
+import { saveActualUser } from '../actions/saveActualUser';
 
 class SignIn extends Component {
-
-  static sendLoginData(email, password) {
-    const data = { params: { userEmail: email, userPassword: password } };
-    const HOST = 'http://localhost:8000/login/';
-    axios.get(HOST, data)
-    .then((response) => {
-      const userData = response.data;
-      console.log(userData);
-    }).catch((error) => {
-      console.log(error);
-    });
-  }
 
   constructor(props) {
     super(props);
     this.state = { email: '', password: '' };
+  }
+
+  sendLoginData(email, password) {
+    const data = { params: { userEmail: email, userPassword: password } };
+    const HOST = 'http://localhost:8000/login/';
+
+    axios.get(HOST, data)
+    .then((response) => {
+      this.props.saveUser(
+        response.data.userEmail,
+        response.data.userName,
+        response.data.userImage);
+    });
   }
 
   handleEmailChange(email) {
@@ -76,7 +78,7 @@ class SignIn extends Component {
               <a
                 className="waves-effect waves-light btn black yellow-text text-accent-3"
                 id="loginButton"
-                onClick={() => SignIn.sendLoginData(this.state.email, this.state.password)}
+                onClick={() => this.sendLoginData(this.state.email, this.state.password)}
               >Login
               </a>
             </center>
@@ -89,7 +91,17 @@ class SignIn extends Component {
 
 function mapStateToProps(state) {
   return {
+    actualUser: state.actualUser,
   };
 }
 
-export default connect(mapStateToProps)(SignIn);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    saveUser(email, name, image) {
+      dispatch(saveActualUser(email, name, image));
+    },
+  };
+};
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignIn);

@@ -1,25 +1,30 @@
 import React, { Component } from 'react';
+import saveQuestion from '../../actions/saveQuestion';
 
 class AdminFormQuestion extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { title: '', subtitle: '', description: '' };
+    this.state = { title: '', subtitle: '', description: '', author: '' };
 
-    this.handleChange = this.handleChange.bind(this);
+    this.handleTitleChange = this.handleTitleChange.bind(this);
+    this.handleSubTitleChange = this.handleSubTitleChange.bind(this);
+    this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
+    this.handleAuthorChange = this.handleAuthorChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleChange(event) {
-    const target = event.target;
-    const value = target.id;
-    if (value === 'questionTitle') {
-      this.setState({ title: target.value });
-    } else if (value === 'questionSubTitle') {
-      this.setState({ subtitle: target.value });
-    } else if (value === 'questionDescription') {
-      this.setState({ description: target.value });
-    }
+  handleTitleChange(event) {
+    this.setState({ title: event.target.value });
+  }
+  handleSubTitleChange(event) {
+    this.setState({ subtitle: event.target.value });
+  }
+  handleDescriptionChange(event) {
+    this.setState({ description: event.target.value });
+  }
+  handleAuthorChange(event) {
+    this.setState({ author: event.target.value });
   }
 
   handleSubmit() {
@@ -39,7 +44,7 @@ class AdminFormQuestion extends Component {
                     id="questionTitle"
                     type="text"
                     value={this.state.title}
-                    onChange={this.handleChange}
+                    onChange={this.handleTitleChange}
                     data-length="50"
                   />
                   <label htmlFor="questionTitle">Titulo</label>
@@ -51,10 +56,22 @@ class AdminFormQuestion extends Component {
                     id="questionSubTitle"
                     type="text"
                     value={this.state.subtitle}
-                    onChange={this.handleChange}
+                    onChange={this.handleSubTitleChange}
                     data-length="50"
                   />
                   <label htmlFor="questionSubTitle">SubTitulo</label>
+                </div>
+                <div className="row">
+                  <div className="input-field col s12" id="inputSubtitle">
+                    <input
+                      id="questionAuthor"
+                      type="text"
+                      value={this.state.author}
+                      onChange={this.handleAuthorChange}
+                      data-length="50"
+                    />
+                    <label htmlFor="questionAuthor">Autor(a)</label>
+                  </div>
                 </div>
               </div>
               <div className="row">
@@ -64,14 +81,20 @@ class AdminFormQuestion extends Component {
                     className="materialize-textarea"
                     type="text"
                     value={this.state.description}
-                    onChange={this.handleChange}
+                    onChange={this.handleDescriptionChange}
                     data-length="120"
                   />
                   <label htmlFor="questionDescription">Descrição</label>
                 </div>
               </div>
             </div>
-            <input type="submit" value="Submit" />
+            <a
+              className="waves-effect waves-light btn black yellow-text text-accent-3"
+              id="saveQuestionButton"
+              onClick={() =>
+                saveQuestion(this.state.title, this.state.subtitle, this.state.description, this.state.author)}
+            >Submit
+           </a>
           </form>
         </div>
       </div>

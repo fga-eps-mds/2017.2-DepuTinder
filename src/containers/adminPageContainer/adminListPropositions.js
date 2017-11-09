@@ -15,16 +15,14 @@ class AdminListPropositions extends Component {
   }
 
   renderPropositions() {
-    return this.props.proposition.map((data) => {
+    return this.props.propositions.map((data) => {
       return (
-        <div className="row">
+        <div className="row" key={data.propositionTitle}>
           <div className="col s12 m12">
-            <div className="card black darken-1">
-              <div className="card-content yellow-text">
-                <div>{data.id}</div>
-                <div>Título: {data.propositionTitle}</div>
-                <div>Descrição: {data.propositionDescription}</div>
-              </div>
+            <div className="card-content yellow-text card black darken-1">
+              <div>{data.id}</div>
+              <div>Título: {data.propositionTitle}</div>
+              <div>Descrição: {data.propositionDescription}</div>
             </div>
           </div>
         </div>
@@ -34,9 +32,11 @@ class AdminListPropositions extends Component {
 
   render() {
     const EMPTY = 0;
-    if (Object.keys(this.props.proposition).length !== EMPTY) {
+    if (Object.keys(this.props.propositions).length !== EMPTY) {
       return (
-        <div>{this.renderPropositions()}</div>
+        <div>
+          {this.renderPropositions()}
+        </div>
       );
     } else {
       return (
@@ -58,14 +58,14 @@ class AdminListPropositions extends Component {
 
 function mapStateToProps(state) {
   return {
-    proposition: state.proposition,
+    propositions: state.propositions,
   };
 }
 
 
 AdminListPropositions.propTypes = {
   getResults: PropTypes.func,
-  proposition: PropTypes.oneOfType([
+  propositions: PropTypes.oneOfType([
     PropTypes.array,
     PropTypes.object,
   ]),
@@ -73,7 +73,7 @@ AdminListPropositions.propTypes = {
 
 AdminListPropositions.defaultProps = {
   getResults() {},
-  proposition: ([]),
+  propositions: ([]),
 };
 
 const mapDispatchToProps = (dispatch) => {

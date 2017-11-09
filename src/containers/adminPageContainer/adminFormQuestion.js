@@ -14,9 +14,11 @@ class AdminFormQuestion extends Component {
     const target = event.target;
     const valor = target.id;
     if (valor === 'questionTitle') {
-      this.setState({ title: event.target.value });
-    } else {
-      this.setState({ subtitle: event.target.value });
+      this.setState({ title: target.value });
+    } else if (valor === 'questionSubTitle') {
+      this.setState({ subtitle: target.value });
+    } else if (valor === 'questionDescription') {
+      this.setState({ description: target.value });
     }
   }
 
@@ -28,6 +30,7 @@ class AdminFormQuestion extends Component {
   render() {
     console.log(this.state.title);
     console.log(this.state.subtitle);
+    console.log(this.state.description);
     return (
       <div>
         <div className="card-content white accent-3">
@@ -61,8 +64,12 @@ class AdminFormQuestion extends Component {
               <div className="row">
                 <div className="input-field col s12" id="inputDescription">
                   <textarea
-                    id="questionDescription" className="materialize-textarea" data-length="120"
-                    onChange={event => this.handleDescriptionChange(event.target.value)}
+                    id="questionDescription"
+                    className="materialize-textarea"
+                    type="text"
+                    value={this.state.description}
+                    onChange={this.handleChange}
+                    data-length="120"
                   />
                   <label htmlFor="questionDescription">Descrição</label>
                 </div>

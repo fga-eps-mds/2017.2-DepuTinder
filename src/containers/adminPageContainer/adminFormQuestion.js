@@ -23,6 +23,7 @@ class AdminFormQuestion extends Component {
   }
 
   handleSubmit(event) {
+    console.log(this.state.title);
     event.preventDefault();
   }
 

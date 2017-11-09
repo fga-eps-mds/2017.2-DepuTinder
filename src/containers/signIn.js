@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import axios from 'axios';
 import { saveActualUser } from '../actions/saveActualUser';
 
 class SignIn extends Component {
@@ -9,19 +8,6 @@ class SignIn extends Component {
   constructor(props) {
     super(props);
     this.state = { email: '', password: '' };
-  }
-
-  sendLoginData(email, password) {
-    const data = { params: { userEmail: email, userPassword: password } };
-    const HOST = 'http://localhost:8000/login/';
-
-    axios.get(HOST, data)
-    .then((response) => {
-      this.props.saveUser(
-        response.data.userEmail,
-        response.data.userName,
-        response.data.userImage);
-    });
   }
 
   handleEmailChange(email) {
@@ -78,7 +64,7 @@ class SignIn extends Component {
               <a
                 className="waves-effect waves-light btn black yellow-text text-accent-3"
                 id="loginButton"
-                onClick={() => this.sendLoginData(this.state.email, this.state.password)}
+                onClick={() => this.props.saveUser(this.state.email, this.state.password)}
               >Login
               </a>
             </center>
@@ -97,8 +83,8 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    saveUser(email, name, image) {
-      dispatch(saveActualUser(email, name, image));
+    saveUser(email, password) {
+      dispatch(saveActualUser(email, password));
     },
   };
 };

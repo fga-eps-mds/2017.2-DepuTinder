@@ -24,26 +24,28 @@ class SignUpForm extends Component {
     this.setState({ [event.target.name]: event.target.value });
   }
 
+  validateFields() {
+    if (this.state.userName === '' ||
+      this.state.userEmail === '') {
+      console.log('ERRO, UM OU MAIS CAMPOS VAZIOS');
+    }
+  }
+
   validatePasswordConfirmation() {
-    if(this.state.userPassword === this.state.userConfirmedPassword && this.state.userPassword !== '') {
-      console.log('SENHAS OK');
+    if(this.state.userPassword === '') {
+      console.log('ERRO, SENHA INVALIDA');
+    } else if (this.state.userPassword !== this.state.userConfirmedPassword ) {
+      console.log('ERRO, SENHAS DIFERENTES');
     } else {
-      console.log('SENHAS DIFERENTES ou VAZIAS');
+      console.log('SENHAS OK');
+      saveUser(this.state.userName, this.state.userEmail, this.state.userPassword);
     }
   }
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit} id="userSignUpForm">
-        <div
-          className="container"
-          style={{
-            flexDirection: 'row',
-            alignItems: 'center',
-            justifyContent: 'center',
-            marginTop: 50,
-          }}
-        >
+      <form onSubmit={this.handleSubmit} >
+        <div className="container" style={{ marginTop: 50 }} >
 
           <FormInput
             inputDivID="nameInputDiv"
@@ -85,8 +87,8 @@ class SignUpForm extends Component {
                 style={{ width: 150, backgroundColor: 'black', marginTop: 30 }}
                 id="signUpButton"
                 onClick={() => {
+                  this.validateFields();
                   this.validatePasswordConfirmation();
-                  saveUser(this.state.userName, this.state.userEmail, this.state.userPassword);
                 }}
               >
                 Criar conta

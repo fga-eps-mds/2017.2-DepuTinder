@@ -28,7 +28,7 @@ class SignUpForm extends Component {
     if(this.state.userPassword === this.state.userConfirmedPassword && this.state.userPassword !== '') {
       console.log('SENHAS OK');
     } else {
-      console.log('SENHAS DIFERENTES');
+      console.log('SENHAS DIFERENTES ou VAZIAS');
     }
   }
 
@@ -79,19 +79,18 @@ class SignUpForm extends Component {
 
           <div className="form-group" id="buttonGroup">
             <center>
-              <button
+              <a
                 className="btn btn-primary btn-lg"
                 type="submit"
                 style={{ width: 150, backgroundColor: 'black', marginTop: 30 }}
                 id="signUpButton"
                 onClick={() => {
-                  browserHistory.push('/');
                   this.validatePasswordConfirmation();
                   saveUser(this.state.userName, this.state.userEmail, this.state.userPassword);
                 }}
               >
                 Criar conta
-              </button>
+              </a>
             </center>
           </div>
         </div>

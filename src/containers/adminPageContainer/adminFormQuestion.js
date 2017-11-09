@@ -71,19 +71,8 @@ class AdminFormQuestion extends Component {
                 </div>
               </div>
             </div>
+            <input type="submit" value="Submit" />
           </form>
-        </div>
-        <div className="row" id="adminQuestionButtonsRow">
-          <div className="col s6 m6 l6" id="sendButtonCollumn">
-            <center>
-              <a
-                className="waves-effect waves-light btn black yellow-text text-accent-3"
-                id="sendButton"
-              >
-                <i className="material-icons right" id="sendButtonIcon">send</i>Enviar
-              </a>
-            </center>
-          </div>
         </div>
       </div>
     );

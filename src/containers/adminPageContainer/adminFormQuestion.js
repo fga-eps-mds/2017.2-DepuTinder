@@ -11,7 +11,13 @@ class AdminFormQuestion extends Component {
   }
 
   handleChange(event) {
-    this.setState({ title: event.target.value });
+    const target = event.target;
+    const valor = target.id;
+    if (valor === 'questionTitle') {
+      this.setState({ title: event.target.value });
+    } else {
+      this.setState({ subtitle: event.target.value });
+    }
   }
 
   handleSubmit(event) {
@@ -21,6 +27,7 @@ class AdminFormQuestion extends Component {
 
   render() {
     console.log(this.state.title);
+    console.log(this.state.subtitle);
     return (
       <div>
         <div className="card-content white accent-3">
@@ -42,8 +49,11 @@ class AdminFormQuestion extends Component {
               <div className="row">
                 <div className="input-field col s12" id="inputSubtitle">
                   <input
-                    id="questionSubTitle" type="text" data-length="50"
-                    onChange={event => this.handleSubtitleChange(event.target.value)}
+                    id="questionSubTitle"
+                    type="text"
+                    value={this.state.subtitle}
+                    onChange={this.handleChange}
+                    data-length="50"
                   />
                   <label htmlFor="questionSubTitle">SubTitulo</label>
                 </div>

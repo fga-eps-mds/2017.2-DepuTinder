@@ -12,18 +12,18 @@ class AdminFormQuestion extends Component {
 
   handleChange(event) {
     const target = event.target;
-    const valor = target.id;
-    if (valor === 'questionTitle') {
+    const value = target.id;
+    if (value === 'questionTitle') {
       this.setState({ title: target.value });
-    } else if (valor === 'questionSubTitle') {
+    } else if (value === 'questionSubTitle') {
       this.setState({ subtitle: target.value });
-    } else if (valor === 'questionDescription') {
+    } else if (value === 'questionDescription') {
       this.setState({ description: target.value });
     }
   }
 
-  handleSubmit(event) {
-    event.preventDefault();
+  handleSubmit() {
+    this.event.preventDefault();
   }
 
   render() {

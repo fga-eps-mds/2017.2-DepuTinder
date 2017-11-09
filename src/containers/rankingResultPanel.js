@@ -37,12 +37,12 @@ class RankingResultPanel extends Component {
               {ranking.candidates.map((candidate) => {
                 return (
                   <div
-                    key={candidate.fields.name}
+                    key={candidate.id}
                     id="test"
                     onClick={() => this.showParlamentaryPage(candidate)}
                   >
                     <i className="material-icons small">person</i>
-                    { candidate.fields.name }
+                    { candidate.parlamentaryName }
                   </div>
                 );
               })}

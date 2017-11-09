@@ -1,13 +1,10 @@
-import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import { reduxForm } from 'redux-form';
+import { browserHistory } from 'react-router';
+import FormInput from './formInput';
 import saveUser from '../actions/saveUser';
 
-// npm install --save redux-form@4.1.3
-// TODO
-// props validation
-
 class SignUpForm extends Component {
+
   static handleSubmit(event) {
     event.preventDefault();
   }
@@ -15,69 +12,92 @@ class SignUpForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      inputTest: 'test',
+      userName: '',
+      userEmail: '',
+      userPassword: '',
+      userConfirmedPassword: '',
     };
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange(event) {
+    this.setState({ [event.target.name]: event.target.value });
+  }
+
+  validatePasswordConfirmation() {
+    if(this.state.userPassword === this.state.userConfirmedPassword && this.state.userPassword !== '') {
+      console.log('SENHAS OK');
+    } else {
+      console.log('SENHAS DIFERENTES');
+    }
   }
 
   render() {
-    const {
-      fields: { name, email, password, passwordConfirm },
-      handleSubmit,
-    } = this.props;
-
     return (
-      <form
-        onSubmit={handleSubmit((values) => {
-          saveUser(values.name, values.email, values.password);
-        })}
-      >
-        <div style={{ margin: 50 }}>
-          <div className="input-field form-group" id="nameInputDiv">
-            <input type="text" className="form-control" {...name} />
-            <label htmlFor={this.props.values.name}>Nome</label>
-          </div>
+      <form onSubmit={this.handleSubmit} id="userSignUpForm">
+        <div
+          className="container"
+          style={{
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'center',
+            marginTop: 50,
+          }}
+        >
 
-          <div className="input-field form-group" id="emailInputDiv">
-            <input type="email" className="form-control" {...email} />
-            <label htmlFor={this.props.values.email} data-error="Campo inválido">Email</label>
-          </div>
+          <FormInput
+            inputDivID="nameInputDiv"
+            inputID="Nome"
+            type="text"
+            name="userName"
+            value={this.state.userName}
+            handleChange={this.handleChange}
+          />
+          <FormInput
+            inputDivID="emailInputDiv"
+            inputID="Email" type="email"
+            name="userEmail"
+            value={this.state.userEmail}
+            handleChange={this.handleChange}
+          />
+          <FormInput
+            inputDivID="passwordInputDiv"
+            inputID="Senha"
+            type="password"
+            name="userPassword"
+            value={this.state.userPassword}
+            handleChange={this.handleChange}
+          />
+          <FormInput
+            inputDivID="passwordConfirmInputDiv"
+            inputID="Confirmar Senha"
+            type="password"
+            name="userConfirmedPassword"
+            value={this.state.userConfirmedPassword}
+            handleChange={this.handleChange}
+          />
 
-          <div className="input-field form-group" id="passwordInputDiv">
-            <input type="password" className="form-control" {...password} />
-            <label htmlFor={this.props.values.password}>Senha</label>
-          </div>
-
-          <div className="input-field form-group" id="passwordConfirmInputDiv">
-            <input type="password" className="form-control" {...passwordConfirm} />
-            <label htmlFor={this.props.values.passwordConfirm}>Confirmar Senha</label>
-          </div>
-          <center>
-            <button
-              style={{ backgroundColor: 'black', marginTop: 30 }}
-              className="btn btn-primary" id="signUpButton"
-            >
-              Criar Conta
+          <div className="form-group" id="buttonGroup">
+            <center>
+              <button
+                className="btn btn-primary btn-lg"
+                type="submit"
+                style={{ width: 150, backgroundColor: 'black', marginTop: 30 }}
+                id="signUpButton"
+                onClick={() => {
+                  browserHistory.push('/');
+                  this.validatePasswordConfirmation();
+                  saveUser(this.state.userName, this.state.userEmail, this.state.userPassword);
+                }}
+              >
+                Criar conta
               </button>
-          </center>
+            </center>
+          </div>
         </div>
       </form>
     );
   }
 }
 
-SignUpForm.propTypes = {
-  fields: PropTypes.object,
-  values: PropTypes.object,
-  handleSubmit: PropTypes.func,
-};
-
-SignUpForm.defaultProps = {
-  fields: {},
-  handleSubmit() {},
-  values: {},
-};
-
-export default reduxForm({
-  form: 'NewSignUpForm',
-  fields: ['name', 'email', 'password', 'passwordConfirm'],
-}, null, { saveUser })(SignUpForm);
+export default SignUpForm;

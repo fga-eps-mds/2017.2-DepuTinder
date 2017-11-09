@@ -23,14 +23,10 @@ class AdminFormQuestion extends Component {
   }
 
   handleSubmit(event) {
-    console.log(this.state.title);
     event.preventDefault();
   }
 
   render() {
-    console.log(this.state.title);
-    console.log(this.state.subtitle);
-    console.log(this.state.description);
     return (
       <div>
         <div className="card-content white accent-3">

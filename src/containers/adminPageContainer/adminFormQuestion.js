@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { FetchPropositionData } from '../../actions/fetchPropositionData';
 import saveQuestion from '../../actions/saveQuestion';
 
 class AdminFormQuestion extends Component {
@@ -12,6 +15,10 @@ class AdminFormQuestion extends Component {
     this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
     this.handleAuthorChange = this.handleAuthorChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  componentWillMount() {
+    this.props.getResults();
   }
 
   handleTitleChange(event) {
@@ -92,7 +99,11 @@ class AdminFormQuestion extends Component {
               className="waves-effect waves-light btn black yellow-text text-accent-3"
               id="saveQuestionButton"
               onClick={() =>
-                saveQuestion(this.state.title, this.state.subtitle, this.state.description, this.state.author)}
+                saveQuestion(
+                  this.state.title,
+                  this.state.subtitle,
+                  this.state.description,
+                  this.state.author)}
             >Submit
            </a>
           </form>
@@ -102,4 +113,32 @@ class AdminFormQuestion extends Component {
   }
 }
 
-export default AdminFormQuestion;
+function mapStateToProps(state) {
+  return {
+    propositions: state.propositions,
+  };
+}
+
+
+AdminFormQuestion.propTypes = {
+  getResults: PropTypes.func,
+  propositions: PropTypes.oneOfType([
+    PropTypes.array,
+    PropTypes.object,
+  ]),
+};
+
+AdminFormQuestion.defaultProps = {
+  getResults() {},
+  propositions: ([]),
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getResults() {
+      dispatch(FetchPropositionData());
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(AdminFormQuestion);

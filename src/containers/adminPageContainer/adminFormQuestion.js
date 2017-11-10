@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import Autosuggest from 'react-autosuggest';
 import saveQuestion from '../../actions/saveQuestion';
+import { FetchPropositionData } from '../../actions/fetchPropositionData';
 
+/*-------------------------------------------*/
 const propsitions = [
   {
     name: 'Proposicao1',
@@ -12,7 +16,7 @@ const propsitions = [
     year: 2012,
   },
 ];
-
+/*-------------------------------------------*/
 const getSuggestions = (value) => {
   const inputValue = value.trim().toLowerCase();
   const inputLength = inputValue.length;
@@ -21,7 +25,7 @@ const getSuggestions = (value) => {
     lang.name.toLowerCase().slice(0, inputLength) === inputValue,
   );
 };
-
+/*-------------------------------------------*/
 const getSuggestionValue = suggestion => suggestion.name;
 
 const renderSuggestion = suggestion => (
@@ -29,6 +33,7 @@ const renderSuggestion = suggestion => (
     {suggestion.name}
   </div>
 );
+/*-------------------------------------------*/
 
 class AdminFormQuestion extends Component {
 
@@ -43,23 +48,32 @@ class AdminFormQuestion extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  componentWillMount() {
+    this.props.getResults();
+  }
+
+/*-------------------------------------------*/
   onSuggestionsFetchRequested = ({ value }) => {
     this.setState({
       suggestions: getSuggestions(value),
     });
   };
+/*-------------------------------------------*/
 
   onSuggestionsClearRequested = () => {
     this.setState({
       suggestions: [],
     });
   };
+/*-------------------------------------------*/
 
   onChange = (event, { newValue }) => {
     this.setState({
       value: newValue,
     });
   };
+/*-------------------------------------------*/
+
 
   handleTitleChange(event) {
     this.setState({ title: event.target.value });
@@ -76,6 +90,16 @@ class AdminFormQuestion extends Component {
 
   handleSubmit() {
     this.event.preventDefault();
+  }
+
+  renderPropositions() {
+    return this.props.propositions.map((data) => {
+      return (
+        <div className="row" key={data.propositionTitle}>
+          <div>Título: {data.propositionTitle}</div>
+        </div>
+      );
+    });
   }
 
   render() {
@@ -168,4 +192,31 @@ class AdminFormQuestion extends Component {
   }
 }
 
-export default AdminFormQuestion;
+function mapStateToProps(state) {
+  return {
+    propositions: state.propositions,
+  };
+}
+
+AdminFormQuestion.propTypes = {
+  getResults: PropTypes.func,
+  propositions: PropTypes.oneOfType([
+    PropTypes.array,
+    PropTypes.object,
+  ]),
+};
+
+AdminFormQuestion.defaultProps = {
+  getResults() {},
+  propositions: ([]),
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getResults() {
+      dispatch(FetchPropositionData());
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(AdminFormQuestion);

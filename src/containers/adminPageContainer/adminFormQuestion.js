@@ -5,32 +5,22 @@ import Autosuggest from 'react-autosuggest';
 import saveQuestion from '../../actions/saveQuestion';
 import { FetchPropositionData } from '../../actions/fetchPropositionData';
 
+
 /*-------------------------------------------*/
-const propsitions = [
-  {
-    name: 'Proposicao1',
-    year: 1972,
-  },
-  {
-    name: 'Proposicao2',
-    year: 2012,
-  },
-];
-/*-------------------------------------------*/
-const getSuggestions = (value) => {
+const getSuggestions = (value, pp) => {
   const inputValue = value.trim().toLowerCase();
   const inputLength = inputValue.length;
 
-  return inputLength === 0 ? [] : propsitions.filter(lang =>
-    lang.name.toLowerCase().slice(0, inputLength) === inputValue,
-  );
+  return inputLength === 0 ? [] : pp.filter((p) => {
+    return p.propositionTitle.toLowerCase().slice(0, inputLength) === inputValue;
+  });
 };
 /*-------------------------------------------*/
-const getSuggestionValue = suggestion => suggestion.name;
+const getSuggestionValue = suggestion => suggestion.propositionTitle;
 
 const renderSuggestion = suggestion => (
   <div>
-    {suggestion.name}
+    {suggestion.propositionTitle}
   </div>
 );
 /*-------------------------------------------*/
@@ -54,8 +44,9 @@ class AdminFormQuestion extends Component {
 
 /*-------------------------------------------*/
   onSuggestionsFetchRequested = ({ value }) => {
+    const pp = this.props.propositions;
     this.setState({
-      suggestions: getSuggestions(value),
+      suggestions: getSuggestions(value, pp),
     });
   };
 /*-------------------------------------------*/

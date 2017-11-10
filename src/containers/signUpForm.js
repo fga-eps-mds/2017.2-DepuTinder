@@ -32,6 +32,7 @@ class SignUpForm extends Component {
   }
 
   validatePasswordConfirmation() {
+    this.validateFields();
     if(this.state.userPassword === '') {
       console.log('ERRO, SENHA INVALIDA');
     } else if (this.state.userPassword !== this.state.userConfirmedPassword ) {
@@ -39,6 +40,7 @@ class SignUpForm extends Component {
     } else {
       console.log('SENHAS OK');
       saveUser(this.state.userName, this.state.userEmail, this.state.userPassword);
+      browserHistory.push('/signUpSuccessful');
     }
   }
 
@@ -84,10 +86,9 @@ class SignUpForm extends Component {
               <a
                 className="btn btn-primary btn-lg"
                 type="submit"
-                style={{ width: 150, backgroundColor: 'black', marginTop: 30 }}
+                style={{ backgroundColor: 'black', marginTop: 30 }}
                 id="signUpButton"
                 onClick={() => {
-                  this.validateFields();
                   this.validatePasswordConfirmation();
                 }}
               >

@@ -2,11 +2,18 @@ import React, { Component } from 'react';
 import { browserHistory } from 'react-router';
 import FormInput from './formInput';
 import saveUser from '../actions/saveUser';
+import SignUpSuccessful from '../components/signUpSuccessful';
 
 class SignUpForm extends Component {
 
   static handleSubmit(event) {
     event.preventDefault();
+  }
+
+  static onSignUpSuccess() {
+    return (
+      <SignUpSuccessful />
+    );
   }
 
   constructor(props) {

@@ -11,7 +11,7 @@ import AdminQuestionPage from './containers/adminPageContainer/adminQuestionPage
 import AdminQuestionnairePage from './containers/adminPageContainer/adminQuestionnairePage';
 import AdminListPropositions from './containers/adminPageContainer/adminListPropositions';
 import SignUpForm from './containers/signUpForm';
-import SignUpSuccessful from './components/signUpSuccessful.js'
+import SignUpSuccessful from './components/signUpSuccessful';
 
 export default (
   <Route>

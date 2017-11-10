@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { browserHistory } from 'react-router';
 import FormInput from './formInput';
 import saveUser from '../actions/saveUser';
+import SignUpSuccessful from '../components/signUpSuccessful';
 
 class SignUpForm extends Component {
 
@@ -20,28 +21,51 @@ class SignUpForm extends Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
-  handleChange(event) {
-    this.setState({ [event.target.name]: event.target.value });
+  onSubmitValidation() {
+    const VALID = 1;
+    const NOT_VALID = 0;
+    const fields = this.validateFields();
+    const password = this.validatePasswordConfirmation();
+    if (fields === VALID && password === VALID) {
+      this.onSignUpSuccess();
+    } else if (fields === NOT_VALID) {
+      alert('Preencha todos os campos!');
+    } else if (password === NOT_VALID) {
+      alert('Senha nao confirmada');
+    }
+  }
+
+  onSignUpSuccess() {
+    saveUser(this.state.userName, this.state.userEmail, this.state.userPassword);
+    browserHistory.push('/signUpSuccessful');
+    return (
+      <SignUpSuccessful />
+    );
   }
 
   validateFields() {
     if (this.state.userName === '' ||
-      this.state.userEmail === '') {
+      this.state.userEmail === '' ||
+      this.state.userPassword === '') {
       console.log('ERRO, UM OU MAIS CAMPOS VAZIOS');
+      return 0;
+    } else {
+      return 1;
     }
   }
 
   validatePasswordConfirmation() {
-    this.validateFields();
-    if(this.state.userPassword === '') {
-      console.log('ERRO, SENHA INVALIDA');
-    } else if (this.state.userPassword !== this.state.userConfirmedPassword ) {
+    if (this.state.userPassword !== this.state.userConfirmedPassword) {
       console.log('ERRO, SENHAS DIFERENTES');
+      return 0;
     } else {
       console.log('SENHAS OK');
-      saveUser(this.state.userName, this.state.userEmail, this.state.userPassword);
-      browserHistory.push('/signUpSuccessful');
+      return 1;
     }
+  }
+
+  handleChange(event) {
+    this.setState({ [event.target.name]: event.target.value });
   }
 
   render() {
@@ -89,7 +113,7 @@ class SignUpForm extends Component {
                 style={{ backgroundColor: 'black', marginTop: 30 }}
                 id="signUpButton"
                 onClick={() => {
-                  this.validatePasswordConfirmation();
+                  this.onSubmitValidation();
                 }}
               >
                 Criar conta

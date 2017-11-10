@@ -29,6 +29,10 @@
   background-color: white;
 }
 
+.errorLogin{
+  color: red;
+}
+
 #listAnswedQuestions-title {
   font-family: "Courier New", Courier, monospace;
   font-size: 150%;

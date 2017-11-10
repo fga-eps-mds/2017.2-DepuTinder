@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { browserHistory } from 'react-router';
 import { saveActualUser } from '../actions/saveActualUser';
 
 class SignIn extends Component {
@@ -37,7 +38,7 @@ class SignIn extends Component {
                     <div className="row">
                       <div className="input-field col s12" id="inputEmail">
                         <input
-                          id="userEmail" type="text" data-length="50"
+                          id="userEmail" type="email" data-length="50"
                           onChange={event => this.handleEmailChange(event.target.value)}
                         />
                         <label htmlFor="userEmail">E-mail</label>
@@ -54,6 +55,18 @@ class SignIn extends Component {
                     </div>
                   </div>
                 </form>
+              </div>
+              <div className="errorLogin">
+                <center>
+                  { this.props.actualUser.status === 200 &&
+                    browserHistory.push('/')
+                  }
+                  {
+                    this.props.actualUser.status === undefined &&
+                    Object.keys(this.props.actualUser).length !== 0 &&
+                      <h5>Seu email ou senha esta errado. Tente novamente.</h5>
+                  }
+                </center>
               </div>
             </div>
           </div>
@@ -75,6 +88,16 @@ class SignIn extends Component {
   }
 }
 
+SignIn.propTypes = {
+  actualUser: PropTypes.obj,
+  saveUser: PropTypes.func,
+};
+
+SignIn.defaultProps = {
+  actualUser: {},
+  saveUser() {},
+};
+
 function mapStateToProps(state) {
   return {
     actualUser: state.actualUser,
@@ -88,6 +111,5 @@ const mapDispatchToProps = (dispatch) => {
     },
   };
 };
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignIn);

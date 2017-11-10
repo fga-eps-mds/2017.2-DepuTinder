@@ -8,8 +8,9 @@ class AdminFormQuestion extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { title: '', subtitle: '', description: '', author: '' };
+    this.state = { proposition: '', title: '', subtitle: '', description: '', author: '' };
 
+    this.handlePropositionChange = this.handlePropositionChange.bind(this);
     this.handleTitleChange = this.handleTitleChange.bind(this);
     this.handleSubTitleChange = this.handleSubTitleChange.bind(this);
     this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
@@ -19,6 +20,10 @@ class AdminFormQuestion extends Component {
 
   componentWillMount() {
     this.props.getResults();
+  }
+
+  handlePropositionChange(event) {
+    this.setState({ proposition: event.target.vallue });
   }
 
   handleTitleChange(event) {
@@ -45,6 +50,18 @@ class AdminFormQuestion extends Component {
           <i className="material-icons activator right" id="cardHelpIcon">help</i>
           <form onSubmit={this.handleSubmit}>
             <div className="container">
+              <div className="row">
+                <div className="input-field col s12" id="inputProposition">
+                  <input
+                    id="questionProposition"
+                    type="text"
+                    value={this.state.proposition}
+                    onChange={this.handlePropositionChange}
+                    data-length="50"
+                  />
+                  <label htmlFor="questionProposition">Proposição</label>
+                </div>
+              </div>
               <div className="row">
                 <div className="input-field col s12" id="inputTitle">
                   <input

@@ -84,7 +84,7 @@ class AdminFormQuestion extends Component {
       onChange: this.onChange,
     };
     return (
-      <div>
+      <div className="adminFormQuestion">
         <div className="card-content white accent-3">
           <i className="material-icons activator right" id="cardHelpIcon">help</i>
           <form onSubmit={this.handleSubmit}>

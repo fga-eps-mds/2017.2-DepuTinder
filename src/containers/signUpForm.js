@@ -47,7 +47,6 @@ class SignUpForm extends Component {
     if (this.state.userName === '' ||
       this.state.userEmail === '' ||
       this.state.userPassword === '') {
-      console.log('ERRO, UM OU MAIS CAMPOS VAZIOS');
       return 0;
     } else {
       return 1;
@@ -56,10 +55,8 @@ class SignUpForm extends Component {
 
   validatePasswordConfirmation() {
     if (this.state.userPassword !== this.state.userConfirmedPassword) {
-      console.log('ERRO, SENHAS DIFERENTES');
       return 0;
     } else {
-      console.log('SENHAS OK');
       return 1;
     }
   }

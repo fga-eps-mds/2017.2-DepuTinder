@@ -6,6 +6,7 @@ import rankingDataReducer from './rankingDataReducer';
 import parlamentariansDataReducer from './parlamentariansDataReducer';
 import parlamentariansSearchDataReducer from './parlamentariansSearchDataReducer';
 import selectedParlamentary from './selectedParlamentary';
+import actualUser from './actualUserReducer';
 
 
 const rootReducer = combineReducers({
@@ -16,6 +17,7 @@ const rootReducer = combineReducers({
   parlamentariansData: parlamentariansDataReducer,
   parlamentariansSearch: parlamentariansSearchDataReducer,
   selectedParlamentary,
+  actualUser,
 });
 
 export default rootReducer;

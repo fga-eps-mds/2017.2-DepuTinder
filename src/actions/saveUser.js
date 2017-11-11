@@ -8,11 +8,5 @@ export default function saveUser(nameParam, emailParam, passwordParam) {
     name: nameParam,
     email: emailParam,
     password: passwordParam,
-  })
-  .then((response) => {
-    console.log(response);
-  })
-  .catch((error) => {
-    console.log(error);
   });
 }

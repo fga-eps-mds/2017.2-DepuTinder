@@ -5,8 +5,6 @@ import Autosuggest from 'react-autosuggest';
 import saveQuestion from '../../actions/saveQuestion';
 import { FetchPropositionData } from '../../actions/fetchPropositionData';
 
-
-/*-------------------------------------------*/
 const getSuggestions = (value, pp) => {
   const inputValue = value.trim().toLowerCase();
   const inputLength = inputValue.length;
@@ -15,7 +13,7 @@ const getSuggestions = (value, pp) => {
     return p.propositionTitle.toLowerCase().slice(0, inputLength) === inputValue;
   });
 };
-/*-------------------------------------------*/
+
 const getSuggestionValue = suggestion => suggestion.propositionTitle;
 
 const renderSuggestion = suggestion => (
@@ -23,13 +21,13 @@ const renderSuggestion = suggestion => (
     {suggestion.propositionTitle}
   </div>
 );
-/*-------------------------------------------*/
 
 class AdminFormQuestion extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { title: '', subtitle: '', description: '', author: '', value: '', suggestions: [] };
+    this.state = {
+      title: '', subtitle: '', description: '', author: '', value: '', suggestions: [] };
 
     this.handleTitleChange = this.handleTitleChange.bind(this);
     this.handleSubTitleChange = this.handleSubTitleChange.bind(this);
@@ -42,29 +40,24 @@ class AdminFormQuestion extends Component {
     this.props.getResults();
   }
 
-/*-------------------------------------------*/
   onSuggestionsFetchRequested = ({ value }) => {
     const pp = this.props.propositions;
     this.setState({
       suggestions: getSuggestions(value, pp),
     });
   };
-/*-------------------------------------------*/
 
   onSuggestionsClearRequested = () => {
     this.setState({
       suggestions: [],
     });
   };
-/*-------------------------------------------*/
 
   onChange = (event, { newValue }) => {
     this.setState({
       value: newValue,
     });
   };
-/*-------------------------------------------*/
-
 
   handleTitleChange(event) {
     this.setState({ title: event.target.value });
@@ -78,20 +71,10 @@ class AdminFormQuestion extends Component {
   handleAuthorChange(event) {
     this.setState({ author: event.target.value });
   }
-
   handleSubmit() {
     this.event.preventDefault();
   }
 
-  renderPropositions() {
-    return this.props.propositions.map((data) => {
-      return (
-        <div className="row" key={data.propositionTitle}>
-          <div>Título: {data.propositionTitle}</div>
-        </div>
-      );
-    });
-  }
 
   render() {
     const { value, suggestions } = this.state;
@@ -115,6 +98,7 @@ class AdminFormQuestion extends Component {
                     getSuggestionValue={getSuggestionValue}
                     renderSuggestion={renderSuggestion}
                     inputProps={inputProps}
+                    onChange={this.props.propositions.id}
                   />
                 </div>
               </div>
@@ -173,7 +157,11 @@ class AdminFormQuestion extends Component {
               id="saveQuestionButton"
               onClick={() =>
                 saveQuestion(
-                  this.state.title, this.state.subtitle, this.state.description, this.state.author)}
+                  this.props.propositions.id,
+                  this.state.title,
+                  this.state.subtitle,
+                  this.state.description,
+                  this.state.author)}
             >Submit
            </a>
           </form>

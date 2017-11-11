@@ -7,6 +7,7 @@ import rankingDataReducer from './rankingDataReducer';
 import parlamentariansDataReducer from './parlamentariansDataReducer';
 import parlamentariansSearchDataReducer from './parlamentariansSearchDataReducer';
 import selectedParlamentary from './selectedParlamentary';
+import actualUser from './actualUserReducer';
 
 const rootReducer = combineReducers({
   answeredQuestions: answeredQuestionReducer,
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
   parlamentariansSearch: parlamentariansSearchDataReducer,
   selectedParlamentary,
   form: formReducer,
+  actualUser,
 });
 
 export default rootReducer;

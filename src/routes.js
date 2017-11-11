@@ -12,6 +12,7 @@ import AdminQuestionnairePage from './containers/adminPageContainer/adminQuestio
 import AdminListPropositions from './containers/adminPageContainer/adminListPropositions';
 import SignUpForm from './containers/signUpForm';
 import SignUpSuccessful from './components/signUpSuccessful';
+import SignIn from './containers/signIn';
 
 export default (
   <Route>
@@ -27,6 +28,7 @@ export default (
       <Route exact path="/listarProposicoes" component={AdminListPropositions} />
       <Route exact path="/signUpForm" component={SignUpForm} />
       <Route exact path="/signUpSuccessful" component={SignUpSuccessful} />
+      <Route exact path="/signIn" component={SignIn} />
     </Route>
   </Route>
 );

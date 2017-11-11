@@ -1,16 +1,34 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { FetchPropositionData } from '../../actions/fetchPropositionData';
+import Autosuggest from 'react-autosuggest';
 import saveQuestion from '../../actions/saveQuestion';
+import { FetchPropositionData } from '../../actions/fetchPropositionData';
+
+const getSuggestions = (value, pp) => {
+  const inputValue = value.trim().toLowerCase();
+  const inputLength = inputValue.length;
+
+  return inputLength === 0 ? [] : pp.filter((p) => {
+    return p.propositionTitle.toLowerCase().slice(0, inputLength) === inputValue;
+  });
+};
+
+const getSuggestionValue = suggestion => suggestion.propositionTitle;
+
+const renderSuggestion = suggestion => (
+  <div>
+    {suggestion.propositionTitle}
+  </div>
+);
 
 class AdminFormQuestion extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { proposition: '', title: '', subtitle: '', description: '', author: '' };
+    this.state = {
+      title: '', subtitle: '', description: '', author: '', value: '', suggestions: [] };
 
-    this.handlePropositionChange = this.handlePropositionChange.bind(this);
     this.handleTitleChange = this.handleTitleChange.bind(this);
     this.handleSubTitleChange = this.handleSubTitleChange.bind(this);
     this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
@@ -22,9 +40,24 @@ class AdminFormQuestion extends Component {
     this.props.getResults();
   }
 
-  handlePropositionChange(event) {
-    this.setState({ proposition: event.target.vallue });
-  }
+  onSuggestionsFetchRequested = ({ value }) => {
+    const pp = this.props.propositions;
+    this.setState({
+      suggestions: getSuggestions(value, pp),
+    });
+  };
+
+  onSuggestionsClearRequested = () => {
+    this.setState({
+      suggestions: [],
+    });
+  };
+
+  onChange = (event, { newValue }) => {
+    this.setState({
+      value: newValue,
+    });
+  };
 
   handleTitleChange(event) {
     this.setState({ title: event.target.value });
@@ -38,12 +71,18 @@ class AdminFormQuestion extends Component {
   handleAuthorChange(event) {
     this.setState({ author: event.target.value });
   }
-
   handleSubmit() {
     this.event.preventDefault();
   }
 
+
   render() {
+    const { value, suggestions } = this.state;
+    const inputProps = {
+      placeholder: 'Proposicao',
+      value,
+      onChange: this.onChange,
+    };
     return (
       <div>
         <div className="card-content white accent-3">
@@ -51,15 +90,15 @@ class AdminFormQuestion extends Component {
           <form onSubmit={this.handleSubmit}>
             <div className="container">
               <div className="row">
-                <div className="input-field col s12" id="inputProposition">
-                  <input
-                    id="questionProposition"
-                    type="text"
-                    value={this.state.proposition}
-                    onChange={this.handlePropositionChange}
-                    data-length="50"
+                <div className="input-field col s12" id="autocompleteTitle">
+                  <Autosuggest
+                    suggestions={suggestions}
+                    onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
+                    onSuggestionsClearRequested={this.onSuggestionsClearRequested}
+                    getSuggestionValue={getSuggestionValue}
+                    renderSuggestion={renderSuggestion}
+                    inputProps={inputProps}
                   />
-                  <label htmlFor="questionProposition">Proposição</label>
                 </div>
               </div>
               <div className="row">
@@ -120,7 +159,8 @@ class AdminFormQuestion extends Component {
                   this.state.title,
                   this.state.subtitle,
                   this.state.description,
-                  this.state.author)}
+                  this.state.author,
+                  inputProps.value)}
             >Submit
            </a>
           </form>
@@ -135,7 +175,6 @@ function mapStateToProps(state) {
     propositions: state.propositions,
   };
 }
-
 
 AdminFormQuestion.propTypes = {
   getResults: PropTypes.func,

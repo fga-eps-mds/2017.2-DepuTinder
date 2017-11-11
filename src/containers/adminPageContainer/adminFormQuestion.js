@@ -83,6 +83,7 @@ class AdminFormQuestion extends Component {
       value,
       onChange: this.onChange,
     };
+    console.log(inputProps.value);
     return (
       <div>
         <div className="card-content white accent-3">
@@ -98,7 +99,6 @@ class AdminFormQuestion extends Component {
                     getSuggestionValue={getSuggestionValue}
                     renderSuggestion={renderSuggestion}
                     inputProps={inputProps}
-                    onChange={this.props.propositions.id}
                   />
                 </div>
               </div>
@@ -157,11 +157,11 @@ class AdminFormQuestion extends Component {
               id="saveQuestionButton"
               onClick={() =>
                 saveQuestion(
-                  this.props.propositions.id,
                   this.state.title,
                   this.state.subtitle,
                   this.state.description,
-                  this.state.author)}
+                  this.state.author,
+                  inputProps.value)}
             >Submit
            </a>
           </form>

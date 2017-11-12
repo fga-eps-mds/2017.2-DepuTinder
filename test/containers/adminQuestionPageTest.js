@@ -11,18 +11,6 @@ describe('AdminQuestionPage', () => {
     expect(component).to.have.class('adminQuestionPage');
   });
 
-  it('renders the input title', () => {
-    expect(component.find('#inputTitle')).to.exist;
-  });
-
-  it('renders the input subtitle', () => {
-    expect(component.find('#inputSubtitle')).to.exist;
-  });
-
-  it('renders the input description', () => {
-    expect(component.find('#inputDescription')).to.exist;
-  });
-
   it('renders a card-reveal', () => {
     expect(component.find('#cardReveal')).to.exist;
   });

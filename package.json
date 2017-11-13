@@ -51,6 +51,7 @@
     "nyc": "^11.2.1",
     "prop-types": "^15.5.10",
     "react": "^15.6.1",
+    "react-autosuggest": "^9.3.2",
     "react-dom": "^15.4.0",
     "react-file-uploader": "^0.3.3",
     "react-files": "^2.4.3",

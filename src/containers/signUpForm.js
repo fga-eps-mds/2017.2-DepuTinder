@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { browserHistory } from 'react-router';
+import swal from 'sweetalert';
 import FormInput from './formInput';
 import saveUser from '../actions/saveUser';
 import SignUpSuccessful from '../components/signUpSuccessful';
@@ -29,9 +30,9 @@ class SignUpForm extends Component {
     if (fields === VALID && password === VALID) {
       this.onSignUpSuccess();
     } else if (fields === NOT_VALID) {
-      alert('Preencha todos os campos!');
+      swal('Preencha todos os campos!');
     } else if (password === NOT_VALID) {
-      alert('Senha nao confirmada');
+      swal('Senha nao confirmada');
     }
   }
 

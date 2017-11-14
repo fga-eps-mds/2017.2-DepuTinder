@@ -1,7 +1,16 @@
 import React, { Component } from 'react';
 import { browserHistory } from 'react-router';
+import AdminListQuestions from './adminListQuestions';
 
 class AdminQuestionnairePage extends Component {
+
+  static renderQuestionsList() {
+    return (
+      <div>
+        <AdminListQuestions />
+      </div>
+    );
+  }
 
   constructor(props) {
     super(props);
@@ -23,6 +32,9 @@ class AdminQuestionnairePage extends Component {
               <div className="card white">
                 <div className="card-content black-text">
                   <span className="card-title">Questões Disponíveis</span>
+                  <div>
+                    {AdminQuestionnairePage.renderQuestionsList()}
+                  </div>
                 </div>
               </div>
             </center>

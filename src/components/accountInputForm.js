@@ -1,10 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import FormInput from '../containers/formInput';
 
 const AccountInputForm = (props) => {
-
-  let check = props.nameValue + ", " + props.emailValue + ", " + props.passwordValue + ", " + props.confirmedPasswordValue;
-  console.log(check);
   return (
     <div className="container" style={{ marginTop: 50 }} >
       <FormInput
@@ -41,6 +39,30 @@ const AccountInputForm = (props) => {
       />
     </div>
   );
-}
+};
+
+AccountInputForm.propTypes = {
+  nameInputId: PropTypes.string,
+  emailInputId: PropTypes.string,
+  passwordInputId: PropTypes.string,
+  confirmedPasswordInputId: PropTypes.string,
+  nameValue: PropTypes.string,
+  emailValue: PropTypes.string,
+  passwordValue: PropTypes.string,
+  confirmedPasswordValue: PropTypes.string,
+  handleChange: PropTypes.func,
+};
+
+AccountInputForm.defaultProps = {
+  nameInputId: 'Nome',
+  emailInputId: 'Email',
+  passwordInputId: 'Senha',
+  confirmedPasswordInputId: 'Confirmar Senha',
+  nameValue: '',
+  emailValue: '',
+  passwordValue: '',
+  confirmedPasswordValue: '',
+  handleChange() {},
+};
 
 export default AccountInputForm;

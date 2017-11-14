@@ -26,12 +26,13 @@ class SignUpForm extends Component {
   onSubmitValidation() {
     const VALID = 1;
     const NOT_VALID = 0;
+    const validEmail = this.emailIsValid();
     const fields = this.validateFields();
     const password = this.validatePasswordConfirmation();
-    if (fields === VALID && password === VALID) {
+    if (fields === VALID && password === VALID && validEmail) {
       this.onSignUpSuccess();
-    } else if (fields === NOT_VALID) {
-      swal('Preencha todos os campos!');
+    } else if (fields === NOT_VALID || validEmail === false) {
+      swal('Preencha todos os campos corretamente!');
     } else if (password === NOT_VALID) {
       swal('Senha nao confirmada');
     }
@@ -44,6 +45,18 @@ class SignUpForm extends Component {
     return (
       <SignUpSuccessful />
     );
+  }
+
+  emailIsValid() {
+    // check @ not starting the emailAdress
+    const atSymbol = this.state.userEmail.indexOf('@');
+    if (atSymbol < 1) return false;
+    // check emailAdress to have . and to have at least 2 characters between @ and .
+    const dot = this.state.userEmail.indexOf('.');
+    if (dot <= atSymbol + 2) return false;
+    // check that the dot is not at the end
+    if (dot === this.state.userEmail.length - 1) return false;
+    return true;
   }
 
   validateFields() {

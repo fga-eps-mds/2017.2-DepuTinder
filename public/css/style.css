@@ -176,3 +176,12 @@
   background-color: var(--main-yellow);
   color: var(--main-yellow);
 }
+
+#userSignUpForm {
+  margin: 5%;
+  background-color: #ffffff;
+}
+
+#signUpButton {
+  width: 150;
+  background-color: black;

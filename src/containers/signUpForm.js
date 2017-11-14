@@ -4,6 +4,7 @@ import swal from 'sweetalert';
 import FormInput from './formInput';
 import saveUser from '../actions/saveUser';
 import SignUpSuccessful from '../components/signUpSuccessful';
+import AccountInputForm from '../components/accountInputForm';
 
 class SignUpForm extends Component {
 
@@ -37,7 +38,8 @@ class SignUpForm extends Component {
   }
 
   onSignUpSuccess() {
-    saveUser(this.state.userName, this.state.userEmail, this.state.userPassword);
+    const success = saveUser(this.state.userName, this.state.userEmail, this.state.userPassword);
+    console.log(success);
     browserHistory.push('/signUpSuccessful');
     return (
       <SignUpSuccessful />
@@ -71,35 +73,15 @@ class SignUpForm extends Component {
       <form onSubmit={this.handleSubmit} >
         <div className="container" style={{ marginTop: 50 }} >
 
-          <FormInput
-            inputDivID="nameInputDiv"
-            inputID="Nome"
-            type="text"
-            name="userName"
-            value={this.state.userName}
-            handleChange={this.handleChange}
-          />
-          <FormInput
-            inputDivID="emailInputDiv"
-            inputID="Email" type="email"
-            name="userEmail"
-            value={this.state.userEmail}
-            handleChange={this.handleChange}
-          />
-          <FormInput
-            inputDivID="passwordInputDiv"
-            inputID="Senha"
-            type="password"
-            name="userPassword"
-            value={this.state.userPassword}
-            handleChange={this.handleChange}
-          />
-          <FormInput
-            inputDivID="passwordConfirmInputDiv"
-            inputID="Confirmar Senha"
-            type="password"
-            name="userConfirmedPassword"
-            value={this.state.userConfirmedPassword}
+          <AccountInputForm
+            nameInputId="Nome"
+            emailInputId="Email"
+            passwordInputId="Senha"
+            confirmedPasswordInputId="Confirmar Senha"
+            nameValue={this.state.userName}
+            emailValue={this.state.userEmail}
+            passwordValue={this.state.userPassword}
+            confirmedPasswordValue={this.state.userConfirmedPassword}
             handleChange={this.handleChange}
           />
 

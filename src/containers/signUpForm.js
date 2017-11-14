@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { browserHistory } from 'react-router';
 import swal from 'sweetalert';
-import FormInput from './formInput';
 import saveUser from '../actions/saveUser';
 import SignUpSuccessful from '../components/signUpSuccessful';
 import AccountInputForm from '../components/accountInputForm';
@@ -39,8 +38,7 @@ class SignUpForm extends Component {
   }
 
   onSignUpSuccess() {
-    const success = saveUser(this.state.userName, this.state.userEmail, this.state.userPassword);
-    console.log(success);
+    saveUser(this.state.userName, this.state.userEmail, this.state.userPassword);
     browserHistory.push('/signUpSuccessful');
     return (
       <SignUpSuccessful />

@@ -1,5 +1,4 @@
 import { combineReducers } from 'redux';
-import { reducer as formReducer } from 'redux-form';
 import answeredQuestionReducer from './answeredQuestionReducer';
 import propositionDataReducer from './propositionDataReducer';
 import actualQuestionIDReducer from './actualQuestionIDReducer';
@@ -17,7 +16,6 @@ const rootReducer = combineReducers({
   parlamentariansData: parlamentariansDataReducer,
   parlamentariansSearch: parlamentariansSearchDataReducer,
   selectedParlamentary,
-  form: formReducer,
   actualUser,
 });
 

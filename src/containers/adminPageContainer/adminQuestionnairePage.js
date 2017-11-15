@@ -27,7 +27,10 @@ class AdminQuestionnairePage extends Component {
         </div>
         <br />
         <div className="row" id="AdminQuestionnaireCardsRow">
-          <div className="col s12 m6">
+          <div
+            className="col s12 m6"
+            id="listAdminQuestions"
+          >
             <center>
               <div className="card white">
                 <div className="card-content black-text">

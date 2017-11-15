@@ -19,7 +19,7 @@ class AdminListQuestions extends Component {
       return (
         <div className="row" key={info.questionTitle}>
           <div className="col s12 m12">
-            <div className="card-content yellow-text card black darken-1">
+            <div className="card-content black-text card yellow darken-1">
               <div>Título: {info.questionTitle}</div>
               <div>Subtítulo: {info.questionSubtitle}</div>
               <div>Descrição: {info.questionDescription}</div>
@@ -66,7 +66,7 @@ AdminListQuestions.propTypes = {
   getResults: PropTypes.func,
   question: PropTypes.oneOfType([
     PropTypes.array,
-    PropTypes.string,
+    PropTypes.object,
   ]),
 };
 

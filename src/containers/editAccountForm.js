@@ -14,12 +14,20 @@ class EditAccountForm extends Component {
       oldUserEmail: '',
       oldUserPassword: '',
       oldUserConfirmedPassword: '',
-      newUserName: '',
-      newUserEmail: '',
-      newUserPassword: '',
-      newUserConfirmedPassword: '',
+      userName: '',
+      userEmail: '',
+      userPassword: '',
+      userConfirmedPassword: '',
     };
     this.handleChange = this.handleChange.bind(this);
+  }
+
+  onSubmitValidation() {
+    console.log('SUBMIT NEW INFO');
+    console.log(this.state.userName);
+    console.log(this.state.userEmail);
+    console.log(this.state.userPassword);
+    console.log(this.state.userConfirmedPassword);
   }
 
   handleChange(event) {
@@ -30,30 +38,31 @@ class EditAccountForm extends Component {
     return (
       <form onSubmit={this.handleSubmit} >
         <div className="container" style={{ marginTop: 50 }} >
+
           <AccountInputForm
             nameInputId="Novo nome"
             emailInputId="Novo email"
-            passwordInputId="Nova senha"
+            passwordInputId="Novo senha"
             confirmedPasswordInputId="Confirmar nova senha"
-            nameValue={this.state.newUserName}
-            emailValue={this.state.newUserEmail}
-            passwordValue={this.state.newUserPassword}
-            confirmedPasswordValue={this.state.newUserConfirmedPassword}
+            nameValue={this.state.userName}
+            emailValue={this.state.userEmail}
+            passwordValue={this.state.userPassword}
+            confirmedPasswordValue={this.state.userConfirmedPassword}
             handleChange={this.handleChange}
           />
-        </div>
-        <div>
-          <center>
-            <a
-              className="btn btn-primary btn-lg"
-              type="submit"
-              style={{ backgroundColor: 'black', marginTop: 30 }}
-              id="editAccountButton"
-              onClick={() => { console.log('SUBMIT NEW INFO'); }}
-            >
-              Editar conta
-            </a>
-          </center>
+
+          <div className="form-group" id="buttonGroup">
+            <center>
+              <a
+                className="btn btn-primary btn-lg"
+                type="submit"
+                style={{ backgroundColor: 'black', marginTop: 30 }}
+                id="editAccountButton"
+                onClick={() => { this.onSubmitValidation(); }}
+              > Editar conta
+              </a>
+            </center>
+          </div>
         </div>
       </form>
     );

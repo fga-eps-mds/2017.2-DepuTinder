@@ -15,15 +15,14 @@ class AdminListQuestions extends Component {
   }
 
   renderQuestions() {
-    // console.log(this.props.question);
-    return this.props.question.map((data) => {
+    return this.props.question.data.map((info) => {
       return (
-        <div className="row" key={data.id}>
+        <div className="row" key={info.questionTitle}>
           <div className="col s12 m12">
             <div className="card-content yellow-text card black darken-1">
-              <div>Título: {data.questionTitle}</div>
-              <div>Subtítulo: {data.questionSubtitle}</div>
-              <div>Descrição: {data.questionDescription}</div>
+              <div>Título: {info.questionTitle}</div>
+              <div>Subtítulo: {info.questionSubtitle}</div>
+              <div>Descrição: {info.questionDescription}</div>
             </div>
           </div>
         </div>
@@ -32,9 +31,28 @@ class AdminListQuestions extends Component {
   }
 
   render() {
-    return (
-      <div>{this.renderQuestions()}</div>
-    );
+    const EMPTY = 0;
+    if (Object.keys(this.props.question).length !== EMPTY) {
+      return (
+        <div>
+          {this.renderQuestions()}
+        </div>
+      );
+    } else {
+      return (
+        <div className="preloader-wrapper active">
+          <div className="spinner-layer spinner-blue-only">
+            <div className="circle-clipper left">
+              <div className="circle" />
+            </div><div className="gap-patch">
+              <div className="circle" />
+            </div><div className="circle-clipper right">
+              <div className="circle" />
+            </div>
+          </div>
+        </div>
+      );
+    }
   }
 }
 

@@ -9,6 +9,7 @@ import ShowParlamentary from './containers/showParlamentary';
 import AdminPage from './containers/adminPageContainer/adminPage';
 import AdminQuestionPage from './containers/adminPageContainer/adminQuestionPage';
 import AdminQuestionnairePage from './containers/adminPageContainer/adminQuestionnairePage';
+import AdminListQuestions from './containers/adminPageContainer/adminListQuestions';
 
 import SignIn from './containers/signIn';
 
@@ -24,6 +25,7 @@ export default (
       <Route exact path="/criarQuestao" component={AdminQuestionPage} />
       <Route exact path="/criarQuestionario" component={AdminQuestionnairePage} />
       <Route exact path="/signIn" component={SignIn} />
+      <Route exact path="/teste" component={AdminListQuestions} />
     </Route>
   </Route>
 );

@@ -15,9 +15,10 @@ class AdminListQuestions extends Component {
   }
 
   renderQuestions() {
+    // console.log(this.props.question);
     return this.props.question.map((data) => {
       return (
-        <div className="row" key={data.questionTitle}>
+        <div className="row" key={data.id}>
           <div className="col s12 m12">
             <div className="card-content yellow-text card black darken-1">
               <div>Título: {data.questionTitle}</div>
@@ -31,8 +32,6 @@ class AdminListQuestions extends Component {
   }
 
   render() {
-    console.log(this.props.getResults());
-    console.log(this.props.question);
     return (
       <div>{this.renderQuestions()}</div>
     );
@@ -41,19 +40,21 @@ class AdminListQuestions extends Component {
 
 function mapStateToProps(state) {
   return {
-    question: state.question,
+    question: state.questionData,
   };
 }
 
-
 AdminListQuestions.propTypes = {
   getResults: PropTypes.func,
-  question: PropTypes.array,
+  question: PropTypes.oneOfType([
+    PropTypes.array,
+    PropTypes.string,
+  ]),
 };
 
 AdminListQuestions.defaultProps = {
   getResults() {},
-  question: [],
+  question: ([]),
 };
 
 const mapDispatchToProps = (dispatch) => {

@@ -67,6 +67,7 @@ class AdminQuestionnairePage extends Component {
                 <a
                   className="waves-effect waves-light btn black yellow-text text-accent-3"
                   id="propositionButton"
+                  onClick={() => browserHistory.push('/teste')}
                 >
                   <i className="material-icons right" id="sendButtonIcon">send</i>Enviar
               </a>

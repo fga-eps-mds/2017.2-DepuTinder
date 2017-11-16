@@ -18,9 +18,9 @@ const HomePage = () => {
           <br />
           <br />
           <a
-            style={{ marginBottom: 20 }}
+            style={{ marginTop: 100 }}
             onClick={() => browserHistory.push('/responder')}
-            className="waves-effect waves-light btn black yellow-text text-accent-3"
+            className="waves-effect waves-light btn-large"
             id="answerQuestionnaireButton"
           >Responder Questionario
           </a>

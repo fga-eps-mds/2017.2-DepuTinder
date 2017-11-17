@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import AccountInputForm from '../components/accountInputForm';
 
 class EditAccountForm extends Component {
@@ -10,10 +11,10 @@ class EditAccountForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      oldUserName: '',
-      oldUserEmail: '',
-      oldUserPassword: '',
-      oldUserConfirmedPassword: '',
+      oldUserName: this.props.actualUser.data.userName,
+      oldUserEmail: this.props.actualUser.data.userEmail,
+      oldUserPassword: this.props.actualUser.data.userPassword,
+      oldUserConfirmedPassword: this.props.actualUser.data.userConfirmedPassword,
       userName: '',
       userEmail: '',
       userPassword: '',
@@ -42,12 +43,12 @@ class EditAccountForm extends Component {
           <AccountInputForm
             nameInputId="Novo nome"
             emailInputId="Novo email"
-            passwordInputId="Novo senha"
+            passwordInputId="Nova senha"
             confirmedPasswordInputId="Confirmar nova senha"
-            nameValue={this.state.userName}
-            emailValue={this.state.userEmail}
-            passwordValue={this.state.userPassword}
-            confirmedPasswordValue={this.state.userConfirmedPassword}
+            nameValue={this.state.oldUserName}
+            emailValue={this.state.oldUserEmail}
+            passwordValue={this.state.oldUserPassword}
+            confirmedPasswordValue={this.state.oldUserConfirmedPassword}
             handleChange={this.handleChange}
           />
 
@@ -69,4 +70,10 @@ class EditAccountForm extends Component {
   }
 }
 
-export default EditAccountForm;
+function mapStateToProps(state) {
+  return {
+    actualUser: state.actualUser,
+  };
+}
+
+export default connect(mapStateToProps)(EditAccountForm);

@@ -20,7 +20,7 @@ class FormInput extends Component {
           className="validate"
           name={this.props.name}
         />
-        <label htmlFor={this.props.inputID} data-error="Campo Inválido">{this.props.inputID}</label>
+        <label htmlFor={this.props.inputID} data-error="Campo Inválido" className={this.props.labelState}>{this.props.inputID}</label>
       </div>
     );
   }
@@ -33,6 +33,7 @@ FormInput.propTypes = {
   name: PropTypes.string,
   value: PropTypes.string,
   handleChange: PropTypes.func,
+  labelState: PropTypes.string,
 };
 
 FormInput.defaultProps = {
@@ -41,6 +42,7 @@ FormInput.defaultProps = {
   type: 'text',
   name: 'name',
   value: '',
+  labelState: '',
   handleChange() {},
 };
 

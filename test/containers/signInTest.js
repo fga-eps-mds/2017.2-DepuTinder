@@ -18,5 +18,12 @@ describe('SignIn', () => {
   it('render the input userPassword', () => {
     expect(component.find('#inputPassword')).to.exists;
   });
-  
+
+  it('renders the SignInButton', () => {
+      expect(component.find('#loginButton')).to.exists;
+  });
+
+  it ('renders the removeAccountButton', () => {
+    expect(component.find('#removeAccountButton')).to.exists;
+  });
 });

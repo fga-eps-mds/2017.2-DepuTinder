@@ -3,6 +3,9 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import AccountInputForm from '../components/accountInputForm';
 
+// Para renderizar este componente é preciso colocar /editAccountForm no browserHistory do signIn
+// e logar com email:admin@admin.com senha: admin123
+
 class EditAccountForm extends Component {
 
   static handleSubmit(event) {
@@ -12,8 +15,8 @@ class EditAccountForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      oldUserName: this.props.actualUser.data.userName,
-      oldUserEmail: this.props.actualUser.data.userEmail,
+      oldUserName: '',
+      oldUserEmail: '',
       userName: '',
       userEmail: '',
       userPassword: '',
@@ -33,6 +36,7 @@ class EditAccountForm extends Component {
   handleChange(event) {
     this.setState({ [event.target.name]: event.target.value });
   }
+
 
   render() {
     return (

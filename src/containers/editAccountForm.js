@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import AccountInputForm from '../components/accountInputForm';
 
 class EditAccountForm extends Component {
@@ -13,8 +14,6 @@ class EditAccountForm extends Component {
     this.state = {
       oldUserName: this.props.actualUser.data.userName,
       oldUserEmail: this.props.actualUser.data.userEmail,
-      oldUserPassword: this.props.actualUser.data.userPassword,
-      oldUserConfirmedPassword: this.props.actualUser.data.userConfirmedPassword,
       userName: '',
       userEmail: '',
       userPassword: '',
@@ -71,6 +70,14 @@ class EditAccountForm extends Component {
     );
   }
 }
+
+EditAccountForm.propTypes = {
+  actualUser: PropTypes.obj,
+};
+
+EditAccountForm.defaultProps = {
+  actualUser: {},
+};
 
 function mapStateToProps(state) {
   return {

@@ -23,17 +23,17 @@ class SignUpForm extends Component {
   }
 
   onSubmitValidation() {
-    const VALID = 1;
-    const NOT_VALID = 0;
-    const validEmail = this.emailIsValid();
+    const NOT_VALID = false;
     const fields = this.validateFields();
     const password = this.validatePasswordConfirmation();
-    if (fields === VALID && password === VALID && validEmail) {
-      this.onSignUpSuccess();
-    } else if (fields === NOT_VALID || validEmail === false) {
+    if (fields === NOT_VALID) {
       swal('Preencha todos os campos corretamente!');
+      return false;
     } else if (password === NOT_VALID) {
       swal('Senha nao confirmada');
+      return false;
+    } else {
+      return true;
     }
   }
 
@@ -61,17 +61,17 @@ class SignUpForm extends Component {
     if (this.state.userName === '' ||
       this.state.userEmail === '' ||
       this.state.userPassword === '') {
-      return 0;
+      return false;
     } else {
-      return 1;
+      return true;
     }
   }
 
   validatePasswordConfirmation() {
     if (this.state.userPassword !== this.state.userConfirmedPassword) {
-      return 0;
+      return false;
     } else {
-      return 1;
+      return true;
     }
   }
 
@@ -104,7 +104,11 @@ class SignUpForm extends Component {
                 style={{ backgroundColor: 'black', marginTop: 30 }}
                 id="signUpButton"
                 onClick={() => {
-                  this.onSubmitValidation();
+                  if (this.onSubmitValidation() && this.emailIsValid()) {
+                    this.onSignUpSuccess();
+                  } else {
+                    swal('Preencha todos os campos corretamente');
+                  }
                 }}
               >
                 Criar conta

@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { browserHistory } from 'react-router';
 import { saveActualUser } from '../actions/saveActualUser';
+import { removeAccount } from '../actions/removeAccountAction';
+
 
 class SignIn extends Component {
 
@@ -58,9 +59,9 @@ class SignIn extends Component {
               </div>
               <div className="errorLogin">
                 <center>
-                  { this.props.actualUser.status === 200 &&
-                    browserHistory.push('/')
+                  { this.props.actualUser.status === 200
                   }
+
                   {
                     this.props.actualUser.status === undefined &&
                     Object.keys(this.props.actualUser).length !== 0 &&
@@ -81,26 +82,50 @@ class SignIn extends Component {
               >Login
               </a>
             </center>
+
+            <div>
+              <center>
+                <a
+                  className="waves-effect waves-light btn black yellow-text text-accent-3"
+                  id="removeAccountButton"
+                  onClick={() => this.props.removeAccount(this.props.actualUser.data.userEmail)}
+                >Remover Conta
+                </a>
+              </center>
+
+              <div className="removeAccountSuccess">
+                <center>
+                  {this.props.deleteActualUser.status === 200 &&
+                    <h5>Conta exlucida com sucesso!</h5> }
+                </center>
+              </div>
+            </div>
           </div>
         </div>
       </div>
+
     );
   }
 }
 
 SignIn.propTypes = {
   actualUser: PropTypes.obj,
+  deleteActualUser: PropTypes.obj,
   saveUser: PropTypes.func,
+  removeAccount: PropTypes.func,
 };
 
 SignIn.defaultProps = {
   actualUser: {},
+  deleteActualUser: {},
   saveUser() {},
+  removeAccount() {},
 };
 
 function mapStateToProps(state) {
   return {
     actualUser: state.actualUser,
+    deleteActualUser: state.deleteActualUser,
   };
 }
 
@@ -109,7 +134,11 @@ const mapDispatchToProps = (dispatch) => {
     saveUser(email, password) {
       dispatch(saveActualUser(email, password));
     },
+    removeAccount(email) {
+      dispatch(removeAccount(email));
+    },
   };
 };
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignIn);

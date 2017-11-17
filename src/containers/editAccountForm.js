@@ -49,6 +49,8 @@ class EditAccountForm extends Component {
             emailValue={this.state.oldUserEmail}
             passwordValue={this.state.oldUserPassword}
             confirmedPasswordValue={this.state.oldUserConfirmedPassword}
+            nameLabelState="active"
+            emailLabelState="active"
             handleChange={this.handleChange}
           />
 

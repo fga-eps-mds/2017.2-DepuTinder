@@ -12,6 +12,7 @@ const AccountInputForm = (props) => {
         name="userName"
         value={props.nameValue}
         handleChange={props.handleChange}
+        labelState={props.nameLabelState}
       />
       <FormInput
         inputDivID="emailInputDiv"
@@ -20,6 +21,7 @@ const AccountInputForm = (props) => {
         name="userEmail"
         value={props.emailValue}
         handleChange={props.handleChange}
+        labelState={props.emailLabelState}
       />
       <FormInput
         inputDivID="passwordInputDiv"
@@ -28,6 +30,7 @@ const AccountInputForm = (props) => {
         name="userPassword"
         value={props.passwordValue}
         handleChange={props.handleChange}
+        labelState={props.passwordLabelState}
       />
       <FormInput
         inputDivID="passwordConfirmInputDiv"
@@ -36,6 +39,7 @@ const AccountInputForm = (props) => {
         name="userConfirmedPassword"
         value={props.confirmedPasswordValue}
         handleChange={props.handleChange}
+        labelState={props.confirmedPasswordLabelState}
       />
     </div>
   );
@@ -51,6 +55,10 @@ AccountInputForm.propTypes = {
   passwordValue: PropTypes.string,
   confirmedPasswordValue: PropTypes.string,
   handleChange: PropTypes.func,
+  nameLabelState: PropTypes.string,
+  emailLabelState: PropTypes.string,
+  passwordLabelState: PropTypes.string,
+  confirmedPasswordLabelState: PropTypes.string,
 };
 
 AccountInputForm.defaultProps = {
@@ -63,6 +71,10 @@ AccountInputForm.defaultProps = {
   passwordValue: '',
   confirmedPasswordValue: '',
   handleChange() {},
+  nameLabelState: '',
+  emailLabelState: '',
+  passwordLabelState: '',
+  confirmedPasswordLabelState: '',
 };
 
 export default AccountInputForm;

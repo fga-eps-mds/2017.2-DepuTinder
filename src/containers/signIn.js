@@ -6,7 +6,6 @@ import { browserHistory } from 'react-router';
 import { saveActualUser } from '../actions/saveActualUser';
 import { removeAccount } from '../actions/removeAccountAction';
 
-
 class SignIn extends Component {
 
   constructor(props) {
@@ -25,14 +24,28 @@ class SignIn extends Component {
   }
 
   render() {
-    if (this.props.actualUser.status === 200 && this.state.flag) {
+    const USER_LOGIN_SUCCESSFUL = 200;
+    const USER_LOGIN_ERROR = 400;
+    const USER_LOGIN_DONT_EXIST = 500;
+
+    if (this.props.actualUser.status === USER_LOGIN_SUCCESSFUL && this.state.flag) {
       browserHistory.push('/');
-      swal(this.props.actualUser.message);
-    } else if (this.props.actualUser.status === 400 && this.state.flag) {
-      swal(this.props.actualUser.data.message);
-    } else if (this.props.actualUser.status === 500 && this.state.flag) {
-      swal(this.props.actualUser.data.message);
+      swal(this.props.actualUser.message,
+        {
+          icon: 'success',
+        });
+    } else if (this.props.actualUser.status === USER_LOGIN_ERROR && this.state.flag) {
+      swal(this.props.actualUser.data.message,
+        {
+          icon: 'error',
+        });
+    } else if (this.props.actualUser.status === USER_LOGIN_DONT_EXIST && this.state.flag) {
+      swal(this.props.actualUser.data.message,
+        {
+          icon: 'error',
+        });
     }
+
     return (
       <div className="logInPage">
         <div
@@ -113,8 +126,8 @@ class SignIn extends Component {
 SignIn.propTypes = {
   actualUser: PropTypes.obj,
   deleteActualUser: PropTypes.obj,
-  saveUser: PropTypes.func,
-  removeAccount: PropTypes.func,
+  saveUser: PropTypes.func.isRequired,
+  removeAccount: PropTypes.func.isRequired,
 };
 
 SignIn.defaultProps = {

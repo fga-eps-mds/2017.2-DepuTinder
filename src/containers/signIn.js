@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import swal from 'sweetalert';
 import { connect } from 'react-redux';
+import { browserHistory } from 'react-router';
 import { saveActualUser } from '../actions/saveActualUser';
 import { removeAccount } from '../actions/removeAccountAction';
 
@@ -9,18 +11,28 @@ class SignIn extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { email: '', password: '' };
+    this.state = { email: '', password: '', flag: false };
   }
 
   handleEmailChange(email) {
     this.setState({ email });
+    this.setState({ flag: false });
   }
 
   handlePasswordChange(password) {
     this.setState({ password });
+    this.setState({ flag: false });
   }
 
   render() {
+    if (this.props.actualUser.status === 200 && this.state.flag) {
+      browserHistory.push('/');
+      swal(this.props.actualUser.message);
+    } else if (this.props.actualUser.status === 400 && this.state.flag) {
+      swal(this.props.actualUser.data.message);
+    } else if (this.props.actualUser.status === 500 && this.state.flag) {
+      swal(this.props.actualUser.data.message);
+    }
     return (
       <div className="logInPage">
         <div
@@ -57,18 +69,6 @@ class SignIn extends Component {
                   </div>
                 </form>
               </div>
-              <div className="errorLogin">
-                <center>
-                  { this.props.actualUser.status === 200
-                  }
-
-                  {
-                    this.props.actualUser.status === undefined &&
-                    Object.keys(this.props.actualUser).length !== 0 &&
-                      <h5>Seu email ou senha esta errado. Tente novamente.</h5>
-                  }
-                </center>
-              </div>
             </div>
           </div>
         </div>
@@ -78,11 +78,13 @@ class SignIn extends Component {
               <a
                 className="waves-effect waves-light btn black yellow-text text-accent-3"
                 id="loginButton"
-                onClick={() => this.props.saveUser(this.state.email, this.state.password)}
+                onClick={() => {
+                  this.props.saveUser(this.state.email, this.state.password);
+                  this.setState({ flag: true });
+                }}
               >Login
               </a>
             </center>
-
             <div>
               <center>
                 <a

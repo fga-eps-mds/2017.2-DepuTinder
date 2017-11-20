@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import HomePage from './homePage';
-import NavBar from './navBar';
+import Navbar from '../containers/navbar';
 
 class App extends Component {
   render() {
     return (
       <div className="testSample">
-        <NavBar />
+        <Navbar />
         { this.props.children || <HomePage /> }
       </div>
     );

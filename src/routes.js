@@ -8,8 +8,9 @@ import SearchParlamentary from './containers/searchContainer/searchParlamentary'
 import ShowParlamentary from './containers/showParlamentary';
 import AdminPage from './containers/adminPageContainer/adminPage';
 import AdminQuestionPage from './containers/adminPageContainer/adminQuestionPage';
-import AdminQuestionnairePage from './containers/adminPageContainer/adminQuestionnairePage';
+import AdminQuestionnairePage from './containers/adminPageContainer/adminQuestionnaire/adminQuestionnairePage';
 import SignIn from './containers/signIn';
+import Basic from './containers/adminPageContainer/teste/basic';
 
 export default (
   <Route>
@@ -23,6 +24,7 @@ export default (
       <Route exact path="/criarQuestao" component={AdminQuestionPage} />
       <Route exact path="/criarQuestionario" component={AdminQuestionnairePage} />
       <Route exact path="/signIn" component={SignIn} />
+      <Route exact path="/app" component={Basic} />
     </Route>
   </Route>
 );

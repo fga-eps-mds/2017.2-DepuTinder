@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import { browserHistory } from 'react-router';
 import AdminListQuestions from './adminListQuestions';
+import Basic from '../teste/basic';
 
 class AdminQuestionnairePage extends Component {
 
   static renderQuestionsList() {
     return (
       <div>
-        <AdminListQuestions />
+        <Basic />
       </div>
     );
   }

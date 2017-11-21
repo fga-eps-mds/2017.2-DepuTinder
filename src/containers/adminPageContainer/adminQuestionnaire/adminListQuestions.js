@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { FetchQuestionData } from '../../actions/fetchQuestionData';
+import { FetchQuestionData } from '../../../actions/fetchQuestionData';
 
 class AdminListQuestions extends Component {
 

@@ -194,3 +194,13 @@
 #signUpButton {
   width: 150;
   background-color: black;
+}
+
+#textNavBar {
+  font-size: 1.3em;
+  text-align: left;
+  display:block;
+  width:100%;
+  min-width: 50px;
+  max-width: 300px;
+}

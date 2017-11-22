@@ -18,12 +18,13 @@ class Navbar extends Component {
       <div className="navBar">
         <nav>
           <div className="nav-wrapper grey darken-3" id="renderNavBar">
-            <a
-              onClick={() => browserHistory.push('/')}
-              className="brand-logo center yellow-text text-accent-3"
-              id="textNavBar"
-            >DepuTinder
-            </a>
+            <div className="brand-logo" id="textNavBar">
+              <a
+                onClick={() => browserHistory.push('/')}
+                className="center"
+              >DepuTinder
+               </a>
+            </div>
             <ul id="nav-mobile" className="right hide-on-med">
               { Object.keys(this.props.actualUser).length === EMPTY &&
                 <div>

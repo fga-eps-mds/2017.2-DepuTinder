@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { browserHistory } from 'react-router';
 import AdminListQuestions from './adminListQuestions';
+import AdminFormQuestionnaire from './adminFormQuestionnaire';
 
 class AdminQuestionnairePage extends Component {
 
@@ -48,6 +49,9 @@ class AdminQuestionnairePage extends Component {
                 <div className="card white">
                   <div className="card-content black-text">
                     <span className="card-title">Questionário Atual</span>
+                    <div className="scroll-box">
+                      <AdminFormQuestionnaire />
+                    </div>
                   </div>
                 </div>
               </center>

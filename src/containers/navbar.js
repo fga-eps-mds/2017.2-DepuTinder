@@ -34,7 +34,7 @@ class Navbar extends Component {
       return (
         <div>
           <li><a onClick={() => browserHistory.push('/')}>{this.props.actualUser.data.userName}</a></li>
-          <li><a onClick={() => browserHistory.push('/ranking')}>Ranking</a></li>
+.          <li><a onClick={() => browserHistory.push('/ranking')}>Ranking</a></li>
           <li><a onClick={() => browserHistory.push('/search')}><i className="material-icons">search</i></a></li>
           <li><a onClick={() => this.props.removeActualUser()}>Sair</a></li>
         </div>
@@ -109,7 +109,7 @@ class Navbar extends Component {
 
   render() {
     return (
-      <div>
+      <div className="navBar">
         { this.showInPC() }
         { this.showInMobile() }
       </div>

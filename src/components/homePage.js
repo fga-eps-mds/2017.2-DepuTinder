@@ -20,7 +20,7 @@ const HomePage = () => {
           <a
             style={{ marginTop: 100 }}
             onClick={() => browserHistory.push('/responder')}
-            className="waves-effect waves-light btn-large"
+            className="mainButton waves-effect waves-light btn-large"
             id="answerQuestionnaireButton"
           >Responder Questionario
           </a>

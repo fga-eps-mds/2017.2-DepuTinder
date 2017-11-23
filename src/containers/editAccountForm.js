@@ -3,6 +3,9 @@ import AccountInputForm from '../components/accountInputForm';
 
 class EditAccountForm extends Component {
 
+  static onSubmitValidation() {
+  }
+
   static handleSubmit(event) {
     event.preventDefault();
   }
@@ -20,14 +23,6 @@ class EditAccountForm extends Component {
       userConfirmedPassword: '',
     };
     this.handleChange = this.handleChange.bind(this);
-  }
-
-  onSubmitValidation() {
-    console.log('SUBMIT NEW INFO');
-    console.log(this.state.userName);
-    console.log(this.state.userEmail);
-    console.log(this.state.userPassword);
-    console.log(this.state.userConfirmedPassword);
   }
 
   handleChange(event) {
@@ -58,7 +53,7 @@ class EditAccountForm extends Component {
                 type="submit"
                 style={{ backgroundColor: 'black', marginTop: 30 }}
                 id="editAccountButton"
-                onClick={() => { this.onSubmitValidation(); }}
+                onClick={() => { EditAccountForm.onSubmitValidation(); }}
               > Editar conta
               </a>
             </center>

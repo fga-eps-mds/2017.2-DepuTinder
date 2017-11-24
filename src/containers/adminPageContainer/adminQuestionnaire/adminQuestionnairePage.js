@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { browserHistory } from 'react-router';
 import AdminListQuestions from './adminListQuestions';
-import AdminFormQuestionnaire from './adminFormQuestionnaire';
 
 class AdminQuestionnairePage extends Component {
 
@@ -48,9 +47,47 @@ class AdminQuestionnairePage extends Component {
               <center>
                 <div className="card white">
                   <div className="card-content black-text">
-                    <span className="card-title">Questionário Atual</span>
+                    <span className="card-title">Editar Questionário</span>
                     <div className="scroll-box">
-                      <AdminFormQuestionnaire />
+                      <div id="actualQuestionnaireButtonCollumn">
+                        <br />
+                        <center>
+                          <a
+                            className="waves-effect waves-light btn black yellow-text text-accent-3"
+                            id="actualQuestionnaireButton"
+                            onClick={() => browserHistory.push('/admin')}
+                          >
+                            <i className="material-icons left" id="actualQuestionnaireIcon">assignment</i>Ver Questionário
+                          </a>
+                        </center>
+                        <br />
+                      </div>
+                      <div id="addQuestionButtonCollumn">
+                        <br />
+                        <center>
+                          <a
+                            className="waves-effect waves-light btn black yellow-text text-accent-3"
+                            id="addQuestionButton"
+                            onClick={() => browserHistory.push('/admin')}
+                          >
+                            <i className="material-icons right" id="addQuestionIcon">create</i>Adicionar Questão
+                          </a>
+                        </center>
+                        <br />
+                      </div>
+                      <div id="removeQuestionButtonCollumn">
+                        <br />
+                        <center>
+                          <a
+                            className="waves-effect waves-light btn black yellow-text text-accent-3"
+                            id="removeQuestionnaireButton"
+                            onClick={() => browserHistory.push('/admin')}
+                          >
+                            <i className="material-icons right" id="removeQuestionnaireIcon">content_cut</i>Remover Questão
+                          </a>
+                        </center>
+                        <br />
+                      </div>
                     </div>
                   </div>
                 </div>

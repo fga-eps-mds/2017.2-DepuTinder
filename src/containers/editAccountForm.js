@@ -12,6 +12,9 @@ import EditSuccessful from '../components/editSuccessful';
 
 class EditAccountForm extends Component {
 
+  static onSubmitValidation() {
+  }
+
   static handleSubmit(event) {
     event.preventDefault();
   }

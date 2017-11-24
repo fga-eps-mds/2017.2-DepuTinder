@@ -14,6 +14,7 @@ class FormInput extends Component {
       <div className="input-field" id={this.props.inputDivID}>
         <input
           id={this.props.inputID}
+          placeholder={this.props.placeholderText}
           value={this.props.value}
           onChange={this.props.handleChange}
           type={this.props.type}
@@ -34,6 +35,7 @@ FormInput.propTypes = {
   value: PropTypes.string,
   handleChange: PropTypes.func,
   labelState: PropTypes.string,
+  placeholderText: PropTypes.string,
 };
 
 FormInput.defaultProps = {
@@ -43,6 +45,7 @@ FormInput.defaultProps = {
   name: 'name',
   value: '',
   labelState: '',
+  placeholderText: '',
   handleChange() {},
 };
 

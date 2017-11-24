@@ -196,11 +196,11 @@
   background-color: black;
 }
 
-#textNavBar {
-  font-size: 1.3em;
-  text-align: left;
-  display:block;
-  width:30%;
-  min-width: 50px;
-  max-width: 300px;
+#renderNavBarMobile {
+  background-color: #25291C;
+}
+
+#logoButton {
+  background-color: #25291C;
+  font-size: 150%;
 }

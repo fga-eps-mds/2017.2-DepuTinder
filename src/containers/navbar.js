@@ -13,6 +13,7 @@ class Navbar extends Component {
 
   showInfoUserPC() {
     const EMPTY = 0;
+    console.log(this.props.actualUser.data);
     if (Object.keys(this.props.actualUser).length === EMPTY) {
       return (
         <div>
@@ -49,7 +50,7 @@ class Navbar extends Component {
         <div>
           <li><a onClick={() => browserHistory.push('/search')}><i className="material-icons">search</i></a></li>
           <li><a onClick={() => browserHistory.push('/signIn')}><i className="material-icons">open_in_browser</i></a></li>
-          <li><a onClick={() => browserHistory.push('/signUpForm')}><i className="material-icons">receipt</i></a></li>
+          <li><a onClick={() => browserHistory.push('/signUpForm')}><i className="material-icons">person_add</i></a></li>
         </div>
       );
     } else if (this.props.actualUser.data.admin) {
@@ -93,11 +94,12 @@ class Navbar extends Component {
   showInMobile() {
     return (
       <nav className="hide-on-large-only">
-        <div className="nav-wrapper grey darken-3">
+        <div className="nav-wrapper" id="renderNavBarMobile">
           <a
             onClick={() => browserHistory.push('/')}
             className="brand-logo left"
-          >DepuTinder
+            id="logoButton"
+          ><i className="material-icons">home</i>
           </a>
           <ul className="right">
             { this.showInfoUserMobile() }

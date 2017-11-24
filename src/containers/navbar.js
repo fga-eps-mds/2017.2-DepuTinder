@@ -13,7 +13,6 @@ class Navbar extends Component {
 
   showInfoUserPC() {
     const EMPTY = 0;
-    console.log(this.props.actualUser.data);
     if (Object.keys(this.props.actualUser).length === EMPTY) {
       return (
         <div>

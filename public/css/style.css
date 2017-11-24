@@ -6,8 +6,8 @@
  * Made By MaterializeCSS.com
  */
  :root{
-   --main-yellow: #ffea00;
-   --background-color: #ffd600;
+   --main-yellow: #8B2635;
+   --background-color: #E0E2DB;
    --main-grey: #424242;
  }
 
@@ -59,7 +59,16 @@
   color: var(--main-yellow);
 }
 
+#answerQuestionnaireButton{
+  background-color: #2E3532
+}
+
+#answerQuestionnaireButton:hover{
+  background-color: #BDC2BF
+}
+
 #paragraph_home_page {
+  position: absolute
   font-family: "Courier New", Courier, monospace;
   font-size: 120%;
   display: block;
@@ -185,3 +194,13 @@
 #signUpButton {
   width: 150;
   background-color: black;
+}
+
+#textNavBar {
+  font-size: 1.3em;
+  text-align: left;
+  display:block;
+  width:30%;
+  min-width: 50px;
+  max-width: 300px;
+}

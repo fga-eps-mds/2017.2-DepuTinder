@@ -1,5 +1,5 @@
 import React from 'react';
-import MainButton from './mainButton';
+import { browserHistory } from 'react-router';
 
 const HomePage = () => {
   return (
@@ -17,11 +17,17 @@ const HomePage = () => {
           </li>
           <br />
           <br />
-          <li><MainButton text="Responder questionário" /></li>
+          <a
+            style={{ marginTop: 100 }}
+            onClick={() => browserHistory.push('/responder')}
+            className="mainButton waves-effect waves-light btn-large"
+            id="answerQuestionnaireButton"
+          >Responder Questionario
+          </a>
+          <br />
         </ul>
       </center>
     </div>
   );
 };
-
 export default HomePage;

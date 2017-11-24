@@ -16,10 +16,10 @@ class AdminSearchResult extends Component {
         <li
           id="quest-item"
           className="collection-item"
-          key={data[quest].fields.name}
+          key={data[quest].questionTitle}
         >
           <div>
-            {data[quest].fields.name}
+            {data[quest].questionTitle}
           </div>
         </li>
       );

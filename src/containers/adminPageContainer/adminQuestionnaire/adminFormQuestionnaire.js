@@ -25,7 +25,7 @@ class AdminFormQuestionnaire extends Component {
     const input = this.state.searchQuestions;
     const regex = new RegExp(`${input}.+$`, 'i');
     const name = 0;
-    const questionResult = this.props.question.data.filter((question) => {
+    const questionResult = this.props.questionSearch.filter((question) => {
       return question[name].search(regex) !== -1;
     });
     if (questionResult.length >= 0) {
@@ -58,20 +58,17 @@ class AdminFormQuestionnaire extends Component {
 
 AdminFormQuestionnaire.propTypes = {
   fetchQuestionData: PropTypes.func,
-  question: PropTypes.oneOfType([
-    PropTypes.array,
-    PropTypes.object,
-  ]),
+  questionSearch: PropTypes.array,
 };
 
 AdminFormQuestionnaire.defaultProps = {
   fetchQuestionData() {},
-  question: (['Nao Encontrado']),
+  questionSearch: ['Nao Encontrado'],
 };
 
 function mapStateToProps(state) {
   return {
-    question: state.questionData,
+    questionSearch: state.questionSearch,
   };
 }
 

@@ -9,6 +9,8 @@ import selectedParlamentary from './selectedParlamentary';
 import actualUser from './actualUserReducer';
 import questionDataReducer from './questionDataReducer';
 import deleteActualUser from './removeAccountReducer';
+import selectedQuestion from './selectedQuestion';
+import questionSearchDataReducer from './questionSearchDataReducer';
 
 const rootReducer = combineReducers({
   answeredQuestions: answeredQuestionReducer,
@@ -21,6 +23,8 @@ const rootReducer = combineReducers({
   actualUser,
   questionData: questionDataReducer,
   deleteActualUser,
+  selectedQuestion,
+  questionSearch: questionSearchDataReducer,
 });
 
 export default rootReducer;

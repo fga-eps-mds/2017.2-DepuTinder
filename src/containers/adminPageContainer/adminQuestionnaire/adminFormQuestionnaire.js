@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { FetchQuestionData } from '../../../actions/fetchQuestionData';
+import AdminSearchResult from './adminSearchResults';
 
 class AdminFormQuestionnaire extends Component {
 
@@ -12,16 +13,12 @@ class AdminFormQuestionnaire extends Component {
   }
 
   componentWillMount() {
-    this.props.getResults();
+    this.props.fetchQuestionData();
   }
 
-  handleChange(searchParams) {
-    this.setState({ searchParams });
+  handleChange(searchQuestions) {
+    this.setState({ searchQuestions });
     this.searchAlgorithm();
-  }
-
-  handleSubmit() {
-    this.event.preventDefault();
   }
 
   searchAlgorithm() {
@@ -41,33 +38,26 @@ class AdminFormQuestionnaire extends Component {
   render() {
     return (
       <div className="AdminFormQuestionnaire">
-        <form onSubmit={this.handleSubmit}>
-          <div className="row">
-            <div className="input-field col s12" id="inputQuestions">
-              <input
-                id="searchQuestions"
-                type="search"
-                className="validate"
-                value={this.state.searchQuestions}
-                onChange={event => this.handleChange(event.target.value)}
-              />
-              <label htmlFor="questionTitle">Procure sua questão</label>
-            </div>
+        <div className="row">
+          <div className="input-field col s12" id="inputQuestions">
+            <input
+              id="searchQuestions"
+              type="search"
+              className="validate"
+              value={this.state.searchQuestions}
+              onChange={event => this.handleChange(event.target.value)}
+            />
+            <label htmlFor="questionTitle">Procure sua questão</label>
           </div>
-        </form>
+        </div>
+        <AdminSearchResult adminSearchResult={this.state.searchResult} />
       </div>
     );
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    question: state.questionData,
-  };
-}
-
 AdminFormQuestionnaire.propTypes = {
-  getResults: PropTypes.func,
+  fetchQuestionData: PropTypes.func,
   question: PropTypes.oneOfType([
     PropTypes.array,
     PropTypes.object,
@@ -75,13 +65,19 @@ AdminFormQuestionnaire.propTypes = {
 };
 
 AdminFormQuestionnaire.defaultProps = {
-  getResults() {},
-  question: ([]),
+  fetchQuestionData() {},
+  question: (['Nao Encontrado']),
 };
+
+function mapStateToProps(state) {
+  return {
+    question: state.questionData,
+  };
+}
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getResults() {
+    fetchQuestionData() {
       dispatch(FetchQuestionData());
     },
   };

@@ -22,6 +22,16 @@ class SignUpForm extends Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
+  componentDidMount() {
+    (function (d, s, id) {
+      const fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      const js = d.createElement(s); js.id = id;
+      js.src = 'https://connect.facebook.net/pt_BR/sdk.js#xfbml=1&version=v2.11&appId=142563266506213';
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+  }
+
   onSubmitValidation() {
     const NOT_VALID = false;
     const fields = this.validateFields();
@@ -116,6 +126,18 @@ class SignUpForm extends Component {
             </center>
           </div>
         </div>
+
+        <center>
+          <div
+            className="fb-login-button"
+            scope="email"
+            data-size="large"
+            data-button-type="login_with"
+            data-show-faces="false"
+            data-auto-logout-link="false"
+            data-use-continue-as="false"
+          />
+        </center>
       </form>
     );
   }

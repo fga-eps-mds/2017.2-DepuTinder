@@ -11,7 +11,6 @@ const AccountInputForm = (props) => {
         type="text"
         name="userName"
         placeholderText={props.namePlaceholder}
-        value={props.nameValue}
         handleChange={props.handleChange}
         labelState={props.nameLabelState}
       />
@@ -21,7 +20,6 @@ const AccountInputForm = (props) => {
         type="email"
         name="userEmail"
         placeholderText={props.emailPlaceholder}
-        value={props.emailValue}
         handleChange={props.handleChange}
         labelState={props.emailLabelState}
       />
@@ -30,7 +28,6 @@ const AccountInputForm = (props) => {
         inputID={props.passwordInputId}
         type="password"
         name="userPassword"
-        value={props.passwordValue}
         handleChange={props.handleChange}
         labelState={props.passwordLabelState}
       />
@@ -39,7 +36,6 @@ const AccountInputForm = (props) => {
         inputID={props.confirmedPasswordInputId}
         type="password"
         name="userConfirmedPassword"
-        value={props.confirmedPasswordValue}
         handleChange={props.handleChange}
         labelState={props.confirmedPasswordLabelState}
       />
@@ -52,10 +48,6 @@ AccountInputForm.propTypes = {
   emailInputId: PropTypes.string,
   passwordInputId: PropTypes.string,
   confirmedPasswordInputId: PropTypes.string,
-  nameValue: PropTypes.string,
-  emailValue: PropTypes.string,
-  passwordValue: PropTypes.string,
-  confirmedPasswordValue: PropTypes.string,
   handleChange: PropTypes.func,
   nameLabelState: PropTypes.string,
   emailLabelState: PropTypes.string,
@@ -72,10 +64,6 @@ AccountInputForm.defaultProps = {
   confirmedPasswordInputId: 'Confirmar Senha',
   namePlaceholder: '',
   emailPlaceholder: '',
-  nameValue: '',
-  emailValue: '',
-  passwordValue: '',
-  confirmedPasswordValue: '',
   handleChange() {},
   nameLabelState: '',
   emailLabelState: '',

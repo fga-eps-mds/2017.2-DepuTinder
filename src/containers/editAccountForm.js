@@ -15,8 +15,8 @@ class EditAccountForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      oldUserName: '',
-      oldUserEmail: '',
+      oldUserName: this.props.actualUser.data.userName,
+      oldUserEmail: this.props.actualUser.data.userEmail,
       userName: '',
       userEmail: '',
       userPassword: '',
@@ -48,10 +48,8 @@ class EditAccountForm extends Component {
             emailInputId="Novo email"
             passwordInputId="Nova senha"
             confirmedPasswordInputId="Confirmar nova senha"
-            nameValue={this.state.oldUserName}
-            emailValue={this.state.oldUserEmail}
-            passwordValue={this.state.oldUserPassword}
-            confirmedPasswordValue={this.state.oldUserConfirmedPassword}
+            namePlaceholder={this.state.oldUserName}
+            emailPlaceholder={this.state.oldUserEmail}
             nameLabelState="active"
             emailLabelState="active"
             handleChange={this.handleChange}

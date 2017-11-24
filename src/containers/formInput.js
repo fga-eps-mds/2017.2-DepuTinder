@@ -15,7 +15,6 @@ class FormInput extends Component {
         <input
           id={this.props.inputID}
           placeholder={this.props.placeholderText}
-          value={this.props.value}
           onChange={this.props.handleChange}
           type={this.props.type}
           className="validate"
@@ -32,7 +31,6 @@ FormInput.propTypes = {
   inputID: PropTypes.string,
   type: PropTypes.string,
   name: PropTypes.string,
-  value: PropTypes.string,
   handleChange: PropTypes.func,
   labelState: PropTypes.string,
   placeholderText: PropTypes.string,
@@ -43,7 +41,6 @@ FormInput.defaultProps = {
   inputID: 'inputID',
   type: 'text',
   name: 'name',
-  value: '',
   labelState: '',
   placeholderText: '',
   handleChange() {},

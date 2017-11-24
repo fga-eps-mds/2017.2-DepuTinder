@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { browserHistory } from 'react-router';
+import swal from 'sweetalert';
 import PropTypes from 'prop-types';
 import AccountInputForm from '../components/accountInputForm';
+import updateUser from '../actions/updateUser';
+import EditSuccessful from '../components/editSuccessful';
 
 // Para renderizar este componente é preciso colocar /editAccountForm no browserHistory do signIn
 // e logar com email:admin@admin.com senha: admin123
@@ -26,11 +30,61 @@ class EditAccountForm extends Component {
   }
 
   onSubmitValidation() {
+    const NOT_VALID = false;
+    const fields = this.validateFields();
+    const password = this.validatePasswordConfirmation();
+    if (fields === NOT_VALID) {
+      swal('Preencha todos os campos corretamente!');
+      return false;
+    } else if (password === NOT_VALID) {
+      swal('Senha nao confirmada');
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  onEditSuccess() {
     console.log('SUBMIT NEW INFO');
     console.log(this.state.userName);
     console.log(this.state.userEmail);
     console.log(this.state.userPassword);
     console.log(this.state.userConfirmedPassword);
+    updateUser(this.state.userName, this.state.userEmail, this.state.userPassword);
+    browserHistory.push('/editSuccessful');
+    return (
+      <EditSuccessful />
+    );
+  }
+
+  emailIsValid() {
+    // check @ not starting the emailAdress
+    const atSymbol = this.state.userEmail.indexOf('@');
+    if (atSymbol < 1) return false;
+    // check emailAdress to have . and to have at least 2 characters between @ and .
+    const dot = this.state.userEmail.indexOf('.');
+    if (dot <= atSymbol + 2) return false;
+    // check that the dot is not at the end
+    if (dot === this.state.userEmail.length - 1) return false;
+    return true;
+  }
+
+  validateFields() {
+    if (this.state.userName === '' ||
+      this.state.userEmail === '' ||
+      this.state.userPassword === '') {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  validatePasswordConfirmation() {
+    if (this.state.userPassword !== this.state.userConfirmedPassword) {
+      return false;
+    } else {
+      return true;
+    }
   }
 
   handleChange(event) {
@@ -62,7 +116,13 @@ class EditAccountForm extends Component {
                 type="submit"
                 style={{ backgroundColor: 'black', marginTop: 30 }}
                 id="editAccountButton"
-                onClick={() => { this.onSubmitValidation(); }}
+                onClick={() => {
+                  if (this.onSubmitValidation() && this.emailIsValid()) {
+                    this.onEditSuccess();
+                  } else {
+                    swal('Preencha todos os campos corretamente');
+                  }
+                }}
               > Editar conta
               </a>
             </center>

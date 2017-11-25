@@ -9,7 +9,6 @@ export default function updateUser(
   emailParam,
   passwordParam) {
   if (passwordParam !== '') {
-    console.log("Updating password");
     axios.put(`${HOST}`, {
       userName: nameParam,
       userEmail: emailParam,
@@ -19,7 +18,6 @@ export default function updateUser(
       oldUserPassword: oldPasswordParam,
     });
   } else {
-    console.log("NOOOO Updating password");
     axios.put(`${HOST}`, {
       userName: nameParam,
       userEmail: emailParam,

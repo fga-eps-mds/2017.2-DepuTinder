@@ -1,10 +1,16 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { browserHistory } from 'react-router';
+import swal from 'sweetalert';
+import PropTypes from 'prop-types';
 import AccountInputForm from '../components/accountInputForm';
+import updateUser from '../actions/updateUser';
+import EditSuccessful from '../components/editSuccessful';
+
+// Para renderizar este componente é preciso colocar /editAccountForm no browserHistory do signIn
+// e logar com email:admin@admin.com senha: admin123
 
 class EditAccountForm extends Component {
-
-  static onSubmitValidation() {
-  }
 
   static handleSubmit(event) {
     event.preventDefault();
@@ -13,10 +19,9 @@ class EditAccountForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      oldUserName: '',
-      oldUserEmail: '',
+      oldUserName: this.props.actualUser.data.userName,
+      oldUserEmail: this.props.actualUser.data.userEmail,
       oldUserPassword: '',
-      oldUserConfirmedPassword: '',
       userName: '',
       userEmail: '',
       userPassword: '',
@@ -25,9 +30,45 @@ class EditAccountForm extends Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
+  onEditSuccess() {
+    updateUser(
+      this.state.oldUserEmail,
+      this.state.oldUserPassword,
+      this.state.userName,
+      this.state.userEmail,
+      this.state.userPassword,
+    );
+    browserHistory.push('/editSuccessful');
+    return (
+      <EditSuccessful />
+    );
+  }
+
+  emailIsValid() {
+    // check @ not starting the emailAdress
+    const atSymbol = this.state.userEmail.indexOf('@');
+    if (atSymbol < 1) return false;
+    // check emailAdress to have . and to have at least 2 characters between @ and .
+    const dot = this.state.userEmail.indexOf('.');
+    if (dot <= atSymbol + 2) return false;
+    // check that the dot is not at the end
+    if (dot === this.state.userEmail.length - 1) return false;
+    return true;
+  }
+
+  fillEmptyFields() {
+    if (this.state.userName === '') {
+      this.state.userName = this.state.oldUserName;
+    }
+    if (this.state.userEmail === '') {
+      this.state.userEmail = this.state.oldUserEmail;
+    }
+  }
+
   handleChange(event) {
     this.setState({ [event.target.name]: event.target.value });
   }
+
 
   render() {
     return (
@@ -37,12 +78,16 @@ class EditAccountForm extends Component {
           <AccountInputForm
             nameInputId="Novo nome"
             emailInputId="Novo email"
-            passwordInputId="Novo senha"
-            confirmedPasswordInputId="Confirmar nova senha"
-            nameValue={this.state.userName}
-            emailValue={this.state.userEmail}
-            passwordValue={this.state.userPassword}
-            confirmedPasswordValue={this.state.userConfirmedPassword}
+            passwordInputId="Senha atual"
+            confirmedPasswordInputId="Nova senha"
+            nameStateKey="userName"
+            emailStateKey="userEmail"
+            passwordStateKey="oldUserPassword"
+            confirmPasswordKey="userPassword"
+            namePlaceholder={this.state.oldUserName}
+            emailPlaceholder={this.state.oldUserEmail}
+            nameLabelState="active"
+            emailLabelState="active"
             handleChange={this.handleChange}
           />
 
@@ -53,7 +98,14 @@ class EditAccountForm extends Component {
                 type="submit"
                 style={{ backgroundColor: 'black', marginTop: 30 }}
                 id="editAccountButton"
-                onClick={() => { EditAccountForm.onSubmitValidation(); }}
+                onClick={() => {
+                  this.fillEmptyFields();
+                  if (this.emailIsValid()) {
+                    this.onEditSuccess();
+                  } else {
+                    swal('Preencha os campos corretamente');
+                  }
+                }}
               > Editar conta
               </a>
             </center>
@@ -64,4 +116,18 @@ class EditAccountForm extends Component {
   }
 }
 
-export default EditAccountForm;
+EditAccountForm.propTypes = {
+  actualUser: PropTypes.obj,
+};
+
+EditAccountForm.defaultProps = {
+  actualUser: {},
+};
+
+function mapStateToProps(state) {
+  return {
+    actualUser: state.actualUser,
+  };
+}
+
+export default connect(mapStateToProps)(EditAccountForm);

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import AdminFormQuestionnaire from './adminFormQuestionnaire';
 
 
-class AdminAddQuestions extends Component {
+class AdminAddandRemoveQuestions extends Component {
 
   constructor(props) {
     super(props);
@@ -18,4 +18,4 @@ class AdminAddQuestions extends Component {
   }
 }
 
-export default (AdminAddQuestions);
+export default (AdminAddandRemoveQuestions);

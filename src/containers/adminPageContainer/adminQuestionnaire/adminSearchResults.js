@@ -2,11 +2,33 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { selectQuestion } from '../../../actions/selectQuestion';
+import { addQuestion } from '../../../actions/addQuestion';
 
 class AdminSearchResult extends Component {
 
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+
+  setQuestionnaireFK(data) {
+    const questionnaireFK = 1;
+    if (data === questionnaireFK) {
+      this.data = null;
+    } else {
+      this.data = questionnaireFK;
+    }
+  }
   selectedQuestion(quest) {
     this.props.selectQuestion(quest);
+  }
+
+  handleTitleChange(event) {
+    this.setState({ title: event.target.value });
+  }
+
+  handleQuestionnaireChange(event) {
+    this.setState({ questionnaire: event.target.value });
   }
 
   renderQuestionsTitle() {
@@ -17,6 +39,7 @@ class AdminSearchResult extends Component {
           id="quest-item"
           className="collection-item"
           key={data[quest].questionTitle}
+          onClick={() => this.setQuestionnaireFK(data[quest].questionnaireFK)}
         >
           <div>
             {data[quest].questionTitle}

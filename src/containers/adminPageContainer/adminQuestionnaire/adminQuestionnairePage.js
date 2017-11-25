@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { browserHistory } from 'react-router';
 import AdminListQuestions from './adminListQuestions';
 import AdminActualQuestionnaire from './adminActualQuestionnaire';
-import AdminAddQuestions from './adminAddQuestions';
+import AdminAddandRemoveQuestions from './adminAddandRemoveQuestions';
 
 class AdminQuestionnairePage extends Component {
 
@@ -63,9 +63,11 @@ class AdminQuestionnairePage extends Component {
                           <AdminActualQuestionnaire />
                         </div>
                         <div id="test5">
-                          <AdminAddQuestions />
+                          <AdminAddandRemoveQuestions />
                         </div>
-                        <div id="test6">Test 3</div>
+                        <div id="test6">
+                          <AdminAddandRemoveQuestions />
+                        </div>
                       </div>
                     </div>
                   </div>

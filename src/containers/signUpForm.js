@@ -12,6 +12,11 @@ class SignUpForm extends Component {
     event.preventDefault();
   }
 
+  static responseFacebook(response) {
+    saveUser(response.name, response.email, '', response.picture.data.url);
+    // console.log(response);
+  }
+
   constructor(props) {
     super(props);
     this.state = {
@@ -39,12 +44,13 @@ class SignUpForm extends Component {
   }
 
   onSignUpSuccess() {
-    saveUser(this.state.userName, this.state.userEmail, this.state.userPassword);
+    saveUser(this.state.userName, this.state.userEmail, this.state.userPassword, '');
     browserHistory.push('/signUpSuccessful');
     return (
       <SignUpSuccessful />
     );
   }
+
 
   emailIsValid() {
     // check @ not starting the emailAdress
@@ -118,18 +124,20 @@ class SignUpForm extends Component {
           </div>
         </div>
 
-        <div id="loginFacebookButton" >
-          <FacebookLogin
-            appId="142563266506213"
-            fields="name,email,picture"
-            scope="public_profile,user_friends,user_actions.books"
-            callback={this.responseFacebook}
-          />
+        <div id="loginFacebookButton">
+          <center>
+            <FacebookLogin
+              appId="142563266506213"
+              fields="name,email,picture"
+              callback={SignUpForm.responseFacebook}
+              icon="fa-facebook"
+            />
+          </center>
         </div>
       </form>
-
     );
   }
+
 }
 
 export default SignUpForm;

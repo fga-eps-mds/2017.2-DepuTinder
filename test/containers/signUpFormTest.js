@@ -3,6 +3,7 @@ import SignUpForm from '../../src/containers/signUpForm';
 
 describe('SignUpForm', () => {
 let component;
+
 beforeEach(() => {
     component = renderComponent(SignUpForm);
   });
@@ -25,6 +26,10 @@ beforeEach(() => {
 
   it('render signUp button ', () => {
       expect(component.find('#signUpButton')).to.exist;
+  });
+
+  it('renders the facebook button', () => {
+    expect(component.find('#loginFacebookButton')).to.exist;
   });
 
 });

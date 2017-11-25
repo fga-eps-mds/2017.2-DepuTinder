@@ -204,3 +204,7 @@
   min-width: 50px;
   max-width: 300px;
 }
+
+#loginFacebookButton {
+margin:20px;
+}

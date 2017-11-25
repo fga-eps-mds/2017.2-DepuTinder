@@ -9,7 +9,7 @@ const AccountInputForm = (props) => {
         inputDivID="nameInputDiv"
         inputID={props.nameInputId}
         type="text"
-        name="userName"
+        name={props.nameStateKey}
         placeholderText={props.namePlaceholder}
         handleChange={props.handleChange}
         labelState={props.nameLabelState}
@@ -18,7 +18,7 @@ const AccountInputForm = (props) => {
         inputDivID="emailInputDiv"
         inputID={props.emailInputId}
         type="email"
-        name="userEmail"
+        name={props.emailStateKey}
         placeholderText={props.emailPlaceholder}
         handleChange={props.handleChange}
         labelState={props.emailLabelState}
@@ -27,7 +27,7 @@ const AccountInputForm = (props) => {
         inputDivID="passwordInputDiv"
         inputID={props.passwordInputId}
         type="password"
-        name="userPassword"
+        name={props.passwordStateKey}
         handleChange={props.handleChange}
         labelState={props.passwordLabelState}
       />
@@ -35,7 +35,7 @@ const AccountInputForm = (props) => {
         inputDivID="passwordConfirmInputDiv"
         inputID={props.confirmedPasswordInputId}
         type="password"
-        name="userConfirmedPassword"
+        name={props.confirmPasswordKey}
         handleChange={props.handleChange}
         labelState={props.confirmedPasswordLabelState}
       />

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { browserHistory } from 'react-router';
 import AdminListQuestions from './adminListQuestions';
+import AdminActualQuestionnaire from './adminActualQuestionnaire';
+import AdminAddQuestions from './adminAddQuestions';
 
 class AdminQuestionnairePage extends Component {
 
@@ -49,44 +51,21 @@ class AdminQuestionnairePage extends Component {
                   <div className="card-content black-text">
                     <span className="card-title">Editar Questionário</span>
                     <div className="scroll-box">
-                      <div id="actualQuestionnaireButtonCollumn">
-                        <br />
-                        <center>
-                          <a
-                            className="waves-effect waves-light btn black yellow-text text-accent-3"
-                            id="actualQuestionnaireButton"
-                            onClick={() => browserHistory.push('/admin')}
-                          >
-                            <i className="material-icons left" id="actualQuestionnaireIcon">assignment</i>Ver Questionário
-                          </a>
-                        </center>
-                        <br />
+                      <div className="card-tabs">
+                        <ul className="tabs tabs-fixed-width">
+                          <li className="tab"><a href="#test4">Observar</a></li>
+                          <li className="tab"><a className="active" href="#test5">Adicionar</a></li>
+                          <li className="tab"><a href="#test6">Remover</a></li>
+                        </ul>
                       </div>
-                      <div id="addQuestionButtonCollumn">
-                        <br />
-                        <center>
-                          <a
-                            className="waves-effect waves-light btn black yellow-text text-accent-3"
-                            id="addQuestionButton"
-                            onClick={() => browserHistory.push('/admin')}
-                          >
-                            <i className="material-icons right" id="addQuestionIcon">create</i>Adicionar Questão
-                          </a>
-                        </center>
-                        <br />
-                      </div>
-                      <div id="removeQuestionButtonCollumn">
-                        <br />
-                        <center>
-                          <a
-                            className="waves-effect waves-light btn black yellow-text text-accent-3"
-                            id="removeQuestionnaireButton"
-                            onClick={() => browserHistory.push('/admin')}
-                          >
-                            <i className="material-icons right" id="removeQuestionnaireIcon">content_cut</i>Remover Questão
-                          </a>
-                        </center>
-                        <br />
+                      <div className="card-content grey lighten-4">
+                        <div id="test4">
+                          <AdminActualQuestionnaire />
+                        </div>
+                        <div id="test5">
+                          <AdminAddQuestions />
+                        </div>
+                        <div id="test6">Test 3</div>
                       </div>
                     </div>
                   </div>

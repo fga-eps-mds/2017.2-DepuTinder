@@ -12,18 +12,17 @@ import EditSuccessful from '../components/editSuccessful';
 
 class EditAccountForm extends Component {
 
-  static onSubmitValidation() {
-  }
-
   static handleSubmit(event) {
     event.preventDefault();
   }
 
   constructor(props) {
     super(props);
+    console.log(this.props.actualUser.data);
     this.state = {
       oldUserName: this.props.actualUser.data.userName,
       oldUserEmail: this.props.actualUser.data.userEmail,
+      oldUserPassword: '',
       userName: '',
       userEmail: '',
       userPassword: '',
@@ -32,28 +31,32 @@ class EditAccountForm extends Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
+/*
   onSubmitValidation() {
     const NOT_VALID = false;
-    const fields = this.validateFields();
     const password = this.validatePasswordConfirmation();
-    if (fields === NOT_VALID) {
-      swal('Preencha todos os campos corretamente!');
-      return false;
-    } else if (password === NOT_VALID) {
+    if (password === NOT_VALID) {
       swal('Senha nao confirmada');
       return false;
     } else {
       return true;
     }
   }
+  */
 
   onEditSuccess() {
     console.log('SUBMIT NEW INFO');
     console.log(this.state.userName);
     console.log(this.state.userEmail);
+    console.log(this.state.oldUserPassword);
     console.log(this.state.userPassword);
-    console.log(this.state.userConfirmedPassword);
-    updateUser(this.state.userName, this.state.userEmail, this.state.userPassword);
+    updateUser(
+      this.state.oldUserEmail,
+      this.state.oldUserPassword,
+      this.state.userName,
+      this.state.userEmail,
+      this.state.userPassword,
+    );
     browserHistory.push('/editSuccessful');
     return (
       <EditSuccessful />
@@ -72,16 +75,16 @@ class EditAccountForm extends Component {
     return true;
   }
 
-  validateFields() {
-    if (this.state.userName === '' ||
-      this.state.userEmail === '' ||
-      this.state.userPassword === '') {
-      return false;
-    } else {
-      return true;
+  fillEmptyFields() {
+    if (this.state.userName === '') {
+      this.state.userName = this.state.oldUserName;
+    }
+    if (this.state.userEmail === '') {
+      this.state.userEmail = this.state.oldUserEmail;
     }
   }
 
+/*
   validatePasswordConfirmation() {
     if (this.state.userPassword !== this.state.userConfirmedPassword) {
       return false;
@@ -89,6 +92,7 @@ class EditAccountForm extends Component {
       return true;
     }
   }
+  */
 
   handleChange(event) {
     this.setState({ [event.target.name]: event.target.value });
@@ -103,8 +107,12 @@ class EditAccountForm extends Component {
           <AccountInputForm
             nameInputId="Novo nome"
             emailInputId="Novo email"
-            passwordInputId="Nova senha"
-            confirmedPasswordInputId="Confirmar nova senha"
+            passwordInputId="Senha atual"
+            confirmedPasswordInputId="Nova senha"
+            nameStateKey="userName"
+            emailStateKey="userEmail"
+            passwordStateKey="oldUserPassword"
+            confirmPasswordKey="userPassword"
             namePlaceholder={this.state.oldUserName}
             emailPlaceholder={this.state.oldUserEmail}
             nameLabelState="active"
@@ -120,10 +128,11 @@ class EditAccountForm extends Component {
                 style={{ backgroundColor: 'black', marginTop: 30 }}
                 id="editAccountButton"
                 onClick={() => {
-                  if (this.onSubmitValidation() && this.emailIsValid()) {
+                  this.fillEmptyFields();
+                  if (this.emailIsValid()) {
                     this.onEditSuccess();
                   } else {
-                    swal('Preencha todos os campos corretamente');
+                    swal('Preencha os campos corretamente');
                   }
                 }}
               > Editar conta

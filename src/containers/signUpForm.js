@@ -89,6 +89,10 @@ class SignUpForm extends Component {
             emailInputId="Email"
             passwordInputId="Senha"
             confirmedPasswordInputId="Confirmar Senha"
+            nameStateKey="userName"
+            emailStateKey="userEmail"
+            passwordStateKey="userPassword"
+            confirmPasswordKey="userConfirmedPassword"
             nameValue={this.state.userName}
             emailValue={this.state.userEmail}
             passwordValue={this.state.userPassword}

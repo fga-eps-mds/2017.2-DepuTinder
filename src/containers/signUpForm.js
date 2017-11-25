@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { browserHistory } from 'react-router';
 import swal from 'sweetalert';
+import FacebookLogin from 'react-facebook-login';
 import saveUser from '../actions/saveUser';
 import SignUpSuccessful from '../components/signUpSuccessful';
 import AccountInputForm from '../components/accountInputForm';
@@ -20,16 +21,6 @@ class SignUpForm extends Component {
       userConfirmedPassword: '',
     };
     this.handleChange = this.handleChange.bind(this);
-  }
-
-  componentDidMount() {
-    (function (d, s, id) {
-      const fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) return;
-      const js = d.createElement(s); js.id = id;
-      js.src = 'https://connect.facebook.net/pt_BR/sdk.js#xfbml=1&version=v2.11&appId=142563266506213';
-      fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
   }
 
   onSubmitValidation() {
@@ -127,18 +118,16 @@ class SignUpForm extends Component {
           </div>
         </div>
 
-        <center>
-          <div
-            className="fb-login-button"
-            scope="email"
-            data-size="large"
-            data-button-type="login_with"
-            data-show-faces="false"
-            data-auto-logout-link="false"
-            data-use-continue-as="false"
+        <div id="loginFacebookButton" >
+          <FacebookLogin
+            appId="142563266506213"
+            fields="name,email,picture"
+            scope="public_profile,user_friends,user_actions.books"
+            callback={this.responseFacebook}
           />
-        </center>
+        </div>
       </form>
+
     );
   }
 }

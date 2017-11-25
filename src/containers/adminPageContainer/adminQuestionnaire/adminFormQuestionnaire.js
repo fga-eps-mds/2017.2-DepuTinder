@@ -47,7 +47,7 @@ class AdminFormQuestionnaire extends Component {
               value={this.state.searchQuestions}
               onChange={event => this.handleChange(event.target.value)}
             />
-            <label htmlFor="questionTitle">Procure sua questão</label>
+            <label htmlFor="questionTitle">Pesquise uma questão</label>
           </div>
         </div>
         <AdminSearchResult adminSearchResult={this.state.searchResult} />

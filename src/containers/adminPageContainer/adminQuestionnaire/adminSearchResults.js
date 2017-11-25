@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import swal from 'sweetalert';
 import { connect } from 'react-redux';
 import { selectQuestion } from '../../../actions/selectQuestion';
-import saveQuestion from '../../../actions/saveQuestion';
+import updateQuestion from '../../../actions/updateQuestion';
 
 class AdminSearchResult extends Component {
 
@@ -13,10 +13,6 @@ class AdminSearchResult extends Component {
   }
 
   setQuestionnaireFK(questionnaire, title) {
-    const subtitle = this.props.question.questionSubtitle;
-    const description = this.props.question.questionDescription;
-    const author = this.props.question.questionAuthor;
-    const proposition = this.props.question.proposition;
     const questionnaireFK = 1;
     if (questionnaire === questionnaireFK) {
       this.questionnaire = null;
@@ -34,11 +30,11 @@ class AdminSearchResult extends Component {
       if (result.value) {
         if (title === this.props.question.questionTitle) {
           return (
-            saveQuestion(title, subtitle, description, author, proposition, questionnaire)
+            updateQuestion(title, questionnaire)
           );
         }
       }
-      return saveQuestion(title, subtitle, description, author, proposition, questionnaire);
+      return updateQuestion(title, questionnaire);
     });
   }
 

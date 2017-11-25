@@ -18,7 +18,6 @@ class EditAccountForm extends Component {
 
   constructor(props) {
     super(props);
-    console.log(this.props.actualUser.data);
     this.state = {
       oldUserName: this.props.actualUser.data.userName,
       oldUserEmail: this.props.actualUser.data.userEmail,
@@ -31,25 +30,7 @@ class EditAccountForm extends Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
-/*
-  onSubmitValidation() {
-    const NOT_VALID = false;
-    const password = this.validatePasswordConfirmation();
-    if (password === NOT_VALID) {
-      swal('Senha nao confirmada');
-      return false;
-    } else {
-      return true;
-    }
-  }
-  */
-
   onEditSuccess() {
-    console.log('SUBMIT NEW INFO');
-    console.log(this.state.userName);
-    console.log(this.state.userEmail);
-    console.log(this.state.oldUserPassword);
-    console.log(this.state.userPassword);
     updateUser(
       this.state.oldUserEmail,
       this.state.oldUserPassword,
@@ -83,16 +64,6 @@ class EditAccountForm extends Component {
       this.state.userEmail = this.state.oldUserEmail;
     }
   }
-
-/*
-  validatePasswordConfirmation() {
-    if (this.state.userPassword !== this.state.userConfirmedPassword) {
-      return false;
-    } else {
-      return true;
-    }
-  }
-  */
 
   handleChange(event) {
     this.setState({ [event.target.name]: event.target.value });

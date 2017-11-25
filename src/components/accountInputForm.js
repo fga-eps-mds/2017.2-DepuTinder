@@ -55,6 +55,10 @@ AccountInputForm.propTypes = {
   confirmedPasswordLabelState: PropTypes.string,
   namePlaceholder: PropTypes.string,
   emailPlaceholder: PropTypes.string,
+  confirmPasswordKey: PropTypes.string,
+  passwordStateKey: PropTypes.string,
+  emailStateKey: PropTypes.string,
+  nameStateKey: PropTypes.string,
 };
 
 AccountInputForm.defaultProps = {
@@ -69,6 +73,10 @@ AccountInputForm.defaultProps = {
   emailLabelState: '',
   passwordLabelState: '',
   confirmedPasswordLabelState: '',
+  confirmPasswordKey: '',
+  passwordStateKey: '',
+  emailStateKey: '',
+  nameStateKey: '',
 };
 
 export default AccountInputForm;

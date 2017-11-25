@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import swal from 'sweetalert';
 import { connect } from 'react-redux';
 import { selectQuestion } from '../../../actions/selectQuestion';
-import { addQuestion } from '../../../actions/addQuestion';
+import saveQuestion from '../../../actions/saveQuestion';
 
 class AdminSearchResult extends Component {
 
@@ -11,24 +12,38 @@ class AdminSearchResult extends Component {
     this.state = {};
   }
 
-  setQuestionnaireFK(data) {
+  setQuestionnaireFK(questionnaire, title) {
+    const subtitle = this.props.question.questionSubtitle;
+    const description = this.props.question.questionDescription;
+    const author = this.props.question.questionAuthor;
+    const proposition = this.props.question.proposition;
     const questionnaireFK = 1;
-    if (data === questionnaireFK) {
-      this.data = null;
+    if (questionnaire === questionnaireFK) {
+      this.questionnaire = null;
     } else {
-      this.data = questionnaireFK;
+      this.questionnaire = questionnaireFK;
     }
+    swal({
+      title: 'Você realmente deseja acrescentar essa questão ao questionário?',
+      text: title,
+      buttons: {
+        confirm: true,
+        cancel: true,
+      },
+    }).then(function (result) {
+      if (result.value) {
+        if (title === this.props.question.questionTitle) {
+          return (
+            saveQuestion(title, subtitle, description, author, proposition, questionnaire)
+          );
+        }
+      }
+      return saveQuestion(title, subtitle, description, author, proposition, questionnaire);
+    });
   }
+
   selectedQuestion(quest) {
     this.props.selectQuestion(quest);
-  }
-
-  handleTitleChange(event) {
-    this.setState({ title: event.target.value });
-  }
-
-  handleQuestionnaireChange(event) {
-    this.setState({ questionnaire: event.target.value });
   }
 
   renderQuestionsTitle() {
@@ -39,7 +54,9 @@ class AdminSearchResult extends Component {
           id="quest-item"
           className="collection-item"
           key={data[quest].questionTitle}
-          onClick={() => this.setQuestionnaireFK(data[quest].questionnaireFK)}
+          onClick={() => this.setQuestionnaireFK(
+            data[quest].questionnaireFK,
+            data[quest].questionTitle)}
         >
           <div>
             {data[quest].questionTitle}
@@ -61,16 +78,21 @@ class AdminSearchResult extends Component {
 AdminSearchResult.defaultProps = {
   adminSearchResult: ['Não encontrado'],
   selectQuestion() {},
+  question: ([]),
 };
 
 AdminSearchResult.propTypes = {
   adminSearchResult: PropTypes.array,
   selectQuestion: PropTypes.func,
+  question: PropTypes.oneOfType([
+    PropTypes.array,
+    PropTypes.object,
+  ]),
 };
 
 function mapStateToProps(state) {
   return {
-    questionData: state.questionData,
+    question: state.questionData,
   };
 }
 

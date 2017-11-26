@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { browserHistory } from 'react-router';
 import swal from 'sweetalert';
 import FacebookLogin from 'react-facebook-login';
+import GoogleLogin from 'react-google-login';
 import saveUser from '../actions/saveUser';
 import SignUpSuccessful from '../components/signUpSuccessful';
 import AccountInputForm from '../components/accountInputForm';
@@ -15,6 +16,10 @@ class SignUpForm extends Component {
   static responseFacebook(response) {
     saveUser(response.name, response.email, '', response.picture.data.url);
     // console.log(response);
+  }
+
+  static responseGoogle = (response) => {
+    saveUser(response.profileObj.name, response.profileObj.email, '', response.profileObj.imageUrl);
   }
 
   constructor(props) {
@@ -127,7 +132,6 @@ class SignUpForm extends Component {
             </center>
           </div>
         </div>
-
         <div id="loginFacebookButton">
           <center>
             <FacebookLogin
@@ -138,10 +142,21 @@ class SignUpForm extends Component {
             />
           </center>
         </div>
+        <div id="loginGoogleButton">
+          <center>
+            <GoogleLogin
+              clientId="849502021062-to8gq1f29rkac9jcql2bbvu71orpmntv.apps.googleusercontent.com"
+              buttonText="Login"
+              fields="email"
+              onSuccess={SignUpForm.responseGoogle}
+              onFailure={SignUpForm.responseGoogle}
+            />
+          </center>
+        </div>
       </form>
     );
   }
-
 }
+
 
 export default SignUpForm;

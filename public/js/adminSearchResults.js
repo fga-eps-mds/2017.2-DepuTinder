@@ -13,7 +13,7 @@ class AdminSearchResult extends Component {
   }
 
   setQuestionnaireFK(questionnaire, title) {
-    const questionnaireFK = 2;
+    const questionnaireFK = 1;
     if (questionnaire === questionnaireFK) {
       this.questionnaire = null;
     } else {
@@ -30,11 +30,11 @@ class AdminSearchResult extends Component {
       if (result.value) {
         if (title === this.props.question.questionTitle) {
           return (
-              updateQuestion(questionnaireFK, title)
+            updateQuestion(title, questionnaire)
           );
         }
       }
-      return updateQuestion(questionnaireFK, title);
+      return updateQuestion(title, questionnaire);
     });
   }
 

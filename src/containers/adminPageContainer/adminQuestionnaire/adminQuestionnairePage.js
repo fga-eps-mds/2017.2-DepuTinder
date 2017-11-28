@@ -1,7 +1,18 @@
 import React, { Component } from 'react';
 import { browserHistory } from 'react-router';
+import AdminListQuestions from './adminListQuestions';
+import AdminActualQuestionnaire from './adminActualQuestionnaire';
+import AdminAddandRemoveQuestions from './adminAddandRemoveQuestions';
 
 class AdminQuestionnairePage extends Component {
+
+  static renderQuestionsList() {
+    return (
+      <div>
+        <AdminListQuestions />
+      </div>
+    );
+  }
 
   constructor(props) {
     super(props);
@@ -18,11 +29,17 @@ class AdminQuestionnairePage extends Component {
         </div>
         <br />
         <div className="row" id="AdminQuestionnaireCardsRow">
-          <div className="col s12 m6">
+          <div
+            className="col s12 m6"
+            id="listAdminQuestions"
+          >
             <center>
               <div className="card white">
                 <div className="card-content black-text">
                   <span className="card-title">Questões Disponíveis</span>
+                  <div className="scroll-box">
+                    {AdminQuestionnairePage.renderQuestionsList()}
+                  </div>
                 </div>
               </div>
             </center>
@@ -32,7 +49,27 @@ class AdminQuestionnairePage extends Component {
               <center>
                 <div className="card white">
                   <div className="card-content black-text">
-                    <span className="card-title">Questionário Atual</span>
+                    <span className="card-title">Editar Questionário</span>
+                    <div className="scroll-box">
+                      <div className="card-tabs">
+                        <ul className="tabs tabs-fixed-width">
+                          <li className="tab"><a className="purple-text" href="#test4">Listar</a></li>
+                          <li className="tab"><a className="active purple-text" href="#test5">Adicionar</a></li>
+                          <li className="tab"><a className="purple-text" href="#test6">Remover</a></li>
+                        </ul>
+                      </div>
+                      <div className="card-content grey lighten-4">
+                        <div id="test4">
+                          <AdminActualQuestionnaire />
+                        </div>
+                        <div id="test5">
+                          <AdminAddandRemoveQuestions />
+                        </div>
+                        <div id="test6">
+                          <AdminAddandRemoveQuestions />
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </center>
@@ -42,7 +79,7 @@ class AdminQuestionnairePage extends Component {
             <div className="col s6 m6 l6" id="backButtonCollumn">
               <center>
                 <a
-                  className="waves-effect waves-light btn black yellow-text text-accent-3"
+                  className="waves-effect waves-light btn black purple-text text-accent-3"
                   id="backButton"
                   onClick={() => browserHistory.push('/admin')}
                 >
@@ -53,8 +90,9 @@ class AdminQuestionnairePage extends Component {
             <div className="col s6 m6 l6" id="sendButtonCollumn">
               <center>
                 <a
-                  className="waves-effect waves-light btn black yellow-text text-accent-3"
+                  className="waves-effect waves-light btn black purple-text text-accent-3"
                   id="propositionButton"
+                  onClick={() => browserHistory.push('/teste')}
                 >
                   <i className="material-icons right" id="sendButtonIcon">send</i>Enviar
               </a>

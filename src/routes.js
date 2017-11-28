@@ -8,7 +8,7 @@ import SearchParlamentary from './containers/searchContainer/searchParlamentary'
 import ShowParlamentary from './containers/showParlamentary';
 import AdminPage from './containers/adminPageContainer/adminPage';
 import AdminQuestionPage from './containers/adminPageContainer/adminQuestionPage';
-import AdminQuestionnairePage from './containers/adminPageContainer/adminQuestionnairePage';
+import AdminQuestionnairePage from './containers/adminPageContainer/adminQuestionnaire/adminQuestionnairePage';
 import AdminListPropositions from './containers/adminPageContainer/adminListPropositions';
 import SignUpForm from './containers/signUpForm';
 import SignUpSuccessful from './components/signUpSuccessful';

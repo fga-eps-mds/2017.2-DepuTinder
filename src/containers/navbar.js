@@ -118,12 +118,15 @@ class Navbar extends Component {
 }
 
 Navbar.propTypes = {
-  actualUser: PropTypes.obj,
+  actualUser: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.object,
+  ]),
   removeActualUser: PropTypes.func,
 };
 
 Navbar.defaultProps = {
-  actualUser: {},
+  actualUser: ([]),
   removeActualUser() {},
 };
 

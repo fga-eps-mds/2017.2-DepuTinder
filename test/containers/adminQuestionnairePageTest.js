@@ -1,5 +1,5 @@
 import { renderComponent, expect } from '../test_helper';
-import AdminQuestionnairePage from '../../src/containers/adminPageContainer/adminQuestionnairePage';
+import AdminQuestionnairePage from '../../src/containers/adminPageContainer/adminQuestionnaire/adminQuestionnairePage';
 
 describe('AdminQuestionnairePage', () => {
   let component;

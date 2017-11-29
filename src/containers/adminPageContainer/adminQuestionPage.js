@@ -42,7 +42,7 @@ class AdminQuestionPage extends Component {
           <div className="col s6 m6 l6" id="backButtonCollumn">
             <center>
               <a
-                className="waves-effect waves-light btn black yellow-text text-accent-3"
+                className="waves-effect waves-light btn black purple-text text-accent-3"
                 id="backButton"
                 onClick={() => browserHistory.push('/admin')}
               >
@@ -52,10 +52,10 @@ class AdminQuestionPage extends Component {
           </div>
           <div>
             <center>
-              <ul id="slide-out" className="side-nav yellow-text" >
+              <ul id="slide-out" className="side-nav purple-text" >
                 {AdminQuestionPage.renderPropositionsList()}
               </ul>
-              <button href="#" data-activates="slide-out" className="button-collapse waves-effect waves-light btn black yellow-text text-accent-3">Proposições</button>
+              <button href="#" data-activates="slide-out" className="button-collapse waves-effect waves-light btn black purple-text text-accent-3">Proposições</button>
             </center>
           </div>
         </div>

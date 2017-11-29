@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { FetchPropositionData } from '../../actions/fetchPropositionData';
+import { FetchQuestionData } from '../../../actions/fetchQuestionData';
 
-class AdminListPropositions extends Component {
+class AdminListQuestions extends Component {
 
   constructor(props) {
     super(props);
@@ -14,15 +14,15 @@ class AdminListPropositions extends Component {
     this.props.getResults();
   }
 
-  renderPropositions() {
-    return this.props.propositions.map((data) => {
+  renderQuestions() {
+    return this.props.question.data.map((info) => {
       return (
-        <div className="row" key={data.propositionTitle}>
+        <div className="row" key={info.questionTitle}>
           <div className="col s12 m12">
-            <div className="card-content black-text card white darken-1">
-              <div>{data.id}</div>
-              <div>Título: {data.propositionTitle}</div>
-              <div>Descrição: {data.propositionDescription}</div>
+            <div className="card-content purple-text card white darken-1">
+              <div>Título: {info.questionTitle}</div>
+              <div>Subtítulo: {info.questionSubtitle}</div>
+              <div>Descrição: {info.questionDescription}</div>
             </div>
           </div>
         </div>
@@ -32,10 +32,10 @@ class AdminListPropositions extends Component {
 
   render() {
     const EMPTY = 0;
-    if (Object.keys(this.props.propositions).length !== EMPTY) {
+    if (Object.keys(this.props.question).length !== EMPTY) {
       return (
         <div>
-          {this.renderPropositions()}
+          {this.renderQuestions()}
         </div>
       );
     } else {
@@ -58,31 +58,29 @@ class AdminListPropositions extends Component {
 
 function mapStateToProps(state) {
   return {
-    propositions: state.propositions,
+    question: state.questionData,
   };
 }
 
-
-AdminListPropositions.propTypes = {
+AdminListQuestions.propTypes = {
   getResults: PropTypes.func,
-  propositions: PropTypes.oneOfType([
+  question: PropTypes.oneOfType([
     PropTypes.array,
     PropTypes.object,
   ]),
 };
 
-AdminListPropositions.defaultProps = {
+AdminListQuestions.defaultProps = {
   getResults() {},
-  propositions: ([]),
+  question: ([]),
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
     getResults() {
-      dispatch(FetchPropositionData());
+      dispatch(FetchQuestionData());
     },
   };
 };
 
-
-export default connect(mapStateToProps, mapDispatchToProps)(AdminListPropositions);
+export default connect(mapStateToProps, mapDispatchToProps)(AdminListQuestions);

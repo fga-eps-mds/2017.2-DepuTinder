@@ -185,7 +185,17 @@
   background-color: var(--main-yellow);
   color: var(--main-yellow);
 }
-
+#listAdminQuestions{
+   width: 50%;
+   height: 30%;
+   flex-wrap: wrap;
+   flex: initial;
+}
+.scroll-box {
+            overflow-y: scroll;
+            height: 300px;
+            padding: 1rem
+        }
 #userSignUpForm {
   margin: 5%;
   background-color: #ffffff;
@@ -196,13 +206,13 @@
   background-color: black;
 }
 
-#textNavBar {
-  font-size: 1.3em;
-  text-align: left;
-  display:block;
-  width:30%;
-  min-width: 50px;
-  max-width: 300px;
+#renderNavBarMobile {
+  background-color: #25291C;
+}
+
+#logoButton {
+  background-color: #25291C;
+  font-size: 150%;
 }
 
 #loginFacebookButton {

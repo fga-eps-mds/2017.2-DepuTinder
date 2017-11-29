@@ -86,7 +86,7 @@ class AdminFormQuestion extends Component {
     return (
       <div className="adminFormQuestion">
         <div className="card-content white accent-3">
-          <i className="material-icons activator right" id="cardHelpIcon">help</i>
+          <i className="material-icons activator right purple-text" id="cardHelpIcon">help</i>
           <form onSubmit={this.handleSubmit}>
             <div className="container">
               <div className="row">
@@ -152,7 +152,7 @@ class AdminFormQuestion extends Component {
               </div>
             </div>
             <a
-              className="waves-effect waves-light btn black yellow-text text-accent-3"
+              className="waves-effect waves-light btn black purple-text text-accent-3"
               id="saveQuestionButton"
               onClick={() =>
                 saveQuestion(

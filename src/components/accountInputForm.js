@@ -9,33 +9,35 @@ const AccountInputForm = (props) => {
         inputDivID="nameInputDiv"
         inputID={props.nameInputId}
         type="text"
-        name="userName"
-        value={props.nameValue}
+        name={props.nameStateKey}
+        placeholderText={props.namePlaceholder}
         handleChange={props.handleChange}
+        labelState={props.nameLabelState}
       />
       <FormInput
         inputDivID="emailInputDiv"
         inputID={props.emailInputId}
         type="email"
-        name="userEmail"
-        value={props.emailValue}
+        name={props.emailStateKey}
+        placeholderText={props.emailPlaceholder}
         handleChange={props.handleChange}
+        labelState={props.emailLabelState}
       />
       <FormInput
         inputDivID="passwordInputDiv"
         inputID={props.passwordInputId}
         type="password"
-        name="userPassword"
-        value={props.passwordValue}
+        name={props.passwordStateKey}
         handleChange={props.handleChange}
+        labelState={props.passwordLabelState}
       />
       <FormInput
         inputDivID="passwordConfirmInputDiv"
         inputID={props.confirmedPasswordInputId}
         type="password"
-        name="userConfirmedPassword"
-        value={props.confirmedPasswordValue}
+        name={props.confirmPasswordKey}
         handleChange={props.handleChange}
+        labelState={props.confirmedPasswordLabelState}
       />
     </div>
   );
@@ -46,11 +48,17 @@ AccountInputForm.propTypes = {
   emailInputId: PropTypes.string,
   passwordInputId: PropTypes.string,
   confirmedPasswordInputId: PropTypes.string,
-  nameValue: PropTypes.string,
-  emailValue: PropTypes.string,
-  passwordValue: PropTypes.string,
-  confirmedPasswordValue: PropTypes.string,
   handleChange: PropTypes.func,
+  nameLabelState: PropTypes.string,
+  emailLabelState: PropTypes.string,
+  passwordLabelState: PropTypes.string,
+  confirmedPasswordLabelState: PropTypes.string,
+  namePlaceholder: PropTypes.string,
+  emailPlaceholder: PropTypes.string,
+  confirmPasswordKey: PropTypes.string,
+  passwordStateKey: PropTypes.string,
+  emailStateKey: PropTypes.string,
+  nameStateKey: PropTypes.string,
 };
 
 AccountInputForm.defaultProps = {
@@ -58,11 +66,17 @@ AccountInputForm.defaultProps = {
   emailInputId: 'Email',
   passwordInputId: 'Senha',
   confirmedPasswordInputId: 'Confirmar Senha',
-  nameValue: '',
-  emailValue: '',
-  passwordValue: '',
-  confirmedPasswordValue: '',
+  namePlaceholder: '',
+  emailPlaceholder: '',
   handleChange() {},
+  nameLabelState: '',
+  emailLabelState: '',
+  passwordLabelState: '',
+  confirmedPasswordLabelState: '',
+  confirmPasswordKey: '',
+  passwordStateKey: '',
+  emailStateKey: '',
+  nameStateKey: '',
 };
 
 export default AccountInputForm;

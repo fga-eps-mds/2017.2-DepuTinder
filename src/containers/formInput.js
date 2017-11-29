@@ -14,13 +14,13 @@ class FormInput extends Component {
       <div className="input-field" id={this.props.inputDivID}>
         <input
           id={this.props.inputID}
-          value={this.props.value}
+          placeholder={this.props.placeholderText}
           onChange={this.props.handleChange}
           type={this.props.type}
           className="validate"
           name={this.props.name}
         />
-        <label htmlFor={this.props.inputID} data-error="Campo Inválido">{this.props.inputID}</label>
+        <label htmlFor={this.props.inputID} data-error="Campo Inválido" className={this.props.labelState}>{this.props.inputID}</label>
       </div>
     );
   }
@@ -31,8 +31,9 @@ FormInput.propTypes = {
   inputID: PropTypes.string,
   type: PropTypes.string,
   name: PropTypes.string,
-  value: PropTypes.string,
   handleChange: PropTypes.func,
+  labelState: PropTypes.string,
+  placeholderText: PropTypes.string,
 };
 
 FormInput.defaultProps = {
@@ -40,7 +41,8 @@ FormInput.defaultProps = {
   inputID: 'inputID',
   type: 'text',
   name: 'name',
-  value: '',
+  labelState: '',
+  placeholderText: '',
   handleChange() {},
 };
 

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { browserHistory } from 'react-router';
 import swal from 'sweetalert';
+import FacebookLogin from 'react-facebook-login';
 import saveUser from '../actions/saveUser';
 import SignUpSuccessful from '../components/signUpSuccessful';
 import AccountInputForm from '../components/accountInputForm';
@@ -9,6 +10,11 @@ class SignUpForm extends Component {
 
   static handleSubmit(event) {
     event.preventDefault();
+  }
+
+  static responseFacebook(response) {
+    saveUser(response.name, response.email, '', response.picture.data.url);
+    // console.log(response);
   }
 
   constructor(props) {
@@ -38,12 +44,13 @@ class SignUpForm extends Component {
   }
 
   onSignUpSuccess() {
-    saveUser(this.state.userName, this.state.userEmail, this.state.userPassword);
+    saveUser(this.state.userName, this.state.userEmail, this.state.userPassword, '');
     browserHistory.push('/signUpSuccessful');
     return (
       <SignUpSuccessful />
     );
   }
+
 
   emailIsValid() {
     // check @ not starting the emailAdress
@@ -89,6 +96,10 @@ class SignUpForm extends Component {
             emailInputId="Email"
             passwordInputId="Senha"
             confirmedPasswordInputId="Confirmar Senha"
+            nameStateKey="userName"
+            emailStateKey="userEmail"
+            passwordStateKey="userPassword"
+            confirmPasswordKey="userConfirmedPassword"
             nameValue={this.state.userName}
             emailValue={this.state.userEmail}
             passwordValue={this.state.userPassword}
@@ -116,9 +127,21 @@ class SignUpForm extends Component {
             </center>
           </div>
         </div>
+
+        <div id="loginFacebookButton">
+          <center>
+            <FacebookLogin
+              appId="142563266506213"
+              fields="name,email,picture"
+              callback={SignUpForm.responseFacebook}
+              icon="fa-facebook"
+            />
+          </center>
+        </div>
       </form>
     );
   }
+
 }
 
 export default SignUpForm;

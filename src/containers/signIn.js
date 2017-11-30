@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import FacebookLogin from 'react-facebook-login';
+import GoogleLogin from 'react-google-login';
 import swal from 'sweetalert';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
@@ -7,6 +9,16 @@ import { saveActualUser } from '../actions/saveActualUser';
 import { removeAccount } from '../actions/removeAccountAction';
 
 class SignIn extends Component {
+
+  static responseFacebook(response) {
+    saveActualUser(true, false, response.name, response.email, '', response.picture.data.url);
+    // console.log(response);
+  }
+
+  static responseGoogle = (response) => {
+    saveActualUser(false, true, response.profileObj.name, response.profileObj.email, '',
+    response.profileObj.imageUrl);
+  }
 
   constructor(props) {
     super(props);
@@ -117,6 +129,28 @@ class SignIn extends Component {
             </div>
           </div>
         </div>
+
+        <div id="loginFacebookButton">
+          <center>
+            <FacebookLogin
+              appId="142563266506213"
+              fields="name,email,picture"
+              callback={SignUpForm.responseFacebook}
+              icon="fa-facebook"
+            />
+          </center>
+        </div>
+        <div id="loginGoogleButton">
+          <center>
+            <GoogleLogin
+              clientId="849502021062-to8gq1f29rkac9jcql2bbvu71orpmntv.apps.googleusercontent.com"
+              buttonText="Login"
+              fields="email"
+              onSuccess={SignUpForm.responseGoogle}
+              onFailure={SignUpForm.responseGoogle}
+            />
+          </center>
+        </div>
       </div>
 
     );
@@ -147,7 +181,7 @@ function mapStateToProps(state) {
 const mapDispatchToProps = (dispatch) => {
   return {
     saveUser(email, password) {
-      dispatch(saveActualUser(email, password));
+      dispatch(saveActualUser('', '', email, password));
     },
     removeAccount(email) {
       dispatch(removeAccount(email));

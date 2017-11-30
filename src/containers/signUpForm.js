@@ -6,7 +6,6 @@ import GoogleLogin from 'react-google-login';
 import saveUser from '../actions/saveUser';
 import SignUpSuccessful from '../components/signUpSuccessful';
 import AccountInputForm from '../components/accountInputForm';
-import faceOrGoogleLogin from '../actions/facebookOrGoogleLogin';
 
 class SignUpForm extends Component {
 
@@ -15,12 +14,12 @@ class SignUpForm extends Component {
   }
 
   static responseFacebook(response) {
-    faceOrGoogleLogin(true, false, response.name, response.email, response.picture.data.url);
+    saveUser(response.name, response.email, '', response.picture.data.url);
     // console.log(response);
   }
 
   static responseGoogle = (response) => {
-    faceOrGoogleLogin(false, true, response.profileObj.name, response.profileObj.email,
+    saveUser(response.profileObj.name, response.profileObj.email, '',
     response.profileObj.imageUrl);
   }
 

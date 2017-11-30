@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { browserHistory } from 'react-router';
 import Autosuggest from 'react-autosuggest';
 import saveQuestion from '../../actions/saveQuestion';
 import { FetchPropositionData } from '../../actions/fetchPropositionData';
@@ -160,9 +161,16 @@ class AdminFormQuestion extends Component {
                   this.state.subtitle,
                   this.state.description,
                   this.state.author,
-                  inputProps.value)}
+                  inputProps.value,
+                  browserHistory.push('/criarQuestionario'))}
             >Submit
            </a>
+            <a
+              className="waves-effect waves-light btn black purple-text text-accent-3"
+              id="cleanButton"
+              onClick={() => browserHistory.push('/criarQuestao')}
+            >Limpar
+          </a>
           </form>
         </div>
       </div>

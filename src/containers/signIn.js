@@ -14,7 +14,7 @@ class SignIn extends Component {
     saveActualUser(response.email, response.id);
   }
 
-  static responseGoogle = (response) => {
+  static responseGoogle(response) {
     saveActualUser(response.profileObj.email, 'isFromGoogle');
   }
 

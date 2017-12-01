@@ -15,12 +15,11 @@ class SignUpForm extends Component {
 
   static responseFacebook(response) {
     saveUser(response.name, response.email, response.id, response.picture.data.url);
-    // console.log(response);
   }
 
   static responseGoogle = (response) => {
-    saveUser(response.profileObj.name, response.profileObj.email, 'isFromGoogle',
-    response.profileObj.imageUrl);
+    saveUser(response.profileObj.name, response.profileObj.email,
+      response.profileObj.googleid, response.profileObj.imageUrl);
   }
 
   constructor(props) {

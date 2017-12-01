@@ -11,13 +11,11 @@ import { removeAccount } from '../actions/removeAccountAction';
 class SignIn extends Component {
 
   static responseFacebook(response) {
-    saveActualUser(true, false, response.name, response.email, '', response.picture.data.url);
-    // console.log(response);
+    saveActualUser(response.email, response.id);
   }
 
   static responseGoogle = (response) => {
-    saveActualUser(false, true, response.profileObj.name, response.profileObj.email, '',
-    response.profileObj.imageUrl);
+    saveActualUser(response.profileObj.email, 'isFromGoogle');
   }
 
   constructor(props) {
@@ -135,7 +133,7 @@ class SignIn extends Component {
             <FacebookLogin
               appId="142563266506213"
               fields="name,email,picture"
-              callback={SignUpForm.responseFacebook}
+              callback={SignIn.responseFacebook}
               icon="fa-facebook"
             />
           </center>
@@ -146,8 +144,8 @@ class SignIn extends Component {
               clientId="849502021062-to8gq1f29rkac9jcql2bbvu71orpmntv.apps.googleusercontent.com"
               buttonText="Login"
               fields="email"
-              onSuccess={SignUpForm.responseGoogle}
-              onFailure={SignUpForm.responseGoogle}
+              onSuccess={SignIn.responseGoogle}
+              onFailure={SignIn.responseGoogle}
             />
           </center>
         </div>
@@ -181,7 +179,7 @@ function mapStateToProps(state) {
 const mapDispatchToProps = (dispatch) => {
   return {
     saveUser(email, password) {
-      dispatch(saveActualUser('', '', email, password));
+      dispatch(saveActualUser(email, password));
     },
     removeAccount(email) {
       dispatch(removeAccount(email));

@@ -14,12 +14,12 @@ class SignUpForm extends Component {
   }
 
   static responseFacebook(response) {
-    saveUser(response.name, response.email, '', response.picture.data.url);
+    saveUser(response.name, response.email, response.id, response.picture.data.url);
     // console.log(response);
   }
 
   static responseGoogle = (response) => {
-    saveUser(response.profileObj.name, response.profileObj.email, '',
+    saveUser(response.profileObj.name, response.profileObj.email, 'isFromGoogle',
     response.profileObj.imageUrl);
   }
 

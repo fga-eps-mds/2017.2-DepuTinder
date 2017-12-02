@@ -12,10 +12,12 @@ class SignIn extends Component {
 
   static responseFacebook(response) {
     saveActualUser(response.email, response.id);
+    browserHistory.push('/');
   }
 
   static responseGoogle(response) {
-    saveActualUser(response.profileObj.email, 'isFromGoogle');
+    saveActualUser(response.profileObj.email, response.profileObj.googleId);
+    browserHistory.push('/');
   }
 
   constructor(props) {

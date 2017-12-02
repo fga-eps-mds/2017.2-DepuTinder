@@ -19,7 +19,7 @@ class SignUpForm extends Component {
 
   static responseGoogle = (response) => {
     saveUser(response.profileObj.name, response.profileObj.email,
-      response.profileObj.googleid, response.profileObj.imageUrl);
+      response.profileObj.googleId, response.profileObj.imageUrl);
   }
 
   constructor(props) {

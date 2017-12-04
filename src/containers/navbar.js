@@ -13,7 +13,8 @@ class Navbar extends Component {
 
   showInfoUserPC() {
     const EMPTY = 0;
-    if (Object.keys(this.props.actualUser).length === EMPTY || this.props.actualUser.status !== 200) {
+    if (Object.keys(this.props.actualUser).length === EMPTY
+        || this.props.actualUser.status !== 200) {
       return (
         <div>
           <li><a onClick={() => browserHistory.push('/search')}><i className="material-icons">search</i></a></li>
@@ -43,7 +44,8 @@ class Navbar extends Component {
 
   showInfoUserMobile() {
     const EMPTY = 0;
-    if (Object.keys(this.props.actualUser).length === EMPTY || this.props.actualUser.status !== 200) {
+    if (Object.keys(this.props.actualUser).length === EMPTY
+        || this.props.actualUser.status !== 200) {
       return (
         <div>
           <li><a onClick={() => browserHistory.push('/search')}><i className="material-icons">search</i></a></li>
@@ -107,7 +109,6 @@ class Navbar extends Component {
   }
 
   render() {
-    console.log(this.props.actualUser.status);
     return (
       <div className="navBar">
         { this.showInPC() }

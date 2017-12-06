@@ -13,7 +13,8 @@ class Navbar extends Component {
 
   showInfoUserPC() {
     const EMPTY = 0;
-    if (Object.keys(this.props.actualUser).length === EMPTY) {
+    if (Object.keys(this.props.actualUser).length === EMPTY
+        || this.props.actualUser.status !== 200) {
       return (
         <div>
           <li><a onClick={() => browserHistory.push('/search')}><i className="material-icons">search</i></a></li>
@@ -24,8 +25,7 @@ class Navbar extends Component {
     } else if (this.props.actualUser.data.admin) {
       return (
         <div>
-          <li><a onClick={() => browserHistory.push('/')}>{this.props.actualUser.data.userName}</a></li>
-          <li><a onClick={() => browserHistory.push('/admin')}>adminPage</a></li>
+          <li><a onClick={() => browserHistory.push('/admin')}>{this.props.actualUser.data.userName}</a></li>
           <li><a onClick={() => browserHistory.push('/search')}><i className="material-icons">search</i></a></li>
           <li><a onClick={() => this.props.removeActualUser()}>Sair</a></li>
         </div>
@@ -33,7 +33,7 @@ class Navbar extends Component {
     } else {
       return (
         <div>
-          <li><a onClick={() => browserHistory.push('/')}>{this.props.actualUser.data.userName}</a></li>
+          <li><a onClick={() => browserHistory.push(`/user/${this.props.actualUser.data.userName}`)}>{this.props.actualUser.data.userName}</a></li>
           <li><a onClick={() => browserHistory.push('/ranking')}>Ranking</a></li>
           <li><a onClick={() => browserHistory.push('/search')}><i className="material-icons">search</i></a></li>
           <li><a onClick={() => this.props.removeActualUser()}>Sair</a></li>
@@ -44,7 +44,8 @@ class Navbar extends Component {
 
   showInfoUserMobile() {
     const EMPTY = 0;
-    if (Object.keys(this.props.actualUser).length === EMPTY) {
+    if (Object.keys(this.props.actualUser).length === EMPTY
+        || this.props.actualUser.status !== 200) {
       return (
         <div>
           <li><a onClick={() => browserHistory.push('/search')}><i className="material-icons">search</i></a></li>
@@ -55,8 +56,7 @@ class Navbar extends Component {
     } else if (this.props.actualUser.data.admin) {
       return (
         <div>
-          <li><a onClick={() => browserHistory.push('/')}>{this.props.actualUser.data.userName}</a></li>
-          <li><a onClick={() => browserHistory.push('/admin')}><i className="material-icons">people</i></a></li>
+          <li><a onClick={() => browserHistory.push('/admin')}>{this.props.actualUser.data.userName}</a></li>
           <li><a onClick={() => browserHistory.push('/search')}><i className="material-icons">search</i></a></li>
           <li><a onClick={() => this.props.removeActualUser()}><i className="material-icons">exit_to_app</i></a></li>
         </div>
@@ -64,7 +64,7 @@ class Navbar extends Component {
     } else {
       return (
         <div>
-          <li><a onClick={() => browserHistory.push('/')}>{this.props.actualUser.data.userName}</a></li>
+          <li><a onClick={() => browserHistory.push(`/user/${this.props.actualUser.data.userName}`)}>{this.props.actualUser.data.userName}</a></li>
           <li><a onClick={() => browserHistory.push('/ranking')}><i className="material-icons">assignment</i></a></li>
           <li><a onClick={() => browserHistory.push('/search')}><i className="material-icons">search</i></a></li>
           <li><a onClick={() => this.props.removeActualUser()}><i className="material-icons">exit_to_app</i></a></li>

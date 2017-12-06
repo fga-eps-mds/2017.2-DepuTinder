@@ -1,4 +1,5 @@
-import { USER_LOGIN_REQUEST, DELETE_ACTUAL_USER } from '../actions/userLoginRequest';
+import { USER_LOGIN_REQUEST } from '../actions/userLoginRequest';
+import { USER_LOGOUT_REQUEST } from '../actions/userLogoutRequest';
 
 export default function (state = {}, action) {
   switch (action.type) {
@@ -8,7 +9,7 @@ export default function (state = {}, action) {
       } else {
         return action.payload.response;
       }
-    case DELETE_ACTUAL_USER:
+    case USER_LOGOUT_REQUEST:
       return action.payload;
     default:
       return state;

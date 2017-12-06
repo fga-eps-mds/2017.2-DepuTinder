@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import swal from 'sweetalert';
 import { browserHistory } from 'react-router';
-import { deleteActualUser } from '../actions/userLoginRequest';
+import { userLogoutRequest } from '../actions/userLogoutRequest';
 
 class Navbar extends Component {
   constructor(props) {
@@ -27,7 +27,7 @@ class Navbar extends Component {
           <li><a onClick={() => browserHistory.push('/')}>{this.props.actualUser.data.userName}</a></li>
           <li><a onClick={() => browserHistory.push('/admin')}>adminPage</a></li>
           <li><a onClick={() => browserHistory.push('/search')}><i className="material-icons">search</i></a></li>
-          <li><a onClick={() => this.props.removeActualUser()}>Sair</a></li>
+          <li><a onClick={() => this.props.userLogoutRequest()}>Sair</a></li>
         </div>
       );
     } else {
@@ -36,7 +36,7 @@ class Navbar extends Component {
           <li><a onClick={() => browserHistory.push('/')}>{this.props.actualUser.data.userName}</a></li>
           <li><a onClick={() => browserHistory.push('/ranking')}>Ranking</a></li>
           <li><a onClick={() => browserHistory.push('/search')}><i className="material-icons">search</i></a></li>
-          <li><a onClick={() => this.props.removeActualUser()}>Sair</a></li>
+          <li><a onClick={() => this.props.userLogoutRequest()}>Sair</a></li>
         </div>
       );
     }
@@ -58,7 +58,7 @@ class Navbar extends Component {
           <li><a onClick={() => browserHistory.push('/')}>{this.props.actualUser.data.userName}</a></li>
           <li><a onClick={() => browserHistory.push('/admin')}><i className="material-icons">people</i></a></li>
           <li><a onClick={() => browserHistory.push('/search')}><i className="material-icons">search</i></a></li>
-          <li><a onClick={() => this.props.removeActualUser()}><i className="material-icons">exit_to_app</i></a></li>
+          <li><a onClick={() => this.props.userLogoutRequest()}><i className="material-icons">exit_to_app</i></a></li>
         </div>
       );
     } else {
@@ -67,7 +67,7 @@ class Navbar extends Component {
           <li><a onClick={() => browserHistory.push('/')}>{this.props.actualUser.data.userName}</a></li>
           <li><a onClick={() => browserHistory.push('/ranking')}><i className="material-icons">assignment</i></a></li>
           <li><a onClick={() => browserHistory.push('/search')}><i className="material-icons">search</i></a></li>
-          <li><a onClick={() => this.props.removeActualUser()}><i className="material-icons">exit_to_app</i></a></li>
+          <li><a onClick={() => this.props.userLogoutRequest()}><i className="material-icons">exit_to_app</i></a></li>
         </div>
       );
     }
@@ -123,12 +123,12 @@ Navbar.propTypes = {
     PropTypes.func,
     PropTypes.object,
   ]),
-  removeActualUser: PropTypes.func,
+  userLogoutRequest: PropTypes.func,
 };
 
 Navbar.defaultProps = {
   actualUser: ([]),
-  removeActualUser() {},
+  userLogoutRequest() {},
 };
 
 function mapStateToProps(state) {
@@ -139,12 +139,12 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    removeActualUser() {
+    userLogoutRequest() {
       swal('Deslogado!',
         {
           icon: 'success',
         });
-      dispatch(deleteActualUser());
+      dispatch(userLogoutRequest());
     },
   };
 };

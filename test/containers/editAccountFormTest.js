@@ -14,18 +14,19 @@ describe('EditAccountForm', () => {
   });
 
   it('render the input userEmail', () => {
-    expect(component.find('#nameInputDiv')).to.exist;
+    expect(component.find('#emailInputDiv')).to.exist;
   });
 
   it('render the input password', () => {
-    expect(component.find('#nameInputDiv')).to.exist;
+    expect(component.find('#passwordInputDiv')).to.exist;
   });
 
   it('render the password confirm input', () => {
-    expect(component.find('#nameInputDiv')).to.exist;
+    expect(component.find('#passwordConfirmInputDiv')).to.exist;
   });
 
-  it('render signUp button ', () => {
-    expect(component.find('#nameInputDiv')).to.exist;
+  it('render signUp buttons ', () => {
+    expect(component.find('#buttonGroup')).to.exist;
   });
+
 });

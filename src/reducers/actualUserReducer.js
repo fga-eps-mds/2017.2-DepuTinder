@@ -1,8 +1,8 @@
-import { SAVE_ACTUAL_USER, DELETE_ACTUAL_USER } from '../actions/saveActualUser';
+import { USER_LOGIN_REQUEST, DELETE_ACTUAL_USER } from '../actions/userLoginRequest';
 
 export default function (state = {}, action) {
   switch (action.type) {
-    case SAVE_ACTUAL_USER:
+    case USER_LOGIN_REQUEST:
       if (action.payload.response === undefined) {
         return action.payload.data;
       } else {

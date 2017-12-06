@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import swal from 'sweetalert';
 import { browserHistory } from 'react-router';
-import { deleteActualUser } from '../actions/saveActualUser';
+import { deleteActualUser } from '../actions/userLoginRequest';
 
 class Navbar extends Component {
   constructor(props) {

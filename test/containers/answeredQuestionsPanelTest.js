@@ -1,5 +1,5 @@
 import { renderComponent, expect } from '../test_helper';
-import initialState from '../../src/reducers/initialState';
+import initialState from '../initialStateForTests';
 import AnsweredQuestionsPanel from '../../src/containers/answeredQuestionsPanel';
 
 describe('AnsweredQuestionsPanel', () => {

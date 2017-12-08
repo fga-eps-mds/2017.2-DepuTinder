@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { browserHistory } from 'react-router';
 import swal from 'sweetalert';
 import FacebookLogin from 'react-facebook-login';
-import saveUser from '../actions/saveUser';
+import userRegisterRequest from '../actions/userRegisterRequest';
 import SignUpSuccessful from '../components/signUpSuccessful';
 import AccountInputForm from '../components/accountInputForm';
 
@@ -13,7 +13,7 @@ class SignUpForm extends Component {
   }
 
   static responseFacebook(response) {
-    saveUser(response.name, response.email, '', response.picture.data.url);
+    userRegisterRequest(response.name, response.email, '', response.picture.data.url);
     // console.log(response);
   }
 
@@ -44,7 +44,7 @@ class SignUpForm extends Component {
   }
 
   onSignUpSuccess() {
-    saveUser(this.state.userName, this.state.userEmail, this.state.userPassword, '');
+    userRegisterRequest(this.state.userName, this.state.userEmail, this.state.userPassword, '');
     browserHistory.push('/signUpSuccessful');
     return (
       <SignUpSuccessful />

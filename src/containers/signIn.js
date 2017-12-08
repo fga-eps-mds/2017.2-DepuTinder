@@ -1,24 +1,14 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import FacebookLogin from 'react-facebook-login';
-import GoogleLogin from 'react-google-login';
 import swal from 'sweetalert';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
 import { saveActualUser } from '../actions/saveActualUser';
 import { removeAccount } from '../actions/removeAccountAction';
+import FacebookLoginButton from '../containers/facebookLogin';
+import GoogleLoginButton from '../containers/googleLogin';
 
 class SignIn extends Component {
-
-  static responseFacebook(response) {
-    saveActualUser(response.email, response.id);
-    browserHistory.push('/');
-  }
-
-  static responseGoogle(response) {
-    saveActualUser(response.profileObj.email, response.profileObj.googleId);
-    browserHistory.push('/');
-  }
 
   constructor(props) {
     super(props);
@@ -132,23 +122,13 @@ class SignIn extends Component {
 
         <div id="loginFacebookButton">
           <center>
-            <FacebookLogin
-              appId="142563266506213"
-              fields="name,email,picture"
-              callback={SignIn.responseFacebook}
-              icon="fa-facebook"
-            />
+            <FacebookLoginButton />
           </center>
         </div>
+
         <div id="loginGoogleButton">
           <center>
-            <GoogleLogin
-              clientId="849502021062-to8gq1f29rkac9jcql2bbvu71orpmntv.apps.googleusercontent.com"
-              buttonText="Login"
-              fields="email"
-              onSuccess={SignIn.responseGoogle}
-              onFailure={SignIn.responseGoogle}
-            />
+            <GoogleLoginButton />
           </center>
         </div>
       </div>
@@ -169,6 +149,7 @@ SignIn.defaultProps = {
   deleteActualUser: {},
   saveUser() {},
   removeAccount() {},
+  heckLoginAfterRefresh() {},
 };
 
 function mapStateToProps(state) {

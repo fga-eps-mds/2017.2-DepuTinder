@@ -16,10 +16,30 @@ class AdminQuestionnairePage extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = { add: true, remove: false, list: false };
+  }
+
+  change(flag) {
+    if (flag === 1) {
+      this.setState({ list: true });
+      this.setState({ add: false });
+      this.setState({ remove: false });
+    } else if (flag === 2) {
+      this.setState({ list: false });
+      this.setState({ add: true });
+      this.setState({ remove: false });
+    } else {
+      this.setState({ list: false });
+      this.setState({ add: false });
+      this.setState({ remove: true });
+    }
   }
 
   render() {
+    const LIST = 1;
+    const ADD = 2;
+    const REMOVE = 3;
+
     return (
       <div className="adminQuestionnairePage">
         <div
@@ -53,21 +73,24 @@ class AdminQuestionnairePage extends Component {
                     <div className="scroll-box">
                       <div className="card-tabs">
                         <ul className="tabs tabs-fixed-width">
-                          <li className="tab"><a className="purple-text" href="#test4">Listar</a></li>
-                          <li className="tab"><a className="active purple-text" href="#test5">Adicionar</a></li>
-                          <li className="tab"><a className="purple-text" href="#test6">Remover</a></li>
+                          <li className="tab"><a className="purple-text active" onClick={() => { this.change(LIST); }}>Listar</a></li>
+                          <li className="tab"><a className="active purple-text" onClick={() => { this.change(ADD); }}>Adicionar</a></li>
+                          <li className="tab"><a className="active purple-text" onClick={() => { this.change(REMOVE); }}>Remover</a></li>
                         </ul>
                       </div>
                       <div className="card-content grey lighten-4">
-                        <div id="test4">
-                          <AdminActualQuestionnaire />
-                        </div>
-                        <div id="test5">
+                        {
+                          this.state.list &&
+                            <AdminActualQuestionnaire />
+                        }
+                        {
+                          this.state.add &&
                           <AdminAddandRemoveQuestions />
-                        </div>
-                        <div id="test6">
+                        }
+                        {
+                          this.state.remove &&
                           <AdminAddandRemoveQuestions />
-                        </div>
+                        }
                       </div>
                     </div>
                   </div>

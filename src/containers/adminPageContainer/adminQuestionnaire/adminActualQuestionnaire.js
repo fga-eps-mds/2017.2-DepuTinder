@@ -15,7 +15,7 @@ class AdminActualQuestionnaire extends Component {
   }
 
   renderActualQuestionnaire() {
-    const id = 2;
+    const id = 1;
     return this.props.question.data.map((info) => {
       if (info.questionnaireFK !== id) {
         return null;

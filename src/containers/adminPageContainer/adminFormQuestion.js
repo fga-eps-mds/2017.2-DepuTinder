@@ -76,6 +76,30 @@ class AdminFormQuestion extends Component {
     this.event.preventDefault();
   }
 
+  clean() {
+    this.state = {
+      title: '', subtitle: '', description: '', author: '', value: '', suggestions: [] };
+
+    this.setState({
+      title: '',
+    });
+    this.setState({
+      subtitle: '',
+    });
+    this.setState({
+      description: '',
+    });
+    this.setState({
+      author: '',
+    });
+    this.setState({
+      value: '',
+    });
+    this.setState({
+      suggestion: [],
+    });
+  }
+
 
   render() {
     const { value, suggestions } = this.state;
@@ -168,7 +192,7 @@ class AdminFormQuestion extends Component {
             <a
               className="waves-effect waves-light btn black purple-text text-accent-3"
               id="cleanButton"
-              onClick={() => browserHistory.push('/criarQuestao')}
+              onClick={() => this.clean()}
             >Limpar
           </a>
           </form>

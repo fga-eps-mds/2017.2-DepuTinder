@@ -18,10 +18,8 @@ class Navbar extends Component {
       return (
         <div>
           <li><a onClick={() => browserHistory.push('/search')}><i className="material-icons">search</i></a></li>
-          <li><a className="hide-on-med-and-down" onClick={() => browserHistory.push('/signIn')}>Entrar</a></li>
-          <li><a className="hide-on-large-only" onClick={() => browserHistory.push('/signIn')}><i className="material-icons">open_in_browser</i></a></li>
-          <li><a className="hide-on-med-and-down" onClick={() => browserHistory.push('/signUpForm')}>Cadastrar</a></li>
-          <li><a className="hide-on-large-only" onClick={() => browserHistory.push('/signUpForm')}><i className="material-icons">person_add</i></a></li>
+          <li><a onClick={() => browserHistory.push('/signIn')}><i className="material-icons hide-on-large-only">open_in_browser</i><a className="hide-on-med-and-down">Entrar</a></a></li>
+          <li><a onClick={() => browserHistory.push('/signUpForm')}><i className="material-icons hide-on-large-only">person_add</i><a className="hide-on-med-and-down">Cadastrar</a></a></li>
         </div>
       );
     } else if (this.props.actualUser.data.admin) {
@@ -29,19 +27,16 @@ class Navbar extends Component {
         <div>
           <li><a onClick={() => browserHistory.push('/admin')}>{this.props.actualUser.data.userName}</a></li>
           <li><a onClick={() => browserHistory.push('/search')}><i className="material-icons">search</i></a></li>
-          <li><a className="hide-on-med-and-down" onClick={() => this.props.userLogoutRequest()}>Sair</a></li>
-          <li><a className="hide-on-large-only" onClick={() => this.props.userLogoutRequest()}><i className="material-icons">exit_to_app</i></a></li>
+          <li><a onClick={() => this.props.userLogoutRequest()}><i className="material-icons hide-on-large-only">exit_to_app</i><a className="hide-on-med-and-down">Sair</a></a></li>
         </div>
       );
     } else {
       return (
         <div>
           <li><a onClick={() => browserHistory.push('/user')}>{this.props.actualUser.data.userName}</a></li>
-          <li><a className="hide-on-med-and-down" onClick={() => browserHistory.push('/ranking')}>Ranking</a></li>
-          <li><a className="hide-on-large-only" onClick={() => browserHistory.push('/ranking')}><i className="material-icons">assignment</i></a></li>
+          <li><a onClick={() => browserHistory.push('/ranking')}><i className="material-icons hide-on-large-only">assignment</i><a className="hide-on-med-and-down">Ranking</a></a></li>
           <li><a onClick={() => browserHistory.push('/search')}><i className="material-icons">search</i></a></li>
-          <li><a className="hide-on-med-and-down" onClick={() => this.props.userLogoutRequest()}>Sair</a></li>
-          <li><a className="hide-on-large-only" onClick={() => this.props.userLogoutRequest()}><i className="material-icons">exit_to_app</i></a></li>
+          <li><a onClick={() => this.props.userLogoutRequest()}><i className="material-icons hide-on-large-only">exit_to_app</i><a className="hide-on-med-and-down">Sair</a></a></li>
         </div>
       );
     }
@@ -63,7 +58,6 @@ class Navbar extends Component {
           </a>
           <ul id="nav-mobile" className="right">
             { this.showInfoUserPC() }
-
           </ul>
         </div>
       </nav>

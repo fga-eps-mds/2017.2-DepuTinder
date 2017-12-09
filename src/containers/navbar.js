@@ -18,8 +18,10 @@ class Navbar extends Component {
       return (
         <div>
           <li><a onClick={() => browserHistory.push('/search')}><i className="material-icons">search</i></a></li>
-          <li><a onClick={() => browserHistory.push('/signIn')}>Entrar</a></li>
-          <li><a onClick={() => browserHistory.push('/signUpForm')}>Cadastrar</a></li>
+          <li><a className="hide-on-med-and-down" onClick={() => browserHistory.push('/signIn')}>Entrar</a></li>
+          <li><a className="hide-on-large-only" onClick={() => browserHistory.push('/signIn')}><i className="material-icons">open_in_browser</i></a></li>
+          <li><a className="hide-on-med-and-down" onClick={() => browserHistory.push('/signUpForm')}>Cadastrar</a></li>
+          <li><a className="hide-on-large-only" onClick={() => browserHistory.push('/signUpForm')}><i className="material-icons">person_add</i></a></li>
         </div>
       );
     } else if (this.props.actualUser.data.admin) {
@@ -27,47 +29,19 @@ class Navbar extends Component {
         <div>
           <li><a onClick={() => browserHistory.push('/admin')}>{this.props.actualUser.data.userName}</a></li>
           <li><a onClick={() => browserHistory.push('/search')}><i className="material-icons">search</i></a></li>
-          <li><a onClick={() => this.props.userLogoutRequest()}>Sair</a></li>
+          <li><a className="hide-on-med-and-down" onClick={() => this.props.userLogoutRequest()}>Sair</a></li>
+          <li><a className="hide-on-large-only" onClick={() => this.props.userLogoutRequest()}><i className="material-icons">exit_to_app</i></a></li>
         </div>
       );
     } else {
       return (
         <div>
           <li><a onClick={() => browserHistory.push('/user')}>{this.props.actualUser.data.userName}</a></li>
-          <li><a onClick={() => browserHistory.push('/ranking')}>Ranking</a></li>
+          <li><a className="hide-on-med-and-down" onClick={() => browserHistory.push('/ranking')}>Ranking</a></li>
+          <li><a className="hide-on-large-only" onClick={() => browserHistory.push('/ranking')}><i className="material-icons">assignment</i></a></li>
           <li><a onClick={() => browserHistory.push('/search')}><i className="material-icons">search</i></a></li>
-          <li><a onClick={() => this.props.userLogoutRequest()}>Sair</a></li>
-        </div>
-      );
-    }
-  }
-
-  showInfoUserMobile() {
-    const EMPTY = 0;
-    if (Object.keys(this.props.actualUser).length === EMPTY
-        || this.props.actualUser.status !== 200) {
-      return (
-        <div>
-          <li><a onClick={() => browserHistory.push('/search')}><i className="material-icons">search</i></a></li>
-          <li><a onClick={() => browserHistory.push('/signIn')}><i className="material-icons">open_in_browser</i></a></li>
-          <li><a onClick={() => browserHistory.push('/signUpForm')}><i className="material-icons">person_add</i></a></li>
-        </div>
-      );
-    } else if (this.props.actualUser.data.admin) {
-      return (
-        <div>
-          <li><a onClick={() => browserHistory.push('/admin')}>{this.props.actualUser.data.userName}</a></li>
-          <li><a onClick={() => browserHistory.push('/search')}><i className="material-icons">search</i></a></li>
-          <li><a onClick={() => this.props.userLogoutRequest()}><i className="material-icons">exit_to_app</i></a></li>
-        </div>
-      );
-    } else {
-      return (
-        <div>
-          <li><a onClick={() => browserHistory.push(`/user/${this.props.actualUser.data.userName}`)}>{this.props.actualUser.data.userName}</a></li>
-          <li><a onClick={() => browserHistory.push('/ranking')}><i className="material-icons">assignment</i></a></li>
-          <li><a onClick={() => browserHistory.push('/search')}><i className="material-icons">search</i></a></li>
-          <li><a onClick={() => this.props.userLogoutRequest()}><i className="material-icons">exit_to_app</i></a></li>
+          <li><a className="hide-on-med-and-down" onClick={() => this.props.userLogoutRequest()}>Sair</a></li>
+          <li><a className="hide-on-large-only" onClick={() => this.props.userLogoutRequest()}><i className="material-icons">exit_to_app</i></a></li>
         </div>
       );
     }
@@ -75,33 +49,21 @@ class Navbar extends Component {
 
   showInPC() {
     return (
-      <nav className="hide-on-med-and-down">
+      <nav>
         <div className="nav-wrapper grey darken-3" id="renderNavBar">
           <a
             onClick={() => browserHistory.push('/')}
-            className="brand-logo center"
+            className="brand-logo center hide-on-med-and-down"
           >DepuTinder
            </a>
-          <ul id="nav-mobile" className="right">
-            { this.showInfoUserPC() }
-          </ul>
-        </div>
-      </nav>
-    );
-  }
-
-  showInMobile() {
-    return (
-      <nav className="hide-on-large-only">
-        <div className="nav-wrapper grey darken-3" id="renderNavBarMobile">
           <a
             onClick={() => browserHistory.push('/')}
-            className="brand-logo left"
-            id="logoButton"
+            className="brand-logo left hide-on-large-only"
           ><i className="material-icons">home</i>
           </a>
-          <ul className="right">
-            { this.showInfoUserMobile() }
+          <ul id="nav-mobile" className="right">
+            { this.showInfoUserPC() }
+
           </ul>
         </div>
       </nav>
@@ -112,7 +74,6 @@ class Navbar extends Component {
     return (
       <div className="navBar">
         { this.showInPC() }
-        { this.showInMobile() }
       </div>
     );
   }

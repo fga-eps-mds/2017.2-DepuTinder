@@ -13,29 +13,33 @@ class Navbar extends Component {
 
   showInfoUserPC() {
     const EMPTY = 0;
+    let content;
+
     if (Object.keys(this.props.actualUser).length === EMPTY
         || this.props.actualUser.status !== 200) {
       return (
         <div>
-          <li><a onClick={() => browserHistory.push('/search')}><i className="material-icons">search</i></a></li>
           <li><a onClick={() => browserHistory.push('/signIn')}><i className="material-icons hide-on-large-only">open_in_browser</i><a className="hide-on-med-and-down">Entrar</a></a></li>
           <li><a onClick={() => browserHistory.push('/signUpForm')}><i className="material-icons hide-on-large-only">person_add</i><a className="hide-on-med-and-down">Cadastrar</a></a></li>
-        </div>
-      );
-    } else if (this.props.actualUser.data.admin) {
-      return (
-        <div>
-          <li><a onClick={() => browserHistory.push('/admin')}>{this.props.actualUser.data.userName}</a></li>
-          <li><a onClick={() => browserHistory.push('/search')}><i className="material-icons">search</i></a></li>
-          <li><a onClick={() => this.props.userLogoutRequest()}><i className="material-icons hide-on-large-only">exit_to_app</i><a className="hide-on-med-and-down">Sair</a></a></li>
         </div>
       );
     } else {
       return (
         <div>
-          <li><a onClick={() => browserHistory.push('/user')}>{this.props.actualUser.data.userName}</a></li>
-          <li><a onClick={() => browserHistory.push('/ranking')}><i className="material-icons hide-on-large-only">assignment</i><a className="hide-on-med-and-down">Ranking</a></a></li>
           <li><a onClick={() => browserHistory.push('/search')}><i className="material-icons">search</i></a></li>
+          {
+            this.props.actualUser.data.admin &&
+              <li><a onClick={() => browserHistory.push('/admin')}>{this.props.actualUser.data.userName}</a></li>
+          }
+          {
+            !this.props.actualUser.data.admin &&
+              <li><a onClick={() => browserHistory.push('/user')}>{this.props.actualUser.data.userName}</a></li>
+          }
+          {
+            !this.props.actualUser.data.admin &&
+              <li><a onClick={() => browserHistory.push('/ranking')}><i className="material-icons hide-on-large-only">assignment</i><a className="hide-on-med-and-down">Ranking</a></a></li>
+          }
+          { content }
           <li><a onClick={() => this.props.userLogoutRequest()}><i className="material-icons hide-on-large-only">exit_to_app</i><a className="hide-on-med-and-down">Sair</a></a></li>
         </div>
       );

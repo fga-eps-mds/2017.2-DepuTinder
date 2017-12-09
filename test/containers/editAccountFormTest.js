@@ -1,15 +1,10 @@
 import { renderComponent, expect } from '../test_helper';
-<<<<<<< HEAD
-import initialState from '../../src/reducers/initialState';
-import EditAccountForm from '../../src/containers/editAccountForm';
-=======
 import initialState from '../initialStateForTests';
 import EditAccountForm from '../../src/containers/editAccountForm';
 
 const props = {
 
 }
->>>>>>> development
 
 describe('EditAccountForm', () => {
   let component;
@@ -38,4 +33,7 @@ describe('EditAccountForm', () => {
     expect(component.find('#buttonGroup')).to.exist;
   });
 
+  it('renders the removeAccountButton', () => {
+    expect(component.find('#removeAccountButton')).to.exist;
+  });
 });

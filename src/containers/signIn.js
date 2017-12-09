@@ -89,7 +89,7 @@ class SignIn extends Component {
           <div className="input-field col s12" id="backButtonCollumn">
             <center>
               <a
-                className="waves-effect waves-light btn black yellow-text text-accent-3"
+                className="waves-effect waves-light btn black text-accent-3"
                 id="loginButton"
                 onClick={() => {
                   this.props.userLoginRequest(this.state.email, this.state.password);
@@ -98,23 +98,6 @@ class SignIn extends Component {
               >Login
               </a>
             </center>
-            <div>
-              <center>
-                <a
-                  className="waves-effect waves-light btn black yellow-text text-accent-3"
-                  id="removeAccountButton"
-                  onClick={() => this.props.removeAccount(this.props.actualUser.data.userEmail)}
-                >Remover Conta
-                </a>
-              </center>
-
-              <div className="removeAccountSuccess">
-                <center>
-                  {this.props.deleteActualUser.status === 200 &&
-                    <h5>Conta exlucida com sucesso!</h5> }
-                </center>
-              </div>
-            </div>
           </div>
         </div>
       </div>
@@ -125,22 +108,17 @@ class SignIn extends Component {
 
 SignIn.propTypes = {
   actualUser: PropTypes.obj,
-  deleteActualUser: PropTypes.obj,
   userLoginRequest: PropTypes.func.isRequired,
-  removeAccount: PropTypes.func.isRequired,
 };
 
 SignIn.defaultProps = {
   actualUser: {},
-  deleteActualUser: {},
   userLoginRequest() {},
-  removeAccount() {},
 };
 
 function mapStateToProps(state) {
   return {
     actualUser: state.actualUser,
-    deleteActualUser: state.deleteActualUser,
   };
 }
 

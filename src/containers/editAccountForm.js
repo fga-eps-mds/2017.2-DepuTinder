@@ -6,6 +6,8 @@ import PropTypes from 'prop-types';
 import AccountInputForm from '../components/accountInputForm';
 import updateUser from '../actions/updateUser';
 import EditSuccessful from '../components/editSuccessful';
+import { removeAccount } from '../actions/removeAccountAction';
+import { userLogoutRequest } from '../actions/userLogoutRequest';
 
 // Para renderizar este componente é preciso colocar /editAccountForm no browserHistory do signIn
 // e logar com email:admin@admin.com senha: admin123
@@ -108,6 +110,17 @@ class EditAccountForm extends Component {
                 }}
               > Editar conta
               </a>
+              <br />
+              <br />
+              <div className="removeAccountSuccess">
+                <a
+                  className="waves-effect waves-light btn black text-accent-3"
+                  id="removeAccountButton"
+                  onClick={() => this.props.removeAccount(this.props.actualUser.data.userEmail)}
+                >Remover Conta
+                </a>
+
+              </div>
             </center>
           </div>
         </div>
@@ -118,10 +131,14 @@ class EditAccountForm extends Component {
 
 EditAccountForm.propTypes = {
   actualUser: PropTypes.obj,
+  removeAccount: PropTypes.func.isRequired,
 };
 
 EditAccountForm.defaultProps = {
   actualUser: {},
+  deleteActualUser: {},
+  userLoginRequest() {},
+  removeAccount() {},
 };
 
 function mapStateToProps(state) {
@@ -130,4 +147,15 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(EditAccountForm);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    removeAccount(email) {
+      swal('Conta Removida');
+      dispatch(removeAccount(email));
+      dispatch(userLogoutRequest());
+      browserHistory.push('/');
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(EditAccountForm);

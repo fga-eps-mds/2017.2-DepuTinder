@@ -89,7 +89,7 @@ class SignIn extends Component {
           <div className="input-field col s12" id="backButtonCollumn">
             <center>
               <a
-                className="waves-effect waves-light btn black yellow-text text-accent-3"
+                className="waves-effect waves-light btn black text-accent-3"
                 id="loginButton"
                 onClick={() => {
                   this.props.saveUser(this.state.email, this.state.password);

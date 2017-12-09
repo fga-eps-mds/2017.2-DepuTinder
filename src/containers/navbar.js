@@ -33,7 +33,7 @@ class Navbar extends Component {
     } else {
       return (
         <div>
-          <li><a onClick={() => browserHistory.push(`/user/${this.props.actualUser.data.userName}`)}>{this.props.actualUser.data.userName}</a></li>
+          <li><a onClick={() => browserHistory.push('/user')}>{this.props.actualUser.data.userName}</a></li>
           <li><a onClick={() => browserHistory.push('/ranking')}>Ranking</a></li>
           <li><a onClick={() => browserHistory.push('/search')}><i className="material-icons">search</i></a></li>
           <li><a onClick={() => this.props.removeActualUser()}>Sair</a></li>
@@ -93,7 +93,7 @@ class Navbar extends Component {
   showInMobile() {
     return (
       <nav className="hide-on-large-only">
-        <div className="nav-wrapper" id="renderNavBarMobile">
+        <div className="nav-wrapper grey darken-3" id="renderNavBarMobile">
           <a
             onClick={() => browserHistory.push('/')}
             className="brand-logo left"

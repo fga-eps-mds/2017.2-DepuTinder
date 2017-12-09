@@ -34,7 +34,7 @@ export default (
       <Route exact path="/signIn" component={SignIn} />
       <Route exact path="/editAccountForm" component={EditAccountForm} />
       <Route exact path="/editSuccessful" component={EditSuccessful} />
-      <Route exact path="/user/:user" component={UserPage} />
+      <Route exact path="/user/" component={UserPage} />
     </Route>
   </Route>
 );

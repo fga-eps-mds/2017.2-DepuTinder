@@ -18,7 +18,7 @@ class UserPage extends Component {
           <h4>{ this.props.actualUser.data.userEmail }</h4>
           <a
             onClick={() => browserHistory.push('/editAccountForm')}
-            className="waves-effect waves-light btn black yellow-text text-accent-3"
+            className="waves-effect waves-light btn black text-accent-3"
             id="answerQuestionnaireButton"
           >Alterar
           </a>

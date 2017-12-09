@@ -110,9 +110,11 @@ class EditAccountForm extends Component {
                 }}
               > Editar conta
               </a>
+              <br />
+              <br />
               <div className="removeAccountSuccess">
                 <a
-                  className="waves-effect waves-light btn black yellow-text text-accent-3"
+                  className="waves-effect waves-light btn black text-accent-3"
                   id="removeAccountButton"
                   onClick={() => this.props.removeAccount(this.props.actualUser.data.userEmail)}
                 >Remover Conta

@@ -8,69 +8,90 @@ import { userLogoutRequest } from '../actions/userLogoutRequest';
 class Navbar extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = { loginStatus: false };
+    this.greetings = this.greetings.bind(this);
+  }
+
+  ComponentWillMount() {
+    if (this.props.actualUser === { }) {
+      this.setState({ loginStatus: false });
+    } else {
+      this.setState({ loginStatus: true });
+    }
+  }
+
+  greetings() {
+    if (this.state.loginStatus === false) {
+      return <li><a onClick={() => browserHistory.push('/')}>{localStorage.getItem('userName')}</a></li>;
+    } else {
+      return <li><a onClick={() => browserHistory.push('/')}>{this.props.actualUser.userName}</a></li>;
+    }
   }
 
   showInfoUserPC() {
-    const EMPTY = 0;
-    if (Object.keys(this.props.actualUser).length === EMPTY) {
-      return (
+    const token = localStorage.getItem('userToken');
+    let returnView = {};
+    if (!token) {
+      returnView = (
         <div>
           <li><a onClick={() => browserHistory.push('/search')}><i className="material-icons">search</i></a></li>
           <li><a onClick={() => browserHistory.push('/signIn')}>Entrar</a></li>
           <li><a onClick={() => browserHistory.push('/signUpForm')}>Cadastrar</a></li>
         </div>
       );
-    } else if (this.props.actualUser.data.admin) {
-      return (
+    } else if (token && this.props.actualUser.admin) {
+      returnView = (
         <div>
-          <li><a onClick={() => browserHistory.push('/')}>{this.props.actualUser.data.userName}</a></li>
+          {this.greetings()}
           <li><a onClick={() => browserHistory.push('/admin')}>adminPage</a></li>
           <li><a onClick={() => browserHistory.push('/search')}><i className="material-icons">search</i></a></li>
           <li><a onClick={() => this.props.userLogoutRequest()}>Sair</a></li>
         </div>
       );
-    } else {
-      return (
+    } else if (token) {
+      returnView = (
         <div>
-          <li><a onClick={() => browserHistory.push('/')}>{this.props.actualUser.data.userName}</a></li>
+          {this.greetings()}
           <li><a onClick={() => browserHistory.push('/ranking')}>Ranking</a></li>
           <li><a onClick={() => browserHistory.push('/search')}><i className="material-icons">search</i></a></li>
           <li><a onClick={() => this.props.userLogoutRequest()}>Sair</a></li>
         </div>
       );
     }
+    return returnView;
   }
 
   showInfoUserMobile() {
-    const EMPTY = 0;
-    if (Object.keys(this.props.actualUser).length === EMPTY) {
-      return (
+    const token = localStorage.getItem('userToken');
+    let returnView = {};
+    if (!token) {
+      returnView = (
         <div>
           <li><a onClick={() => browserHistory.push('/search')}><i className="material-icons">search</i></a></li>
           <li><a onClick={() => browserHistory.push('/signIn')}><i className="material-icons">open_in_browser</i></a></li>
           <li><a onClick={() => browserHistory.push('/signUpForm')}><i className="material-icons">person_add</i></a></li>
         </div>
       );
-    } else if (this.props.actualUser.data.admin) {
-      return (
+    } else if (token && this.props.actualUser.admin) {
+      returnView = (
         <div>
-          <li><a onClick={() => browserHistory.push('/')}>{this.props.actualUser.data.userName}</a></li>
+          {this.greetings()}
           <li><a onClick={() => browserHistory.push('/admin')}><i className="material-icons">people</i></a></li>
           <li><a onClick={() => browserHistory.push('/search')}><i className="material-icons">search</i></a></li>
           <li><a onClick={() => this.props.userLogoutRequest()}><i className="material-icons">exit_to_app</i></a></li>
         </div>
       );
-    } else {
-      return (
+    } else if (token) {
+      returnView = (
         <div>
-          <li><a onClick={() => browserHistory.push('/')}>{this.props.actualUser.data.userName}</a></li>
+          {this.greetings()}
           <li><a onClick={() => browserHistory.push('/ranking')}><i className="material-icons">assignment</i></a></li>
           <li><a onClick={() => browserHistory.push('/search')}><i className="material-icons">search</i></a></li>
           <li><a onClick={() => this.props.userLogoutRequest()}><i className="material-icons">exit_to_app</i></a></li>
         </div>
       );
     }
+    return returnView;
   }
 
   showInPC() {
@@ -109,6 +130,7 @@ class Navbar extends Component {
   }
 
   render() {
+    console.log(this.state);
     return (
       <div className="navBar">
         { this.showInPC() }

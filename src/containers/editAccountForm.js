@@ -7,7 +7,7 @@ import AccountInputForm from '../components/accountInputForm';
 import updateUser from '../actions/updateUser';
 import EditSuccessful from '../components/editSuccessful';
 import { removeAccount } from '../actions/removeAccountAction';
-import { deleteActualUser } from '../actions/saveActualUser';
+import { userLogoutRequest } from '../actions/userLogoutRequest';
 
 // Para renderizar este componente é preciso colocar /editAccountForm no browserHistory do signIn
 // e logar com email:admin@admin.com senha: admin123
@@ -136,6 +136,8 @@ EditAccountForm.propTypes = {
 
 EditAccountForm.defaultProps = {
   actualUser: {},
+  deleteActualUser: {},
+  userLoginRequest() {},
   removeAccount() {},
 };
 
@@ -150,7 +152,8 @@ const mapDispatchToProps = (dispatch) => {
     removeAccount(email) {
       swal('Conta Removida');
       dispatch(removeAccount(email));
-      dispatch(deleteActualUser());
+      dispatch(userLogoutRequest());
+      browserHistory.push('/');
     },
   };
 };

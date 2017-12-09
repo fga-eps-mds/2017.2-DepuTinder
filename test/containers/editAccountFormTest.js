@@ -1,6 +1,15 @@
 import { renderComponent, expect } from '../test_helper';
+<<<<<<< HEAD
 import initialState from '../../src/reducers/initialState';
 import EditAccountForm from '../../src/containers/editAccountForm';
+=======
+import initialState from '../initialStateForTests';
+import EditAccountForm from '../../src/containers/editAccountForm';
+
+const props = {
+
+}
+>>>>>>> development
 
 describe('EditAccountForm', () => {
   let component;

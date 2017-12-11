@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 import { browserHistory } from 'react-router';
 import swal from 'sweetalert';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import FacebookLogin from 'react-facebook-login';
 import GoogleLogin from 'react-google-login';
 import saveUser from '../actions/saveUser';
 import SignUpSuccessful from '../components/signUpSuccessful';
 import AccountInputForm from '../components/accountInputForm';
+
 
 class SignUpForm extends Component {
 
@@ -142,6 +145,7 @@ class SignUpForm extends Component {
             />
           </center>
         </div>
+
         <div id="loginGoogleButton">
           <center>
             <GoogleLogin
@@ -158,5 +162,19 @@ class SignUpForm extends Component {
   }
 }
 
+SignUpForm.propTypes = {
+  actualUser: PropTypes.obj,
+};
 
-export default SignUpForm;
+SignUpForm.defaultProps = {
+  actualUser: {},
+};
+
+function mapStateToProps(state) {
+  return {
+    actualUser: state.actualUser,
+  };
+}
+
+
+export default connect(mapStateToProps)(SignUpForm);

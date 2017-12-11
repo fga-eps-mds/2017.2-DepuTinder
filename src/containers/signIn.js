@@ -149,7 +149,6 @@ SignIn.defaultProps = {
   deleteActualUser: {},
   saveUser() {},
   removeAccount() {},
-  heckLoginAfterRefresh() {},
 };
 
 function mapStateToProps(state) {

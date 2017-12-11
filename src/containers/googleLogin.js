@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import FontAwesome from 'react-fontawesome';
 import { browserHistory } from 'react-router';
 import GoogleLogin from 'react-google-login';
 import { saveActualUser } from '../actions/saveActualUser';
@@ -18,13 +17,7 @@ class GoogleLoginButton extends Component {
         fields="email"
         onSuccess={GoogleLoginButton.responseGoogle}
         onFailure={GoogleLoginButton.responseGoogle}
-      >
-
-        <FontAwesome
-          name="google"
-        />
-        <span> Login with Google</span>
-      </GoogleLogin>
+      />
     );
   }
 }

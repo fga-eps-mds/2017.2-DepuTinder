@@ -1,20 +1,30 @@
 import React, { Component } from 'react';
-import { browserHistory } from 'react-router';
 import FacebookLogin from 'react-facebook-login';
+import PropTypes from 'prop-types';
+import { browserHistory } from 'react-router';
+import { connect } from 'react-redux';
 import { saveActualUser } from '../actions/saveActualUser';
+
 
 class FacebookLoginButton extends Component {
 
-  static responseGoogle(response) {
-    saveActualUser(response.profileObj.email, response.profileObj.googleId);
-    browserHistory.push('/');
+  static responseFacebook(response) {
+    saveActualUser(response.email, response.id);
+    console.log(response);
+  }
+
+  componentWillMount() {
+    window.setTimeout(1000);
+    if (this.props.actualUser.status === 200) {
+      browserHistory.push('/');
+    }
   }
 
   render() {
     return (
       <FacebookLogin
         appId="142563266506213"
-        fields="name,email,picture"
+        fields="email"
         callback={FacebookLoginButton.responseFacebook}
         icon="fa-facebook"
       />
@@ -22,4 +32,18 @@ class FacebookLoginButton extends Component {
   }
 }
 
-export default FacebookLoginButton;
+FacebookLoginButton.propTypes = {
+  actualUser: PropTypes.obj,
+};
+
+FacebookLoginButton.defaultProps = {
+  actualUser: {},
+};
+
+function mapStateToProps(state) {
+  return {
+    actualUser: state.actualUser,
+  };
+}
+
+export default connect(mapStateToProps)(FacebookLoginButton);

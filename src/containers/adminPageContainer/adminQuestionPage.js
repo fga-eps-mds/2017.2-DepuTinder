@@ -44,7 +44,7 @@ class AdminQuestionPage extends Component {
           <div className="col s6 m6 l6" id="backButtonCollumn">
             <center>
               <a
-                className="waves-effect waves-light btn black purple-text text-accent-3"
+                className="waves-effect waves-light btn black white-text text-accent-3"
                 id="backButton"
                 onClick={() => browserHistory.push('/admin')}
               >
@@ -56,7 +56,7 @@ class AdminQuestionPage extends Component {
             <center>
               <button
                 onClick={() => this.setState({ showNav: true })}
-                className="btn black purple-text text-accent-3"
+                className="btn black white-text text-accent-3"
               >Proposições</button>
               <SideNav
                 showNav={this.state.showNav}

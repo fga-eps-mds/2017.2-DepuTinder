@@ -23,7 +23,7 @@ class AdminPage extends Component {
             <div className="col s6 m6 l6" id="questionButtonCollumn">
               <a
                 onClick={() => browserHistory.push('/criarQuestao')}
-                className="waves-effect waves-light btn black purple-text text-accent-3"
+                className="waves-effect waves-light btn black white-text text-accent-3"
                 id="elaborateQuestionButton"
               >Questão
               </a>
@@ -31,7 +31,7 @@ class AdminPage extends Component {
             <div className="col s6 m6 l6" id="questionnaireButtonCollumn">
               <a
                 onClick={() => browserHistory.push('/criarQuestionario')}
-                className="waves-effect waves-light btn black purple-text text-accent-3"
+                className="waves-effect waves-light btn black white-text text-accent-3"
                 id="elaborateQuestionnaireButton"
               >Questionário
               </a>

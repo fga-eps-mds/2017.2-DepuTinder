@@ -104,14 +104,14 @@ class AdminFormQuestion extends Component {
   render() {
     const { value, suggestions } = this.state;
     const inputProps = {
-      placeholder: 'Proposicao',
+      placeholder: 'Título da proposicao',
       value,
       onChange: this.onChange,
     };
     return (
       <div className="adminFormQuestion">
         <div className="card-content white accent-3">
-          <i className="material-icons activator right purple-text" id="cardHelpIcon">help</i>
+          <i className="material-icons activator right black-text" id="cardHelpIcon">help</i>
           <form onSubmit={this.handleSubmit}>
             <div className="container">
               <div className="row">
@@ -135,7 +135,7 @@ class AdminFormQuestion extends Component {
                     onChange={this.handleTitleChange}
                     data-length="50"
                   />
-                  <label htmlFor="questionTitle">Titulo</label>
+                  <label htmlFor="questionTitle">Titulo da questão</label>
                 </div>
               </div>
               <div className="row">
@@ -149,35 +149,35 @@ class AdminFormQuestion extends Component {
                   />
                   <label htmlFor="questionSubTitle">SubTitulo</label>
                 </div>
-                <div className="row">
-                  <div className="input-field col s12" id="inputSubtitle">
-                    <input
-                      id="questionAuthor"
-                      type="text"
-                      value={this.state.author}
-                      onChange={this.handleAuthorChange}
-                      data-length="50"
-                    />
-                    <label htmlFor="questionAuthor">Autor(a)</label>
-                  </div>
-                </div>
               </div>
               <div className="row">
-                <div className="input-field col s12" id="inputDescription">
-                  <textarea
-                    id="questionDescription"
-                    className="materialize-textarea"
+                <div className="input-field col s12" id="inputAuthor">
+                  <input
+                    id="questionAuthor"
                     type="text"
-                    value={this.state.description}
-                    onChange={this.handleDescriptionChange}
-                    data-length="120"
+                    value={this.state.author}
+                    onChange={this.handleAuthorChange}
+                    data-length="50"
                   />
-                  <label htmlFor="questionDescription">Descrição</label>
+                  <label htmlFor="questionAuthor">Autor(a)</label>
                 </div>
               </div>
             </div>
+            <div className="row">
+              <div className="input-field col s12" id="inputDescription">
+                <textarea
+                  id="questionDescription"
+                  className="materialize-textarea"
+                  type="text"
+                  value={this.state.description}
+                  onChange={this.handleDescriptionChange}
+                  data-length="120"
+                />
+                <label htmlFor="questionDescription">Descrição</label>
+              </div>
+            </div>
             <a
-              className="waves-effect waves-light btn black purple-text text-accent-3"
+              className="waves-effect waves-light btn black white-text text-accent-3"
               id="saveQuestionButton"
               onClick={() =>
                 saveQuestion(
@@ -190,7 +190,7 @@ class AdminFormQuestion extends Component {
             >Submit
            </a>
             <a
-              className="waves-effect waves-light btn black purple-text text-accent-3"
+              className="waves-effect waves-light btn black white-text text-accent-3"
               id="cleanButton"
               onClick={() => this.clean()}
             >Limpar

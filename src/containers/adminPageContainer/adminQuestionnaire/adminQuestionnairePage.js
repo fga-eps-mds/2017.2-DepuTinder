@@ -73,9 +73,9 @@ class AdminQuestionnairePage extends Component {
                     <div className="scroll-box">
                       <div className="card-tabs">
                         <ul className="tabs tabs-fixed-width">
-                          <li className="tab"><a className="purple-text active" onClick={() => { this.change(LIST); }}>Listar</a></li>
-                          <li className="tab"><a className="active purple-text" onClick={() => { this.change(ADD); }}>Adicionar</a></li>
-                          <li className="tab"><a className="active purple-text" onClick={() => { this.change(REMOVE); }}>Remover</a></li>
+                          <li className="tab"><a className="black-text active" onClick={() => { this.change(LIST); }}>Listar</a></li>
+                          <li className="tab"><a className="active black-text" onClick={() => { this.change(ADD); }}>Adicionar</a></li>
+                          <li className="tab"><a className="active black-text" onClick={() => { this.change(REMOVE); }}>Remover</a></li>
                         </ul>
                       </div>
                       <div className="card-content grey lighten-4">
@@ -102,7 +102,7 @@ class AdminQuestionnairePage extends Component {
             <div className="col s6 m6 l6" id="backButtonCollumn">
               <center>
                 <a
-                  className="waves-effect waves-light btn black purple-text text-accent-3"
+                  className="waves-effect waves-light btn black white-text text-accent-3"
                   id="backButton"
                   onClick={() => browserHistory.push('/admin')}
                 >
@@ -113,7 +113,7 @@ class AdminQuestionnairePage extends Component {
             <div className="col s6 m6 l6" id="sendButtonCollumn">
               <center>
                 <a
-                  className="waves-effect waves-light btn black purple-text text-accent-3"
+                  className="waves-effect waves-light btn black white-text text-accent-3"
                   id="propositionButton"
                   onClick={() => browserHistory.push('/teste')}
                 >

@@ -16,30 +16,10 @@ class AdminQuestionnairePage extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { add: true, remove: false, list: false };
-  }
-
-  change(flag) {
-    if (flag === 1) {
-      this.setState({ list: true });
-      this.setState({ add: false });
-      this.setState({ remove: false });
-    } else if (flag === 2) {
-      this.setState({ list: false });
-      this.setState({ add: true });
-      this.setState({ remove: false });
-    } else {
-      this.setState({ list: false });
-      this.setState({ add: false });
-      this.setState({ remove: true });
-    }
+    this.state = {};
   }
 
   render() {
-    const LIST = 1;
-    const ADD = 2;
-    const REMOVE = 3;
-
     return (
       <div className="adminQuestionnairePage">
         <div
@@ -57,7 +37,7 @@ class AdminQuestionnairePage extends Component {
               <div className="card white">
                 <div className="card-content black-text">
                   <span className="card-title">Questões Disponíveis</span>
-                  <div className="scroll-box"z>
+                  <div className="scroll-box">
                     {AdminQuestionnairePage.renderQuestionsList()}
                   </div>
                 </div>
@@ -73,24 +53,21 @@ class AdminQuestionnairePage extends Component {
                     <div className="scroll-box">
                       <div className="card-tabs">
                         <ul className="tabs tabs-fixed-width">
-                          <li className="tab"><a className="black-text active" onClick={() => { this.change(LIST); }}>Listar</a></li>
-                          <li className="tab"><a className="active black-text" onClick={() => { this.change(ADD); }}>Adicionar</a></li>
-                          <li className="tab"><a className="active black-text" onClick={() => { this.change(REMOVE); }}>Remover</a></li>
+                          <li className="tab"><a className="purple-text" href="#test4">Listar</a></li>
+                          <li className="tab"><a className="active purple-text" href="#test5">Adicionar</a></li>
+                          <li className="tab"><a className="purple-text" href="#test6">Remover</a></li>
                         </ul>
                       </div>
                       <div className="card-content grey lighten-4">
-                        {
-                          this.state.list &&
-                            <AdminActualQuestionnaire />
-                        }
-                        {
-                          this.state.add &&
+                        <div id="test4">
+                          <AdminActualQuestionnaire />
+                        </div>
+                        <div id="test5">
                           <AdminAddandRemoveQuestions />
-                        }
-                        {
-                          this.state.remove &&
+                        </div>
+                        <div id="test6">
                           <AdminAddandRemoveQuestions />
-                        }
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -102,7 +79,7 @@ class AdminQuestionnairePage extends Component {
             <div className="col s6 m6 l6" id="backButtonCollumn">
               <center>
                 <a
-                  className="waves-effect waves-light btn black white-text text-accent-3"
+                  className="waves-effect waves-light btn black purple-text text-accent-3"
                   id="backButton"
                   onClick={() => browserHistory.push('/admin')}
                 >
@@ -113,7 +90,7 @@ class AdminQuestionnairePage extends Component {
             <div className="col s6 m6 l6" id="sendButtonCollumn">
               <center>
                 <a
-                  className="waves-effect waves-light btn black white-text text-accent-3"
+                  className="waves-effect waves-light btn black purple-text text-accent-3"
                   id="propositionButton"
                   onClick={() => browserHistory.push('/teste')}
                 >

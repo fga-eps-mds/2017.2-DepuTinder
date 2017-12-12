@@ -35,12 +35,12 @@ class SignIn extends Component {
           icon: 'success',
         });
     } else if (this.props.actualUser.status === USER_LOGIN_ERROR && this.state.flag) {
-      swal(this.props.actualUser.data.message,
+      swal(this.props.actualUser.message,
         {
           icon: 'error',
         });
     } else if (this.props.actualUser.status === USER_LOGIN_DONT_EXIST && this.state.flag) {
-      swal(this.props.actualUser.data.message,
+      swal(this.props.actualUser.message,
         {
           icon: 'error',
         });

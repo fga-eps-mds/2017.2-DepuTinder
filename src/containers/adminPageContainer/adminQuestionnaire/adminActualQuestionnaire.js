@@ -15,7 +15,7 @@ class AdminActualQuestionnaire extends Component {
   }
 
   renderActualQuestionnaire() {
-    const id = 2;
+    const id = 1;
     return this.props.question.data.map((info) => {
       if (info.questionnaireFK !== id) {
         return null;
@@ -23,7 +23,7 @@ class AdminActualQuestionnaire extends Component {
         return (
           <div className="row" key={info.questionTitle}>
             <div className="col s12 m12">
-              <div className="card-content purple-text card white darken-1">
+              <div className="card-content black-text card white darken-1">
                 <div>Título: {info.questionTitle}</div>
                 <div>Subtítulo: {info.questionSubtitle}</div>
                 <div>Descrição: {info.questionDescription}</div>

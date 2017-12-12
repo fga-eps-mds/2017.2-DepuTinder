@@ -222,3 +222,14 @@ margin:20px;
 #cleanButton {
   margin-left: 20px;
 }
+
+.SideNav {
+  width: 10%;
+}
+
+.scrollbar
+{
+  overflow-y: scroll;
+  height: 550px;
+  padding: 1rem
+}

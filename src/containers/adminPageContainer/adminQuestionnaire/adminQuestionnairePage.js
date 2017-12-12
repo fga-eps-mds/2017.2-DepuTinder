@@ -57,7 +57,7 @@ class AdminQuestionnairePage extends Component {
               <div className="card white">
                 <div className="card-content black-text">
                   <span className="card-title">Questões Disponíveis</span>
-                  <div className="scroll-box">
+                  <div className="scroll-box"z>
                     {AdminQuestionnairePage.renderQuestionsList()}
                   </div>
                 </div>

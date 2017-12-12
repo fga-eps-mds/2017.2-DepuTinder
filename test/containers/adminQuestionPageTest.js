@@ -19,7 +19,4 @@ describe('AdminQuestionPage', () => {
     expect(component.find('#backButtonCollumn')).to.exist;
   });
 
-  it('renders a sideNav', () => {
-    expect(component.find('#slide-out')).to.exist;
-  });
 });

@@ -181,10 +181,6 @@
   transform:translate(50%,0%);
 }
 
-#slide-out{
-  background-color: var(--main-yellow);
-  color: var(--main-yellow);
-}
 #listAdminQuestions{
    width: 50%;
    height: 30%;

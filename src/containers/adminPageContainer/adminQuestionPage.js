@@ -10,7 +10,7 @@ class AdminQuestionPage extends Component {
 
   static renderPropositionsList() {
     return (
-      <div>
+      <div className="scrollbar">
         <AdminListPropositions />
       </div>
     );

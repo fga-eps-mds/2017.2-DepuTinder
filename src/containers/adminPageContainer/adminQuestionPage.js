@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { browserHistory } from 'react-router';
+import PropTypes from 'prop-types';
+import SideNav from 'react-simple-sidenav';
 import AdminListPropositions from './adminListPropositions';
 import AdminFormQuestion from './adminFormQuestion';
 import AdminRevealCardQuestion from './adminRevealCardQuestion';
@@ -52,10 +54,23 @@ class AdminQuestionPage extends Component {
           </div>
           <div>
             <center>
-              <ul id="slide-out" className="side-nav purple-text" >
-                {AdminQuestionPage.renderPropositionsList()}
-              </ul>
-              <button href="#" data-activates="slide-out" className="button-collapse waves-effect waves-light btn black purple-text text-accent-3">Proposições</button>
+              <button
+                onClick={() => this.setState({ showNav: true })}
+                className="btn black purple-text text-accent-3"
+              >Proposições</button>
+              <SideNav
+                showNav={this.state.showNav}
+                onHideNav={() => this.setState({ showNav: false })}
+                title={<div />}
+                items={[
+                  <div>
+                    {AdminQuestionPage.renderPropositionsList()}
+                  </div>,
+                ]}
+                titleStyle={{ backgroundColor: '#fff' }}
+                itemStyle={{ backgroundColor: '#fff' }}
+                itemHoverStyle={{ backgroundColor: 'white' }}
+              />
             </center>
           </div>
         </div>
@@ -63,5 +78,14 @@ class AdminQuestionPage extends Component {
     );
   }
 }
+
+AdminQuestionPage.propTypes = {
+  showNav: PropTypes.func,
+};
+
+AdminQuestionPage.defaultProps = {
+  showNav() {},
+};
+
 
 export default AdminQuestionPage;

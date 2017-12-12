@@ -224,7 +224,9 @@ margin:20px;
 }
 
 .SideNav {
-  width: 10%;
+  font-size: 30%;
+  width: 30px;
+  min-width: 30px;
 }
 
 .scrollbar
@@ -232,4 +234,29 @@ margin:20px;
   overflow-y: scroll;
   height: 550px;
   padding: 1rem
+}
+
+#cardSideNav {
+  font-size: 70%;
+  top: 40%;
+  margin-left:300;
+	margin-right:300;
+	margin-top:210;
+	text-align: center;
+	border:thin solid;
+	width:400;
+	height:100;
+}
+
+.navStyle {
+  position: relative;
+  width: 90%;
+  max-width: 400px;
+  height: 100%;
+  transform: none;
+  display: flex;
+  will-change: transform;
+  flex-direction: column;
+  float: left;
+  transition: none;
 }

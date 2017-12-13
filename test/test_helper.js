@@ -11,7 +11,7 @@ import promise from 'redux-promise';
 import reducers from '../src/reducers';
 import swal from 'sweetalert';
 
-global.document = jsdom.jsdom('<!doctype html><html><body></body></html>');
+global.document = jsdom.jsdom('<!doctype html><html><body><script></script</body></html>');
 global.window = global.document.defaultView;
 global.navigator = global.window.navigator;
 const $ = _$(window);

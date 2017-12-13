@@ -70,7 +70,10 @@
     "redux-thunk": "^*",
     "sass-loader": "^6.0.6",
     "style-loader": "^0.18.2",
-    "sweetalert": "^2.0.8"
+    "sweetalert": "^2.0.8",
+    "react-fontawesome": "1.6.1",
+    "react-facebook-login": "^3.7.2",
+    "react-google-login": "^3.0.2"
   },
   "babel": {
     "presets": [

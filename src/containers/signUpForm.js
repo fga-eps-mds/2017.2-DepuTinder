@@ -1,10 +1,18 @@
 import React, { Component } from 'react';
 import { browserHistory } from 'react-router';
 import swal from 'sweetalert';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import FacebookLogin from 'react-facebook-login';
+<<<<<<< HEAD
+import GoogleLogin from 'react-google-login';
+import saveUser from '../actions/saveUser';
+=======
 import userRegisterRequest from '../actions/userRegisterRequest';
+>>>>>>> development
 import SignUpSuccessful from '../components/signUpSuccessful';
 import AccountInputForm from '../components/accountInputForm';
+
 
 class SignUpForm extends Component {
 
@@ -13,8 +21,17 @@ class SignUpForm extends Component {
   }
 
   static responseFacebook(response) {
+<<<<<<< HEAD
+    saveUser(response.name, response.email, response.id, response.picture.data.url);
+  }
+
+  static responseGoogle = (response) => {
+    saveUser(response.profileObj.name, response.profileObj.email,
+      response.profileObj.googleId, response.profileObj.imageUrl);
+=======
     userRegisterRequest(response.name, response.email, '', response.picture.data.url);
     // console.log(response);
+>>>>>>> development
   }
 
   constructor(props) {
@@ -127,7 +144,6 @@ class SignUpForm extends Component {
             </center>
           </div>
         </div>
-
         <div id="loginFacebookButton">
           <center>
             <FacebookLogin
@@ -138,10 +154,36 @@ class SignUpForm extends Component {
             />
           </center>
         </div>
+
+        <div id="loginGoogleButton">
+          <center>
+            <GoogleLogin
+              clientId="849502021062-to8gq1f29rkac9jcql2bbvu71orpmntv.apps.googleusercontent.com"
+              buttonText="Login"
+              fields="email"
+              onSuccess={SignUpForm.responseGoogle}
+              onFailure={SignUpForm.responseGoogle}
+            />
+          </center>
+        </div>
       </form>
     );
   }
-
 }
 
-export default SignUpForm;
+SignUpForm.propTypes = {
+  actualUser: PropTypes.obj,
+};
+
+SignUpForm.defaultProps = {
+  actualUser: {},
+};
+
+function mapStateToProps(state) {
+  return {
+    actualUser: state.actualUser,
+  };
+}
+
+
+export default connect(mapStateToProps)(SignUpForm);

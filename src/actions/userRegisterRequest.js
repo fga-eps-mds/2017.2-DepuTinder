@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const HOST = 'http://localhost:8000/createUser/';
+const HOST = 'http://deputinder-api.herokuapp.com/createUser/';
 
 export default function userRegisterRequest(nameParam, emailParam, passwordParam, imageParam) {
   axios.post(`${HOST}`, {

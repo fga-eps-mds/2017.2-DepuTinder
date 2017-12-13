@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export const FETCH_PARLAMENTARIANS_DATA = 'FETCH_PARLAMENTARIANS_DATA';
-const URL_API = 'http://localhost:8000';
+const URL_API = 'http://deputinder-api.herokuapp.com/';
 const HOST = URL_API;
 
 export const fetchParlamentariansData = () => {

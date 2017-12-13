@@ -10,7 +10,6 @@ class FacebookLoginButton extends Component {
 
   static responseFacebook(response) {
     saveActualUser(response.email, response.id);
-    console.log(response);
   }
 
   componentWillMount() {

@@ -32,6 +32,7 @@ class SignIn extends Component {
 
     if (this.props.actualUser.status === USER_LOGIN_SUCCESSFUL && this.state.flag) {
       browserHistory.push('/');
+
       swal(this.props.actualUser.message,
         {
           icon: 'success',
@@ -120,11 +121,6 @@ class SignIn extends Component {
           </div>
         </div>
 
-        <div id="loginFacebookButton">
-          <center>
-            <FacebookLoginButton />
-          </center>
-        </div>
 
         <div id="loginGoogleButton">
           <center>

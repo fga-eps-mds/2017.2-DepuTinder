@@ -8,23 +8,18 @@ import { saveActualUser } from '../actions/saveActualUser';
 class GoogleLoginButton extends Component {
 
   static responseGoogle(response) {
-    console.log(response);
-  }
-
-  constructor(props) {
-    super(props);
-    this.state = { email: '', password: '' };
+    if (response.profileObj.email && response.profileObj.googleId) {
+      (saveActualUser(response.profileObj.email,
+      response.profileObj.googleId));
+      console.log(response);
+    }
   }
 
   render() {
-    if (this.props.actualUser.status === 200) {
-      browserHistory.push('/');
-    }
-
     return (
       <GoogleLogin
         clientId="849502021062-to8gq1f29rkac9jcql2bbvu71orpmntv.apps.googleusercontent.com"
-        fields="email"
+        fields="email,googleId"
         onSuccess={GoogleLoginButton.responseGoogle}
         onFailure={GoogleLoginButton.responseGoogle}
       />
@@ -34,12 +29,10 @@ class GoogleLoginButton extends Component {
 
 GoogleLoginButton.propTypes = {
   actualUser: PropTypes.obj,
-  saveUser: PropTypes.func.isRequired,
 };
 
 GoogleLoginButton.defaultProps = {
   actualUser: {},
-  saveUser() {},
 };
 
 function mapStateToProps(state) {
@@ -48,12 +41,4 @@ function mapStateToProps(state) {
   };
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    saveUser(email, password) {
-      dispatch(saveActualUser(email, password));
-    },
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(GoogleLoginButton);
+export default connect(mapStateToProps)(GoogleLoginButton);

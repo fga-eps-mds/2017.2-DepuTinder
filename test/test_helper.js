@@ -10,7 +10,6 @@ import { createStore, applyMiddleware } from 'redux';
 import promise from 'redux-promise';
 import reducers from '../src/reducers';
 import swal from 'sweetalert';
-import GoogleLogin from 'react-google-login';
 
 global.document = jsdom.jsdom('<!doctype html><html><body><script></script</body></html>');
 global.window = global.document.defaultView;

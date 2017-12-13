@@ -5,8 +5,6 @@ import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
 import { userLoginRequest } from '../actions/userLoginRequest';
 import { removeAccount } from '../actions/removeAccountAction';
-import FacebookLoginButton from '../containers/facebookLogin';
-import GoogleLoginButton from '../containers/googleLogin';
 
 class SignIn extends Component {
 
@@ -120,15 +118,6 @@ class SignIn extends Component {
             </div>
           </div>
         </div>
-
-
-        <div id="loginGoogleButton">
-          <center>
-            <GoogleLoginButton />
-          </center>
-        </div>
-      </div>
-
     );
   }
 }

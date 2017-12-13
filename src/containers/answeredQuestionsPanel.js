@@ -8,10 +8,10 @@ import ListAnsweredQuestions from '../containers/listAnsweredQuestions';
 class AnsweredQuestionsPanel extends Component {
 
   static sendAnsweredQuestions(answeredQuestions) {
-    const HOST = 'http://localhost:8000/sendAnsweredQuestions/';
+    const HOST = 'http://deputinder-api.herokuapp.com/sendAnsweredQuestions/';
     const data = answeredQuestions;
     axios.put(HOST, data);
-    setTimeout(() => { browserHistory.push('ranking'); }, 500);
+    setTimeout(() => { browserHistory.push('ranking'); }, 4000);
   }
 
   constructor(props) {

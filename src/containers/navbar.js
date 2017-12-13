@@ -3,74 +3,95 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import swal from 'sweetalert';
 import { browserHistory } from 'react-router';
-import { deleteActualUser } from '../actions/saveActualUser';
+import { userLogoutRequest } from '../actions/userLogoutRequest';
 
 class Navbar extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = { loginStatus: false };
+    this.greetings = this.greetings.bind(this);
+  }
+
+  ComponentWillMount() {
+    if (this.props.actualUser === { }) {
+      this.setState({ loginStatus: false });
+    } else {
+      this.setState({ loginStatus: true });
+    }
+  }
+
+  greetings() {
+    if (this.state.loginStatus === false) {
+      return <li><a onClick={() => browserHistory.push('/')}>{localStorage.getItem('userName')}</a></li>;
+    } else {
+      return <li><a onClick={() => browserHistory.push('/')}>{this.props.actualUser.userName}</a></li>;
+    }
   }
 
   showInfoUserPC() {
-    const EMPTY = 0;
-    if (Object.keys(this.props.actualUser).length === EMPTY) {
-      return (
+    const token = localStorage.getItem('userToken');
+    let returnView = {};
+    if (!token) {
+      returnView = (
         <div>
           <li><a onClick={() => browserHistory.push('/search')}><i className="material-icons">search</i></a></li>
           <li><a onClick={() => browserHistory.push('/signIn')}>Entrar</a></li>
           <li><a onClick={() => browserHistory.push('/signUpForm')}>Cadastrar</a></li>
         </div>
       );
-    } else if (this.props.actualUser.data.admin) {
-      return (
+    } else if (token && this.props.actualUser.admin) {
+      returnView = (
         <div>
-          <li><a onClick={() => browserHistory.push('/')}>{this.props.actualUser.data.userName}</a></li>
+          {this.greetings()}
           <li><a onClick={() => browserHistory.push('/admin')}>adminPage</a></li>
           <li><a onClick={() => browserHistory.push('/search')}><i className="material-icons">search</i></a></li>
-          <li><a onClick={() => this.props.removeActualUser()}>Sair</a></li>
+          <li><a onClick={() => this.props.userLogoutRequest()}>Sair</a></li>
         </div>
       );
-    } else {
-      return (
+    } else if (token) {
+      returnView = (
         <div>
-          <li><a onClick={() => browserHistory.push('/')}>{this.props.actualUser.data.userName}</a></li>
+          {this.greetings()}
           <li><a onClick={() => browserHistory.push('/ranking')}>Ranking</a></li>
           <li><a onClick={() => browserHistory.push('/search')}><i className="material-icons">search</i></a></li>
-          <li><a onClick={() => this.props.removeActualUser()}>Sair</a></li>
+          <li><a onClick={() => this.props.userLogoutRequest()}>Sair</a></li>
         </div>
       );
     }
+    return returnView;
   }
 
   showInfoUserMobile() {
-    const EMPTY = 0;
-    if (Object.keys(this.props.actualUser).length === EMPTY) {
-      return (
+    const token = localStorage.getItem('userToken');
+    let returnView = {};
+    if (!token) {
+      returnView = (
         <div>
           <li><a onClick={() => browserHistory.push('/search')}><i className="material-icons">search</i></a></li>
           <li><a onClick={() => browserHistory.push('/signIn')}><i className="material-icons">open_in_browser</i></a></li>
           <li><a onClick={() => browserHistory.push('/signUpForm')}><i className="material-icons">person_add</i></a></li>
         </div>
       );
-    } else if (this.props.actualUser.data.admin) {
-      return (
+    } else if (token && this.props.actualUser.admin) {
+      returnView = (
         <div>
-          <li><a onClick={() => browserHistory.push('/')}>{this.props.actualUser.data.userName}</a></li>
+          {this.greetings()}
           <li><a onClick={() => browserHistory.push('/admin')}><i className="material-icons">people</i></a></li>
           <li><a onClick={() => browserHistory.push('/search')}><i className="material-icons">search</i></a></li>
-          <li><a onClick={() => this.props.removeActualUser()}><i className="material-icons">exit_to_app</i></a></li>
+          <li><a onClick={() => this.props.userLogoutRequest()}><i className="material-icons">exit_to_app</i></a></li>
         </div>
       );
-    } else {
-      return (
+    } else if (token) {
+      returnView = (
         <div>
-          <li><a onClick={() => browserHistory.push('/')}>{this.props.actualUser.data.userName}</a></li>
+          {this.greetings()}
           <li><a onClick={() => browserHistory.push('/ranking')}><i className="material-icons">assignment</i></a></li>
           <li><a onClick={() => browserHistory.push('/search')}><i className="material-icons">search</i></a></li>
-          <li><a onClick={() => this.props.removeActualUser()}><i className="material-icons">exit_to_app</i></a></li>
+          <li><a onClick={() => this.props.userLogoutRequest()}><i className="material-icons">exit_to_app</i></a></li>
         </div>
       );
     }
+    return returnView;
   }
 
   showInPC() {
@@ -123,12 +144,12 @@ Navbar.propTypes = {
     PropTypes.func,
     PropTypes.object,
   ]),
-  removeActualUser: PropTypes.func,
+  userLogoutRequest: PropTypes.func,
 };
 
 Navbar.defaultProps = {
   actualUser: ([]),
-  removeActualUser() {},
+  userLogoutRequest() {},
 };
 
 function mapStateToProps(state) {
@@ -139,12 +160,12 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    removeActualUser() {
+    userLogoutRequest() {
       swal('Deslogado!',
         {
           icon: 'success',
         });
-      dispatch(deleteActualUser());
+      dispatch(userLogoutRequest());
     },
   };
 };

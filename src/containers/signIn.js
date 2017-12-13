@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import swal from 'sweetalert';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
-import { saveActualUser } from '../actions/saveActualUser';
+import { userLoginRequest } from '../actions/userLoginRequest';
 import { removeAccount } from '../actions/removeAccountAction';
 import FacebookLoginButton from '../containers/facebookLogin';
 import GoogleLoginButton from '../containers/googleLogin';
@@ -38,12 +38,12 @@ class SignIn extends Component {
           icon: 'success',
         });
     } else if (this.props.actualUser.status === USER_LOGIN_ERROR && this.state.flag) {
-      swal(this.props.actualUser.data.message,
+      swal(this.props.actualUser.message,
         {
           icon: 'error',
         });
     } else if (this.props.actualUser.status === USER_LOGIN_DONT_EXIST && this.state.flag) {
-      swal(this.props.actualUser.data.message,
+      swal(this.props.actualUser.message,
         {
           icon: 'error',
         });
@@ -95,7 +95,7 @@ class SignIn extends Component {
                 className="waves-effect waves-light btn black yellow-text text-accent-3"
                 id="loginButton"
                 onClick={() => {
-                  this.props.saveUser(this.state.email, this.state.password);
+                  this.props.userLoginRequest(this.state.email, this.state.password);
                   this.setState({ flag: true });
                 }}
               >Login
@@ -136,14 +136,14 @@ class SignIn extends Component {
 SignIn.propTypes = {
   actualUser: PropTypes.obj,
   deleteActualUser: PropTypes.obj,
-  saveUser: PropTypes.func.isRequired,
+  userLoginRequest: PropTypes.func.isRequired,
   removeAccount: PropTypes.func.isRequired,
 };
 
 SignIn.defaultProps = {
   actualUser: {},
   deleteActualUser: {},
-  saveUser() {},
+  userLoginRequest() {},
   removeAccount() {},
 };
 
@@ -156,8 +156,8 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    saveUser(email, password) {
-      dispatch(saveActualUser(email, password));
+    userLoginRequest(email, password) {
+      dispatch(userLoginRequest(email, password));
     },
     removeAccount(email) {
       dispatch(removeAccount(email));

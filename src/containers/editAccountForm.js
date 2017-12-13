@@ -19,8 +19,8 @@ class EditAccountForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      oldUserName: this.props.actualUser.data.userName,
-      oldUserEmail: this.props.actualUser.data.userEmail,
+      oldUserName: this.props.actualUser.userName,
+      oldUserEmail: this.props.actualUser.userEmail,
       oldUserPassword: '',
       userName: '',
       userEmail: '',

@@ -3,7 +3,7 @@ import axios from 'axios';
 export const REMOVE_ACCOUNT_ACTION = 'REMOVE_ACCOUNT_ACTION';
 
 export const removeAccount = (email) => {
-  const HOST = 'http://localhost:8000/users/';
+  const HOST = 'http://deputinder-api.herokuapp.com/users/';
   const params = { data: { userEmail: email } };
 
   const request = axios.delete(HOST, params);

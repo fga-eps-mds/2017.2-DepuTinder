@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const HOST = 'http://localhost:8000/updateUser/';
+const HOST = 'http://deputinder-api.herokuapp.com/updateUser/';
 
 export default function updateUser(
   oldEmailParam,

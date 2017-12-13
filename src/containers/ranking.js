@@ -26,7 +26,7 @@ class Ranking extends Component {
   componentDidMount() {
     this.timerID = setInterval(
       () => this.tick(),
-      500,
+      200,
     );
   }
 

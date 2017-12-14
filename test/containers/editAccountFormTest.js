@@ -33,4 +33,7 @@ describe('EditAccountForm', () => {
     expect(component.find('#buttonGroup')).to.exist;
   });
 
+  it('renders the removeAccountButton', () => {
+    expect(component.find('#removeAccountButton')).to.exist;
+  });
 });

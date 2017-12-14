@@ -13,6 +13,10 @@ describe('EditAccountForm', () => {
     component = renderComponent(EditAccountForm, null, initialState);
   });
 
+  it('render a form', () => {
+    expect(component.find('form')).to_exist;
+  });
+
   it('render the input userName', () => {
     expect(component.find('#nameInputDiv')).to.exist;
   });
@@ -33,4 +37,11 @@ describe('EditAccountForm', () => {
     expect(component.find('#buttonGroup')).to.exist;
   });
 
+  it('renders edit account button', () => {
+    expect(component.find('#editAccountButton')).to.exist;
+  });
+
+  it('renders the removeAccountButton', () => {
+    expect(component.find('#removeAccountButton')).to.exist;
+  });
 });

@@ -86,8 +86,7 @@ class Navbar extends Component {
         <div>
           {this.greetings()}
           <li><a onClick={() => browserHistory.push('/ranking')}><i className="material-icons">assignment</i></a></li>
-          <li><a onClick={() => browserHistory.push('/search')}><i className="material-icons">search</i></a></li>
-          <li><a onClick={() => this.props.userLogoutRequest()}><i className="material-icons">exit_to_app</i></a></li>
+          <li><a onClick={() => this.props.userLogoutRequest()}><i className="material-icons hide-on-large-only">exit_to_app</i><a className="hide-on-med-and-down">Sair</a></a></li>
         </div>
       );
     }
@@ -96,33 +95,20 @@ class Navbar extends Component {
 
   showInPC() {
     return (
-      <nav className="hide-on-med-and-down">
+      <nav>
         <div className="nav-wrapper grey darken-3" id="renderNavBar">
           <a
             onClick={() => browserHistory.push('/')}
-            className="brand-logo center"
+            className="brand-logo center hide-on-med-and-down"
           >DepuTinder
            </a>
-          <ul id="nav-mobile" className="right">
-            { this.showInfoUserPC() }
-          </ul>
-        </div>
-      </nav>
-    );
-  }
-
-  showInMobile() {
-    return (
-      <nav className="hide-on-large-only">
-        <div className="nav-wrapper" id="renderNavBarMobile">
           <a
             onClick={() => browserHistory.push('/')}
-            className="brand-logo left"
-            id="logoButton"
+            className="brand-logo left hide-on-large-only"
           ><i className="material-icons">home</i>
           </a>
-          <ul className="right">
-            { this.showInfoUserMobile() }
+          <ul id="nav-mobile" className="right">
+            { this.showInfoUserPC() }
           </ul>
         </div>
       </nav>
@@ -133,7 +119,6 @@ class Navbar extends Component {
     return (
       <div className="navBar">
         { this.showInPC() }
-        { this.showInMobile() }
       </div>
     );
   }

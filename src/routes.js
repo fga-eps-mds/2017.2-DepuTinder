@@ -15,6 +15,7 @@ import SignUpSuccessful from './components/signUpSuccessful';
 import EditSuccessful from './components/editSuccessful';
 import SignIn from './containers/signIn';
 import EditAccountForm from './containers/editAccountForm';
+import UserPage from './containers/userPage';
 
 export default (
   <Route>
@@ -33,6 +34,7 @@ export default (
       <Route exact path="/signIn" component={SignIn} />
       <Route exact path="/editAccountForm" component={EditAccountForm} />
       <Route exact path="/editSuccessful" component={EditSuccessful} />
+      <Route exact path="/user" component={UserPage} />
     </Route>
   </Route>
 );

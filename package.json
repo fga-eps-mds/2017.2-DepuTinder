@@ -27,7 +27,7 @@
     "eslint-plugin-jsx": "0.0.2",
     "eslint-plugin-jsx-a11y": "^4.0.0",
     "eslint-plugin-react": "^6.10.3",
-    "jquery": "^2.2.1",
+    "jquery": "^3.0.0",
     "jsdom": "^8.1.0",
     "mocha": "^2.4.5",
     "react-addons-test-utils": "^15.6",

@@ -6,6 +6,8 @@
   "repository": "git@github.com:fga-gpp-mds/2017.2-DepuTinder.git",
   "scripts": {
     "start": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js",
+    "prod": "NODE_ENV=production node server.js",
+    "postinstall": "webpack -p",
     "test": "nyc --reporter=html --reporter=text --reporter=lcov  mocha  --compilers js:babel-core/register --require ./test/test_helper.js --recursive ./test",
     "test-coverage": "CODECLIMATE_REPO_TOKEN=bbab3c00343fdaba8c20542e3f3b98a58d84d5da8b50ba02b898603c633f40ce codeclimate-test-reporter < ./coverage/lcov.info",
     "test:watch": "npm run test -- --watch"
@@ -13,6 +15,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "express": "^4.16.2",
     "babel-core": "^*",
     "babel-eslint": "^*",
     "babel-loader": "*",
@@ -43,6 +46,7 @@
     "babel-preset-stage-1": "*",
     "codeclimate-test-reporter": "^0.5.0",
     "css-loader": "^0.28.4",
+    "express": "^4.16.2",
     "google-map-react": "^0.24.0",
     "jsdom": "^8.5.0",
     "lodash": "^4.17.4",

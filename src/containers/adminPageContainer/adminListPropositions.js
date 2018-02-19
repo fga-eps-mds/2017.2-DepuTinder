@@ -19,10 +19,12 @@ class AdminListPropositions extends Component {
       return (
         <div className="row" key={data.propositionTitle}>
           <div className="col s12 m12">
-            <div className="card-content yellow-text card black darken-1">
-              <div>{data.id}</div>
-              <div>Título: {data.propositionTitle}</div>
-              <div>Descrição: {data.propositionDescription}</div>
+            <div
+              className="card black-text"
+              id="cardSideNav"
+            >
+              <div><b>Título:&nbsp;</b>{data.propositionTitle}</div>
+              <div><b>Descrição:&nbsp;</b>{data.propositionDescription}</div>
             </div>
           </div>
         </div>

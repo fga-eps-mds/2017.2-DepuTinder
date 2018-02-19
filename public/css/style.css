@@ -6,8 +6,8 @@
  * Made By MaterializeCSS.com
  */
  :root{
-   --main-yellow: #ffea00;
-   --background-color: #ffd600;
+   --main-yellow: #8B2635;
+   --background-color: #E0E2DB;
    --main-grey: #424242;
  }
 
@@ -59,7 +59,16 @@
   color: var(--main-yellow);
 }
 
+#answerQuestionnaireButton{
+  background-color: #2E3532
+}
+
+#answerQuestionnaireButton:hover{
+  background-color: #BDC2BF
+}
+
 #paragraph_home_page {
+  position: absolute
   font-family: "Courier New", Courier, monospace;
   font-size: 120%;
   display: block;
@@ -172,7 +181,82 @@
   transform:translate(50%,0%);
 }
 
-#slide-out{
-  background-color: var(--main-yellow);
-  color: var(--main-yellow);
+#listAdminQuestions{
+   width: 50%;
+   height: 30%;
+   flex-wrap: wrap;
+   flex: initial;
+}
+.scroll-box {
+            overflow-y: scroll;
+            height: 300px;
+            padding: 1rem
+        }
+#userSignUpForm {
+  margin: 5%;
+  background-color: #ffffff;
+}
+
+#signUpButton {
+  width: 150;
+  background-color: black;
+}
+
+#renderNavBarMobile {
+  background-color: #25291C;
+}
+
+#logoButton {
+  background-color: #25291C;
+  font-size: 150%;
+}
+
+#loginFacebookButton {
+margin:20px;
+}
+
+#cleanButton {
+  margin-left: 20px;
+}
+
+.SideNav {
+  font-size: 30%;
+  width: 30px;
+  min-width: 30px;
+}
+
+.scrollbar
+{
+  overflow-y: scroll;
+  height: 550px;
+  padding: 1rem
+}
+
+#cardSideNav {
+  font-size: 70%;
+  top: 40%;
+  margin-left:300;
+	margin-right:300;
+	margin-top:210;
+	text-align: center;
+	border:thin solid;
+	width:400;
+	height:100;
+}
+
+.navStyle {
+  position: relative;
+  width: 90%;
+  max-width: 400px;
+  height: 100%;
+  transform: none;
+  display: flex;
+  will-change: transform;
+  flex-direction: column;
+  float: left;
+  transition: none;
+}
+
+#questionReveal {
+  text-align: center;
 }

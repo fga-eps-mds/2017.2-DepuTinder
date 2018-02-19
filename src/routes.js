@@ -8,8 +8,14 @@ import SearchParlamentary from './containers/searchContainer/searchParlamentary'
 import ShowParlamentary from './containers/showParlamentary';
 import AdminPage from './containers/adminPageContainer/adminPage';
 import AdminQuestionPage from './containers/adminPageContainer/adminQuestionPage';
-import AdminQuestionnairePage from './containers/adminPageContainer/adminQuestionnairePage';
+import AdminQuestionnairePage from './containers/adminPageContainer/adminQuestionnaire/adminQuestionnairePage';
+import AdminListPropositions from './containers/adminPageContainer/adminListPropositions';
+import SignUpForm from './containers/signUpForm';
+import SignUpSuccessful from './components/signUpSuccessful';
+import EditSuccessful from './components/editSuccessful';
 import SignIn from './containers/signIn';
+import EditAccountForm from './containers/editAccountForm';
+import UserPage from './containers/userPage';
 
 export default (
   <Route>
@@ -22,7 +28,13 @@ export default (
       <Route exact path="/admin" component={AdminPage} />
       <Route exact path="/criarQuestao" component={AdminQuestionPage} />
       <Route exact path="/criarQuestionario" component={AdminQuestionnairePage} />
+      <Route exact path="/listarProposicoes" component={AdminListPropositions} />
+      <Route exact path="/signUpForm" component={SignUpForm} />
+      <Route exact path="/signUpSuccessful" component={SignUpSuccessful} />
       <Route exact path="/signIn" component={SignIn} />
+      <Route exact path="/editAccountForm" component={EditAccountForm} />
+      <Route exact path="/editSuccessful" component={EditSuccessful} />
+      <Route exact path="/user" component={UserPage} />
     </Route>
   </Route>
 );

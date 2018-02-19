@@ -7,7 +7,10 @@ import parlamentariansDataReducer from './parlamentariansDataReducer';
 import parlamentariansSearchDataReducer from './parlamentariansSearchDataReducer';
 import selectedParlamentary from './selectedParlamentary';
 import actualUser from './actualUserReducer';
-
+import questionDataReducer from './questionDataReducer';
+import deleteActualUser from './removeAccountReducer';
+import selectedQuestion from './selectedQuestion';
+import questionSearchDataReducer from './questionSearchDataReducer';
 
 const rootReducer = combineReducers({
   answeredQuestions: answeredQuestionReducer,
@@ -18,6 +21,10 @@ const rootReducer = combineReducers({
   parlamentariansSearch: parlamentariansSearchDataReducer,
   selectedParlamentary,
   actualUser,
+  questionData: questionDataReducer,
+  deleteActualUser,
+  selectedQuestion,
+  questionSearch: questionSearchDataReducer,
 });
 
 export default rootReducer;

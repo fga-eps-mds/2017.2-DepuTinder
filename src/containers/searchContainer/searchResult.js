@@ -19,7 +19,7 @@ class SearchResult extends Component {
         <li
           id="deputy-item"
           className="collection-item"
-          key={data[deputy].fields.name}
+          key={data[deputy].parlamentaryName}
           onClick={() => this.selectedParlamentary(data[deputy])}
         >
           <div>
@@ -27,7 +27,7 @@ class SearchResult extends Component {
               account_circle
             </i>
             <br />
-            {data[deputy].fields.name}
+            {data[deputy].parlamentaryName}
           </div>
         </li>
       );

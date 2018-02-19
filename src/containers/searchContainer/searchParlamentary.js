@@ -46,6 +46,7 @@ class SearchParlamentary extends Component {
               id="searchParams"
               type="search"
               className="validate"
+
               value={this.state.searchParams}
               onChange={event => this.handleChange(event.target.value)}
             />

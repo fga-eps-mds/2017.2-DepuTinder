@@ -1,0 +1,12 @@
+{
+  "include": [
+    "src/**/*.js"
+  ],
+  "exclude": [
+    "!**/node_modules/**",
+    "node_modules",
+    "**/*.test.js",
+    "src/actions/**",
+    "src/reducers/**"
+  ]
+}

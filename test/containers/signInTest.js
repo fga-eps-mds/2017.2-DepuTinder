@@ -16,7 +16,10 @@ describe('SignIn', () => {
   });
 
   it('render the input userPassword', () => {
-    expect(component.find('#inputPassword')).to.exists;
+    expect(component.find('#inputPassword')).to.exist;
   });
-  
+
+  it('renders the SignInButton', () => {
+    expect(component.find('#loginButton')).to.exist;
+  });
 });

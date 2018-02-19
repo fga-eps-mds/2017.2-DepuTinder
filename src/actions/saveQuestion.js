@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const HOST = 'http://localhost:8000/question/';
+const HOST = 'http://deputinder-api.herokuapp.com/question/';
 
 export default function saveQuestion(title, subtitle, description, author, id) {
   axios.post(`${HOST}`, {

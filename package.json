@@ -7,7 +7,7 @@
   "scripts": {
     "start": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js",
     "test": "nyc --reporter=html --reporter=text --reporter=lcov  mocha  --compilers js:babel-core/register --require ./test/test_helper.js --recursive ./test",
-    "test-coverage": "CODECLIMATE_REPO_TOKEN=79e53709e6f55fb3fecff3ed117aab37a63378ee60100ec62827b5955e093517 codeclimate-test-reporter < ./coverage/lcov.info",
+    "test-coverage": "CODECLIMATE_REPO_TOKEN=bbab3c00343fdaba8c20542e3f3b98a58d84d5da8b50ba02b898603c633f40ce codeclimate-test-reporter < ./coverage/lcov.info",
     "test:watch": "npm run test -- --watch"
   },
   "author": "",
@@ -27,7 +27,7 @@
     "eslint-plugin-jsx": "0.0.2",
     "eslint-plugin-jsx-a11y": "^4.0.0",
     "eslint-plugin-react": "^6.10.3",
-    "jquery": "^2.2.1",
+    "jquery": "^3.0.0",
     "jsdom": "^8.1.0",
     "mocha": "^2.4.5",
     "react-addons-test-utils": "^15.6",
@@ -50,22 +50,27 @@
     "node-sass": "^4.0.0",
     "nyc": "^11.2.1",
     "prop-types": "^15.5.10",
-    "react": "^15.6.1",
+    "react": "^15.6.2",
     "react-autosuggest": "^9.3.2",
-    "react-dom": "^15.4.0",
+    "react-dom": "^15.6.2",
+    "react-facebook-login": "^3.7.2",
     "react-file-uploader": "^0.3.3",
     "react-files": "^2.4.3",
     "react-google-maps": "^5.1.0",
+    "react-icons-kit": "^1.0.7",
     "react-redux": "^4.4.6",
     "react-router": "^3.0.3",
     "react-router-dom": "^4.1.2",
     "react-sanfona": "^0.4.0",
+    "react-sidenav": "^2.1.2",
+    "react-simple-sidenav": "^0.1.6",
     "react-tap-event-plugin": "^2.0.1",
     "redux": "^3.0.4",
     "redux-promise": "^0.5.1",
     "redux-thunk": "^*",
     "sass-loader": "^6.0.6",
-    "style-loader": "^0.18.2"
+    "style-loader": "^0.18.2",
+    "sweetalert": "^2.0.8"
   },
   "babel": {
     "presets": [
